@@ -1,0 +1,303 @@
+/* ==========================================
+   Budget Detail Page
+   ========================================== */
+
+.bd {
+  background: var(--color-white);
+  min-height: 100%;
+}
+
+/* ---- Header ---- */
+.bd__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.bd__back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  transition: background-color 0.15s;
+}
+
+.bd__back-btn:hover {
+  background-color: var(--color-focus-light);
+}
+
+.bd__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 40px;
+}
+
+/* ---- Budget info hero ---- */
+.bd__info {
+  padding: var(--space-4) var(--space-5);
+  text-align: center;
+}
+
+.bd__info-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.bd__info-name {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.bd__info-period {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.bd__hero-amount {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--color-cta);
+  line-height: 1.1;
+  margin-bottom: var(--space-1);
+}
+
+.bd__hero-sub {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+/* ---- Card (shared for Verbruik & Budgetcheck) ---- */
+.bd__card {
+  margin: 0 var(--space-5) var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.bd__card-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+}
+
+/* ---- Stacked progress bar ---- */
+.bd__stacked-bar {
+  display: flex;
+  width: 100%;
+  height: 8px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-4);
+}
+
+.bd__stacked-segment {
+  height: 100%;
+}
+
+.bd__stacked-segment:first-child {
+  border-radius: var(--radius-full) 0 0 var(--radius-full);
+}
+
+.bd__stacked-segment:last-child {
+  border-radius: 0 var(--radius-full) var(--radius-full) 0;
+}
+
+.bd__stacked-segment:only-child {
+  border-radius: var(--radius-full);
+}
+
+/* ---- Category breakdown ---- */
+.bd__breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.bd__breakdown-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.bd__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.bd__breakdown-name {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+.bd__breakdown-amount {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  text-align: right;
+}
+
+.bd__breakdown-amount--bold {
+  font-weight: 700;
+}
+
+/* ---- Bar chart ---- */
+.bd__chart {
+  margin-bottom: var(--space-4);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Hide scrollbar but keep functionality */
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/Edge */
+}
+
+.bd__chart::-webkit-scrollbar {
+  display: none;                  /* Chrome/Safari */
+}
+
+.bd__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  height: 120px;
+  min-width: max-content;
+}
+
+.bd__bar-col {
+  flex: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bd__bar-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+}
+
+.bd__bar {
+  width: 70%;
+  border-radius: 4px 4px 0 0;
+  min-height: 2px;
+}
+
+.bd__bar--stacked {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.bd__bar-segment {
+  width: 100%;
+}
+
+.bd__bar--future {
+  background: var(--color-border);
+}
+
+.bd__bar-label {
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  color: var(--color-text-tertiary);
+  margin-top: var(--space-1);
+}
+
+.bd__bar-label--current {
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ---- Stats ---- */
+.bd__stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.bd__stat-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.bd__stat-label {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+.bd__stat-value {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ---- Prediction ---- */
+.bd__prediction {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin-bottom: var(--space-3);
+}
+
+.bd__prediction--tekort {
+  color: var(--color-notification);
+  font-weight: 700;
+}
+
+.bd__prediction--over {
+  color: var(--color-cta);
+  font-weight: 700;
+}
+
+.bd__link {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-cta);
+  display: block;
+  width: 100%;
+  text-align: right;
+}
+
+/* ---- Action buttons ---- */
+.bd__actions {
+  padding: var(--space-4) var(--space-5) var(--space-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.bd__edit-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-cta);
+}

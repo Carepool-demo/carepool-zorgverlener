@@ -1,0 +1,55 @@
+/* ==========================================
+   Shared Zorgverlener Selector
+   ========================================== */
+
+.selector__label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.selector__dropdown {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  height: 54px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  transition: border-color 0.15s;
+}
+
+.selector__dropdown:hover {
+  border-color: var(--color-cta);
+}
+
+.selector__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-focus);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.selector__name {
+  flex: 1;
+  text-align: left;
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+.selector__dropdown svg {
+  color: var(--color-cta);
+  flex-shrink: 0;
+}

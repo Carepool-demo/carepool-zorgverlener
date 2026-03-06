@@ -1,0 +1,440 @@
+/* ==========================================
+   Admin Page - Administratie
+   ========================================== */
+
+.admin {
+  background: var(--color-white);
+}
+
+/* ---- Tab navigation ---- */
+.admin__tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin__tab {
+  flex: 1;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  border-bottom: 3px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.admin__tab--active {
+  color: var(--color-text-primary);
+  font-weight: 700;
+  border-bottom-color: var(--color-cta);
+}
+
+/* ---- Tab content area ---- */
+.admin__tab-content {
+  padding: var(--space-3) var(--space-5) var(--space-6);
+}
+
+/* ---- Spacing utilities for shared components ---- */
+.admin__selector-spacing {
+  margin-bottom: var(--space-3);
+}
+
+.admin__month-spacing {
+  margin-bottom: var(--space-4);
+}
+
+/* ==========================================
+   Zorglogs Tab
+   ========================================== */
+
+.zorglogs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.zorglogs__group {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.zorglogs__date {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface-secondary);
+  border-radius: 0 0 var(--radius-lg) 0;
+  width: fit-content;
+}
+
+.zorglogs__entries {
+  display: flex;
+  flex-direction: column;
+}
+
+.zorglogs__entry {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  position: relative;
+}
+
+.zorglogs__entry + .zorglogs__entry::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--space-3);
+  right: var(--space-3);
+  height: 1px;
+  background: var(--color-border);
+}
+
+.zorglogs__entry-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  width: 18px;
+}
+
+.zorglogs__entry-type {
+  flex: 1;
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+.zorglogs__entry-duration {
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  min-width: 40px;
+  text-align: right;
+}
+
+.zorglogs__entry-price {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  min-width: 52px;
+  text-align: right;
+}
+
+.zorglogs__edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s;
+}
+
+.zorglogs__edit-btn:hover {
+  background-color: var(--color-focus-light);
+}
+
+/* Deleted entry */
+.zorglogs__entry--deleted {
+  background: var(--color-surface-secondary);
+  margin: 0 calc(-1 * var(--space-5));
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.zorglogs__entry-type--deleted,
+.zorglogs__entry-duration--deleted,
+.zorglogs__entry-price--deleted {
+  text-decoration: line-through;
+  color: var(--color-text-tertiary);
+  font-weight: 400;
+}
+
+.zorglogs__restore-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 32px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  background: var(--color-white);
+  white-space: nowrap;
+  transition: background-color 0.15s;
+}
+
+.zorglogs__restore-btn:hover {
+  background-color: var(--color-focus-light);
+}
+
+/* ==========================================
+   Overzichten Tab
+   ========================================== */
+
+.overzicht {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.overzicht__card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.overzicht__card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-focus);
+  border-radius: var(--radius-sm) 0 var(--radius-lg) 0;
+  width: fit-content;
+}
+
+.overzicht__table {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-evenly;
+  padding: var(--space-3) var(--space-3) var(--space-4);
+}
+
+.overzicht__row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.overzicht__row--header {
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.overzicht__row--header .overzicht__col {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.overzicht__row--total {
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+}
+
+.overzicht__row--total .overzicht__col {
+  font-weight: 700;
+}
+
+.overzicht__col {
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+.overzicht__col--category {
+  flex: 1;
+}
+
+.overzicht__col--duration {
+  min-width: 44px;
+  text-align: right;
+}
+
+.overzicht__col--amount {
+  min-width: 64px;
+  text-align: right;
+}
+
+.overzicht__link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-cta);
+  padding: var(--space-1) 0;
+}
+
+.overzicht__link svg {
+  color: var(--color-cta);
+}
+
+.overzicht__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: var(--space-4) 0 var(--space-6);
+}
+
+.overzicht__budget-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 72px;
+  padding: 0 var(--space-5);
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s;
+}
+
+.overzicht__budget-card:hover {
+  background: var(--color-focus-medium);
+}
+
+.overzicht__budget-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.overzicht__budget-left svg {
+  color: var(--color-text-secondary);
+}
+
+.overzicht__budget-label {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.overzicht__budget-card > svg {
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================
+   Tarieven Tab
+   ========================================== */
+
+.tarieven {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.tarieven__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tarieven__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.tarieven__add-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-cta);
+  height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s;
+}
+
+.tarieven__add-btn:hover {
+  background-color: var(--color-focus-light);
+}
+
+.tarieven__card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.tarieven__card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-3) 0;
+}
+
+.tarieven__card-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.tarieven__card-link {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-cta);
+  height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+}
+
+.tarieven__rates {
+  display: flex;
+  flex-direction: column;
+}
+
+.tarieven__rate-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3);
+  position: relative;
+}
+
+.tarieven__rate-row + .tarieven__rate-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--space-3);
+  right: var(--space-3);
+  height: 1px;
+  background: var(--color-border);
+}
+
+.tarieven__rate-label {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+.tarieven__rate-tag {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-tertiary);
+}
+
+.tarieven__rate-price {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.tarieven__footer {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  text-align: center;
+  padding: var(--space-2) 0;
+}

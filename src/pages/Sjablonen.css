@@ -1,0 +1,439 @@
+/* ==========================================
+   Sjablonen page
+   ========================================== */
+
+.sjab {
+  min-height: 100vh;
+  background: var(--color-surface);
+}
+
+/* ---- Header ---- */
+.sjab__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.sjab__back-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.sjab__title {
+  flex: 1;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 40px;
+}
+
+.sjab__add-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--color-cta);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sjab__add-btn:active {
+  background: var(--color-hover);
+}
+
+/* ---- Grid ---- */
+.sjab__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  padding: var(--space-5);
+}
+
+/* ---- Card ---- */
+.sjab__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4);
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: background-color 0.15s;
+  min-height: 140px;
+}
+
+.sjab__card:active {
+  background: var(--color-focus-medium);
+}
+
+.sjab__card-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--color-cta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sjab__card-label {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.sjab__card-sublabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================
+   Sjabloon aanpassen page
+   ========================================== */
+
+.sja {
+  min-height: 100vh;
+  background: var(--color-surface-secondary);
+}
+
+/* ---- Header ---- */
+.sja__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.sja__back-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.sja__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 40px;
+}
+
+/* ---- Content ---- */
+.sja__content {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ---- Icon with edit badge ---- */
+.sja__icon-wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+}
+
+.sja__icon-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-cta);
+}
+
+.sja__icon-edit {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-cta);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sja__icon-edit svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---- Fields ---- */
+.sja__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.sja__label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+}
+
+.sja__sublabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+  margin-top: var(--space-3);
+}
+
+/* ---- Input rows ---- */
+.sja__input-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+}
+
+.sja__input-row svg {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+.sja__input-value {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+}
+
+/* ---- Card (zorg en duur, herhaling) ---- */
+.sja__card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.sja__care-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) 0;
+}
+
+.sja__care-row--total {
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-2);
+  padding-top: var(--space-3);
+  font-weight: 700;
+}
+
+.sja__care-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.sja__care-value {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.sja__adjust-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  height: 32px;
+  margin-top: var(--space-3);
+  padding: 0 var(--space-4);
+  background: var(--color-focus-light);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-cta);
+}
+
+.sja__adjust-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.sja__adjust-btn:active {
+  background: var(--color-focus-medium);
+}
+
+/* ---- Time row ---- */
+.sja__time-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sja__time-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+.sja__time-pill svg {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+.sja__time-row > svg {
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+}
+
+/* ---- Select rows (herhaling) ---- */
+.sja__select-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.sja__select-row svg:first-child {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.sja__select-row svg:last-child {
+  color: var(--color-text-tertiary);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ---- Days row ---- */
+.sja__days-row {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.sja__day-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sja__day-btn--active {
+  background: var(--color-cta);
+  border-color: var(--color-cta);
+  color: white;
+}
+
+/* ---- Caregiver row ---- */
+.sja__caregiver-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.sja__caregiver-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--color-cta);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.sja__caregiver-name {
+  flex: 1;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.sja__caregiver-link {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* ---- Save button ---- */
+.sja__save-btn {
+  width: 100%;
+  height: 40px;
+  padding: 0 var(--space-4);
+  background: var(--color-cta);
+  color: white;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  text-align: center;
+}
+
+.sja__save-btn:active {
+  background: var(--color-hover);
+}
+
+/* ---- Delete link ---- */
+.sja__delete-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-cta);
+  padding: var(--space-2) 0 var(--space-8);
+}
+
+.sja__delete-link svg {
+  color: var(--color-cta);
+}

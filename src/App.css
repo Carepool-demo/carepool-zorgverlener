@@ -1,0 +1,40 @@
+/* App Shell - mobile-first container */
+.app-shell {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 393px;
+  background-color: var(--color-white);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.app-content {
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 72px; /* space reserved for BottomNav */
+}
+
+/* Match app-shell background to page background where needed */
+.app-shell--carepool {
+  background-color: var(--color-surface-secondary);
+}
+
+.app-shell--profielInstellingen {
+  background-color: var(--color-surface-secondary);
+}
+
+.app-shell--helpInfo {
+  background-color: var(--color-surface);
+}
+
+.app-shell--no-nav .app-content {
+  padding-bottom: 0;
+}
+
+.app-shell--no-nav.app-shell--carepool {
+  background-color: var(--color-white);
+}

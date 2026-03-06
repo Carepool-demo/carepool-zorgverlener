@@ -1,0 +1,228 @@
+/* ==========================================
+   Tour — full-screen onboarding overlay
+   ========================================== */
+
+.tour {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #FFE9D9;
+  display: flex;
+  flex-direction: column;
+  font-family: inherit;
+  max-width: 393px;
+  margin: 0 auto;
+}
+
+/* ---- Skip button ---- */
+.tour__skip {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  z-index: 10;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--color-cta);
+  color: var(--color-cta);
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  line-height: 19px;
+}
+
+/* ---- Content area ---- */
+.tour__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ---- Welcome screen (step 0) ---- */
+.tour__welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 72px;
+  padding: 0 32px;
+  text-align: center;
+}
+
+.tour__welcome-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.tour__welcome-title span {
+  font-size: 50px;
+  font-weight: 1000;
+  color: var(--color-cta);
+  letter-spacing: -1.1px;
+  line-height: 1;
+}
+
+.tour__welcome-text {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+}
+
+/* ---- Illustration ---- */
+.tour__illustration {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  margin-top: 56px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tour__illustration-img {
+  width: 100%;
+  height: auto;
+}
+
+/* ---- Text block (steps 1-6) ---- */
+.tour__text-block {
+  text-align: center;
+  padding: var(--space-8) var(--space-5) 0;
+  flex-shrink: 0;
+}
+
+.tour__heading {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-cta);
+  line-height: 30px;
+  letter-spacing: -0.5px;
+  margin-bottom: var(--space-2);
+}
+
+.tour__description {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+}
+
+/* ---- Video step (step 6) ---- */
+.tour__video-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 56px var(--space-5) 0;
+  min-height: 0;
+}
+
+.tour__video-placeholder {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+.tour__video-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tour__video-placeholder svg {
+  position: relative;
+  z-index: 1;
+}
+
+.tour__video-player {
+  width: 280px;
+  height: 280px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.tour__video-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.tour__text-block--video .tour__description {
+  color: #210066;
+}
+
+.tour__text-block--video .tour__heading {
+  margin-bottom: 10px;
+}
+
+/* ---- Footer ---- */
+.tour__footer {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 48px var(--space-5) 80px;
+}
+
+/* ---- Progress dots ---- */
+.tour__dots {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.tour__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: white;
+  transition: background-color 0.2s;
+}
+
+.tour__dot--active {
+  background: var(--color-cta);
+}
+
+/* ---- CTA Button ---- */
+.tour__button {
+  width: 100%;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--color-cta);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  font-family: inherit;
+  letter-spacing: -0.2px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.tour__button:active {
+  background: var(--color-hover);
+}

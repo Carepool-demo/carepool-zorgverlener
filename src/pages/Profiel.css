@@ -1,0 +1,155 @@
+/* ==========================================
+   Profiel page
+   ========================================== */
+
+.profiel {
+  min-height: 100vh;
+  background: var(--color-surface);
+}
+
+/* ---- Header ---- */
+.profiel__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.profiel__back-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.profiel__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 40px;
+}
+
+/* ---- Hero (avatar + name) ---- */
+.profiel__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-8) var(--space-5) var(--space-6);
+}
+
+.profiel__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  background: var(--color-focus-medium);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-3);
+}
+
+.profiel__name {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ---- Sections ---- */
+.profiel__section {
+  padding: 0 var(--space-5) var(--space-6);
+}
+
+.profiel__section--last {
+  padding-bottom: var(--space-16);
+}
+
+.profiel__section-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-3);
+}
+
+/* ---- Card ---- */
+.profiel__card {
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* ---- Info rows ---- */
+.profiel__row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.profiel__row--last {
+  border-bottom: none;
+}
+
+.profiel__row-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.profiel__row-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.profiel__row-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+}
+
+.profiel__row-value {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+/* ---- Link rows (settings) ---- */
+.profiel__link-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  text-align: left;
+}
+
+.profiel__link-row--last {
+  border-bottom: none;
+}
+
+.profiel__link-row svg {
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+}

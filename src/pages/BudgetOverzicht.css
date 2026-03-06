@@ -1,0 +1,177 @@
+/* ==========================================
+   Budget Overzicht Page
+   ========================================== */
+
+.bo {
+  background: var(--color-white);
+  min-height: 100%;
+}
+
+/* ---- Header ---- */
+.bo__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.bo__back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  transition: background-color 0.15s;
+}
+
+.bo__back-btn:hover {
+  background-color: var(--color-focus-light);
+}
+
+.bo__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 40px;
+}
+
+/* ---- Toolbar ---- */
+.bo__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+}
+
+.bo__dropdown {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.bo__dropdown svg {
+  width: 16px;
+  height: 16px;
+}
+
+.bo__add-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-cta);
+  height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s;
+}
+
+.bo__add-btn:hover {
+  background-color: var(--color-focus-light);
+}
+
+.bo__add-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---- Budget card list ---- */
+.bo__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: 0 var(--space-5) var(--space-6);
+}
+
+/* ---- Budget card ---- */
+.bo__card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-sm);
+  text-align: left;
+  transition: background-color 0.15s;
+}
+
+.bo__card:hover {
+  background: var(--color-focus-medium);
+}
+
+.bo__card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.bo__card-header svg {
+  color: var(--color-text-secondary);
+  width: 20px;
+  height: 20px;
+}
+
+.bo__card-name {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.bo__card-amount {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  color: var(--color-cta);
+  text-align: right;
+}
+
+.bo__card-subtext {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  text-align: right;
+  margin-bottom: var(--space-3);
+}
+
+/* ---- Progress bar ---- */
+.bo__progress {
+  width: 100%;
+  height: 8px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-2);
+}
+
+.bo__progress-bar {
+  height: 100%;
+  background: var(--color-cta);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.bo__card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bo__card-used {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-cta);
+}
+
+.bo__card-total {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}

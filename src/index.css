@@ -1,0 +1,180 @@
+/* ============================================
+   Carepool Design System
+   8px Grid | Mulish Font | Purple Theme
+   ============================================ */
+
+:root {
+  /* Primary Colors (from Figma style guide) */
+  --color-cta: #6100FF;                /* Call to Action – toptaken */
+  --color-surface: #FFFFFF;            /* Surface Primary */
+  --color-surface-secondary: #F4F0FE;  /* Surface Secondary – achtergrond elementen */
+  --color-border: #DAD4EC;             /* Border – lijntjes en randjes */
+  --color-hover: #3600AA;              /* Hover (web) */
+  --color-pressed: #200066;            /* Pressed / darkmode achtergrond */
+  --color-focus: #D9CCF5;              /* Focus – klikbare items */
+  --color-focus-medium: #EAE1FD;       /* Focus Medium */
+  --color-focus-light: #F0EAFF;        /* Focus Light */
+  --color-pale-pink: #FFE9D9;          /* Pale Pink – walkthrough, profiel */
+  --color-notification: #D3008B;       /* Notification bolletjes */
+  --color-notification-surface: #FBE6F3; /* Notification achtergrond */
+  --color-success: #00FFC2;            /* Success Primary */
+  --color-success-surface: #CFFFF8;    /* Success Surface */
+
+  /* Text Colors */
+  --color-text-primary: #0A0A0A;       /* Text Dark Primary – tekst op wit */
+  --color-text-secondary: #3F2561;     /* Text Dark Secondary – tekst op wit */
+  --color-text-tertiary: #757575;      /* Text Dark Tertiary – datum etc. */
+  --color-text-light: #FFFFFF;         /* Text Light Primary – tekst op donker */
+  --color-text-light-secondary: #F5F5F5; /* Text Light Secondary */
+
+  /* Disabled States */
+  --color-disabled-text: #9E9E9E;
+  --color-disabled-dark: #C2C2C2;
+  --color-disabled-light: #E0E0E0;
+  --color-disabled-lightest: #F5F5F5;
+
+  /* Legacy aliases */
+  --color-white: #FFFFFF;
+  --color-accent: var(--color-cta);
+  --color-link: var(--color-cta);
+  --color-badge-red: var(--color-notification);
+  --color-text-muted: var(--color-text-tertiary);
+  --color-border-light: var(--color-focus-medium);
+
+  /* 8px Grid spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* Typography (from Figma style guide) */
+  --font-family: 'Mulish', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-xs: 12px;    /* Text XS */
+  --font-size-sm: 14px;    /* Text S */
+  --font-size-base: 16px;  /* Text M (standaard body) */
+  --font-size-md: 16px;    /* Text M */
+  --font-size-lg: 18px;    /* Text L / Heading S */
+  --font-size-xl: 24px;    /* Heading M (web) */
+  --font-size-2xl: 32px;   /* Heading L (web) */
+
+  /* Border radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-secondary);
+  height: 100%;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+button {
+  font-family: var(--font-family);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Utility: hide scrollbar for horizontal scroll */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Error Boundary ---- */
+.error-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  max-width: 393px;
+  padding: var(--space-5);
+}
+
+.error-boundary__content {
+  text-align: center;
+}
+
+.error-boundary__title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.error-boundary__message {
+  font-size: var(--font-size-base);
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-6);
+}
+
+.error-boundary__btn {
+  height: 40px;
+  padding: 0 var(--space-6);
+  background: var(--color-cta);
+  color: white;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+}

@@ -1,0 +1,580 @@
+/* ======================================
+   ZorgverlenerProfiel — .zvp__
+   ====================================== */
+
+.zvp {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-focus);
+}
+
+/* ---- Header ---- */
+.zvp__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.zvp__back-btn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary);
+  transition: background-color 0.2s;
+}
+.zvp__back-btn:hover {
+  background: var(--color-focus-medium);
+}
+
+.zvp__title {
+  flex: 1;
+  line-height: 40px;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.zvp__header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 40px;
+}
+
+.zvp__header-logo {
+  width: 28px;
+  height: 28px;
+  background: var(--color-cta);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+}
+
+.zvp__header-more {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary);
+  border-radius: var(--radius-full);
+}
+.zvp__header-more:hover {
+  background: var(--color-surface-secondary);
+}
+
+/* ---- Scrollable Body ---- */
+.zvp__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-5);
+  background: linear-gradient(
+    to bottom,
+    var(--color-focus) 0px,
+    var(--color-surface-secondary) 400px
+  );
+}
+
+/* ---- Hero ---- */
+.zvp__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-4) 0 var(--space-5);
+}
+
+.zvp__avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: var(--radius-full);
+  background: var(--color-focus-medium);
+  border: 3px solid var(--color-white);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-3);
+}
+
+.zvp__name {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.zvp__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* ---- CTA Button ---- */
+.zvp__cta {
+  width: 100%;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--color-cta);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  transition: background-color 0.2s;
+}
+.zvp__cta:hover {
+  background: var(--color-hover);
+}
+
+/* ---- About Card ---- */
+.zvp__about-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.zvp__about-card--has-audio {
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  margin-bottom: 0;
+}
+
+.zvp__about-title {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.zvp__about-text {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin-bottom: var(--space-3);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.zvp__about-text--expanded {
+  -webkit-line-clamp: unset;
+  display: block;
+}
+
+.zvp__about-meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.zvp__about-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.zvp__about-toggle svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s;
+}
+
+.zvp__about-toggle--expanded svg {
+  transform: rotate(180deg);
+}
+
+/* ---- Audio Card ---- */
+.zvp__audio-card {
+  background: var(--color-focus);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.zvp__audio-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.zvp__audio-play {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--color-cta);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  padding: 0;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zvp__audio-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.zvp__audio-bar {
+  height: 6px;
+  background: var(--color-surface-secondary);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.zvp__audio-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 55%;
+  background: var(--color-cta);
+  border-radius: 3px;
+}
+
+/* ---- Section Label ---- */
+.zvp__section-label {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+/* ---- Info Card ---- */
+.zvp__info-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: 0 var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.zvp__info-row {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-6) 0;
+}
+
+.zvp__info-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+}
+
+.zvp__info-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.zvp__info-heading {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.zvp__info-check {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+.zvp__info-value {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+.zvp__info-sub {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  line-height: 1.6;
+}
+
+.zvp__info-link {
+  background: none;
+  border: none;
+  color: var(--color-cta);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  font-family: inherit;
+}
+
+.zvp__info-more {
+  background: none;
+  border: none;
+  color: var(--color-cta);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  font-family: inherit;
+  margin-top: 2px;
+}
+
+.zvp__info-divider {
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* ---- Schedule Table ---- */
+.zvp__schedule {
+  border-collapse: collapse;
+  margin-top: 4px;
+}
+
+.zvp__schedule-day {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  padding: 2px 0;
+  padding-right: var(--space-6);
+}
+
+.zvp__schedule-time {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  padding: 2px 0;
+}
+
+/* ---- Link Rows ---- */
+.zvp__link-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4) 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  color: var(--color-text-primary);
+}
+.zvp__link-row:hover {
+  opacity: 0.7;
+}
+
+.zvp__link-row-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+}
+
+.zvp__link-row-label {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.zvp__link-row svg:last-child {
+  flex-shrink: 0;
+  color: var(--color-text-tertiary);
+}
+
+/* ---- Links Card ---- */
+.zvp__links-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: 0 var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.zvp__links-card .zvp__link-row,
+.zvp__info-card .zvp__link-row {
+  height: 72px;
+  padding: 0;
+}
+
+/* ---- Reviews / Tags ---- */
+.zvp__reviews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.zvp__tag {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--color-focus);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.zvp__reviews-more {
+  background: none;
+  border: none;
+  color: var(--color-cta);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  align-self: center;
+}
+
+/* ---- CV Card ---- */
+.zvp__cv-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: 0 var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.zvp__cv-section {
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.zvp__cv-section--last {
+  border-bottom: none;
+}
+
+.zvp__cv-section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  color: var(--color-text-secondary);
+}
+
+.zvp__cv-section-title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.zvp__cv-entry {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-3);
+}
+
+.zvp__cv-entry:last-child {
+  margin-bottom: 0;
+}
+
+.zvp__cv-entry-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+.zvp__cv-entry-meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  line-height: 1.4;
+}
+
+.zvp__cv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.zvp__cv-list-item {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+/* ---- Quote Bubble (Leerbereidheid) ---- */
+.zvp__quote-bubble {
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.zvp__quote-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-cta);
+  line-height: 1.5;
+}
+
+.zvp__quote-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-focus);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-8);
+}
+
+/* ---- CV modifier (flat background) ---- */
+.zvp--cv {
+  background: var(--color-surface-secondary);
+}
+
+.zvp--cv .zvp__body {
+  background: var(--color-surface-secondary);
+}
+
+/* ---- Spacer ---- */
+.zvp__spacer {
+  height: var(--space-10);
+}

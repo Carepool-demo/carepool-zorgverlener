@@ -1,0 +1,129 @@
+/* ==========================================
+   Carepool Page - 8px grid system
+   ========================================== */
+
+.carepool {
+  background: var(--color-surface-secondary);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Hero section ---- */
+.carepool__hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-5);
+}
+
+.carepool__hero-content {
+  text-align: center;
+  max-width: 300px;
+}
+
+.carepool__hero-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 900;
+  color: var(--color-text-primary);
+  line-height: 1.15;
+  margin-bottom: var(--space-3);
+  white-space: pre-line;
+}
+
+.carepool__hero-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin-bottom: var(--space-6);
+}
+
+.carepool__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 40px;
+  padding: 0 var(--space-6);
+  background: var(--color-cta);
+  color: var(--color-text-light);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  transition: background-color 0.15s;
+}
+
+.carepool__cta-btn:hover {
+  background: var(--color-hover);
+}
+
+.carepool__cta-btn svg {
+  flex-shrink: 0;
+}
+
+/* ---- Quick access cards ---- */
+.carepool__cards {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5) var(--space-8);
+}
+
+.carepool__card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  transition: background-color 0.15s;
+  min-height: 100px;
+}
+
+.carepool__card:hover {
+  background: var(--color-focus-medium);
+}
+
+.carepool__card-icon-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.carepool__card-icon {
+  color: var(--color-text-secondary);
+}
+
+.carepool__card-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  background: var(--color-notification);
+  color: var(--color-text-light);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  border-radius: var(--radius-full);
+}
+
+.carepool__card-label {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ---- Page-level overrides for TopBar & BottomNav ---- */
+.carepool .top-bar {
+  background: var(--color-surface-secondary);
+  border-bottom: none;
+}
+
+.app-shell--carepool .bottom-nav {
+  background: var(--color-surface-secondary);
+  border-top: none;
+}

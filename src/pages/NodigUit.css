@@ -1,0 +1,196 @@
+/* ============================================
+   Nodig iemand uit (Invite) Page
+   ============================================ */
+
+.nodig-uit {
+  background: var(--color-surface-secondary);
+  min-height: 100%;
+}
+
+/* ---- Header (sub-page pattern) ---- */
+.nodig-uit__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-surface-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nodig-uit__back {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  flex-shrink: 0;
+}
+
+.nodig-uit__back:hover {
+  background-color: var(--color-focus-light);
+}
+
+.nodig-uit__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 40px;
+}
+
+/* ---- Body ---- */
+.nodig-uit__body {
+  padding: 0 var(--space-5) var(--space-8);
+  background: var(--color-surface-secondary);
+  min-height: calc(100% - 80px);
+}
+
+/* ---- Illustration ---- */
+.nodig-uit__illustration {
+  margin: 0 calc(-1 * var(--space-5));
+  padding: var(--space-6) 0;
+}
+
+.nodig-uit__illustration-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---- Content ---- */
+.nodig-uit__heading {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+  text-align: center;
+}
+
+.nodig-uit__description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+/* ---- Link field ---- */
+.nodig-uit__link-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.nodig-uit__link-text {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.nodig-uit__copy-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--color-cta);
+  transition: background-color 0.15s;
+}
+
+.nodig-uit__copy-btn:hover {
+  background-color: var(--color-focus-light);
+}
+
+/* ---- Action buttons ---- */
+.nodig-uit__actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.nodig-uit__action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  transition: background-color 0.15s;
+}
+
+.nodig-uit__action-btn--primary {
+  background-color: var(--color-cta);
+  color: var(--color-white);
+}
+
+.nodig-uit__action-btn--primary:hover {
+  background-color: var(--color-hover);
+}
+
+/* ---- QR Modal ---- */
+.nodig-uit__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: var(--space-5);
+}
+
+.nodig-uit__modal {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nodig-uit__modal-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  align-self: flex-start;
+  margin-bottom: var(--space-6);
+}
+
+.nodig-uit__qr-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-8);
+}
+
+.nodig-uit__modal-close {
+  width: 100%;
+  height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-full);
+  background-color: var(--color-cta);
+  color: var(--color-white);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  text-align: center;
+  transition: background-color 0.15s;
+}
+
+.nodig-uit__modal-close:hover {
+  background-color: var(--color-hover);
+}

@@ -1,0 +1,382 @@
+/* ==========================================
+   Home Page - 8px grid system
+   ========================================== */
+
+.home {
+  background: var(--color-white);
+}
+
+/* ---- Greeting ---- */
+.home__greeting {
+  background: var(--color-white);
+  padding: var(--space-8) var(--space-5) var(--space-6);
+  text-align: center;
+}
+
+.home__greeting-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.home__wave {
+  display: flex;
+  align-items: center;
+}
+
+.home__wave-img {
+  display: block;
+}
+
+.home__greeting-text {
+  font-size: var(--font-size-2xl);
+  font-weight: 900;
+  color: var(--color-pressed);
+}
+
+/* ---- Sections ---- */
+.home__section {
+  padding: var(--space-6) var(--space-5) var(--space-4);
+}
+
+.home__section--last {
+  padding-bottom: var(--space-8);
+}
+
+.home__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.home__section-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.home__section-header .home__section-title {
+  margin-bottom: 0;
+}
+
+.home__section-link {
+  display: block;
+  text-align: right;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding: var(--space-3) 0;
+  margin-top: var(--space-2);
+}
+
+/* ---- Appointment cards ---- */
+.home__appointments {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+  margin: 0 calc(-1 * var(--space-5));
+  padding-left: var(--space-5);
+  padding-right: var(--space-5);
+}
+
+.appointment-card {
+  flex-shrink: 0;
+  width: 222px;
+  min-height: 278px;
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: box-shadow 0.15s;
+}
+
+.appointment-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.appointment-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.appointment-card__date {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.appointment-card__location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.appointment-card__body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
+.appointment-card__body svg {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.appointment-card__type {
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  text-box-trim: both;
+  text-box-edge: cap alphabetic;
+}
+
+.appointment-card__time {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-align: center;
+  margin-bottom: auto;
+}
+
+.appointment-card__caregiver {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* ---- Care templates ---- */
+.home__add-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-accent);
+  height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s;
+}
+
+.home__add-btn:hover {
+  background-color: var(--color-focus-light);
+}
+
+.home__templates {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+  margin: 0 calc(-1 * var(--space-5));
+  padding-left: var(--space-5);
+  padding-right: var(--space-5);
+}
+
+.template-item {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1);
+  cursor: pointer;
+  min-width: 80px;
+}
+
+.template-item__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-secondary);
+  transition: all 0.15s;
+}
+
+.template-item:hover .template-item__icon {
+  background: var(--color-focus-medium);
+}
+
+.template-item__label {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.template-item__sublabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  margin-top: -4px;
+}
+
+/* ---- Connections ---- */
+.home__invite-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.home__connections {
+  display: flex;
+  flex-direction: column;
+}
+
+.connection-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  margin: 0 calc(-1 * var(--space-5));
+  border-top: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.connection-item:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.connection-item__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--color-focus);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.connection-item__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.connection-item__name {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.connection-item__tags {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-1);
+  overflow-x: auto;
+  margin-right: calc(-1 * var(--space-5));
+  padding-right: var(--space-5);
+}
+
+.connection-item__tag {
+  display: inline-block;
+  padding: 2px var(--space-2);
+  background: var(--color-focus-light);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  text-box-trim: both;
+  text-box-edge: cap alphabetic;
+}
+
+
+.connection-item__badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-notification);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  position: absolute;
+  right: var(--space-5);
+  top: var(--space-4);
+  z-index: 1;
+}
+
+.connection-item__badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---- Search section ---- */
+.home__search {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.home__search-input {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+}
+
+.home__search-input input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  background: transparent;
+}
+
+.home__search-input input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.home__search-icon {
+  flex-shrink: 0;
+}
+
+.home__search-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 32px;
+  padding: 0 var(--space-3);
+  border: 1.5px solid var(--color-accent);
+  border-radius: var(--radius-full);
+  color: var(--color-accent);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.home__search-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-white);
+}

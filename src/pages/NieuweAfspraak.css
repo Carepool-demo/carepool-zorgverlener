@@ -1,0 +1,486 @@
+/* ============================================
+   Nieuwe Afspraak (New Appointment) Page
+   ============================================ */
+
+.nieuwe-afspraak {
+  background: var(--color-white);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Header (sub-page pattern) ---- */
+.nieuwe-afspraak__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+.nieuwe-afspraak__back {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  flex-shrink: 0;
+}
+
+.nieuwe-afspraak__back:hover {
+  background-color: var(--color-focus-light);
+}
+
+.nieuwe-afspraak__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 40px;
+}
+
+/* ---- Body ---- */
+.nieuwe-afspraak__body {
+  flex: 1;
+  padding: var(--space-5);
+  padding-bottom: 120px;
+}
+
+.nieuwe-afspraak__body--form {
+  background: var(--color-white);
+}
+
+/* ---- Accent section with left border ---- */
+.nieuwe-afspraak__accent-section {
+  border-left: 3px solid var(--color-cta);
+  margin-left: calc(-1 * var(--space-5));
+  padding-left: calc(var(--space-5) - 3px);
+  margin-bottom: var(--space-4);
+}
+
+.nieuwe-afspraak__accent-text {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-cta);
+  margin-bottom: var(--space-4);
+}
+
+/* ---- Template selection ---- */
+.nieuwe-afspraak__templates {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+}
+
+.nieuwe-afspraak__template-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 72px;
+  flex-shrink: 0;
+}
+
+.nieuwe-afspraak__template-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--color-focus-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  transition: background-color 0.15s;
+}
+
+.nieuwe-afspraak__template-item:hover .nieuwe-afspraak__template-icon {
+  background: var(--color-focus-medium);
+}
+
+.nieuwe-afspraak__template-icon--new {
+  background: var(--color-cta);
+  color: var(--color-white);
+}
+
+.nieuwe-afspraak__template-item:hover .nieuwe-afspraak__template-icon--new {
+  background: var(--color-hover);
+}
+
+.nieuwe-afspraak__template-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 72px;
+}
+
+.nieuwe-afspraak__template-sublabel {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  text-align: center;
+  margin-top: -4px;
+}
+
+/* ---- Time row (start + end side by side) ---- */
+.nieuwe-afspraak__time-row {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.nieuwe-afspraak__time-field {
+  flex: 1;
+  min-width: 0;
+}
+
+.nieuwe-afspraak__time-total {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-cta);
+  margin-top: var(--space-2);
+}
+
+/* ---- Form fields ---- */
+.nieuwe-afspraak__field {
+  margin-bottom: var(--space-5);
+}
+
+.nieuwe-afspraak__label {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-2);
+}
+
+.nieuwe-afspraak__input-wrapper {
+  display: flex;
+  align-items: center;
+  height: 54px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0 var(--space-4);
+  gap: var(--space-3);
+}
+
+.nieuwe-afspraak__input-wrapper--with-icon {
+  color: var(--color-text-tertiary);
+}
+
+.nieuwe-afspraak__input-wrapper--with-icon svg {
+  flex-shrink: 0;
+}
+
+.nieuwe-afspraak__input-wrapper--clickable {
+  width: 100%;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.nieuwe-afspraak__input-wrapper--clickable:hover {
+  border-color: var(--color-cta);
+}
+
+.nieuwe-afspraak__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  color: var(--color-text-primary);
+  background: transparent;
+}
+
+.nieuwe-afspraak__input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.nieuwe-afspraak__placeholder {
+  flex: 1;
+  font-size: var(--font-size-base);
+  color: var(--color-text-tertiary);
+  text-align: left;
+}
+
+.nieuwe-afspraak__add-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+}
+
+.nieuwe-afspraak__hint {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  text-align: right;
+  margin-top: var(--space-2);
+}
+
+/* ---- Category selector (empty state) ---- */
+.nieuwe-afspraak__category-selector {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  width: 100%;
+  margin-bottom: var(--space-5);
+  transition: background-color 0.15s;
+}
+
+.nieuwe-afspraak__category-selector:hover {
+  background: var(--color-focus-medium);
+}
+
+.nieuwe-afspraak__category-selector-text {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.nieuwe-afspraak__category-selector-duration {
+  flex: 1;
+  text-align: right;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+}
+
+.nieuwe-afspraak__category-selector-add {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-cta);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nieuwe-afspraak__category-selector-add svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---- Categories table (filled state) ---- */
+.nieuwe-afspraak__section-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-3);
+}
+
+.nieuwe-afspraak__categories-table {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+}
+
+.nieuwe-afspraak__category-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nieuwe-afspraak__category-row:last-of-type {
+  border-bottom: none;
+}
+
+.nieuwe-afspraak__category-row--total {
+  border-bottom: none;
+}
+
+.nieuwe-afspraak__category-name {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.nieuwe-afspraak__category-name--total {
+  font-weight: 700;
+  color: var(--color-cta);
+}
+
+.nieuwe-afspraak__category-duration {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.nieuwe-afspraak__category-duration--total {
+  font-weight: 700;
+  color: var(--color-cta);
+}
+
+.nieuwe-afspraak__adjust-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-3);
+  background: var(--color-focus-medium);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-cta);
+  border-top: 1px solid var(--color-border);
+  transition: background-color 0.15s;
+}
+
+.nieuwe-afspraak__adjust-btn:hover {
+  background: var(--color-focus);
+}
+
+.nieuwe-afspraak__adjust-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---- Category mismatch warning ---- */
+.nieuwe-afspraak__category-warning {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: #b8860b;
+  padding: var(--space-2) var(--space-4);
+  background: #fef9e7;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ---- Category picker list ---- */
+.nieuwe-afspraak__pick-list {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.nieuwe-afspraak__pick-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  width: 100%;
+  transition: background-color 0.15s;
+}
+
+.nieuwe-afspraak__pick-item:last-child {
+  border-bottom: none;
+}
+
+.nieuwe-afspraak__pick-item:hover {
+  background: var(--color-focus-medium);
+}
+
+.nieuwe-afspraak__pick-check {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--color-border);
+}
+
+.nieuwe-afspraak__pick-check--on {
+  color: var(--color-cta);
+}
+
+.nieuwe-afspraak__pick-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+}
+
+.nieuwe-afspraak__pick-item--selected .nieuwe-afspraak__pick-label {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* ---- Edit duration input ---- */
+.nieuwe-afspraak__edit-input {
+  width: 80px;
+  text-align: right;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  color: var(--color-text-primary);
+  background: var(--color-white);
+  outline: none;
+}
+
+.nieuwe-afspraak__edit-input:focus {
+  border-color: var(--color-cta);
+}
+
+/* ---- Sticky footer ---- */
+.nieuwe-afspraak__footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-white);
+  border-top: 1px solid var(--color-border);
+  z-index: 100;
+}
+
+.nieuwe-afspraak__btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  transition: background-color 0.15s, opacity 0.15s;
+}
+
+.nieuwe-afspraak__btn--primary {
+  background: var(--color-cta);
+  color: var(--color-white);
+}
+
+.nieuwe-afspraak__btn--primary:hover {
+  background: var(--color-hover);
+}
+
+.nieuwe-afspraak__btn--outline {
+  background: transparent;
+  color: var(--color-cta);
+  border: 1.5px solid var(--color-border);
+}
+
+.nieuwe-afspraak__btn--outline:hover:not(:disabled) {
+  border-color: var(--color-cta);
+  background: var(--color-focus-light);
+}
+
+.nieuwe-afspraak__btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.nieuwe-afspraak__btn svg {
+  width: 24px;
+  height: 24px;
+}
