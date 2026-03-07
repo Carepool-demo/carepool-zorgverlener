@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BackArrowIcon, ChevronDownIcon, LocationOutlineIcon, CertificateIcon } from '../components/Icons'
+import { BackArrowIcon, ChevronDownIcon, LocationOutlineIcon, CertificateIcon } from '@shared/components/Icons'
 import { zoekenResultaten } from '../data/dummyData'
 import './Zoeken.css'
 
@@ -81,7 +81,7 @@ function EuroIcon() {
   )
 }
 
-/* user.svg — zorgverlener profiel icon */
+/* user.svg — zorgvrager profiel icon */
 function UserIcon() {
   return (
     <svg width="24" height="24" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -198,7 +198,7 @@ function Zoeken({ onBack, onSelectResult }) {
   }
 
   const profielSubCategories = [
-    { key: 'typeZorgverlener', label: 'Type zorgverlener', options: ['Formeel', 'Informeel', 'Vrijwilliger'] },
+    { key: 'typeZorgvrager', label: 'Type zorgvrager', options: ['Pgb-houder', 'Wlz', 'Wmo'] },
     { key: 'geslacht', label: 'Geslacht', options: ['Man', 'Vrouw', 'Non-binair'] },
     { key: 'leeftijd', label: 'Leeftijd', options: ['18-30 jaar', '31-40 jaar', '41-55 jaar', '56+ jaar'] },
     { key: 'taal', label: 'Taal', options: ['Nederlands', 'Engels'] },
@@ -395,7 +395,7 @@ function Zoeken({ onBack, onSelectResult }) {
 
       {/* Results count */}
       <p className="zoeken__results-count">
-        {zoekenResultaten.length} zorgverleners in jouw buurt
+        {zoekenResultaten.length} zorgvragers in jouw buurt
       </p>
 
       {/* Results list */}

@@ -1,5 +1,5 @@
 import { BackArrowIcon } from '../components/Icons'
-import { notificatiesData } from '../data/dummyData'
+import { notificatiesData } from '@app/data/dummyData'
 import './Notificaties.css'
 
 /* ---- Notification icons (exported from Figma, Iconen/Home/) ---- */

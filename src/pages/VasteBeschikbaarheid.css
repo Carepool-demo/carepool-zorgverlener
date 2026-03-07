@@ -1,0 +1,209 @@
+/* ==========================================
+   Vaste Beschikbaarheid Page
+   ========================================== */
+
+.vb {
+  min-height: 100vh;
+  background: var(--color-surface);
+}
+
+/* ---- Header ---- */
+.vb__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.vb__back {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.vb__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 40px;
+}
+
+/* ---- Body ---- */
+.vb__body {
+  padding: var(--space-6) var(--space-5);
+}
+
+.vb__question {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+/* ---- Day grid ---- */
+.vb__days {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.vb__day {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-1);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.vb__day--active {
+  background: var(--color-surface-secondary);
+  border-color: var(--color-surface-secondary);
+  color: var(--color-text-primary);
+}
+
+.vb__day--inactive {
+  background: transparent;
+  border-color: #E0E0E0;
+  color: #9E9E9E;
+}
+
+.vb__day--selected {
+  border-color: var(--color-cta);
+  background: var(--color-cta);
+  color: var(--color-white) !important;
+}
+
+.vb__day-label {
+  font-size: var(--font-size-base);
+  font-weight: 400;
+}
+
+.vb__day-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vb__day--active .vb__day-icon {
+  color: var(--color-text-secondary);
+}
+
+.vb__day--inactive .vb__day-icon {
+  color: #9E9E9E;
+}
+
+.vb__day--selected .vb__day-icon {
+  color: var(--color-white);
+}
+
+/* ---- Day section header ---- */
+.vb__day-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) 0;
+  margin-bottom: var(--space-4);
+}
+
+.vb__day-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.vb__add-slot {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-cta);
+}
+
+.vb__add-slot svg {
+  color: var(--color-cta);
+}
+
+/* ---- Slot card ---- */
+.vb__slot-card {
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.vb__slot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.vb__slot-label {
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+.vb__slot-delete {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary);
+}
+
+/* ---- Time inputs ---- */
+.vb__slot-times {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.vb__time-input {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4) var(--space-2);
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.vb__time-input svg {
+  color: var(--color-text-primary);
+  flex-shrink: 0;
+}
+
+.vb__slot-times > svg {
+  color: var(--color-text-primary);
+  flex-shrink: 0;
+}
+
+/* ---- Empty state ---- */
+.vb__empty {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  text-align: center;
+  padding: var(--space-8) 0;
+}

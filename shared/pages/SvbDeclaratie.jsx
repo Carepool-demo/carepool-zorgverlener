@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import ZorgverlenerSelector from '../components/ZorgverlenerSelector'
+import ZorgverlenerSelector from '@app/components/ZorgverlenerSelector'
 import MonthRow from '../components/MonthRow'
 import { BackArrowIcon, ChevronLeftIcon, ChevronRightIcon, InfoIcon } from '../components/Icons'
-import { DAY_LABELS, DUTCH_MONTHS, CARE_TYPES } from '../data/dummyData'
+import { DAY_LABELS, DUTCH_MONTHS, CARE_TYPES } from '@app/data/dummyData'
 import './SvbDeclaratie.css'
 
 /* ---- Date helpers ---- */

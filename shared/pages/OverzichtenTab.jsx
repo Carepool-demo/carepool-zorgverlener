@@ -1,7 +1,7 @@
-import ZorgverlenerSelector from '../components/ZorgverlenerSelector'
+import ZorgverlenerSelector from '@app/components/ZorgverlenerSelector'
 import MonthRow from '../components/MonthRow'
 import { BudgetIcon, SvbIcon, ArrowRightIcon, ChevronRightSmallIcon } from '../components/Icons'
-import { overzichtData } from '../data/dummyData'
+import { overzichtData } from '@app/data/dummyData'
 
 function OverzichtenTab({ onOpenSvb, onOpenBudget, onDownload, initialMonth }) {
   // initialMonth is e.g. "Februari 2026" — split into month and year

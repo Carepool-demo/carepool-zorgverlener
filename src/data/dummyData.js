@@ -71,7 +71,7 @@ export const zorglogs = [
 
 /* ---- Overzichten (Admin) ---- */
 export const overzichtData = {
-  name: 'Julia',
+  name: 'Nisha Wijngaarde',
   categories: [
     { name: 'Huishoudelijke hulp', duration: '12:20', amount: '€165,00' },
     { name: 'Persoonlijke verzorging', duration: '12:40', amount: '€265,00' },
@@ -80,21 +80,82 @@ export const overzichtData = {
   totalAmount: '€430,00',
 }
 
-/* ---- Tarieven (Admin) ---- */
-export const tarievenData = [
+/* ---- Tarieven per zorgvrager (Admin) ---- */
+export const tarievenPerClient = [
   {
-    id: 1,
-    category: 'Persoonlijke verzorging',
-    rates: [
-      { id: 1, label: 'Basistarief', tag: '(standaardtarief)', price: '€26,50' },
-      { id: 2, label: 'Nachttarief', tag: '', price: '€26,50' },
+    clientName: 'Tess de Vries',
+    categories: [
+      {
+        id: 1,
+        category: 'Huishoudelijke hulp',
+        rates: [
+          { id: 1, label: 'Basistarief', tag: '(standaardtarief)', price: '€22,00' },
+        ],
+      },
     ],
   },
   {
-    id: 2,
-    category: 'Verpleging',
-    rates: [
-      { id: 3, label: 'Basistarief', tag: '(standaardtarief)', price: '€46' },
+    clientName: 'Julie de Lange',
+    categories: [
+      {
+        id: 1,
+        category: 'Persoonlijke verzorging',
+        rates: [
+          { id: 1, label: 'Basistarief', tag: '(standaardtarief)', price: '€26,50' },
+          { id: 2, label: 'Nachttarief', tag: '', price: '€26,50' },
+        ],
+      },
+      {
+        id: 2,
+        category: 'Verpleging',
+        rates: [
+          { id: 3, label: 'Basistarief', tag: '(standaardtarief)', price: '€46' },
+        ],
+      },
+    ],
+  },
+  {
+    clientName: 'Pim van de Berg',
+    categories: [
+      {
+        id: 1,
+        category: 'Begeleiding',
+        rates: [
+          { id: 1, label: 'Basistarief', tag: '(standaardtarief)', price: '€30,00' },
+        ],
+      },
+    ],
+  },
+  {
+    clientName: 'Sophie Bakker',
+    categories: [
+      {
+        id: 1,
+        category: 'Persoonlijke verzorging',
+        rates: [
+          { id: 1, label: 'Basistarief', tag: '(standaardtarief)', price: '€28,00' },
+          { id: 2, label: 'Nachttarief', tag: '', price: '€32,00' },
+        ],
+      },
+    ],
+  },
+  {
+    clientName: 'Noor van Leeuwen',
+    categories: [
+      {
+        id: 1,
+        category: 'Huishoudelijke hulp',
+        rates: [
+          { id: 1, label: 'Basistarief', tag: '(standaardtarief)', price: '€22,00' },
+        ],
+      },
+      {
+        id: 2,
+        category: 'Persoonlijke verzorging',
+        rates: [
+          { id: 3, label: 'Basistarief', tag: '(standaardtarief)', price: '€26,50' },
+        ],
+      },
     ],
   },
 ]
@@ -130,30 +191,53 @@ export const CARE_TYPES = [
 export const homeAppointments = [
   {
     id: 1,
-    date: 'Ma 9 jun',
-    location: 'Thuis',
+    date: 'Ma 26 mei',
+    time: '9:00 - 10:30',
+    client: 'Julie de Lange',
     type: 'Ochtendhulp',
     icon: 'morning',
-    time: '9:00 - 10:10',
-    caregiver: 'Julia Smilde',
+    location: 'Thuis',
+    status: 'bevestigd',
   },
   {
     id: 2,
-    date: 'Ma 9 jun',
-    location: 'Thuis',
-    type: 'Toiletbezoek',
-    icon: 'oncall',
-    time: '13:00 - 13:30',
-    caregiver: 'Annika Zhang',
+    date: 'Ma 26 mei',
+    time: '13:00 - 14:00',
+    client: 'Tess de Vries',
+    type: 'Huishoudelijke hulp',
+    icon: 'household',
+    location: 'Dorpsstraat 2',
+    status: 'bevestigd',
   },
   {
     id: 3,
-    date: 'Di 10 jun',
+    date: 'Di 27 mei',
+    time: '9:00 - 10:30',
+    client: 'Julie de Lange',
+    type: 'Ochtendhulp',
+    icon: 'morning',
     location: 'Thuis',
-    type: 'Avondhulp',
-    icon: 'evening',
-    time: '21:30 - 23:00',
-    caregiver: 'Nisha Wijngaarde',
+    status: 'bevestigd',
+  },
+  {
+    id: 4,
+    date: 'Di 27 mei',
+    time: '14:00 - 15:30',
+    client: 'Pim van de Berg',
+    type: 'Begeleiding',
+    icon: 'oncall',
+    location: 'Thuis',
+    status: 'openstaand',
+  },
+  {
+    id: 5,
+    date: 'Wo 28 mei',
+    time: '10:00 - 12:00',
+    client: 'Sophie Bakker',
+    type: 'Persoonlijke verzorging',
+    icon: 'morning',
+    location: 'Thuis',
+    status: 'openstaand',
   },
 ]
 
@@ -164,26 +248,60 @@ export const careTemplates = [
   { id: 4, label: 'Huishoudelijk', sublabel: 'Thuis', icon: 'household' },
 ]
 
+/* ---- Home: openstaande verzoeken (pending care log requests) ---- */
+export const openstaandeVerzoeken = [
+  {
+    id: 1,
+    date: 'Ma 12 mei',
+    time: '9:00 - 10:10',
+    client: 'Julie de Lange',
+    type: 'Ochtendhulp',
+    icon: 'morning',
+  },
+  {
+    id: 2,
+    date: 'Di 13 mei',
+    time: '13:00 - 14:00',
+    client: 'Tess de Vries',
+    type: 'Huishoudelijke hulp',
+    icon: 'household',
+  },
+  {
+    id: 3,
+    date: 'Wo 14 mei',
+    time: '10:00 - 11:30',
+    client: 'Pim van de Berg',
+    type: 'Begeleiding',
+    icon: 'oncall',
+  },
+]
+
+/* ---- Alle openstaande verzoeken (full list) ---- */
+export const alleVerzoeken = [
+  { id: 1, date: 'Ma 26 mei', time: '12:00 - 12:20', client: 'Julie de Lange', type: 'Toilet' },
+  { id: 2, date: 'Di 27 sept', time: '08:00 - 09:00', client: 'Zara van der Linden', type: 'Ochtendhulp' },
+  { id: 3, date: 'Di 27 sept', time: '14:00 - 14:30', client: 'Jasper van der Meer', type: 'Ochtendhulp' },
+  { id: 4, date: 'Do 29 sept', time: '08:00 - 09:00', client: 'Finn de Vries', type: 'Ochtendhulp' },
+  { id: 5, date: 'Do 29 sept', time: '08:00 - 09:00', client: 'Sophie Bakker', type: 'Ochtendhulp' },
+  { id: 6, date: 'Vr 30 sept', time: '08:00 - 09:00', client: 'Fleur van Leeuwen', type: 'Ochtendhulp' },
+  { id: 7, date: 'Vr 30 sept', time: '10:00 - 11:30', client: 'Milan van Dijk', type: 'Ochtendhulp' },
+  { id: 8, date: 'Ma 3 okt', time: '08:00 - 09:00', client: 'Lara Jansen', type: 'Ochtendhulp' },
+  { id: 9, date: 'Ma 3 okt', time: '08:00 - 09:00', client: 'Timo de Boer', type: 'Ochtendhulp' },
+]
+
 export const homeConnections = [
   {
     id: 1,
-    name: 'Nisha Wijngaarde',
-    initials: 'NW',
-    tags: ['Persoonlijke Verzorging', 'Huishoudelijke Hulp'],
+    name: 'Tess de Vries',
+    initials: 'TV',
+    tags: ['Huishoudelijke Hulp'],
     messages: 2,
   },
   {
     id: 2,
-    name: 'Noor van Leeuwen',
-    initials: 'NL',
-    tags: ['Persoonlijke Verzorging', 'Huishoudelijke Hulp', 'Begeleiding'],
-    messages: 1,
-  },
-  {
-    id: 3,
-    name: 'Julia Smilde',
-    initials: 'JS',
-    tags: ['Persoonlijke Verzorging'],
+    name: 'Julie de Lange',
+    initials: 'JL',
+    tags: ['Persoonlijke Verzorging', 'Ochtendhulp'],
     messages: 0,
   },
 ]
@@ -196,35 +314,34 @@ export const teams = [
 export const mijnConnecties = [
   {
     id: 1,
-    name: 'Annika Zhang',
-    initials: 'AZ',
-    tags: ['Persoonlijke Verzorging', 'Huishoudelijke hulp'],
+    name: 'Tess de Vries',
+    initials: 'TV',
+    tags: ['Huishoudelijke Hulp'],
   },
   {
     id: 2,
-    name: 'Bram Smits',
-    initials: 'BS',
-    tags: ['Persoonlijke Verzorging', 'Huishoudelijke hulp', 'Verpleging'],
+    name: 'Julie de Lange',
+    initials: 'JL',
+    tags: ['Persoonlijke Verzorging', 'Ochtendhulp'],
   },
   {
     id: 3,
-    name: 'Julia Smilde',
-    initials: 'JS',
-    tags: ['Persoonlijke Verzorging'],
+    name: 'Pim van de Berg',
+    initials: 'PB',
+    tags: ['Begeleiding'],
+    messages: 1,
   },
   {
     id: 4,
-    name: 'Nisha Wijngaarde',
-    initials: 'NW',
-    tags: [],
-    warning: 'Zorgtype ontbreekt',
-    messages: 1,
+    name: 'Sophie Bakker',
+    initials: 'SB',
+    tags: ['Persoonlijke Verzorging', 'Verpleging'],
   },
   {
     id: 5,
     name: 'Noor van Leeuwen',
     initials: 'NL',
-    tags: ['Persoonlijke Verzorging'],
+    tags: ['Huishoudelijke Hulp'],
     messages: 1,
   },
 ]
@@ -321,30 +438,30 @@ export const caregiversData = [
 export const berichtenChats = [
   {
     id: 1,
-    name: 'Nisha Wijngaarde',
-    initials: 'NW',
+    name: 'Julie de Lange',
+    initials: 'JL',
     type: 'individual',
-    timestamp: 'maandag',
+    timestamp: 'Gisteren',
     preview: 'Kun je toevallig morgen een kwartiertje later? Zou goed uitkom...',
     unread: 0,
   },
   {
     id: 2,
-    name: 'Julia Smilde',
-    initials: 'JS',
-    type: 'individual',
-    timestamp: 'maandag',
-    preview: 'Ik heb \u2019m op het aanrecht gelegd',
-    unread: 0,
-  },
-  {
-    id: 3,
     name: 'Ochtendploeg',
     initials: '',
     type: 'group',
     timestamp: 'Gisteren',
-    preview: 'Nisha: Kun je toevallig morgen een kwartiertje later? Zou goed uitko...',
+    preview: 'Tess de Vries: Ok is goed. Dan kijken we dat de volgende keer...',
     unread: 1,
+  },
+  {
+    id: 3,
+    name: 'Tess de Vries',
+    initials: 'TV',
+    type: 'individual',
+    timestamp: 'maandag',
+    preview: 'Haha, ja vind ik ook',
+    unread: 0,
   },
   {
     id: 4,
@@ -360,8 +477,8 @@ export const berichtenChats = [
 export const berichtenVerzoeken = [
   {
     id: 1,
-    name: 'Lisa de Vries',
-    initials: 'LV',
+    name: 'Sophie Bakker',
+    initials: 'SB',
     type: 'request',
     timestamp: 'Gisteren',
     preview: 'Wil je mij toevoegen als zorgverlener?',
@@ -371,82 +488,64 @@ export const berichtenVerzoeken = [
 
 /* ---- Profiel page ---- */
 export const profielData = {
-  name: 'Julie van den Berg',
-  initials: 'JB',
-  email: 'julie.vandenberg@email.nl',
-  phone: '06 - 1234 5678',
-  address: 'Dorpsstraat 2, 1234 AB Amsterdam',
-  birthDate: '12 maart 1958',
-  bsn: '•••••6789',
-  indicatie: 'Wmo - Huishoudelijke hulp & Persoonlijke verzorging',
-  budget: '€ 1.250,00 / maand',
-  zorgkantoor: 'Zilveren Kruis',
+  name: 'Nisha Wijngaarde',
+  firstName: 'Nisha',
+  initials: 'NW',
+  email: 'nisha.wijngaarde@email.nl',
+  phone: '06 - 9876 5432',
+  address: 'Keizersgracht 42, 1015 CS Amsterdam',
+  birthDate: '8 september 1990',
+  geslacht: 'Vrouw',
+  leeftijd: 35,
+  locatie: 'Amsterdam',
+  bio: 'Ik ben Nisha, 35 jaar, een betrokken en betrouwbare zorgverleenster met ruime levenservaring. Ik bied persoonlijke verzorging en ondersteuning met aandacht, respect en rust. Het welzijn, de veiligheid en het vertrouwen van de cliënt staan bij mij altijd centraal.',
+  subtitle: 'Vrouw, 35, Amsterdam',
+  zorgcategorieen: 1,
+  locaties: 1,
+  talen: 1,
+  goedOmTeWeten: 1,
 }
 
-/* ---- Zorgcategorieën instellingen page ---- */
+/* ---- Zorgaanbod (zorgverlener's care offering categories) ---- */
 export const zorgCategorieenInstellingen = [
   {
-    id: 'wlz',
-    title: 'Wet langdurige zorg (Wlz)',
+    id: 'verzorging',
+    title: 'Verzorging / verpleging',
     items: [
-      { id: 'wlz-1', label: '24-uurs zorg', enabled: false },
-      { id: 'wlz-2', label: 'Begeleiding individueel', enabled: false },
-      { id: 'wlz-3', label: 'Begeleiding groep', enabled: false },
-      { id: 'wlz-4', label: 'Huishoudelijke hulp', enabled: false },
-      { id: 'wlz-5', label: 'Logeeropvang', enabled: false },
-      { id: 'wlz-6', label: 'Persoonlijke verzorging', enabled: false },
-      { id: 'wlz-7', label: 'Verpleging', enabled: false },
-      { id: 'wlz-8', label: 'Vervoerdiensten', enabled: false },
-      { id: 'wlz-9', label: 'Vervoer van en naar dagbesteding', enabled: false },
+      { id: 'vz-1', label: 'Persoonlijke verzorging', enabled: true },
+      { id: 'vz-2', label: 'Verpleging', enabled: true },
+      { id: 'vz-3', label: 'Huishoudelijke hulp', enabled: true },
+      { id: 'vz-4', label: 'Nachtzorg', enabled: false },
     ],
   },
   {
-    id: 'zvw',
-    title: 'Zorgverzekeringswet (Zvw)',
+    id: 'begeleiding',
+    title: 'Begeleiding',
     items: [
-      { id: 'zvw-1', label: 'Persoonlijke verzorging', enabled: true },
-      { id: 'zvw-2', label: 'Verpleging', enabled: true },
+      { id: 'bg-1', label: 'Begeleiding individueel', enabled: true },
+      { id: 'bg-2', label: 'Begeleiding groep', enabled: false },
+      { id: 'bg-3', label: 'Dagbesteding', enabled: false },
+      { id: 'bg-4', label: 'Beschermd wonen', enabled: false },
+      { id: 'bg-5', label: 'Logeeropvang', enabled: false },
     ],
   },
   {
-    id: 'wmo',
-    title: 'Wet maatschappelijke ondersteuning (wmo)',
+    id: 'opvang',
+    title: 'Opvang en dagbesteding',
     items: [
-      { id: 'wmo-1', label: 'Begeleiding individueel', enabled: false },
-      { id: 'wmo-2', label: 'Begeleiding groep', enabled: false },
-      { id: 'wmo-3', label: 'Beschermd wonen', enabled: false },
-      { id: 'wmo-4', label: 'Dagbesteding', enabled: false },
-      { id: 'wmo-5', label: 'Huishoudelijke hulp', enabled: true },
-      { id: 'wmo-6', label: 'Kortdurend verblijf', enabled: false },
-      { id: 'wmo-7', label: 'Logeeropvang', enabled: false },
-      { id: 'wmo-8', label: 'Overige maatwerkarrangementen', enabled: false },
-      { id: 'wmo-9', label: 'Persoonlijke verzorging', enabled: false },
-      { id: 'wmo-10', label: 'Vervoerdiensten', enabled: false },
-      { id: 'wmo-11', label: 'Vervoer van en naar dagbesteding', enabled: false },
+      { id: 'op-1', label: 'Dagopvang', enabled: false },
+      { id: 'op-2', label: 'Nachtopvang', enabled: false },
+      { id: 'op-3', label: 'Logeeropvang', enabled: false },
+      { id: 'op-4', label: 'Dagbesteding', enabled: false },
+      { id: 'op-5', label: 'Activiteitenbegeleiding', enabled: false },
     ],
   },
   {
-    id: 'jeugdwet',
-    title: 'Jeugdwet',
+    id: 'vervoer',
+    title: 'Vervoer',
     items: [
-      { id: 'jw-1', label: 'Dagbehandeling', enabled: false },
-      { id: 'jw-2', label: 'Generalistische basis-ggz', enabled: false },
-      { id: 'jw-3', label: 'Jeugd-ggz', enabled: false },
-      { id: 'jw-4', label: 'Jeugdhulp ambulant', enabled: false },
-      { id: 'jw-5', label: 'Jeugdhulp verblijf (excl. behandeling)', enabled: false },
-      { id: 'jw-6', label: 'Jeugdhulp verblijf (incl. behandeling)', enabled: false },
-      { id: 'jw-7', label: 'Maatwerkarrangementen jeugd', enabled: false },
-      { id: 'jw-8', label: 'Persoonlijke verzorging', enabled: false },
-      { id: 'jw-9', label: 'Specialistische ggz', enabled: false },
-      { id: 'jw-10', label: 'Vervoerdiensten', enabled: false },
-    ],
-  },
-  {
-    id: 'overige',
-    title: 'Overige',
-    items: [
-      { id: 'ov-1', label: 'UWV Intermediair', enabled: false },
-      { id: 'ov-2', label: 'Overig', enabled: false },
+      { id: 'vv-1', label: 'Vervoerdiensten', enabled: false },
+      { id: 'vv-2', label: 'Vervoer van en naar dagbesteding', enabled: false },
     ],
   },
 ]
@@ -605,96 +704,177 @@ export const notificatiesData = {
 }
 
 /* ---- Agenda page ---- */
-export const agendaWeeks = [
-  {
-    weekNr: 8,
-    month: 'Februari 2026',
-    type: 'past',
-    overviewBanner: 'Bekijk het overzicht van februari',
-    days: [
-      {
-        label: 'Ma 16 feb', dayAbbr: 'ma', date: 16, isoDate: '2026-02-16',
-        appointments: [
-          { id: 1, time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', caregiver: 'Julia Smilde', price: '€25,50', hasZorglog: true }
-        ]
-      },
-      { label: 'Di 17 feb', dayAbbr: 'di', date: 17, isoDate: '2026-02-17', appointments: [] },
-      {
-        label: 'Wo 18 feb', dayAbbr: 'wo', date: 18, isoDate: '2026-02-18',
-        appointments: [
-          { id: 2, time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', caregiver: 'Annika Zhang', price: '€25,50', hasZorglog: true }
-        ]
-      },
-      {
-        label: 'Do 19 feb', dayAbbr: 'do', date: 19, isoDate: '2026-02-19',
-        appointments: [
-          { id: 3, time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', caregiver: 'Bram Smits', price: '€25,50', hasZorglog: true }
-        ]
-      },
-      {
-        label: 'Vr 20 feb', dayAbbr: 'vr', date: 20, isoDate: '2026-02-20',
-        appointments: [
-          { id: 4, time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', caregiver: 'Noor van Leeuwen', price: '€25,50', hasZorglog: true }
-        ]
-      },
-      { label: 'Za 21 feb', dayAbbr: 'za', date: 21, isoDate: '2026-02-21', appointments: [] },
-      { label: 'Zo 22 feb', dayAbbr: 'zo', date: 22, isoDate: '2026-02-22', appointments: [] },
-    ]
-  },
-  {
-    weekNr: 9,
-    month: 'Februari 2026',
-    type: 'current',
-    days: [
-      {
-        label: 'Ma 23 feb', dayAbbr: 'ma', date: 23, isoDate: '2026-02-23',
-        appointments: [
-          { id: 5, time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', caregiver: 'Julia Smilde' },
-          { id: 6, time: '12:00 - 13:00', type: 'Huishoudelijke hulp', icon: 'household', caregiver: 'Annika Zhang' }
-        ]
-      },
-      {
-        label: 'Di 24 feb', dayAbbr: 'di', date: 24, isoDate: '2026-02-24',
-        appointments: [
-          { id: 7, time: '21:30 - 23:00', type: 'Avondhulp', icon: 'evening', caregiver: 'Noor van Leeuwen' }
-        ]
-      },
-      {
-        label: 'Wo 25 feb', dayAbbr: 'wo', date: 25, isoDate: '2026-02-25', isToday: true,
-        appointments: [
-          { id: 8, time: '21:30 - 23:00', type: 'Avondhulp', icon: 'evening', caregiver: 'Nisha Wijngaarde' }
-        ]
-      },
-      {
-        label: 'Do 26 feb', dayAbbr: 'do', date: 26, isoDate: '2026-02-26',
-        appointments: [
-          { id: 9, time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', caregiver: 'Bram Smits' }
-        ]
-      },
-      {
-        label: 'Vr 27 feb', dayAbbr: 'vr', date: 27, isoDate: '2026-02-27',
-        appointments: [
-          { id: 10, time: '21:30 - 23:00', type: 'Avondhulp', icon: 'evening', caregiver: 'Noor van Leeuwen' }
-        ]
-      },
-      { label: 'Za 28 feb', dayAbbr: 'za', date: 28, isoDate: '2026-02-28', appointments: [] },
-      { label: 'Zo 1 mrt', dayAbbr: 'zo', date: 1, isoDate: '2026-03-01', appointments: [] },
-    ]
-  },
-  {
-    weekNr: 10,
-    month: 'Maart 2026',
-    type: 'empty',
-    days: [
-      { label: 'Ma 2 mrt', dayAbbr: 'ma', date: 2, isoDate: '2026-03-02', appointments: [], templates: ['Ochtendhulp'] },
-      { label: 'Di 3 mrt', dayAbbr: 'di', date: 3, isoDate: '2026-03-03', appointments: [], templates: ['Ochtendhulp'] },
-      { label: 'Wo 4 mrt', dayAbbr: 'wo', date: 4, isoDate: '2026-03-04', appointments: [], templates: ['Toilet', 'Avondhulp', 'Ochtendhulp'] },
-      { label: 'Do 5 mrt', dayAbbr: 'do', date: 5, isoDate: '2026-03-05', appointments: [], templates: ['Toilet', 'Avondhulp', 'Ochtendhulp'] },
-      { label: 'Vr 6 mrt', dayAbbr: 'vr', date: 6, isoDate: '2026-03-06', appointments: [], templates: ['Ochtendhulp'] },
-      { label: 'Za 7 mrt', dayAbbr: 'za', date: 7, isoDate: '2026-03-07', appointments: [], templates: ['Ochtendhulp'] },
-      { label: 'Zo 8 mrt', dayAbbr: 'zo', date: 8, isoDate: '2026-03-08', appointments: [], templates: ['Ochtendhulp'] },
-    ]
+/* Status types: bevestigd, actief, verzoek, geannuleerd, administratie, over30min */
+
+// Appointment patterns per day-of-week (0=ma, 1=di, ..., 6=zo)
+const _appointmentPatterns = {
+  past: [
+    // ma
+    [
+      { time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', client: 'Emma Waters', status: 'administratie' },
+      { time: '10:00 - 11:00', type: 'Ochtendhulp', icon: 'morning', client: 'Emma Waters', status: 'administratie' },
+    ],
+    // di
+    [
+      { time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'administratie' },
+    ],
+    // wo
+    [],
+    // do
+    [
+      { time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'administratie' },
+      { time: '10:00 - 11:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'administratie' },
+      { time: '14:00 - 15:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'administratie' },
+    ],
+    // vr
+    [
+      { time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'administratie' },
+    ],
+    // za
+    [],
+    // zo
+    [],
+  ],
+  current: [
+    // ma
+    [
+      { time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'actief' },
+      { time: '10:00 - 11:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'over30min' },
+    ],
+    // di
+    [
+      { time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'bevestigd' },
+      { time: '14:00 - 15:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'bevestigd' },
+    ],
+    // wo
+    [],
+    // do
+    [
+      { time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'verzoek' },
+      { time: '10:00 - 11:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'verzoek' },
+      { time: '14:00 - 15:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'bevestigd' },
+    ],
+    // vr
+    [
+      { time: '08:00 - 09:00', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'bevestigd' },
+    ],
+    // za
+    [],
+    // zo
+    [],
+  ],
+  future: [
+    // ma
+    [
+      { time: '09:00 - 10:30', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'verzoek' },
+      { time: '14:00 - 15:30', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'verzoek' },
+    ],
+    // di
+    [],
+    // wo
+    [
+      { time: '10:00 - 12:00', type: 'Persoonlijke verzorging', icon: 'morning', client: 'Sophie Bakker', status: 'verzoek' },
+    ],
+    // do
+    [],
+    // vr
+    [
+      { time: '09:00 - 10:30', type: 'Ochtendhulp', icon: 'morning', client: 'Julie de Lange', status: 'bevestigd' },
+    ],
+    // za
+    [],
+    // zo
+    [],
+  ],
+}
+
+function _generateAgendaWeeks() {
+  const today = new Date()
+  const dayOfWeek = today.getDay() // 0=zo, 1=ma, ..., 6=za
+  // Get Monday of the current week
+  const monday = new Date(today)
+  monday.setDate(today.getDate() - ((dayOfWeek + 6) % 7))
+  monday.setHours(0, 0, 0, 0)
+
+  const DAY_ABBRS = ['ma', 'di', 'wo', 'do', 'vr', 'za', 'zo']
+  const MONTHS_NL = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December']
+  const MONTHS_SHORT = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec']
+
+  const pad = n => String(n).padStart(2, '0')
+  const toLocalISO = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
+  const todayStr = toLocalISO(today)
+  let idCounter = 1
+
+  const weekOffsets = [
+    { offset: -7, type: 'past' },
+    { offset: 0, type: 'current' },
+    { offset: 7, type: 'future' },
+  ]
+
+  function getWeekNr(d) {
+    const tmp = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()))
+    tmp.setUTCDate(tmp.getUTCDate() + 4 - (tmp.getUTCDay() || 7))
+    const yearStart = new Date(Date.UTC(tmp.getUTCFullYear(), 0, 1))
+    return Math.ceil(((tmp - yearStart) / 86400000 + 1) / 7)
   }
+
+  return weekOffsets.map(({ offset, type }) => {
+    const weekMonday = new Date(monday)
+    weekMonday.setDate(monday.getDate() + offset)
+
+    const days = []
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(weekMonday)
+      d.setDate(weekMonday.getDate() + i)
+      const iso = toLocalISO(d)
+      const dayNum = d.getDate()
+      const monthShort = MONTHS_SHORT[d.getMonth()]
+      const abbr = DAY_ABBRS[i]
+      const label = `${abbr.charAt(0).toUpperCase() + abbr.slice(1)} ${dayNum} ${monthShort}`
+
+      const pattern = _appointmentPatterns[type][i] || []
+      const appointments = pattern.map(a => ({ ...a, id: idCounter++ }))
+      const hasWork = appointments.length > 0
+
+      days.push({
+        label,
+        dayAbbr: abbr,
+        date: dayNum,
+        isoDate: iso,
+        isToday: iso === todayStr,
+        ...(hasWork ? { workingHours: '09:00 - 17:00' } : {}),
+        appointments,
+      })
+    }
+
+    // Use the month of Thursday (ISO week standard) for the header
+    const thursday = new Date(weekMonday)
+    thursday.setDate(weekMonday.getDate() + 3)
+    const month = `${MONTHS_NL[thursday.getMonth()]} ${thursday.getFullYear()}`
+
+    return {
+      weekNr: getWeekNr(weekMonday),
+      month,
+      type,
+      ...(type === 'past' ? { overviewBanner: `Bekijk het maandoverzicht ${MONTHS_NL[thursday.getMonth()].toLowerCase()}` } : {}),
+      days,
+    }
+  })
+}
+
+export const agendaWeeks = _generateAgendaWeeks()
+
+/* ---- Openstaande verzoeken (Agenda sub-page) ---- */
+export const agendaVerzoeken = [
+  { id: 1, date: 'Ma 26 mei', time: '12:00 - 12:20', client: 'Julie de Lange', type: 'Toilet', icon: 'toilet' },
+  { id: 2, date: 'Di 27 sept', time: '08:00 - 09:00', client: 'Zara van der...', type: 'Ochtendhulp', icon: 'morning' },
+  { id: 3, date: 'Di 27 sept', time: '14:00 - 14:30', client: 'Jasper van de...', type: 'Ochtendhulp', icon: 'morning' },
+  { id: 4, date: 'Do 29 sept', time: '08:00 - 09:00', client: 'Finn de Vries', type: 'Ochtendhulp', icon: 'morning' },
+  { id: 5, date: 'Do 29 sept', time: '08:00 - 09:00', client: 'Sophie Bakker', type: 'Ochtendhulp', icon: 'morning' },
+  { id: 6, date: 'Vr 30 sept', time: '08:00 - 09:00', client: 'Fleur van Lee...', type: 'Ochtendhulp', icon: 'morning' },
+  { id: 7, date: 'Vr 30 sept', time: '10:00 - 11:30', client: 'Milan van Dijk', type: 'Ochtendhulp', icon: 'morning' },
+  { id: 8, date: 'Ma 3 okt', time: '08:00 - 09:00', client: 'Lara Jansen', type: 'Ochtendhulp', icon: 'morning' },
+  { id: 9, date: 'Ma 3 okt', time: '08:00 - 09:00', client: 'Timo de Boer', type: 'Ochtendhulp', icon: 'morning' },
 ]
 
 /* ---- Zoeken (search results) ---- */

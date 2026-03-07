@@ -1,7 +1,7 @@
-import ZorgverlenerSelector from '../components/ZorgverlenerSelector'
+import ZorgverlenerSelector from '@app/components/ZorgverlenerSelector'
 import MonthRow from '../components/MonthRow'
 import { LogIcon, EditIcon, UndoIcon } from '../components/Icons'
-import { zorglogs } from '../data/dummyData'
+import { zorglogs } from '@app/data/dummyData'
 
 function ZorglogsTab({ onDownload }) {
   return (

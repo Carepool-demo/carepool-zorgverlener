@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BackArrowIcon, PlusIcon, EditIcon } from '../components/Icons'
-import { sjablonenData, sjabloonDetailData } from '../data/dummyData'
+import { sjablonenData, sjabloonDetailData } from '@app/data/dummyData'
 import './Sjablonen.css'
 
 /* ---- Template card icons (40x40, from Iconen/Home, fill→currentColor) ---- */

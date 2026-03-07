@@ -1,0 +1,68 @@
+/* ==========================================
+   Alle Verzoeken Page - 8px grid system
+   Reuses .verzoek-item styles from Home.css
+   ========================================== */
+
+.alle-verzoeken {
+  background: var(--color-white);
+  min-height: 100%;
+}
+
+/* ---- Header ---- */
+.alle-verzoeken__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.alle-verzoeken__back {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  flex-shrink: 0;
+}
+
+.alle-verzoeken__back:hover {
+  background-color: var(--color-focus-light);
+}
+
+.alle-verzoeken__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 40px;
+  flex: 1;
+}
+
+.alle-verzoeken__badge {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background: var(--color-notification);
+  color: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: var(--space-2);
+}
+
+/* ---- List ---- */
+.alle-verzoeken__list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border);
+}

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BackArrowIcon, DownloadIcon, ChevronDownIcon } from '../components/Icons'
-import { mijnConnecties } from '../data/dummyData'
+import { mijnConnecties } from '@app/data/dummyData'
 import './DownloadZorglogs.css'
 
 /* ---- Local icons ---- */

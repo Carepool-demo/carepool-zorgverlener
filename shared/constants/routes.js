@@ -1,4 +1,4 @@
-/* ---- Page route identifiers ---- */
+/* ---- Page route identifiers (shared base) ---- */
 
 export const PAGES = {
   // Main tabs (BottomNav)
@@ -16,7 +16,6 @@ export const PAGES = {
   SJABLONEN: 'sjablonen',
   NOTIFICATIES: 'notificaties',
   NOTIFICATIE_INSTELLINGEN: 'notificatieInstellingen',
-  BESCHIKBAARHEID: 'beschikbaarheid',
 }
 
 export const SUB_PAGES = {
@@ -27,12 +26,8 @@ export const SUB_PAGES = {
   ZORGVERLENER_PROFIEL: 'zorgverlenerProfiel',
   NODIG_UIT: 'nodigUit',
 
-  // Home sub-pages
-  ALLE_VERZOEKEN: 'alleVerzoeken',
-
   // Agenda sub-pages
   NIEUWE_AFSPRAAK: 'nieuweAfspraak',
-  OPENSTAANDE_VERZOEKEN: 'openstaandeVerzoeken',
 
   // Admin tabs
   OVERZICHTEN: 'overzichten',
@@ -46,5 +41,4 @@ export const OVERLAY_PAGES = [
   PAGES.SJABLONEN,
   PAGES.NOTIFICATIES,
   PAGES.NOTIFICATIE_INSTELLINGEN,
-  PAGES.BESCHIKBAARHEID,
 ]

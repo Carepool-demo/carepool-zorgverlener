@@ -1,20 +1,21 @@
 import { useState } from 'react'
 import { PAGES, SUB_PAGES, OVERLAY_PAGES } from './constants/routes'
-import './App.css'
+import '@shared/App.css'
 import Home from './pages/Home'
 import Carepool from './pages/Carepool'
 import Agenda from './pages/Agenda'
-import Admin from './pages/Admin'
-import Berichten from './pages/Berichten'
+import Admin from '@shared/pages/Admin'
+import Berichten from '@shared/pages/Berichten'
 import ProfielInstellingen from './pages/ProfielInstellingen'
 import Profiel from './pages/Profiel'
 import Zorgcategorieen from './pages/Zorgcategorieen'
-import HelpInfo from './pages/HelpInfo'
-import Sjablonen from './pages/Sjablonen'
-import Notificaties from './pages/Notificaties'
-import NotificatieInstellingen from './pages/NotificatieInstellingen'
-import BottomNav from './components/BottomNav'
-import PasswordGate from './components/PasswordGate'
+import HelpInfo from '@shared/pages/HelpInfo'
+import Sjablonen from '@shared/pages/Sjablonen'
+import Notificaties from '@shared/pages/Notificaties'
+import NotificatieInstellingen from '@shared/pages/NotificatieInstellingen'
+import Beschikbaarheid from './pages/Beschikbaarheid'
+import BottomNav from '@shared/components/BottomNav'
+import PasswordGate from '@shared/components/PasswordGate'
 import { zorgCategorieenInstellingen as defaultCategories } from './data/dummyData'
 
 function App() {
@@ -61,7 +62,7 @@ function App() {
         <div className="app-content">
           {activePage === PAGES.HOME && <Home onNavigate={handleNavigate} onSubPageChange={setHomeSubPage} />}
           {activePage === PAGES.CAREPOOL && <Carepool initialSubPage={carepoolInitialSubPage} onNavigate={handleNavigate} onSubPageChange={setCarepoolSubPage} />}
-          {activePage === PAGES.AGENDA && <Agenda initialSubPage={agendaInitialSubPage} onNavigate={handleNavigate} zorgCategorieen={zorgCategorieen} />}
+          {activePage === PAGES.AGENDA && <Agenda initialSubPage={agendaInitialSubPage} onNavigate={handleNavigate} />}
           {activePage === PAGES.BERICHTEN && <Berichten onNavigate={handleNavigate} />}
           {activePage === PAGES.ADMIN && <Admin onNavigate={handleNavigate} initialTab={adminInitialTab} initialMonth={adminInitialMonth} onSubPageChange={setAdminSubPage} />}
           {activePage === PAGES.PROFIEL_INSTELLINGEN && <ProfielInstellingen onBack={() => setActivePage(previousPage)} onNavigate={handleNavigate} />}
@@ -71,6 +72,7 @@ function App() {
           {activePage === PAGES.SJABLONEN && <Sjablonen onBack={() => setActivePage(PAGES.PROFIEL_INSTELLINGEN)} />}
           {activePage === PAGES.NOTIFICATIES && <Notificaties onBack={() => setActivePage(PAGES.PROFIEL_INSTELLINGEN)} />}
           {activePage === PAGES.NOTIFICATIE_INSTELLINGEN && <NotificatieInstellingen onBack={() => setActivePage(PAGES.PROFIEL_INSTELLINGEN)} />}
+          {activePage === PAGES.BESCHIKBAARHEID && <Beschikbaarheid onBack={() => setActivePage(PAGES.PROFIEL)} />}
         </div>
         {showBottomNav && <BottomNav activeTab={activePage} onTabChange={handleTabChange} />}
       </div>

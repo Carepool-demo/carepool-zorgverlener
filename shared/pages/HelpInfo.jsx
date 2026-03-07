@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BackArrowIcon } from '../components/Icons'
-import Tour from './Tour'
+import Tour from '@app/pages/Tour'
 import './HelpInfo.css'
 
 /* ---- Page-specific icons (from Iconen/Home, fill changed to currentColor) ---- */

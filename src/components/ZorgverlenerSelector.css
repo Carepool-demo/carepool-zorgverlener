@@ -1,6 +1,10 @@
 /* ==========================================
-   Shared Zorgverlener Selector
+   Shared Person Selector (Zorgvrager / Zorgverlener)
    ========================================== */
+
+.selector {
+  position: relative;
+}
 
 .selector__label {
   display: block;
@@ -52,4 +56,44 @@
 .selector__dropdown svg {
   color: var(--color-cta);
   flex-shrink: 0;
+}
+
+/* ---- Dropdown options ---- */
+.selector__options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  margin-top: var(--space-1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.selector__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  transition: background-color 0.15s;
+}
+
+.selector__option:hover {
+  background: var(--color-focus-light);
+}
+
+.selector__option--active {
+  background: var(--color-focus-light);
+  font-weight: 600;
+}
+
+.selector__option + .selector__option {
+  border-top: 1px solid var(--color-border);
 }

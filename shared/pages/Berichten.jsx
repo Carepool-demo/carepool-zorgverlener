@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { PAGES } from '../constants/routes'
 import TopBar from '../components/TopBar'
-import { berichtenChats, berichtenVerzoeken } from '../data/dummyData'
+import { berichtenChats, berichtenVerzoeken } from '@app/data/dummyData'
 import './Berichten.css'
 
 /* Local icons for group and carepool chat types */

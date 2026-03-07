@@ -1,4 +1,4 @@
-import { BackArrowIcon } from '../components/Icons'
+import { BackArrowIcon } from '@shared/components/Icons'
 import './Zorgcategorieen.css'
 
 /* ---- Zorgcategorieën page ---- */
@@ -27,7 +27,7 @@ function Zorgcategorieen({ onBack, categories, onCategoriesChange }) {
 
       {/* Intro */}
       <p className="zorgcat__intro">
-        Selecteer de categorieën voor jouw situatie.
+        Selecteer de categorieën zorg die jij kan leveren.
       </p>
 
       {/* Category groups */}

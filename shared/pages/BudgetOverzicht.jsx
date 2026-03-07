@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import BudgetDetail from './BudgetDetail'
 import { BackArrowIcon, BudgetIcon, ChevronDownIcon, PlusIcon } from '../components/Icons'
-import { budgetData } from '../data/dummyData'
+import { budgetData } from '@app/data/dummyData'
 import './BudgetOverzicht.css'
 
 function formatCurrency(amount) {

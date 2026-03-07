@@ -13,9 +13,9 @@ const STEPS = [
     showDots: false,
   },
   {
-    id: 'zorgverleners',
-    title: 'Al je zorgverleners op één plek!',
-    description: 'Voeg je zorgverleners toe en verstuur gemakkelijk berichten naar personen of teams.',
+    id: 'connecties',
+    title: 'Alle zorgvragers en zorgverleners op één plek!',
+    description: 'Gemakkelijk berichten sturen naar zorgvragers en zorgteams.',
     illustration: '/tour/tour1.svg',
     illustrationHeight: 256,
     illustrationFit: 'contain',
@@ -24,35 +24,13 @@ const STEPS = [
     showDots: true,
   },
   {
-    id: 'instellingen',
-    title: 'Stel alles één keer in',
-    description: 'Selecteer je pgb-wet en kies de zorgcategorieën waarvoor je de administratie wilt bijhouden.',
+    id: 'agenda',
+    title: 'Afspraken plannen is eenvoudig',
+    description: 'Je geeft je beschikbaarheid aan en ontvangt oproepen van zorgvragers.',
     illustration: '/tour/tour2-hand.svg',
     illustrationHeight: 340,
     illustrationFit: 'contain',
     illustrationNoMargin: true,
-    buttonText: 'Starten',
-    showSkip: true,
-    showDots: true,
-  },
-  {
-    id: 'agenda',
-    title: 'Plan jouw zorgmomenten',
-    description: 'Via de agenda plan je eenvoudig afspraken in met beschikbare zorgverleners.',
-    illustration: '/tour/tour3-illustration.svg',
-    illustrationHeight: 320,
-    buttonText: 'Volgende',
-    showSkip: true,
-    showDots: true,
-  },
-  {
-    id: 'sjablonen',
-    title: 'Sjablonen voor snelheid',
-    description: 'Sjablonen besparen tijd bij zorg die vaak voorkomt. Stel ze eenmalig in, activeer ze wanneer nodig.',
-    illustration: '/tour/tour4.svg',
-    illustrationHeight: 268,
-    illustrationFit: 'contain',
-    illustrationPosition: 'right bottom',
     buttonText: 'Volgende',
     showSkip: true,
     showDots: true,
@@ -60,13 +38,25 @@ const STEPS = [
   {
     id: 'administratie',
     title: 'Administratie',
-    description: 'Uren en kosten worden automatisch bijgehouden in een gedeelde administratie. Zorgverleners zien hierbij alleen hun eigen uren en tarieven.',
+    description: 'Je werkt samen met de zorgvrager in één gedeelde administratie. Hierin zie je altijd je eigen gewerkte uren en tarieven.',
     illustration: '/tour/tour5.svg',
     illustrationHeight: 294,
     illustrationFit: 'contain',
     illustrationPosition: 'left bottom',
     buttonText: 'Volgende',
     showSkip: false,
+    showDots: true,
+  },
+  {
+    id: 'zoeken',
+    title: 'Nieuwe zorgvragers vinden',
+    description: 'Nog in ontwikkeling! Deze functie komt eind 2026 beschikbaar.',
+    illustration: '/tour/tour4.svg',
+    illustrationHeight: 268,
+    illustrationFit: 'contain',
+    illustrationPosition: 'right bottom',
+    buttonText: 'Volgende',
+    showSkip: true,
     showDots: true,
   },
   {
@@ -80,7 +70,7 @@ const STEPS = [
   },
 ]
 
-const TOTAL_DOTS = 6 // Steps 1-6 have dots (step 0 has none)
+const TOTAL_DOTS = 5 // Steps 1-5 have dots (step 0 has none)
 
 /* ---- Rocket icon for welcome screen (from Illustrations/Raket.svg) ---- */
 function RocketIcon() {

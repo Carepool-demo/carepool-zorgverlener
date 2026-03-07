@@ -1,5 +1,6 @@
 /* ==========================================
-   Home Page - 8px grid system
+   Home Page - Zorgverlener variant
+   8px grid system
    ========================================== */
 
 .home {
@@ -40,6 +41,10 @@
   padding: var(--space-6) var(--space-5) var(--space-4);
 }
 
+.home__section--no-pad-bottom {
+  padding-bottom: 0;
+}
+
 .home__section--last {
   padding-bottom: var(--space-8);
 }
@@ -62,14 +67,37 @@
   margin-bottom: 0;
 }
 
+/* Inline link next to section title (e.g. "Alle afspraken →") */
+.home__inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.home__inline-link svg {
+  flex-shrink: 0;
+}
+
+/* "Alle verzoeken →" / "Alle connecties →" bottom link */
 .home__section-link {
-  display: block;
-  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
   font-size: var(--font-size-sm);
   font-weight: 700;
   color: var(--color-text-primary);
   padding: var(--space-3) 0;
   margin-top: var(--space-2);
+  margin-left: auto;
+}
+
+.home__section-link svg {
+  flex-shrink: 0;
 }
 
 /* ---- Appointment cards ---- */
@@ -86,13 +114,12 @@
 .appointment-card {
   flex-shrink: 0;
   width: 222px;
-  min-height: 278px;
+  min-height: 260px;
   background: var(--color-surface-secondary);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   padding: var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
   transition: box-shadow 0.15s;
 }
 
@@ -100,10 +127,12 @@
   box-shadow: var(--shadow-md);
 }
 
+/* Header: date (left) + location (right) */
 .appointment-card__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: var(--space-2);
 }
 
 .appointment-card__date {
@@ -121,107 +150,247 @@
   font-weight: 400;
 }
 
-.appointment-card__body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  margin-top: auto;
-}
-
-.appointment-card__body svg {
-  color: var(--color-text-secondary);
-  flex-shrink: 0;
-}
-
-.appointment-card__type {
-  font-size: var(--font-size-lg);
-  font-weight: 400;
-  color: var(--color-text-primary);
-  text-box-trim: both;
-  text-box-edge: cap alphabetic;
-}
-
-.appointment-card__time {
-  font-size: var(--font-size-md);
-  font-weight: 700;
-  color: var(--color-text-primary);
-  text-align: center;
-  margin-bottom: auto;
-}
-
-.appointment-card__caregiver {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-}
-
-/* ---- Care templates ---- */
-.home__add-btn {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-  font-size: var(--font-size-base);
-  font-weight: 700;
-  color: var(--color-accent);
-  height: 32px;
-  padding: 0 var(--space-3);
-  border-radius: var(--radius-sm);
-  transition: background-color 0.15s;
-}
-
-.home__add-btn:hover {
-  background-color: var(--color-focus-light);
-}
-
-.home__templates {
-  display: flex;
-  gap: var(--space-4);
-  overflow-x: auto;
-  padding-bottom: var(--space-2);
-  margin: 0 calc(-1 * var(--space-5));
-  padding-left: var(--space-5);
-  padding-right: var(--space-5);
-}
-
-.template-item {
-  flex-shrink: 0;
+/* Center: time + client name */
+.appointment-card__center {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-1);
-  cursor: pointer;
-  min-width: 80px;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-3) 0;
 }
 
-.template-item__icon {
-  width: 80px;
-  height: 80px;
+.appointment-card__time {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.appointment-card__client {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Footer: care type icon+text (left) + status badge (right) */
+.appointment-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.appointment-card__care-type {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.appointment-card__care-type span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.appointment-card__care-type svg {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+.appointment-card__log-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--color-cta);
+  color: var(--color-white);
   border-radius: var(--radius-full);
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.15s;
+}
+
+.appointment-card__log-btn:hover {
+  background: var(--color-hover);
+}
+
+.appointment-card__log-btn svg {
+  color: var(--color-white);
+}
+
+/* ---- Beschikbaarheid CTA button ---- */
+.home__cta-section {
+  padding: var(--space-5) var(--space-5) var(--space-2);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.home__beschikbaarheid-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-2);
+  height: 40px;
+  padding: 0 var(--space-5);
+  background: var(--color-cta);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  font-family: var(--font-family);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.home__beschikbaarheid-btn:hover {
+  background: var(--color-hover);
+}
+
+.home__beschikbaarheid-btn svg {
+  flex-shrink: 0;
+}
+
+/* ---- Openstaande verzoeken ---- */
+.home__section--verzoeken {
+  padding-bottom: 0;
+}
+
+.home__verzoeken-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0 calc(-1 * var(--space-5));
+  border-top: 1px solid var(--color-border);
+}
+
+.verzoek-item {
+  display: flex;
+  overflow: hidden;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  height: 93px;
+}
+
+.verzoek-item__border {
+  width: 4px;
+  flex-shrink: 0;
+  background: var(--color-cta);
+}
+
+.verzoek-item__content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-5) 0 var(--space-4);
+}
+
+.verzoek-item__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.verzoek-item__top-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.verzoek-item__date {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  min-width: 108px;
+}
+
+.verzoek-item__client {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.verzoek-item__bottom-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.verzoek-item__time {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
-  background: var(--color-surface-secondary);
+  white-space: nowrap;
+  min-width: 108px;
+}
+
+.verzoek-item__time svg {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+.verzoek-item__type {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Accept/Decline buttons */
+.verzoek-item__actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.verzoek-item__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
   transition: all 0.15s;
 }
 
-.template-item:hover .template-item__icon {
-  background: var(--color-focus-medium);
+.verzoek-item__btn--decline {
+  background: var(--color-notification-surface);
+  color: var(--color-notification);
 }
 
-.template-item__label {
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  color: var(--color-text-primary);
-  text-align: center;
-  white-space: nowrap;
+.verzoek-item__btn--decline:hover {
+  background: var(--color-notification);
+  color: var(--color-white);
 }
 
-.template-item__sublabel {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-primary);
-  margin-top: -4px;
+.verzoek-item__btn--accept {
+  background: var(--color-cta);
+  color: var(--color-white);
+}
+
+.verzoek-item__btn--accept:hover {
+  background: var(--color-hover);
 }
 
 /* ---- Connections ---- */
@@ -237,92 +406,6 @@
 .home__connections {
   display: flex;
   flex-direction: column;
-}
-
-.connection-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-4) var(--space-5);
-  margin: 0 calc(-1 * var(--space-5));
-  border-top: 1px solid var(--color-border);
-  position: relative;
-  overflow: hidden;
-}
-
-.connection-item:last-child {
-  border-bottom: 1px solid var(--color-border);
-}
-
-.connection-item__avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-full);
-  background: var(--color-focus);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  color: var(--color-text-secondary);
-  flex-shrink: 0;
-}
-
-.connection-item__info {
-  flex: 1;
-  min-width: 0;
-}
-
-.connection-item__name {
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  color: var(--color-text-primary);
-  display: block;
-  margin-bottom: var(--space-1);
-}
-
-.connection-item__tags {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: var(--space-1);
-  overflow-x: auto;
-  margin-right: calc(-1 * var(--space-5));
-  padding-right: var(--space-5);
-}
-
-.connection-item__tag {
-  display: inline-block;
-  padding: 2px var(--space-2);
-  background: var(--color-focus-light);
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-xs);
-  font-weight: 400;
-  border-radius: var(--radius-full);
-  white-space: nowrap;
-  text-box-trim: both;
-  text-box-edge: cap alphabetic;
-}
-
-
-.connection-item__badge {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: var(--space-1) var(--space-2);
-  background: var(--color-notification);
-  color: var(--color-white);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-xs);
-  font-weight: 700;
-  position: absolute;
-  right: var(--space-5);
-  top: var(--space-4);
-  z-index: 1;
-}
-
-.connection-item__badge svg {
-  width: 14px;
-  height: 14px;
 }
 
 /* ---- Search section ---- */

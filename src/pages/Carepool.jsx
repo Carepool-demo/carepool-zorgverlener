@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { PAGES, SUB_PAGES } from '../constants/routes'
-import TopBar from '../components/TopBar'
+import TopBar from '@shared/components/TopBar'
 import MijnConnecties from './MijnConnecties'
 import Beschikbaarheid from './Beschikbaarheid'
 import NodigUit from './NodigUit'
 import Zoeken from './Zoeken'
-import ZorgverlenerProfiel from './ZorgverlenerProfiel'
+import ZorgverlenerProfiel from '@shared/pages/ZorgverlenerProfiel'
 import './Carepool.css'
 
 /* ---- Search icon (search-01.svg from Iconen) ---- */
@@ -76,7 +76,6 @@ function Carepool({ initialSubPage = null, onNavigate, onSubPageChange }) {
     return (
       <MijnConnecties
         onBack={() => setSubPage(null)}
-        onOpenBeschikbaarheid={() => setSubPage(SUB_PAGES.BESCHIKBAARHEID)}
         onInvite={() => setSubPage(SUB_PAGES.NODIG_UIT)}
       />
     )
@@ -93,11 +92,11 @@ function Carepool({ initialSubPage = null, onNavigate, onSubPageChange }) {
             Zorg die past bij{'\n'}het échte leven
           </h2>
           <p className="carepool__hero-subtitle">
-            Vind hulp op je werk, tijdens vakantie of gewoon thuis.
+            Vind zorgvragers in je buurt en bied hulp.
           </p>
           <button className="carepool__cta-btn" onClick={() => setSubPage(SUB_PAGES.ZOEKEN)}>
             <SearchIcon />
-            Vind nieuwe zorghulpen
+            Vind nieuwe zorgvragers
           </button>
         </div>
       </section>

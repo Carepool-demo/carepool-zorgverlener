@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BackArrowIcon, PlusIcon, CareIcon, EditIcon } from '../components/Icons'
-import { careTemplates } from '../data/dummyData'
+import { careTemplates } from '@app/data/dummyData'
 import './NieuweAfspraak.css'
 
 /* ---- Page-specific icons ---- */

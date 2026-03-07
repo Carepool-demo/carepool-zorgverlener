@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BackArrowIcon, ChevronRightIcon, ChevronDownIcon, LocationOutlineIcon, CertificateIcon } from '../components/Icons'
-import { getZorgverlenerProfiel } from '../data/dummyData'
+import { getZorgverlenerProfiel } from '@app/data/dummyData'
 import './ZorgverlenerProfiel.css'
 
 /* ---- Page-specific icons ---- */

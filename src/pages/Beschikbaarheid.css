@@ -1,10 +1,10 @@
 /* ==========================================
-   Beschikbaarheid Page - 8px grid system
+   Beschikbaarheid Hub Page
    ========================================== */
 
 .beschikbaarheid {
-  background: var(--color-white);
-  min-height: 100%;
+  min-height: 100vh;
+  background: var(--color-surface-secondary);
 }
 
 /* ---- Header ---- */
@@ -14,7 +14,7 @@
   gap: var(--space-3);
   height: 80px;
   padding: 0 var(--space-5) var(--space-4);
-  background: var(--color-white);
+  background: var(--color-surface-secondary);
   border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
@@ -24,16 +24,12 @@
 .beschikbaarheid__back {
   width: 40px;
   height: 40px;
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-full);
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   flex-shrink: 0;
-}
-
-.beschikbaarheid__back:hover {
-  background-color: var(--color-focus-light);
 }
 
 .beschikbaarheid__title {
@@ -43,322 +39,90 @@
   line-height: 40px;
 }
 
-/* ---- Month/week nav ---- */
-.beschikbaarheid__nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-4) var(--space-5);
+/* ---- Body ---- */
+.beschikbaarheid__body {
+  padding: var(--space-6) var(--space-5);
 }
 
-.beschikbaarheid__nav-arrow {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.beschikbaarheid__intro {
+  font-size: var(--font-size-base);
   color: var(--color-text-primary);
-  transition: opacity 0.15s;
+  line-height: 1.5;
+  margin-bottom: var(--space-6);
 }
 
-.beschikbaarheid__nav-arrow:disabled {
-  opacity: 0.3;
-  cursor: default;
+/* ---- Option cards ---- */
+.beschikbaarheid__options {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-6);
 }
 
-.beschikbaarheid__nav-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-.beschikbaarheid__month {
+.beschikbaarheid__option {
   display: flex;
   align-items: center;
-  gap: var(--space-1);
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  color: var(--color-text-primary);
-}
-
-.beschikbaarheid__month svg {
-  color: var(--color-text-secondary);
-}
-
-.beschikbaarheid__week {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-tertiary);
-}
-
-/* ---- Grid ---- */
-.beschikbaarheid__grid {
-  padding: 0 var(--space-3);
-}
-
-.beschikbaarheid__row {
-  display: flex;
-  align-items: center;
+  gap: var(--space-3);
   width: 100%;
+  padding: var(--space-6) var(--space-4);
+  border-top: 1px solid var(--color-border);
   text-align: left;
 }
 
-.beschikbaarheid__row--header {
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: var(--space-2);
+.beschikbaarheid__option:first-child {
+  border-top: none;
 }
 
-.beschikbaarheid__row--data {
-  padding: var(--space-3) 0;
-  border-bottom: 1px solid var(--color-border);
-  transition: background-color 0.15s;
-}
-
-.beschikbaarheid__row--data:hover {
-  background: var(--color-surface-secondary);
-}
-
-.beschikbaarheid__name-col {
-  width: 70px;
+.beschikbaarheid__option-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-text-secondary);
   flex-shrink: 0;
-  padding-right: var(--space-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.beschikbaarheid__day-col {
+.beschikbaarheid__option-text {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 2px;
 }
 
-.beschikbaarheid__day-label {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-tertiary);
-  font-weight: 400;
-}
-
-.beschikbaarheid__day-date {
+.beschikbaarheid__option-title {
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
 }
 
-.beschikbaarheid__cg-name {
-  font-size: var(--font-size-xs);
-  font-weight: 700;
-  color: var(--color-text-primary);
-  line-height: 1.3;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%;
-}
-
-.beschikbaarheid__hour {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-xs);
-  font-weight: 400;
+.beschikbaarheid__option-subtitle {
+  font-size: var(--font-size-sm);
   color: var(--color-text-tertiary);
 }
 
-.beschikbaarheid__hour--active {
-  background: var(--color-focus-light);
-  color: var(--color-text-secondary);
-  font-weight: 700;
+.beschikbaarheid__option > svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
 }
 
-/* ==========================================
-   Beschikbaarheid Detail Overlay
-   ========================================== */
-
-.beschikbaarheid-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 200;
+/* ---- Info link ---- */
+.beschikbaarheid__info-link {
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.beschikbaarheid-overlay__panel {
-  background: var(--color-white);
-  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
   width: 100%;
-  max-width: 393px;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding-bottom: var(--space-6);
-}
-
-.beschikbaarheid-overlay__close {
-  position: absolute;
-  top: var(--space-4);
-  right: var(--space-4);
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-tertiary);
-  z-index: 10;
-}
-
-/* ---- Profile ---- */
-.beschikbaarheid-overlay__profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: var(--space-8) var(--space-5) var(--space-4);
-  background: var(--color-surface-secondary);
-  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-  position: relative;
-}
-
-.beschikbaarheid-overlay__avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius-full);
-  background: var(--color-focus);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--font-size-xl);
-  font-weight: 700;
+  padding: var(--space-3);
+  font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-3);
 }
 
-.beschikbaarheid-overlay__name {
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  color: var(--color-text-primary);
-  margin-bottom: var(--space-2);
-}
-
-.beschikbaarheid-overlay__tags {
-  display: flex;
-  gap: var(--space-2);
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.beschikbaarheid-overlay__tag {
-  padding: var(--space-1) var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-primary);
-}
-
-/* ---- Week header ---- */
-.beschikbaarheid-overlay__week-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-4) var(--space-5);
-}
-
-.beschikbaarheid-overlay__nav {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-primary);
-  transition: opacity 0.15s;
-}
-
-.beschikbaarheid-overlay__nav:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-
-.beschikbaarheid-overlay__week-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-.beschikbaarheid-overlay__week-title {
-  font-size: var(--font-size-base);
-  font-weight: 700;
-  color: var(--color-text-primary);
-}
-
-.beschikbaarheid-overlay__week-label {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-tertiary);
-}
-
-/* ---- Schedule ---- */
-.beschikbaarheid-overlay__schedule {
-  padding: 0 var(--space-5);
-}
-
-.schedule-day {
-  display: flex;
-  align-items: flex-start;
-  padding: var(--space-3) 0;
-  border-bottom: 1px solid var(--color-border);
-  gap: var(--space-4);
-}
-
-.schedule-day__label {
-  width: 70px;
+.beschikbaarheid__info-link svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
   flex-shrink: 0;
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  color: var(--color-text-primary);
-  padding-top: 2px;
-}
-
-.schedule-day__slots {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  flex: 1;
-}
-
-.schedule-day__slot {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-primary);
-}
-
-.schedule-day__slot svg {
-  color: var(--color-text-tertiary);
-  flex-shrink: 0;
-}
-
-.schedule-day__empty {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-tertiary);
-}
-
-.schedule-day__empty svg {
-  color: var(--color-disabled-dark);
-}
-
-/* ---- Footer ---- */
-.beschikbaarheid-overlay__footer {
-  text-align: center;
-  padding: var(--space-4) var(--space-5);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-tertiary);
 }

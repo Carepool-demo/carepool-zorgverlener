@@ -6,7 +6,7 @@ import BudgetOverzicht from './BudgetOverzicht'
 import DownloadZorglogs from './DownloadZorglogs'
 import ZorglogsTab from './ZorglogsTab'
 import OverzichtenTab from './OverzichtenTab'
-import TarievenTab from './TarievenTab'
+import TarievenTab from '@app/pages/TarievenTab'
 import './Admin.css'
 
 /* ---- Admin page ---- */
