@@ -1,3 +1,4 @@
+import { showToast } from '@shared/components/Toast'
 import { PAGES } from '../constants/routes'
 import { BackArrowIcon, ChevronRightIcon, OverMijIcon, ZorgcatIcon, SjablonenIcon, LocatiesIcon, AccountIcon, NotificatiesIcon, BeheerIcon, HelpInfoIcon, HandigeAdressenIcon, QuizIcon, AbonnementIcon } from '@shared/components/Icons'
 import './ProfielInstellingen.css'
@@ -22,7 +23,7 @@ function ProfielInstellingen({ onBack, onNavigate }) {
     if (item.navigateTo) {
       onNavigate(item.navigateTo)
     } else {
-      alert(`${item.label} (nog niet geïmplementeerd)`)
+      showToast(`${item.label} (nog niet geïmplementeerd)`)
     }
   }
 
@@ -82,7 +83,7 @@ function ProfielInstellingen({ onBack, onNavigate }) {
 
       {/* Uitloggen */}
       <div className="pi__logout-wrapper">
-        <button className="pi__logout" onClick={() => alert('Uitloggen (nog niet geïmplementeerd)')}>
+        <button className="pi__logout" onClick={() => showToast('Uitloggen (nog niet geïmplementeerd)')}>
           Uitloggen
         </button>
       </div>

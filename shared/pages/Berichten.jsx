@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import { showToast } from '../components/Toast'
+import { useState, useEffect } from 'react'
 import { PAGES } from '../constants/routes'
 import TopBar from '../components/TopBar'
+import { ChevronRightIcon, PlusIcon } from '../components/Icons'
 import { berichtenChats, berichtenVerzoeken } from '@app/data/dummyData'
+import NieuwBericht from './NieuwBericht'
+import ChatGesprek from './ChatGesprek'
 import './Berichten.css'
 
 /* Local icons for group and carepool chat types */
@@ -24,18 +28,16 @@ function CarepoolIcon() {
   )
 }
 
-const TABS = [
-  { id: 'chats', label: 'Chats' },
-  { id: 'verzoeken', label: 'Verzoeken' },
-]
+function Berichten({ onNavigate, onSubPageChange, notificationCount }) {
+  const [subPage, setSubPage] = useState(null)
+  const [activeChat, setActiveChat] = useState(null)
 
-function Berichten({ onNavigate }) {
-  const [activeTab, setActiveTab] = useState('chats')
+  useEffect(() => {
+    if (onSubPageChange) onSubPageChange(subPage)
+  }, [subPage, onSubPageChange])
 
-  const chatsBadge = berichtenChats.filter(c => c.unread > 0).length
-  const verzoekenBadge = berichtenVerzoeken.filter(c => c.unread > 0).length
-
-  const items = activeTab === 'chats' ? berichtenChats : berichtenVerzoeken
+  const verzoekenCount = berichtenVerzoeken.length
+  const verzoekenPreview = berichtenVerzoeken.map(v => v.name).join(', ')
 
   const renderAvatar = (chat) => {
     if (chat.type === 'group') {
@@ -59,39 +61,108 @@ function Berichten({ onNavigate }) {
     )
   }
 
+  const openChat = (chat) => {
+    setActiveChat(chat)
+    setSubPage('chat')
+  }
+
+  /* ---- Sub-pages ---- */
+  if (subPage === 'chat' && activeChat) {
+    return <ChatGesprek chat={activeChat} onBack={() => { setSubPage(null); setActiveChat(null) }} />
+  }
+
+  if (subPage === 'nieuwBericht') {
+    return <NieuwBericht onBack={() => setSubPage(null)} />
+  }
+
+  if (subPage === 'verzoeken') {
+    return (
+      <div className="berichten">
+        <header className="berichten__sub-header">
+          <button className="berichten__back" onClick={() => setSubPage(null)} aria-label="Terug">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 19L8 12L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          <h1 className="berichten__sub-title">Chatverzoeken</h1>
+        </header>
+        <ul className="berichten__list">
+          {berichtenVerzoeken.map((chat) => (
+            <li key={chat.id}>
+              <div className="berichten__verzoek-item">
+                <button
+                  className="berichten__item"
+                  onClick={() => openChat(chat)}
+                  aria-label={`Verzoek van ${chat.name}`}
+                >
+                  <div className="berichten__avatar">
+                    <span className="berichten__initials">{chat.initials}</span>
+                  </div>
+                  <div className="berichten__content">
+                    <div className="berichten__header">
+                      <span className="berichten__name">{chat.name}</span>
+                      {chat.timestamp && (
+                        <span className="berichten__time">{chat.timestamp}</span>
+                      )}
+                    </div>
+                    <p className="berichten__preview berichten__preview--multiline">{chat.preview}</p>
+                  </div>
+                </button>
+                <div className="berichten__verzoek-actions">
+                  <button className="berichten__verzoek-btn berichten__verzoek-btn--decline" onClick={() => showToast('Afwijzen (nog niet geimplementeerd)')}>
+                    Afwijzen
+                  </button>
+                  <button className="berichten__verzoek-btn berichten__verzoek-btn--accept" onClick={() => showToast('Accepteren (nog niet geimplementeerd)')}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    Accepteren
+                  </button>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
+  /* ---- Main view ---- */
   return (
     <div className="berichten">
-      <TopBar title="Berichten" onAvatarClick={() => onNavigate(PAGES.PROFIEL_INSTELLINGEN)} onNotificatieClick={() => onNavigate(PAGES.NOTIFICATIES)} />
+      <TopBar title="Berichten" onAvatarClick={() => onNavigate(PAGES.PROFIEL_INSTELLINGEN)} onNotificatieClick={() => onNavigate(PAGES.NOTIFICATIES)} notificationCount={notificationCount} />
 
-      <div className="berichten__tabs" role="tablist" aria-label="Berichten tabbladen">
-        {TABS.map((tab) => {
-          const badge = tab.id === 'chats' ? chatsBadge : verzoekenBadge
-          const isActive = activeTab === tab.id
-          return (
-            <button
-              key={tab.id}
-              id={`tab-${tab.id}`}
-              className={`berichten__tab ${isActive ? 'berichten__tab--active' : ''}`}
-              onClick={() => setActiveTab(tab.id)}
-              role="tab"
-              aria-selected={isActive}
-              aria-controls={`panel-${tab.id}`}
-            >
-              {tab.label}
-              {badge > 0 && (
-                <span className="berichten__tab-badge">{badge}</span>
-              )}
-            </button>
-          )
-        })}
+      {/* Verzoeken card */}
+      {verzoekenCount > 0 && (
+        <button className="berichten__verzoeken-card" onClick={() => setSubPage('verzoeken')}>
+          <div className="berichten__verzoeken-left">
+            <div className="berichten__verzoeken-top">
+              <span className="berichten__verzoeken-title">Chatverzoeken</span>
+              <span className="berichten__verzoeken-badge">{verzoekenCount}</span>
+            </div>
+            <p className="berichten__verzoeken-preview">
+              {verzoekenPreview}
+            </p>
+          </div>
+          <ChevronRightIcon />
+        </button>
+      )}
+
+      {/* Chats section */}
+      <div className="berichten__section-row">
+        <h2 className="berichten__section-header">Chats</h2>
+        <button className="berichten__new-btn" onClick={() => setSubPage('nieuwBericht')}>
+          <PlusIcon />
+          Nieuw bericht
+        </button>
       </div>
 
-      <ul className="berichten__list" role="tabpanel" id={`panel-${activeTab}`} aria-labelledby={`tab-${activeTab}`}>
-        {items.map((chat) => (
+      <ul className="berichten__list">
+        {berichtenChats.map((chat) => (
           <li key={chat.id}>
             <button
               className="berichten__item"
-              onClick={() => alert('Chat openen (nog niet geimplementeerd)')}
+              onClick={() => openChat(chat)}
               aria-label={`Chat met ${chat.name}`}
             >
               {renderAvatar(chat)}
@@ -115,6 +186,7 @@ function Berichten({ onNavigate }) {
           </li>
         ))}
       </ul>
+
     </div>
   )
 }

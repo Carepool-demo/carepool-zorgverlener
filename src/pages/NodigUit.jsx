@@ -1,3 +1,4 @@
+import { showToast } from '@shared/components/Toast'
 import { useState, useRef, useEffect } from 'react'
 import { QRCodeSVG } from 'qrcode.react'
 import { BackArrowIcon, ShareIcon, CopyIcon, QrCodeIcon } from '@shared/components/Icons'
@@ -61,7 +62,7 @@ function NodigUit({ onBack }) {
         <div className="nodig-uit__actions">
           <button
             className="nodig-uit__action-btn nodig-uit__action-btn--primary"
-            onClick={() => alert('Deel link (nog niet geïmplementeerd)')}
+            onClick={() => showToast('Deel link (nog niet geïmplementeerd)')}
           >
             <ShareIcon />
             Deel link

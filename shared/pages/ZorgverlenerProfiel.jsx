@@ -1,3 +1,4 @@
+import { showToast } from '../components/Toast';
 import { useState } from 'react'
 import { BackArrowIcon, ChevronRightIcon, ChevronDownIcon, LocationOutlineIcon, CertificateIcon } from '../components/Icons'
 import { getZorgverlenerProfiel } from '@app/data/dummyData'
@@ -252,7 +253,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
         <h1 className="zvp__title">{voornaam}&apos;s profiel</h1>
         <div className="zvp__header-right">
           <span className="zvp__header-logo"><BookmarkIcon /></span>
-          <button className="zvp__header-more" onClick={() => alert('Menu (nog niet geïmplementeerd)')} aria-label="Meer opties">
+          <button className="zvp__header-more" onClick={() => showToast('Menu (nog niet geïmplementeerd)')} aria-label="Meer opties">
             <MoreDotsIcon />
           </button>
         </div>
@@ -267,7 +268,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
         </section>
 
         {/* CTA */}
-        <button className="zvp__cta" onClick={() => alert('Bericht sturen (nog niet geïmplementeerd)')}>
+        <button className="zvp__cta" onClick={() => showToast('Bericht sturen (nog niet geïmplementeerd)')}>
           <MessageIcon />
           Bericht sturen
         </button>
@@ -286,7 +287,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
         {profiel.audioIntro && (
           <div className="zvp__audio-card">
             <div className="zvp__audio-top">
-              <button className="zvp__audio-play" onClick={() => alert('Audio afspelen (nog niet geïmplementeerd)')} aria-label="Audio afspelen">
+              <button className="zvp__audio-play" onClick={() => showToast('Audio afspelen (nog niet geïmplementeerd)')} aria-label="Audio afspelen">
                 <PlayIcon />
               </button>
               <span className="zvp__audio-label">Hoor {voornaam} zichzelf voorstellen</span>
@@ -310,7 +311,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
                 <span key={type} className="zvp__info-check">&#10003; {type}</span>
               ))}
               {profiel.zorgTypesExtra > 0 && (
-                <button className="zvp__info-more" onClick={() => alert('Alle zorgtypen (nog niet geïmplementeerd)')}>+{profiel.zorgTypesExtra}</button>
+                <button className="zvp__info-more" onClick={() => showToast('Alle zorgtypen (nog niet geïmplementeerd)')}>+{profiel.zorgTypesExtra}</button>
               )}
             </div>
           </div>
@@ -355,7 +356,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
               {profiel.tariefBespreekbaar && (
                 <>
                   <span className="zvp__info-sub">Mijn tarief is bespreekbaar</span>
-                  <button className="zvp__info-link" onClick={() => alert('Lees meer (nog niet geïmplementeerd)')}>Lees meer</button>
+                  <button className="zvp__info-link" onClick={() => showToast('Lees meer (nog niet geïmplementeerd)')}>Lees meer</button>
                 </>
               )}
             </div>
@@ -384,7 +385,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
                 <span key={item} className="zvp__info-value">{item}</span>
               ))}
               {profiel.praktischeInfoExtra > 0 && (
-                <button className="zvp__info-more" onClick={() => alert('Meer praktische info (nog niet geïmplementeerd)')}>+{profiel.praktischeInfoExtra}</button>
+                <button className="zvp__info-more" onClick={() => showToast('Meer praktische info (nog niet geïmplementeerd)')}>+{profiel.praktischeInfoExtra}</button>
               )}
             </div>
           </div>
@@ -392,7 +393,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
           <div className="zvp__info-divider" />
 
           {/* Werkstijl link */}
-          <button className="zvp__link-row" onClick={() => alert('Werkstijl en voorkeur (nog niet geïmplementeerd)')}>
+          <button className="zvp__link-row" onClick={() => showToast('Werkstijl en voorkeur (nog niet geïmplementeerd)')}>
             <div className="zvp__link-row-icon"><SettingsIcon /></div>
             <span className="zvp__link-row-label">Bekijk werkstijl en voorkeur...</span>
             <ChevronRightIcon />
@@ -403,7 +404,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
         <h3 className="zvp__section-label">Werkervaring en registraties</h3>
 
         <div className="zvp__links-card">
-          <button className="zvp__link-row" onClick={() => alert('Kwaliteitseisen (nog niet geïmplementeerd)')}>
+          <button className="zvp__link-row" onClick={() => showToast('Kwaliteitseisen (nog niet geïmplementeerd)')}>
             <div className="zvp__link-row-icon"><ShieldIcon /></div>
             <span className="zvp__link-row-label">Kwaliteitseisen</span>
             <ChevronRightIcon />
@@ -419,7 +420,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
 
           <div className="zvp__info-divider" />
 
-          <button className="zvp__link-row" onClick={() => alert('Registraties (nog niet geïmplementeerd)')}>
+          <button className="zvp__link-row" onClick={() => showToast('Registraties (nog niet geïmplementeerd)')}>
             <div className="zvp__link-row-icon"><CertificateIcon /></div>
             <span className="zvp__link-row-label">Registraties</span>
             <ChevronRightIcon />
@@ -434,7 +435,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
             <span key={review} className="zvp__tag">{review}</span>
           ))}
           {profiel.reviewsExtra > 0 && (
-            <button className="zvp__reviews-more" onClick={() => alert('Meer reviews (nog niet geïmplementeerd)')}>+{profiel.reviewsExtra} meer</button>
+            <button className="zvp__reviews-more" onClick={() => showToast('Meer reviews (nog niet geïmplementeerd)')}>+{profiel.reviewsExtra} meer</button>
           )}
         </div>
 

@@ -1,3 +1,4 @@
+import { showToast } from '../components/Toast';
 import { BackArrowIcon } from '../components/Icons'
 import './BudgetDetail.css'
 
@@ -120,7 +121,7 @@ function BudgetcheckCard({ budget }) {
         )}
       </p>
 
-      <button className="bd__link" onClick={() => alert('Hoe werkt dit? (nog niet geimplementeerd)')}>
+      <button className="bd__link" onClick={() => showToast('Hoe werkt dit? (nog niet geimplementeerd)')}>
         Hoe werkt dit?
       </button>
     </div>
@@ -157,7 +158,7 @@ function BudgetDetail({ budget, onBack }) {
 
       {/* Action buttons */}
       <div className="bd__actions">
-        <button className="bd__edit-link" onClick={() => alert('Budget aanpassen (nog niet geimplementeerd)')}>
+        <button className="bd__edit-link" onClick={() => showToast('Budget aanpassen (nog niet geimplementeerd)')}>
           <EditPenIcon />
           Budget aanpassen
         </button>

@@ -1,0 +1,390 @@
+/* ============================================
+   Chat Gesprek (Conversation) Page
+   ============================================ */
+
+.chat-gesprek {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ---- Header ---- */
+
+.chat-gesprek__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+}
+
+.chat-gesprek__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-primary);
+}
+
+.chat-gesprek__header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.3px;
+}
+
+/* ---- Verzoek header (back + avatar + name + menu) ---- */
+
+.chat-gesprek__header--verzoek {
+  border-bottom: 1px solid var(--color-border);
+  gap: var(--space-3);
+}
+
+.chat-gesprek__contact-avatar--small {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+}
+
+.chat-gesprek__header-spacer {
+  flex: 1;
+}
+
+.chat-gesprek__more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--color-text-primary);
+}
+
+/* ---- Contact bar ---- */
+
+.chat-gesprek__contact {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--color-white);
+}
+
+.chat-gesprek__contact-avatar {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-focus);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-gesprek__contact-avatar--group {
+  background-color: var(--color-cta);
+  color: var(--color-surface-secondary);
+}
+
+.chat-gesprek__contact-initials {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.chat-gesprek__contact-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.chat-gesprek__contact-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.2px;
+}
+
+.chat-gesprek__contact-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 8px;
+  background-color: var(--color-surface-secondary);
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  width: fit-content;
+}
+
+.chat-gesprek__phone-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-cta);
+  border-radius: var(--radius-full);
+  color: var(--color-cta);
+}
+
+.chat-gesprek__members-badge {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 8px;
+  height: 24px;
+  background-color: var(--color-focus);
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ---- Messages area ---- */
+
+.chat-gesprek__messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4) 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-gesprek__bubble-wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 8px 20px 0;
+}
+
+.chat-gesprek__bubble-wrap--self {
+  padding-left: 64px;
+  padding-right: 20px;
+  justify-content: flex-end;
+}
+
+.chat-gesprek__bubble-wrap--other {
+  padding-left: 20px;
+  padding-right: 64px;
+}
+
+/* ---- Bubble avatar (team chats) ---- */
+
+.chat-gesprek__bubble-avatar {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-focus);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chat-gesprek__bubble-avatar-initials {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+/* ---- Bubble ---- */
+
+.chat-gesprek__bubble {
+  padding: 8px 16px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chat-gesprek__bubble--other {
+  background-color: var(--color-focus);
+  border-radius: 16px 16px 16px 0;
+}
+
+.chat-gesprek__bubble--self {
+  background-color: var(--color-white);
+  border-radius: 16px 16px 0 16px;
+}
+
+.chat-gesprek__bubble-sender {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.chat-gesprek__bubble-text {
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+  letter-spacing: -0.1px;
+}
+
+.chat-gesprek__bubble-time {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  text-align: right;
+  padding-bottom: 4px;
+}
+
+/* ---- Oproep card (inside bubble) ---- */
+
+.chat-gesprek__oproep-card {
+  background-color: var(--color-focus);
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 4px;
+}
+
+.chat-gesprek__bubble--other .chat-gesprek__oproep-card {
+  background-color: var(--color-white);
+}
+
+.chat-gesprek__oproep-label {
+  font-size: 14px;
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.chat-gesprek__oproep-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---- Request acceptance card ---- */
+
+.chat-gesprek__request-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin: var(--space-8) var(--space-5) 0;
+  padding: var(--space-4);
+  background-color: var(--color-focus);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.chat-gesprek__request-icon {
+  color: var(--color-text-primary);
+}
+
+.chat-gesprek__request-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+}
+
+.chat-gesprek__request-desc {
+  font-size: 16px;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+}
+
+.chat-gesprek__request-actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.chat-gesprek__request-btn {
+  flex: 1;
+  height: 32px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.1px;
+}
+
+.chat-gesprek__request-btn--outline {
+  border: 1px solid var(--color-cta);
+  color: var(--color-cta);
+  background: transparent;
+}
+
+.chat-gesprek__request-btn--primary {
+  background-color: var(--color-cta);
+  color: var(--color-white);
+}
+
+/* ---- Footer ---- */
+
+.chat-gesprek__footer {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 24px 20px;
+  background-color: var(--color-surface-secondary);
+  backdrop-filter: blur(5px);
+}
+
+.chat-gesprek__input-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 12px 8px 12px 16px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.chat-gesprek__input-wrap--pill {
+  border-radius: 100px;
+  padding: 4px 4px 4px 16px;
+}
+
+.chat-gesprek__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+}
+
+.chat-gesprek__input::placeholder {
+  color: var(--color-disabled-text);
+}
+
+.chat-gesprek__emoji-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-tertiary);
+}
+
+.chat-gesprek__send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-cta);
+  color: var(--color-white);
+  flex-shrink: 0;
+}
+
+.chat-gesprek__send-btn--outline {
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-disabled-text);
+}

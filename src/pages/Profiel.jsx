@@ -1,3 +1,4 @@
+import { showToast } from '@shared/components/Toast'
 import { BackArrowIcon, ChevronRightIcon } from '@shared/components/Icons'
 import { profielData } from '../data/dummyData'
 import { PAGES } from '../constants/routes'
@@ -98,7 +99,16 @@ function ProfielListItem({ icon: Icon, label, badge, onClick }) {
 }
 
 /* ---- Profiel page ---- */
-function Profiel({ onBack, onNavigate }) {
+/* ---- Eye icon for preview button ---- */
+function EyeIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fillRule="evenodd" clipRule="evenodd" d="M12 4.25C7.45422 4.25 3.57608 7.28938 2.10876 11.5953C2.01671 11.8567 2.01671 12.1433 2.10876 12.4047C3.57608 16.7106 7.45422 19.75 12 19.75C16.5458 19.75 20.4239 16.7106 21.8912 12.4047C21.9833 12.1433 21.9833 11.8567 21.8912 11.5953C20.4239 7.28938 16.5458 4.25 12 4.25ZM12 16.25C9.65279 16.25 7.75 14.3472 7.75 12C7.75 9.65279 9.65279 7.75 12 7.75C14.3472 7.75 16.25 9.65279 16.25 12C16.25 14.3472 14.3472 16.25 12 16.25ZM12 14.75C13.5188 14.75 14.75 13.5188 14.75 12C14.75 10.4812 13.5188 9.25 12 9.25C10.4812 9.25 9.25 10.4812 9.25 12C9.25 13.5188 10.4812 14.75 12 14.75Z" fill="currentColor"/>
+    </svg>
+  )
+}
+
+function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar }) {
   const profile = profielData
 
   return (
@@ -109,23 +119,39 @@ function Profiel({ onBack, onNavigate }) {
           <BackArrowIcon />
         </button>
         <h1 className="profiel__title">{profile.firstName}&apos;s profiel</h1>
-        <div className="profiel__header-actions">
-          <button className="profiel__bookmark-btn" aria-label="Bewaar profiel">
-            <BookmarkIcon />
-          </button>
-          <button className="profiel__more-btn" aria-label="Meer opties">
-            <MoreVerticalIcon />
-          </button>
-        </div>
       </header>
 
-      {/* Hero: avatar + name */}
+      {/* Hero: avatar + name + vindbaar */}
       <section className="profiel__hero">
         <div className="profiel__avatar">
           {profile.initials}
         </div>
         <h2 className="profiel__name">{profile.name}</h2>
         <p className="profiel__subtitle">{profile.subtitle}</p>
+
+        {/* Vindbaar toggle */}
+        <div className="profiel__vindbaar-hero">
+          <div className="profiel__vindbaar-row">
+            <span className={`profiel__vindbaar-status ${isVindbaar ? 'profiel__vindbaar-status--active' : ''}`}>
+              <span className="profiel__vindbaar-dot" />
+              {isVindbaar ? 'Vindbaar' : 'Niet vindbaar'}
+            </span>
+            <button
+              className={`profiel__toggle ${isVindbaar ? 'profiel__toggle--on' : ''}`}
+              onClick={onToggleVindbaar}
+              role="switch"
+              aria-checked={isVindbaar}
+              aria-label="Vindbaar voor budgethouders"
+            >
+              <span className="profiel__toggle-thumb" />
+            </button>
+          </div>
+          <button className="profiel__preview-link" onClick={() => showToast('Profielpreview (binnenkort beschikbaar)')}>
+            <EyeIcon />
+            <span>Bekijk hoe budgethouders jou zien</span>
+            <ChevronRightIcon />
+          </button>
+        </div>
       </section>
 
       {/* Bio card */}
@@ -152,7 +178,7 @@ function Profiel({ onBack, onNavigate }) {
               icon={LocationIcon}
               label="Mijn locaties"
               badge={profile.locaties}
-              onClick={() => alert('Mijn locaties (nog niet geïmplementeerd)')}
+              onClick={() => showToast('Mijn locaties (nog niet geïmplementeerd)')}
             />
             <ProfielListItem
               icon={TimeHalfPassIcon}
@@ -170,13 +196,13 @@ function Profiel({ onBack, onNavigate }) {
               icon={ChattingIcon}
               label="Mijn talen"
               badge={profile.talen}
-              onClick={() => alert('Mijn talen (nog niet geïmplementeerd)')}
+              onClick={() => showToast('Mijn talen (nog niet geïmplementeerd)')}
             />
             <ProfielListItem
               icon={TickIcon}
               label="Goed om te weten"
               badge={profile.goedOmTeWeten}
-              onClick={() => alert('Goed om te weten (nog niet geïmplementeerd)')}
+              onClick={() => showToast('Goed om te weten (nog niet geïmplementeerd)')}
             />
           </div>
         </section>
@@ -188,12 +214,12 @@ function Profiel({ onBack, onNavigate }) {
             <ProfielListItem
               icon={BriefcaseIcon}
               label="Vul je CV aan"
-              onClick={() => alert('CV (nog niet geïmplementeerd)')}
+              onClick={() => showToast('CV (nog niet geïmplementeerd)')}
             />
             <ProfielListItem
               icon={CheckmarkBadgeIcon}
               label="Vul je registraties aan"
-              onClick={() => alert('Registraties (nog niet geïmplementeerd)')}
+              onClick={() => showToast('Registraties (nog niet geïmplementeerd)')}
             />
           </div>
         </section>

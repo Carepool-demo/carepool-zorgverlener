@@ -34,6 +34,10 @@ export const SUB_PAGES = {
   NIEUWE_AFSPRAAK: 'nieuweAfspraak',
   OPENSTAANDE_VERZOEKEN: 'openstaandeVerzoeken',
 
+  // Berichten sub-pages
+  NIEUW_BERICHT: 'nieuwBericht',
+  VERZOEKEN: 'verzoeken',
+
   // Admin tabs
   OVERZICHTEN: 'overzichten',
 }

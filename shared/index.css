@@ -123,6 +123,17 @@ button {
   background: none;
 }
 
+/* Keyboard accessibility — focus-visible ring */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-cta);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
 ul, ol {
   list-style: none;
 }

@@ -1,3 +1,4 @@
+import { showToast } from '../components/Toast';
 import { useState } from 'react'
 import { BackArrowIcon, DownloadIcon, ChevronDownIcon } from '../components/Icons'
 import { mijnConnecties } from '@app/data/dummyData'
@@ -150,7 +151,7 @@ function DownloadZorglogs({ onBack }) {
         <div className="dlz__action">
           <button
             className="dlz__download-btn"
-            onClick={() => alert('Download CSV (nog niet geïmplementeerd)')}
+            onClick={() => showToast('Download CSV (nog niet geïmplementeerd)')}
             aria-label="Download CSV"
           >
             <DownloadIcon />

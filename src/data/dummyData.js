@@ -476,7 +476,7 @@ export const berichtenChats = [
 
 export const berichtenVerzoeken = [
   {
-    id: 1,
+    id: 'verzoek-1',
     name: 'Sophie Bakker',
     initials: 'SB',
     type: 'request',
@@ -484,6 +484,122 @@ export const berichtenVerzoeken = [
     preview: 'Wil je mij toevoegen als zorgverlener?',
     unread: 1,
   },
+  {
+    id: 'verzoek-2',
+    name: 'Maria de Boer',
+    initials: 'MB',
+    type: 'request',
+    timestamp: 'maandag',
+    preview: 'Hoi! Ik zoek iemand voor huishoudelijke hulp op dinsdag en donderdag. Heb je daar tijd voor?',
+    unread: 0,
+  },
+  {
+    id: 'verzoek-3',
+    name: 'Thomas Jansen',
+    initials: 'TJ',
+    type: 'request',
+    timestamp: 'vorige week',
+    preview: 'Ik heb je profiel gezien en zou graag willen praten over begeleiding voor mijn moeder.',
+    unread: 0,
+  },
+  {
+    id: 'verzoek-4',
+    name: 'Fatima El Amrani',
+    initials: 'FA',
+    type: 'request',
+    timestamp: 'vorige week',
+    preview: 'Goedemiddag, ik ben op zoek naar iemand die mijn vader kan helpen met dagelijkse verzorging.',
+    unread: 0,
+  },
+  {
+    id: 'verzoek-5',
+    name: 'Pieter de Groot',
+    initials: 'PG',
+    type: 'request',
+    timestamp: '2 weken',
+    preview: 'Hallo, we zoeken een zorgverlener voor onze buurvrouw. Kun je eens langskomen?',
+    unread: 0,
+  },
+]
+
+/* ---- Chat gesprek data ---- */
+export const chatGesprekken = {
+  1: {
+    // Julie de Lange
+    subtitle: null,
+    members: null,
+    messages: [
+      { id: 1, sender: 'other', name: 'Julie de Lange', initials: 'JL', text: 'Hoi! Ik wilde even vragen of je morgen iets later kunt komen. Rond half 10 in plaats van 9?', time: '09:12' },
+      { id: 2, sender: 'self', text: 'Ja hoor, dat is prima! Dan ben ik er om half 10.', time: '09:15' },
+      { id: 3, sender: 'other', name: 'Julie de Lange', initials: 'JL', text: 'Top, dankjewel! Dan hoef ik niet zo te haasten met de ochtend.', time: '09:16' },
+      { id: 4, sender: 'self', text: 'Snap ik. Geen probleem, tot morgen!', time: '09:18' },
+      { id: 5, sender: 'other', name: 'Julie de Lange', initials: 'JL', text: 'Kun je toevallig morgen een kwartiertje later? Zou goed uitkomen.', time: '14:30' },
+    ],
+  },
+  2: {
+    // Ochtendploeg
+    subtitle: 'Zorgteam van Tess',
+    members: 4,
+    messages: [
+      { id: 1, sender: 'other', name: 'Anna Visser', initials: 'AV', text: 'Goedemorgen! Wie kan er donderdag de ochtenddienst overnemen? Ik heb een afspraak bij de huisarts.', time: '08:30' },
+      { id: 2, sender: 'other', name: 'Anna Visser', initials: 'AV', text: 'Het gaat om de dienst van 9 tot 12 bij Tess.', time: '08:31' },
+      { id: 3, sender: 'self', text: 'Ik kan donderdag wel! Heb die ochtend nog niks staan.', time: '08:45' },
+      { id: 4, sender: 'other', name: 'Anna Visser', initials: 'AV', text: 'Ok is goed. Doen we dat de volgende keer.', time: '09:02' },
+    ],
+  },
+  3: {
+    // Tess de Vries
+    subtitle: null,
+    members: null,
+    messages: [
+      { id: 1, sender: 'other', name: 'Tess de Vries', initials: 'TV', text: 'Vond je het ook zo gezellig gisteren?', time: '16:20' },
+      { id: 2, sender: 'self', text: 'Ja zeker! Was een leuke middag.', time: '16:25' },
+      { id: 3, sender: 'other', name: 'Tess de Vries', initials: 'TV', text: 'Haha, ja vond ik ook', time: '16:26' },
+    ],
+  },
+  4: {
+    // Heike van Carepool
+    subtitle: null,
+    members: null,
+    messages: [
+      { id: 1, sender: 'other', name: 'Heike van Carepool', initials: 'HF', text: 'Hey! We zijn benieuwd wat je van Carepool vindt. Mis je iets in de app of heb je suggesties? Laat het ons weten!', time: '10:00' },
+    ],
+  },
+  'verzoek-1': {
+    // Sophie Bakker – berichtverzoek
+    isVerzoek: true,
+    status: 'pending',
+    subtitle: null,
+    members: null,
+    oproep: {
+      label: 'Jouw oproepje',
+      text: 'Wie komt mijn team van jonge studenten versterken 3 dagen per week?',
+    },
+    messages: [
+      {
+        id: 1,
+        sender: 'other',
+        name: 'Sophie Bakker',
+        initials: 'SB',
+        text: 'Hoi Nisha, ik heb een vraag over je oproepje: Ik wil je graag helpen maar ik kan alleen op dinsdagen, is dat ook oké?',
+        time: '13:51',
+        hasOproep: true,
+      },
+    ],
+  },
+}
+
+/* ---- Nieuw bericht page ---- */
+export const nieuwBerichtTeams = [
+  { id: 1, name: 'Ochtendploeg', initials: '', type: 'group' },
+]
+
+export const nieuwBerichtConnecties = [
+  { id: 1, name: 'Anna Visser', initials: 'AV' },
+  { id: 2, name: 'Annika Zhang', initials: 'AZ' },
+  { id: 3, name: 'Julia Smilde', initials: 'JS' },
+  { id: 4, name: 'Nisha Wijngaarde', initials: 'NW' },
+  { id: 5, name: 'Noor van Leeuwen', initials: 'NL' },
 ]
 
 /* ---- Profiel page ---- */

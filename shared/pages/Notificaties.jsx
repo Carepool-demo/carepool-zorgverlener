@@ -1,3 +1,4 @@
+import { showToast } from '../components/Toast';
 import { BackArrowIcon } from '../components/Icons'
 import { notificatiesData } from '@app/data/dummyData'
 import './Notificaties.css'
@@ -68,7 +69,7 @@ function Notificaties({ onBack }) {
                         <span className="notif__item-desc">{item.description}</span>
                       </div>
                       {item.actionLink && (
-                        <button className="notif__action-link" onClick={() => alert(`${item.actionLink} (nog niet geïmplementeerd)`)}>
+                        <button className="notif__action-link" onClick={() => showToast(`${item.actionLink} (nog niet geïmplementeerd)`)}>
                           {item.actionLink}
                         </button>
                       )}

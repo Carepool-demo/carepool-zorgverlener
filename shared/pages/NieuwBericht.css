@@ -1,0 +1,143 @@
+/* ============================================
+   Nieuw Bericht (New Message) Page
+   ============================================ */
+
+.nieuw-bericht__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nieuw-bericht__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-primary);
+}
+
+.nieuw-bericht__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.3px;
+}
+
+/* ---- Search ---- */
+
+.nieuw-bericht__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-5);
+}
+
+.nieuw-bericht__search-wrap {
+  padding: 0 var(--space-5);
+}
+
+.nieuw-bericht__search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 32px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+}
+
+.nieuw-bericht__search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--color-text-primary);
+  line-height: 20px;
+  letter-spacing: -0.1px;
+}
+
+.nieuw-bericht__search-input::placeholder {
+  color: var(--color-cta-dark);
+  opacity: 0.6;
+}
+
+/* ---- Section titles ---- */
+
+.nieuw-bericht__section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding: var(--space-4) var(--space-5);
+  letter-spacing: -0.3px;
+}
+
+/* ---- Person list ---- */
+
+.nieuw-bericht__list {
+  padding: 0;
+}
+
+.nieuw-bericht__person {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-5);
+  text-align: left;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: -1px;
+  transition: background-color 0.15s;
+}
+
+.nieuw-bericht__person:hover {
+  background-color: var(--color-focus-light);
+}
+
+.nieuw-bericht__person--team {
+  background-color: var(--color-surface-secondary);
+}
+
+.nieuw-bericht__person--team:hover {
+  background-color: var(--color-focus);
+}
+
+/* ---- Avatar ---- */
+
+.nieuw-bericht__avatar {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-focus);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nieuw-bericht__avatar--group {
+  background-color: var(--color-cta);
+  color: var(--color-surface-secondary);
+}
+
+.nieuw-bericht__initials {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.nieuw-bericht__person-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

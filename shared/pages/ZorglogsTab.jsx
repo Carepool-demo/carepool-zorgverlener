@@ -1,3 +1,4 @@
+import { showToast } from '../components/Toast';
 import ZorgverlenerSelector from '@app/components/ZorgverlenerSelector'
 import MonthRow from '../components/MonthRow'
 import { LogIcon, EditIcon, UndoIcon } from '../components/Icons'
@@ -27,7 +28,7 @@ function ZorglogsTab({ onDownload }) {
                       <span className="zorglogs__entry-type zorglogs__entry-type--deleted">{entry.type}</span>
                       <span className="zorglogs__entry-price zorglogs__entry-price--deleted">{entry.price}</span>
                       <span className="zorglogs__entry-duration zorglogs__entry-duration--deleted">{entry.duration}</span>
-                      <button className="zorglogs__restore-btn" onClick={() => alert(`${entry.type} terugzetten (nog niet geïmplementeerd)`)} aria-label={`${entry.type} terugzetten`}>
+                      <button className="zorglogs__restore-btn" onClick={() => showToast(`${entry.type} terugzetten (nog niet geïmplementeerd)`)} aria-label={`${entry.type} terugzetten`}>
                         <UndoIcon />
                         Terugzetten
                       </button>
@@ -40,7 +41,7 @@ function ZorglogsTab({ onDownload }) {
                       <span className="zorglogs__entry-type">{entry.type}</span>
                       <span className="zorglogs__entry-duration">{entry.duration}</span>
                       <span className="zorglogs__entry-price">{entry.price}</span>
-                      <button className="zorglogs__edit-btn" onClick={() => alert(`${entry.type} bewerken (nog niet geïmplementeerd)`)} aria-label={`${entry.type} bewerken`}>
+                      <button className="zorglogs__edit-btn" onClick={() => showToast(`${entry.type} bewerken (nog niet geïmplementeerd)`)} aria-label={`${entry.type} bewerken`}>
                         <EditIcon />
                       </button>
                     </>

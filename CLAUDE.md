@@ -8,7 +8,24 @@ Carepool Zorgverlener is the **caregiver (zorgverlener) version** of the Carepoo
 
 This project was initially created as a copy of `carepool-app` and then adapted for the caregiver perspective. Mobile-first web application (393x852 viewport, 393px max-width shell).
 
-No git remote configured yet. Netlify auto-deploy via `netlify.toml` (build command: `npm run build`, publish: `dist`).
+Git remote: `Carepool-demo/carepool-zorgverlener` on GitHub. Netlify auto-deploy via `netlify.toml` (build command: `npm run build`, publish: `dist`).
+
+### Shared Code & Netlify Builds
+
+Both React apps share code from `../shared/` via the `@shared` Vite alias. For Netlify builds (where the workspace root isn't available), a local copy exists at `./shared/`. The `vite.config.js` detects which path exists:
+
+```js
+const sharedPath = fs.existsSync(path.resolve(__dirname, '../shared'))
+  ? path.resolve(__dirname, '../shared')   // local dev
+  : path.resolve(__dirname, './shared')    // Netlify build
+```
+
+**After editing files in workspace `shared/`**, sync the local copy before pushing:
+```bash
+rsync -av --delete ../shared/ ./shared/
+```
+
+`resolve.dedupe: ['react', 'react-dom']` in vite.config.js ensures shared components resolve React from the project's node_modules.
 
 ## Commands
 
@@ -95,62 +112,29 @@ Admin.jsx uses `openSubPage`/`closeSubPage` helpers for its three sub-pages (Dow
 | AlleVerzoeken page | Not present | Sub-page of Home (all care requests) |
 | Home sub-pages | NodigUit | NodigUit, AlleVerzoeken |
 | Unique routes | — | `PAGES.BESCHIKBAARHEID` (overlay), `SUB_PAGES.ALLE_VERZOEKEN`, `SUB_PAGES.OPENSTAANDE_VERZOEKEN` |
-| Git remote | `Carepool-demo/carepool-app` | Not configured yet |
+| Git remote | `Carepool-demo/carepool-app` | `Carepool-demo/carepool-zorgverlener` |
 
-## File Structure
+## Where Code Lives
 
-```
-src/
-├── main.jsx                          # Entry point (StrictMode, React 19)
-├── App.jsx / App.css                 # Shell: 393px, page routing, bottom nav
-├── index.css                         # Design system tokens
-├── constants/
-│   └── routes.js                     # PAGES, SUB_PAGES, OVERLAY_PAGES constants
-├── components/
-│   ├── Icons.jsx                     # ALL shared SVG icons (centralized, named exports)
-│   ├── TopBar.jsx/css                # Sticky header: title + bell + avatar
-│   ├── BottomNav.jsx/css             # 5-tab nav (Home, Carepool, Agenda, Berichten, Admin)
-│   ├── ConnectionRow.jsx/css         # Reusable connection row (name, initials, tags)
-│   ├── ErrorBoundary.jsx             # React error boundary (class component)
-│   ├── PasswordGate.jsx/css          # Demo password gate (sessionStorage, password: demo2026)
-│   ├── ZorgverlenerSelector.jsx/css  # Caregiver dropdown (used in Admin tabs)
-│   └── MonthRow.jsx/css              # Month picker + download (used in Admin tabs)
-├── pages/
-│   ├── Home.jsx/css                  # Landing + sub-page router
-│   ├── AlleVerzoeken.jsx/css         # All care requests (UNIQUE, sub-page of Home)
-│   ├── NodigUit.jsx/css              # Invite page with QR code (sub-page of Home and Carepool)
-│   ├── Carepool.jsx/css              # Landing + sub-page router
-│   ├── MijnConnecties.jsx/css        # Connections list (sub-page of Carepool)
-│   ├── Beschikbaarheid.jsx/css       # Weekly availability grid + overlay (sub-page)
-│   ├── Zoeken.jsx/css                # Search zorgverleners (sub-page of Carepool)
-│   ├── ZorgverlenerProfiel.jsx/css   # Zorgverlener detail profile + CV (sub-page of Carepool)
-│   ├── Agenda.jsx/css                # Calendar week view + sub-page router
-│   ├── NieuweAfspraak.jsx/css        # New appointment flow (sub-page of Agenda)
-│   ├── Berichten.jsx/css             # Messages page with Chats/Verzoeken tabs
-│   ├── Admin.jsx/css                 # Admin shell with 3 tab components + 3 sub-pages
-│   ├── ZorglogsTab.jsx               # Care log entries (uses Admin.css)
-│   ├── OverzichtenTab.jsx            # Monthly summaries (uses Admin.css)
-│   ├── TarievenTab.jsx               # Rate cards (uses Admin.css)
-│   ├── DownloadZorglogs.jsx/css      # Zorglogs download page (UNIQUE, sub-page of Admin)
-│   ├── SvbDeclaratie.jsx/css         # SVB declaration (sub-page of Admin)
-│   ├── BudgetOverzicht.jsx/css       # Budget overview (sub-page of Admin)
-│   ├── BudgetDetail.jsx/css          # Budget detail (sub-page of BudgetOverzicht)
-│   ├── ProfielInstellingen.jsx/css   # Settings hub (overlay, avatar click)
-│   ├── Profiel.jsx/css               # "Over mij" personal info (overlay)
-│   ├── Zorgcategorieen.jsx/css       # Care category toggles (overlay)
-│   ├── HelpInfo.jsx/css              # Help & info page (overlay)
-│   ├── Sjablonen.jsx/css             # Templates management (overlay)
-│   ├── Notificaties.jsx/css          # Notifications & to-do items (overlay)
-│   ├── NotificatieInstellingen.jsx/css # Notification settings (overlay)
-│   └── Tour.jsx/css                  # Onboarding walkthrough
-└── data/
-    └── dummyData.js                  # ALL centralized dummy data
-```
+Code is split between two locations:
+- **`src/`** — App-specific pages, components, data, and routes. Entry point: `src/main.jsx` → `src/App.jsx`.
+- **`@shared` (`../shared/`)** — Shared components (BottomNav, TopBar, Icons, etc.), shared pages (~15), shared CSS tokens, and shared route constants. Imported via `@shared/...` alias.
+
+Key app-specific files in `src/`:
+- `App.jsx` / `App.css` — Shell (393px max-width), page routing, bottom nav visibility logic
+- `constants/routes.js` — App-specific PAGES, SUB_PAGES, OVERLAY_PAGES (extends shared routes with BESCHIKBAARHEID, ALLE_VERZOEKEN, etc.)
+- `components/ZorgverlenerSelector.jsx` — Caregiver dropdown (app-specific version used by shared Admin tabs)
+- `data/dummyData.js` — All centralized dummy data (app-specific version with `openstaandeVerzoeken`, `alleVerzoeken`, etc.)
+- `pages/` — App-specific pages (Home, Carepool, Agenda, Profiel, Beschikbaarheid, AlleVerzoeken, DownloadZorglogs, Tour, etc.)
+
+Unique to this app (not in carepool-app): `AlleVerzoeken`, `DownloadZorglogs`, `VasteBeschikbaarheid`, `Uitzonderingen`.
+
+Run `ls src/pages/` and `ls ../shared/pages/` to see the full current list.
 
 ## Key Conventions
 
 - **Icons** — All shared icons live in `shared/components/Icons.jsx` (imported via `@shared/components/Icons`) as named exports (~39 icons). Only truly page-specific icons that are used in a single file stay local (e.g. ArrowRightSmall, NoteIcon, CareTypeIcon in Home). All SVGs use `currentColor`. Source SVGs are in the `Iconen/` folder outside the app. When converting Figma SVGs to JSX: `fill-rule` -> `fillRule`, `clip-rule` -> `clipRule`, hardcoded `fill="#3F2561"` -> `fill="currentColor"`. Keep all sub-paths intact. Use the `/icon-import` skill to automate SVG -> JSX conversion.
-- **Data** — All dummy data is centralized in `data/dummyData.js`. Pages import what they need. `zorgCategorieenInstellingen` is shared between Zorgcategorieen.jsx and NieuweAfspraak.jsx.
+- **Data** — All dummy data is centralized in `data/dummyData.js`. Pages import what they need. `zorgCategorieenInstellingen` is shared between Zorgcategorieen.jsx and NieuweAfspraak.jsx. `agendaWeeks` is dynamically generated from the real current date (3 weeks: past/current/future) using `_generateAgendaWeeks()` — dates use local timezone formatting to avoid UTC offset bugs.
 - **Route constants** — All page and sub-page identifiers are in `constants/routes.js`. Use `PAGES.HOME` instead of `'home'`, `SUB_PAGES.ZOEKEN` instead of `'zoeken'`, etc.
 - **CSS naming** — BEM: `.block__element--modifier`. Short prefixes for long page names (e.g. `.pi__` for ProfielInstellingen, `.zorgcat__` for Zorgcategorieen, `.zvp__` for ZorgverlenerProfiel).
 - **Tab components** — Admin tabs are separate files that rely on Admin.css being loaded by Admin.jsx.

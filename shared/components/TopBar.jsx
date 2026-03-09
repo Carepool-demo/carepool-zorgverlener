@@ -1,6 +1,6 @@
 import './TopBar.css'
 
-function TopBar({ title = 'Home', onAvatarClick, onNotificatieClick }) {
+function TopBar({ title = 'Home', onAvatarClick, onNotificatieClick, notificationCount = 0 }) {
   return (
     <header className="top-bar">
       <h1 className="top-bar__title">{title}</h1>
@@ -10,7 +10,7 @@ function TopBar({ title = 'Home', onAvatarClick, onNotificatieClick }) {
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 1C12.483 1 13.0266 1.08264 13.4717 1.37402C13.9655 1.69728 14.25 2.22084 14.25 2.875C14.25 3.42351 14.0507 3.99302 13.7432 4.45215C16.9626 5.20835 19.4097 8.0127 19.5908 11.4512C19.5999 11.6236 19.6068 11.7892 19.6133 11.9482C19.6354 12.4897 19.6548 12.9613 19.7529 13.4131C19.8702 13.9529 20.0872 14.3771 20.5283 14.708C21.2975 15.285 21.7499 16.1908 21.75 17.1523C21.75 18.5336 20.6629 19.7499 19.2002 19.75H15.9287C15.5776 21.6005 13.9527 23 12 23C10.0473 23 8.42242 21.6005 8.07129 19.75H4.7998C3.33709 19.7499 2.25 18.5336 2.25 17.1523C2.2501 16.1908 2.70248 15.285 3.47168 14.708C3.91284 14.3771 4.12982 13.9529 4.24707 13.4131C4.34517 12.9613 4.36456 12.4897 4.38672 11.9482C4.39323 11.7892 4.4001 11.6236 4.40918 11.4512C4.59032 8.01303 7.03686 5.20867 10.2559 4.45215C9.94847 3.99309 9.75 3.42333 9.75 2.875C9.75 2.22084 10.0345 1.69728 10.5283 1.37402C10.9734 1.08264 11.517 1 12 1ZM10.1465 19.75C10.4433 20.4828 11.1608 21 12 21C12.8392 21 13.5567 20.4828 13.8535 19.75H10.1465Z" fill="currentColor"/>
           </svg>
-          <span className="top-bar__badge">8</span>
+          {notificationCount > 0 && <span className="top-bar__badge">{notificationCount}</span>}
         </button>
         <button className="top-bar__icon-btn top-bar__avatar-btn" aria-label="Profiel" onClick={onAvatarClick}>
           {/* user.svg */}

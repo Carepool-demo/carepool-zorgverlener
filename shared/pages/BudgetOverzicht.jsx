@@ -1,3 +1,4 @@
+import { showToast } from '../components/Toast';
 import { useState } from 'react'
 import BudgetDetail from './BudgetDetail'
 import { BackArrowIcon, BudgetIcon, ChevronDownIcon, PlusIcon } from '../components/Icons'
@@ -47,11 +48,11 @@ function BudgetOverzicht({ onBack }) {
       </header>
 
       <div className="bo__toolbar">
-        <button className="bo__dropdown" onClick={() => alert('Budget selecteren (nog niet geimplementeerd)')}>
+        <button className="bo__dropdown" onClick={() => showToast('Budget selecteren (nog niet geimplementeerd)')}>
           Budget 2026
           <ChevronDownIcon />
         </button>
-        <button className="bo__add-btn" onClick={() => alert('Nieuw budget (nog niet geimplementeerd)')}>
+        <button className="bo__add-btn" onClick={() => showToast('Nieuw budget (nog niet geimplementeerd)')}>
           <PlusIcon />
           Nieuw
         </button>

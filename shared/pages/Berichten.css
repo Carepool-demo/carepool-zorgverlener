@@ -2,32 +2,45 @@
    Berichten (Messages) Page
    ============================================ */
 
-.berichten__tabs {
-  display: flex;
-  padding: var(--space-4) 0 0;
-  border-bottom: 1px solid var(--color-border);
-}
+/* ---- Verzoeken card ---- */
 
-.berichten__tab {
-  flex: 1;
+.berichten__verzoeken-card {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: var(--space-3);
+  margin: var(--space-4) var(--space-5) var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-surface-secondary);
+  border-radius: var(--radius-lg);
+  text-align: left;
+  width: calc(100% - var(--space-5) * 2);
+  transition: background-color 0.15s;
+  color: var(--color-text-secondary);
+}
+
+.berichten__verzoeken-card:hover {
+  background-color: var(--color-focus);
+}
+
+.berichten__verzoeken-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.berichten__verzoeken-top {
+  display: flex;
+  align-items: center;
   gap: var(--space-2);
-  padding-bottom: var(--space-3);
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--color-text-tertiary);
-  border-bottom: 2px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  margin-bottom: 4px;
 }
 
-.berichten__tab--active {
+.berichten__verzoeken-title {
+  font-size: 16px;
+  font-weight: 700;
   color: var(--color-text-primary);
-  border-bottom-color: var(--color-cta);
 }
 
-.berichten__tab-badge {
+.berichten__verzoeken-badge {
   min-width: 20px;
   height: 20px;
   padding: 0 6px;
@@ -42,6 +55,22 @@
   line-height: 1;
 }
 
+.berichten__verzoeken-preview {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- Section header ---- */
+
+.berichten__section-header {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
 /* ---- Chat list ---- */
 
 .berichten__list {
@@ -53,10 +82,15 @@
   align-items: center;
   gap: var(--space-4);
   width: 100%;
-  padding: var(--space-4) var(--space-5);
+  height: 96px;
+  padding: 0 var(--space-5);
   text-align: left;
   border-bottom: 1px solid var(--color-border);
   transition: background-color 0.15s;
+}
+
+.berichten__list li:first-child .berichten__item {
+  border-top: 1px solid var(--color-border);
 }
 
 .berichten__item:hover {
@@ -108,7 +142,7 @@
 }
 
 .berichten__name {
-  font-size: var(--font-size-sm);
+  font-size: 16px;
   font-weight: 700;
   color: var(--color-text-primary);
   white-space: nowrap;
@@ -124,7 +158,7 @@
 }
 
 .berichten__time--unread {
-  color: var(--color-cta);
+  color: var(--color-notification);
   font-weight: 700;
 }
 
@@ -135,8 +169,8 @@
 }
 
 .berichten__preview {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-tertiary);
+  font-size: 14px;
+  color: var(--color-text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -144,12 +178,21 @@
   min-width: 0;
 }
 
+.berichten__preview--multiline {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+  min-height: calc(2 * 1.4em);
+}
+
 .berichten__unread-badge {
   min-width: 20px;
   height: 20px;
   padding: 0 6px;
   border-radius: var(--radius-full);
-  background-color: var(--color-cta);
+  background-color: var(--color-notification);
   color: var(--color-white);
   font-size: var(--font-size-xs);
   font-weight: 700;
@@ -158,4 +201,100 @@
   justify-content: center;
   line-height: 1;
   flex-shrink: 0;
+}
+
+/* ---- Section header row ---- */
+
+.berichten__section-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 var(--space-5);
+}
+
+.berichten__new-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-cta);
+}
+
+.berichten__new-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---- Verzoek item (with action buttons) ---- */
+
+.berichten__verzoek-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.berichten__verzoek-item:first-child .berichten__item {
+  border-top: none;
+}
+
+.berichten__verzoek-item .berichten__item {
+  border-bottom: none;
+  height: auto;
+  padding: var(--space-4) var(--space-5) 0;
+}
+
+.berichten__verzoek-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5) var(--space-4);
+  padding-left: calc(var(--space-5) + 48px + var(--space-4));
+}
+
+.berichten__verzoek-btn {
+  height: 32px;
+  padding: 0 var(--space-5);
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.berichten__verzoek-btn--decline {
+  background-color: var(--color-focus);
+  color: var(--color-text-primary);
+}
+
+.berichten__verzoek-btn--accept {
+  background-color: var(--color-cta);
+  color: var(--color-white);
+}
+
+/* ---- Sub-page header (Verzoeken) ---- */
+
+.berichten__sub-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.berichten__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-primary);
+}
+
+.berichten__sub-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.3px;
 }

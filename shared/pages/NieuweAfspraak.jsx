@@ -1,3 +1,4 @@
+import { showToast } from '../components/Toast';
 import { useState } from 'react'
 import { BackArrowIcon, PlusIcon, CareIcon, EditIcon } from '../components/Icons'
 import { careTemplates } from '@app/data/dummyData'
@@ -495,7 +496,7 @@ function NieuweAfspraak({ onBack, zorgCategorieen = [] }) {
         {/* Zorgverlener */}
         <div className="nieuwe-afspraak__field">
           <label className="nieuwe-afspraak__label">Zorgverlener</label>
-          <button className="nieuwe-afspraak__input-wrapper nieuwe-afspraak__input-wrapper--with-icon nieuwe-afspraak__input-wrapper--clickable" onClick={() => alert('Kies zorgverlener (nog niet geimplementeerd)')} aria-label="Kies zorgverlener">
+          <button className="nieuwe-afspraak__input-wrapper nieuwe-afspraak__input-wrapper--with-icon nieuwe-afspraak__input-wrapper--clickable" onClick={() => showToast('Kies zorgverlener (nog niet geimplementeerd)')} aria-label="Kies zorgverlener">
             <UserAddIcon />
             <span className="nieuwe-afspraak__placeholder">Kies je zorgverlener(s)</span>
             <span className="nieuwe-afspraak__add-icon">
@@ -506,10 +507,10 @@ function NieuweAfspraak({ onBack, zorgCategorieen = [] }) {
       </div>
 
       <div className="nieuwe-afspraak__footer">
-        <button className="nieuwe-afspraak__btn nieuwe-afspraak__btn--outline" onClick={() => alert('Opslaan (nog niet geimplementeerd)')} aria-label="Opslaan">
+        <button className="nieuwe-afspraak__btn nieuwe-afspraak__btn--outline" onClick={() => showToast('Opslaan (nog niet geimplementeerd)')} aria-label="Opslaan">
           Opslaan
         </button>
-        <button className="nieuwe-afspraak__btn nieuwe-afspraak__btn--primary" disabled={!canVersturen} onClick={() => alert('Versturen (nog niet geimplementeerd)')} aria-label="Versturen">
+        <button className="nieuwe-afspraak__btn nieuwe-afspraak__btn--primary" disabled={!canVersturen} onClick={() => showToast('Versturen (nog niet geimplementeerd)')} aria-label="Versturen">
           <SendIcon />
           Versturen
         </button>

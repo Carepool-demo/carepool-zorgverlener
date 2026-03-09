@@ -1,3 +1,4 @@
+import { showToast } from '@shared/components/Toast'
 import { BackArrowIcon, LinkIcon, PlusIcon } from '@shared/components/Icons'
 import ConnectionRow from '@shared/components/ConnectionRow'
 import { teams, mijnConnecties as connections } from '../data/dummyData'
@@ -28,14 +29,14 @@ function MijnConnecties({ onBack, onInvite }) {
       <section className="mijn-connecties__section">
         <div className="mijn-connecties__section-header">
           <h3 className="mijn-connecties__section-title">Teams</h3>
-          <button className="mijn-connecties__action-btn" onClick={() => alert('Nieuw team (nog niet geïmplementeerd)')}>
+          <button className="mijn-connecties__action-btn" onClick={() => showToast('Nieuw team (nog niet geïmplementeerd)')}>
             <PlusIcon />
             Nieuw team
           </button>
         </div>
         <div className="mijn-connecties__teams">
           {teams.map((team) => (
-            <button key={team.id} className="team-item" onClick={() => alert(`Team "${team.name}" (nog niet geïmplementeerd)`)}>
+            <button key={team.id} className="team-item" onClick={() => showToast(`Team "${team.name}" (nog niet geïmplementeerd)`)}>
               <div className="team-item__icon">
                 <UserGroupIcon />
               </div>

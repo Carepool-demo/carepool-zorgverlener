@@ -1,3 +1,4 @@
+import { showToast } from '../components/Toast';
 import { useState } from 'react'
 import { BackArrowIcon } from '../components/Icons'
 import Tour from '@app/pages/Tour'
@@ -117,7 +118,7 @@ function HelpInfo({ onBack }) {
             We zijn een sociale onderneming die het regelen van zorg een stuk eenvoudiger wil maken.
           </p>
           <div className="hi__hero-buttons">
-            <button className="hi__btn hi__btn--filled" onClick={() => alert('Onze missie (nog niet geïmplementeerd)')}>
+            <button className="hi__btn hi__btn--filled" onClick={() => showToast('Onze missie (nog niet geïmplementeerd)')}>
               <PlayIcon />
               <span>Onze missie</span>
             </button>
@@ -132,13 +133,13 @@ function HelpInfo({ onBack }) {
         <section className="hi__card hi__card--focus">
           <h3 className="hi__card-title">Hulp nodig?</h3>
           <p className="hi__card-text">
-            Vragen over de app? <button className="hi__link" onClick={() => alert('Hulppagina (nog niet geïmplementeerd)')}>Bekijk onze hulppagina</button> of neem contact met ons op.
+            Vragen over de app? <button className="hi__link" onClick={() => showToast('Hulppagina (nog niet geïmplementeerd)')}>Bekijk onze hulppagina</button> of neem contact met ons op.
           </p>
-          <button className="hi__action-btn hi__action-btn--filled" onClick={() => alert('Stuur een bericht (nog niet geïmplementeerd)')}>
+          <button className="hi__action-btn hi__action-btn--filled" onClick={() => showToast('Stuur een bericht (nog niet geïmplementeerd)')}>
             <MailIcon />
             <span>Stuur een bericht</span>
           </button>
-          <button className="hi__action-btn hi__action-btn--outlined" onClick={() => alert('Bel mij terug (nog niet geïmplementeerd)')}>
+          <button className="hi__action-btn hi__action-btn--outlined" onClick={() => showToast('Bel mij terug (nog niet geïmplementeerd)')}>
             <PhoneIcon />
             <span>Bel mij terug</span>
           </button>
@@ -150,7 +151,7 @@ function HelpInfo({ onBack }) {
           <p className="hi__card-text">
             Deze app is ontstaan vanuit persoonlijke ervaringen, en samen kunnen we &apos;m nog beter maken!
           </p>
-          <button className="hi__action-btn hi__action-btn--filled" onClick={() => alert('Deel jouw idee (nog niet geïmplementeerd)')}>
+          <button className="hi__action-btn hi__action-btn--filled" onClick={() => showToast('Deel jouw idee (nog niet geïmplementeerd)')}>
             <IdeaIcon />
             <span>Deel jouw idee</span>
           </button>
@@ -163,7 +164,7 @@ function HelpInfo({ onBack }) {
             Jouw privacy staat voorop, ook tijdens de bètafase. Lees hier hoe we jouw gegevens beschermen.
           </p>
           <div className="hi__card-link-row">
-            <button className="hi__link" onClick={() => alert('Privacy & beveiliging (nog niet geïmplementeerd)')}>Lees verder</button>
+            <button className="hi__link" onClick={() => showToast('Privacy & beveiliging (nog niet geïmplementeerd)')}>Lees verder</button>
           </div>
         </section>
 
@@ -174,7 +175,7 @@ function HelpInfo({ onBack }) {
             Carepool ondersteunt je, maar je blijft zelf verantwoordelijk voor je pgb.
           </p>
           <div className="hi__card-link-row">
-            <button className="hi__link" onClick={() => alert('Meer over pgb-verplichtingen (nog niet geïmplementeerd)')}>Meer over pgb-verplichtingen</button>
+            <button className="hi__link" onClick={() => showToast('Meer over pgb-verplichtingen (nog niet geïmplementeerd)')}>Meer over pgb-verplichtingen</button>
           </div>
         </section>
 

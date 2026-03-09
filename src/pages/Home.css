@@ -28,6 +28,21 @@
 
 .home__wave-img {
   display: block;
+  transform-origin: 70% 80%;
+}
+
+.home__wave-img--waving {
+  animation: wave 0.6s ease-in-out;
+}
+
+@keyframes wave {
+  0%   { transform: rotate(0deg); }
+  15%  { transform: rotate(20deg); }
+  30%  { transform: rotate(-15deg); }
+  45%  { transform: rotate(15deg); }
+  60%  { transform: rotate(-10deg); }
+  75%  { transform: rotate(8deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .home__greeting-text {

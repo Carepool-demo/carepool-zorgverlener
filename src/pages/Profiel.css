@@ -118,7 +118,7 @@
 /* ---- Bio card (gradient area) ---- */
 .profiel__bio-area {
   padding: var(--space-6) var(--space-5);
-  background: linear-gradient(to bottom, var(--color-focus-medium), var(--color-surface));
+  background: linear-gradient(to bottom, var(--color-focus-medium), var(--color-surface-secondary));
 }
 
 .profiel__bio-card {
@@ -149,12 +149,116 @@
   text-overflow: ellipsis;
 }
 
+/* ---- Vindbaar in hero ---- */
+.profiel__vindbaar-hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.profiel__vindbaar-hero .profiel__vindbaar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-full);
+  padding: 6px 6px 6px 16px;
+}
+
+.profiel__vindbaar-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+}
+
+.profiel__vindbaar-status--active {
+  color: var(--color-notification);
+}
+
+.profiel__vindbaar-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-text-tertiary);
+}
+
+.profiel__vindbaar-status--active .profiel__vindbaar-dot {
+  background: var(--color-notification);
+}
+
+/* Toggle switch */
+.profiel__toggle {
+  width: 52px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+
+.profiel__toggle--on {
+  background: var(--color-notification);
+}
+
+.profiel__toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.profiel__toggle--on .profiel__toggle-thumb {
+  transform: translateX(20px);
+}
+
+/* Preview link in hero */
+.profiel__preview-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-cta);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profiel__preview-link svg:first-child {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--color-cta);
+}
+
+.profiel__preview-link span {
+  flex-shrink: 0;
+}
+
+.profiel__preview-link svg:last-child {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--color-cta);
+}
+
 /* ---- Sections ---- */
 .profiel__sections {
   padding: 0 var(--space-5);
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
+  background: var(--color-surface-secondary);
 }
 
 .profiel__section {

@@ -10,7 +10,7 @@ import TarievenTab from '@app/pages/TarievenTab'
 import './Admin.css'
 
 /* ---- Admin page ---- */
-function Admin({ onNavigate, initialTab = null, initialMonth = null, onSubPageChange }) {
+function Admin({ onNavigate, initialTab = null, initialMonth = null, onSubPageChange, notificationCount }) {
   const [activeTab, setActiveTab] = useState(initialTab || 'zorglogs')
   const [showSvbPage, setShowSvbPage] = useState(false)
   const [showBudgetPage, setShowBudgetPage] = useState(false)
@@ -39,7 +39,7 @@ function Admin({ onNavigate, initialTab = null, initialMonth = null, onSubPageCh
 
   return (
     <div className="admin">
-      <TopBar title="Administratie" onAvatarClick={() => onNavigate(PAGES.PROFIEL_INSTELLINGEN)} onNotificatieClick={() => onNavigate(PAGES.NOTIFICATIES)} />
+      <TopBar title="Administratie" onAvatarClick={() => onNavigate(PAGES.PROFIEL_INSTELLINGEN)} onNotificatieClick={() => onNavigate(PAGES.NOTIFICATIES)} notificationCount={notificationCount} />
 
       {/* Tab navigation */}
       <div className="admin__tabs" role="tablist" aria-label="Administratie tabbladen">

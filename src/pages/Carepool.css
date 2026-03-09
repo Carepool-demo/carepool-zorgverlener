@@ -117,6 +117,139 @@
   color: var(--color-text-primary);
 }
 
+/* ---- Profile card with vindbaar toggle ---- */
+.carepool__card--profiel {
+  cursor: pointer;
+}
+
+.carepool__card-vindbaar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.carepool__card-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+}
+
+.carepool__card-status--active {
+  color: var(--color-notification);
+}
+
+.carepool__card-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-text-tertiary);
+}
+
+.carepool__card-status--active .carepool__card-status-dot {
+  background: var(--color-notification);
+}
+
+/* Compact toggle for Carepool card */
+.carepool__toggle {
+  width: 44px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+
+.carepool__toggle--on {
+  background: var(--color-notification);
+}
+
+.carepool__toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.carepool__toggle--on .carepool__toggle-thumb {
+  transform: translateX(18px);
+}
+
+/* ---- Chatverzoeken banner ---- */
+.carepool__verzoeken {
+  padding: 0 var(--space-5) var(--space-8);
+  margin-top: calc(-1 * var(--space-4));
+}
+
+.carepool__verzoeken-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4);
+  background: var(--color-focus-medium);
+  border-radius: var(--radius-lg);
+  text-align: left;
+}
+
+.carepool__verzoeken-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.carepool__verzoeken-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.carepool__verzoeken-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.carepool__verzoeken-badge {
+  min-width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  background: var(--color-notification);
+  color: var(--color-white);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  border-radius: var(--radius-full);
+}
+
+.carepool__verzoeken-preview {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.carepool__verzoeken-card > svg:last-child {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-secondary);
+}
+
 /* ---- Page-level overrides for TopBar & BottomNav ---- */
 .carepool .top-bar {
   background: var(--color-surface-secondary);

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { PAGES, SUB_PAGES } from '../constants/routes'
+import { berichtenVerzoeken } from '../data/dummyData'
+import { ChevronRightIcon } from '@shared/components/Icons'
 import TopBar from '@shared/components/TopBar'
 import MijnConnecties from './MijnConnecties'
 import Beschikbaarheid from './Beschikbaarheid'
@@ -26,16 +28,25 @@ function ConnectionsIcon() {
   )
 }
 
-/* ---- Megaphone icon (megaphone-02.svg from Iconen) ---- */
-function MegaphoneIcon() {
+/* ---- Chat bubble icon for chatverzoeken ---- */
+function ChatBubbleIcon() {
   return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fillRule="evenodd" clipRule="evenodd" d="M14.6055 3.73539C16.2042 2.96854 17.1688 2.50401 18.3076 2.88676C19.4606 3.27376 19.8636 4.12043 20.4736 5.40043C22.1705 8.95932 22.1705 13.0417 20.4736 16.6006C19.8636 17.8806 19.4606 18.7273 18.3076 19.1143C18.0279 19.2082 17.759 19.251 17.4883 19.251V19.253C16.6563 19.253 15.8105 18.8466 14.6035 18.2676L13.748 17.8565C13.7457 19.0471 13.7206 19.6861 13.4141 20.1827C12.9991 20.8537 12.2799 21.25 11.5039 21.25H11.5029C11.435 21.25 11.3658 21.2472 11.2969 21.2413C10.6619 21.1842 10.0919 20.7572 8.95605 19.9053L7.75 19C6.586 18.127 6.25 17.454 6.25 16V15.0655C6.17518 15.0791 6.10952 15.0924 6.04395 15.0997C5.06608 15.2116 4.14412 14.9342 3.45215 14.3174C2.68815 13.6364 2.25 12.594 2.25 11.458V10.5459C2.25002 9.40997 2.68817 8.36755 3.45215 7.68657C4.14409 7.06978 5.06604 6.79237 6.04785 6.90532C6.23285 6.92532 6.43027 6.96868 6.82227 7.05668C7.21221 7.14464 7.59222 7.10171 7.95117 6.92973L14.6016 3.73637L14.9268 4.41215L14.6055 3.73539ZM7.75 16C7.75 16.988 7.85939 17.2068 8.65039 17.7998L9.84961 18.7002C10.5883 19.254 11.2204 19.7277 11.4316 19.7471C11.7166 19.7731 11.9877 19.6376 12.1377 19.3936C12.2496 19.2122 12.25 18.4187 12.25 17.5V17.1368L7.9502 15.0733C7.88433 15.0418 7.81728 15.015 7.75 14.9922V16ZM17.8301 4.30766C17.2951 4.1277 16.7499 4.36801 15.2529 5.08598L14.9258 4.41118L15.251 5.08696L8.59863 8.28129C8.48465 8.33594 8.36756 8.38036 8.25 8.42094V13.5772C8.368 13.6177 8.48438 13.6653 8.59863 13.7198L15.252 16.9141C16.7509 17.6331 17.2961 17.8734 17.8301 17.6934C18.3571 17.5164 18.5461 17.1611 19.1201 15.9561C20.6211 12.8071 20.6211 9.19396 19.1201 6.04496C18.5461 4.83996 18.3571 4.48466 17.8301 4.30766ZM5.88086 8.3936C5.31009 8.32867 4.82911 8.46695 4.4502 8.80473C4.00521 9.20172 3.75002 9.83599 3.75 10.545V11.4571C3.75001 12.1661 4.0052 12.8003 4.4502 13.1973C4.82913 13.5351 5.30916 13.6734 5.87598 13.6084C5.98598 13.5964 6.17719 13.5535 6.49219 13.4825C6.57807 13.4631 6.66399 13.4469 6.75 13.4346V8.5645C6.66436 8.55227 6.57863 8.53767 6.49316 8.5186C6.17716 8.4476 5.98686 8.4046 5.88086 8.3936Z" fill="currentColor"/>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fillRule="evenodd" clipRule="evenodd" d="M12 2.25C6.615 2.25 2.25 6.615 2.25 12C2.25 13.643 2.647 15.193 3.355 16.567L2.278 20.284C2.154 20.713 2.263 21.176 2.564 21.502C2.865 21.829 3.319 21.974 3.756 21.884L7.694 21.072C9.006 21.669 10.464 22 12 22C17.385 22 21.75 17.635 21.75 12.25C21.75 6.865 17.385 2.25 12 2.25ZM8 10.75C8 10.336 8.336 10 8.75 10H15.25C15.664 10 16 10.336 16 10.75C16 11.164 15.664 11.5 15.25 11.5H8.75C8.336 11.5 8 11.164 8 10.75ZM8.75 13C8.336 13 8 13.336 8 13.75C8 14.164 8.336 14.5 8.75 14.5H12.25C12.664 14.5 13 14.164 13 13.75C13 13.336 12.664 13 12.25 13H8.75Z" fill="currentColor"/>
     </svg>
   )
 }
 
-function Carepool({ initialSubPage = null, onNavigate, onSubPageChange }) {
+/* ---- Person icon for profile card ---- */
+function PersonIcon() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fillRule="evenodd" clipRule="evenodd" d="M12 2.75C9.65279 2.75 7.75 4.65279 7.75 7C7.75 9.34721 9.65279 11.25 12 11.25C14.3472 11.25 16.25 9.34721 16.25 7C16.25 4.65279 14.3472 2.75 12 2.75ZM9.25 7C9.25 5.48122 10.4812 4.25 12 4.25C13.5188 4.25 14.75 5.48122 14.75 7C14.75 8.51878 13.5188 9.75 12 9.75C10.4812 9.75 9.25 8.51878 9.25 7ZM4.25 19.5C4.25 16.0482 7.04822 13.25 10.5 13.25H13.5C16.9518 13.25 19.75 16.0482 19.75 19.5C19.75 20.7426 18.7426 21.75 17.5 21.75H6.5C5.25736 21.75 4.25 20.7426 4.25 19.5ZM10.5 14.75C7.87665 14.75 5.75 16.8766 5.75 19.5C5.75 19.9142 6.08579 20.25 6.5 20.25H17.5C17.9142 20.25 18.25 19.9142 18.25 19.5C18.25 16.8766 16.1234 14.75 13.5 14.75H10.5Z" fill="currentColor"/>
+    </svg>
+  )
+}
+
+function Carepool({ initialSubPage = null, onNavigate, onSubPageChange, notificationCount, isVindbaar, onToggleVindbaar }) {
   const [subPage, setSubPage] = useState(initialSubPage)
   const [selectedZorgverlener, setSelectedZorgverlener] = useState(null)
 
@@ -83,7 +94,7 @@ function Carepool({ initialSubPage = null, onNavigate, onSubPageChange }) {
 
   return (
     <div className="carepool">
-      <TopBar title="Mijn Carepool" onAvatarClick={() => onNavigate(PAGES.PROFIEL_INSTELLINGEN)} onNotificatieClick={() => onNavigate(PAGES.NOTIFICATIES)} />
+      <TopBar title="Mijn Carepool" onAvatarClick={() => onNavigate(PAGES.PROFIEL_INSTELLINGEN)} onNotificatieClick={() => onNavigate(PAGES.NOTIFICATIES)} notificationCount={notificationCount} />
 
       {/* Hero section */}
       <section className="carepool__hero">
@@ -109,16 +120,46 @@ function Carepool({ initialSubPage = null, onNavigate, onSubPageChange }) {
           </div>
           <span className="carepool__card-label">Mijn Connecties</span>
         </button>
-        <button className="carepool__card" onClick={() => alert('Mijn oproepjes (nog niet geïmplementeerd)')}>
-          <div className="carepool__card-icon-wrapper">
-            <div className="carepool__card-icon">
-              <MegaphoneIcon />
-            </div>
-            <span className="carepool__card-badge">13</span>
+        <div className="carepool__card carepool__card--profiel" onClick={() => onNavigate(PAGES.PROFIEL)}>
+          <div className="carepool__card-icon">
+            <PersonIcon />
           </div>
-          <span className="carepool__card-label">Mijn oproepjes</span>
-        </button>
+          <span className="carepool__card-label">Mijn profiel</span>
+          <div className="carepool__card-vindbaar" onClick={(e) => e.stopPropagation()}>
+            <span className={`carepool__card-status ${isVindbaar ? 'carepool__card-status--active' : ''}`}>
+              <span className="carepool__card-status-dot" />
+              {isVindbaar ? 'Vindbaar' : 'Niet vindbaar'}
+            </span>
+            <button
+              className={`carepool__toggle ${isVindbaar ? 'carepool__toggle--on' : ''}`}
+              onClick={onToggleVindbaar}
+              role="switch"
+              aria-checked={isVindbaar}
+              aria-label="Vindbaar voor budgethouders"
+            >
+              <span className="carepool__toggle-thumb" />
+            </button>
+          </div>
+        </div>
       </section>
+
+      {/* Chatverzoeken banner */}
+      {berichtenVerzoeken.length > 0 && (
+        <section className="carepool__verzoeken">
+          <button className="carepool__verzoeken-card" onClick={() => onNavigate(PAGES.BERICHTEN)}>
+<div className="carepool__verzoeken-content">
+              <div className="carepool__verzoeken-top">
+                <span className="carepool__verzoeken-title">Chatverzoeken</span>
+                <span className="carepool__verzoeken-badge">{berichtenVerzoeken.length}</span>
+              </div>
+              <p className="carepool__verzoeken-preview">
+                {berichtenVerzoeken.map(v => v.name.split(' ')[0]).join(', ')}
+              </p>
+            </div>
+            <ChevronRightIcon />
+          </button>
+        </section>
+      )}
     </div>
   )
 }

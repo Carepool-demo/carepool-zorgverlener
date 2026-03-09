@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { PAGES, SUB_PAGES, OVERLAY_PAGES } from './constants/routes'
 import '@shared/App.css'
 import Home from './pages/Home'
@@ -16,7 +16,8 @@ import NotificatieInstellingen from '@shared/pages/NotificatieInstellingen'
 import Beschikbaarheid from './pages/Beschikbaarheid'
 import BottomNav from '@shared/components/BottomNav'
 import PasswordGate from '@shared/components/PasswordGate'
-import { zorgCategorieenInstellingen as defaultCategories } from './data/dummyData'
+import Toast from '@shared/components/Toast'
+import { zorgCategorieenInstellingen as defaultCategories, notificatiesData, berichtenChats } from './data/dummyData'
 
 function App() {
   const [activePage, setActivePage] = useState(PAGES.HOME)
@@ -28,7 +29,14 @@ function App() {
   const [carepoolSubPage, setCarepoolSubPage] = useState(null)
   const [homeSubPage, setHomeSubPage] = useState(null)
   const [adminSubPage, setAdminSubPage] = useState(null)
+  const [berichtenSubPage, setBerichtenSubPage] = useState(null)
   const [zorgCategorieen, setZorgCategorieen] = useState(defaultCategories)
+  const [isVindbaar, setIsVindbaar] = useState(true)
+  const contentRef = useRef(null)
+
+  useEffect(() => {
+    if (contentRef.current) contentRef.current.scrollTop = 0
+  }, [activePage])
 
   const handleTabChange = (page) => {
     setCarepoolInitialSubPage(null)
@@ -45,36 +53,41 @@ function App() {
       setAdminInitialTab(subPage)
       if (extra) setAdminInitialMonth(extra)
     }
-    if (page === PAGES.PROFIEL_INSTELLINGEN) {
+    if (OVERLAY_PAGES.includes(page)) {
       setPreviousPage(activePage)
     }
     setActivePage(page)
   }
 
+  const notificationCount = notificatiesData.meldingen.reduce((sum, group) => sum + group.items.filter(i => i.unread).length, 0)
+  const berichtenBadge = berichtenChats.reduce((sum, chat) => sum + chat.unread, 0)
+
   const hideNavForCarepoolSub = activePage === PAGES.CAREPOOL && carepoolSubPage != null
   const hideNavForHomeSub = activePage === PAGES.HOME && homeSubPage != null
   const hideNavForAdminSub = activePage === PAGES.ADMIN && adminSubPage != null
-  const showBottomNav = !OVERLAY_PAGES.includes(activePage) && !hideNavForCarepoolSub && !hideNavForHomeSub && !hideNavForAdminSub
+  const hideNavForBerichtenSub = activePage === PAGES.BERICHTEN && berichtenSubPage != null
+  const showBottomNav = !OVERLAY_PAGES.includes(activePage) && !hideNavForCarepoolSub && !hideNavForHomeSub && !hideNavForAdminSub && !hideNavForBerichtenSub
 
   return (
     <PasswordGate>
       <div className={`app-shell app-shell--${activePage}${!showBottomNav ? ' app-shell--no-nav' : ''}`}>
-        <div className="app-content">
-          {activePage === PAGES.HOME && <Home onNavigate={handleNavigate} onSubPageChange={setHomeSubPage} />}
-          {activePage === PAGES.CAREPOOL && <Carepool initialSubPage={carepoolInitialSubPage} onNavigate={handleNavigate} onSubPageChange={setCarepoolSubPage} />}
+        <div className="app-content" ref={contentRef}>
+          {activePage === PAGES.HOME && <Home onNavigate={handleNavigate} onSubPageChange={setHomeSubPage} notificationCount={notificationCount} />}
+          {activePage === PAGES.CAREPOOL && <Carepool initialSubPage={carepoolInitialSubPage} onNavigate={handleNavigate} onSubPageChange={setCarepoolSubPage} notificationCount={notificationCount} isVindbaar={isVindbaar} onToggleVindbaar={() => setIsVindbaar(v => !v)} />}
           {activePage === PAGES.AGENDA && <Agenda initialSubPage={agendaInitialSubPage} onNavigate={handleNavigate} />}
-          {activePage === PAGES.BERICHTEN && <Berichten onNavigate={handleNavigate} />}
-          {activePage === PAGES.ADMIN && <Admin onNavigate={handleNavigate} initialTab={adminInitialTab} initialMonth={adminInitialMonth} onSubPageChange={setAdminSubPage} />}
+          {activePage === PAGES.BERICHTEN && <Berichten onNavigate={handleNavigate} onSubPageChange={setBerichtenSubPage} notificationCount={notificationCount} />}
+          {activePage === PAGES.ADMIN && <Admin onNavigate={handleNavigate} initialTab={adminInitialTab} initialMonth={adminInitialMonth} onSubPageChange={setAdminSubPage} notificationCount={notificationCount} />}
           {activePage === PAGES.PROFIEL_INSTELLINGEN && <ProfielInstellingen onBack={() => setActivePage(previousPage)} onNavigate={handleNavigate} />}
-          {activePage === PAGES.PROFIEL && <Profiel onBack={() => setActivePage(PAGES.PROFIEL_INSTELLINGEN)} onNavigate={handleNavigate} />}
-          {activePage === PAGES.ZORGCATEGORIEEN && <Zorgcategorieen onBack={() => setActivePage(PAGES.PROFIEL_INSTELLINGEN)} categories={zorgCategorieen} onCategoriesChange={setZorgCategorieen} />}
-          {activePage === PAGES.HELP_INFO && <HelpInfo onBack={() => setActivePage(PAGES.PROFIEL_INSTELLINGEN)} />}
-          {activePage === PAGES.SJABLONEN && <Sjablonen onBack={() => setActivePage(PAGES.PROFIEL_INSTELLINGEN)} />}
-          {activePage === PAGES.NOTIFICATIES && <Notificaties onBack={() => setActivePage(PAGES.PROFIEL_INSTELLINGEN)} />}
-          {activePage === PAGES.NOTIFICATIE_INSTELLINGEN && <NotificatieInstellingen onBack={() => setActivePage(PAGES.PROFIEL_INSTELLINGEN)} />}
-          {activePage === PAGES.BESCHIKBAARHEID && <Beschikbaarheid onBack={() => setActivePage(PAGES.PROFIEL)} />}
+          {activePage === PAGES.PROFIEL && <Profiel onBack={() => setActivePage(previousPage)} onNavigate={handleNavigate} isVindbaar={isVindbaar} onToggleVindbaar={() => setIsVindbaar(v => !v)} />}
+          {activePage === PAGES.ZORGCATEGORIEEN && <Zorgcategorieen onBack={() => setActivePage(previousPage)} categories={zorgCategorieen} onCategoriesChange={setZorgCategorieen} />}
+          {activePage === PAGES.HELP_INFO && <HelpInfo onBack={() => setActivePage(previousPage)} />}
+          {activePage === PAGES.SJABLONEN && <Sjablonen onBack={() => setActivePage(previousPage)} />}
+          {activePage === PAGES.NOTIFICATIES && <Notificaties onBack={() => setActivePage(previousPage)} />}
+          {activePage === PAGES.NOTIFICATIE_INSTELLINGEN && <NotificatieInstellingen onBack={() => setActivePage(previousPage)} />}
+          {activePage === PAGES.BESCHIKBAARHEID && <Beschikbaarheid onBack={() => setActivePage(previousPage)} />}
         </div>
-        {showBottomNav && <BottomNav activeTab={activePage} onTabChange={handleTabChange} />}
+        {showBottomNav && <BottomNav activeTab={activePage} onTabChange={handleTabChange} berichtenBadge={berichtenBadge} />}
+        <Toast />
       </div>
     </PasswordGate>
   )

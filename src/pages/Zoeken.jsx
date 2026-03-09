@@ -1,3 +1,4 @@
+import { showToast } from '@shared/components/Toast'
 import { useState } from 'react'
 import { BackArrowIcon, ChevronDownIcon, LocationOutlineIcon, CertificateIcon } from '@shared/components/Icons'
 import { zoekenResultaten } from '../data/dummyData'
@@ -384,7 +385,7 @@ function Zoeken({ onBack, onSelectResult }) {
           </button>
           <button
             className="zoeken__sort-btn"
-            onClick={() => alert('Sorteer op (nog niet geïmplementeerd)')}
+            onClick={() => showToast('Sorteer op (nog niet geïmplementeerd)')}
             aria-label="Sorteer op"
           >
             Sorteer op
@@ -404,7 +405,7 @@ function Zoeken({ onBack, onSelectResult }) {
           <button
             key={result.id}
             className="zoeken__card"
-            onClick={() => onSelectResult ? onSelectResult(result) : alert(`${result.name} (nog niet geïmplementeerd)`)}
+            onClick={() => onSelectResult ? onSelectResult(result) : showToast(`${result.name} (nog niet geïmplementeerd)`)}
             aria-label={`Bekijk profiel van ${result.name}`}
           >
             <div className="zoeken__card-avatar">
@@ -732,7 +733,7 @@ function Zoeken({ onBack, onSelectResult }) {
                   </>
                 )}
 
-                <button className="zoeken__bs-add-link" onClick={() => alert('Voeg tijden toe (nog niet geïmplementeerd)')}>
+                <button className="zoeken__bs-add-link" onClick={() => showToast('Voeg tijden toe (nog niet geïmplementeerd)')}>
                   + Voeg tijden toe
                 </button>
               </>
@@ -766,7 +767,7 @@ function Zoeken({ onBack, onSelectResult }) {
                   </div>
                 ))}
 
-                <button className="zoeken__bs-expand" onClick={() => alert('Alle zorgcategorieën (nog niet geïmplementeerd)')}>
+                <button className="zoeken__bs-expand" onClick={() => showToast('Alle zorgcategorieën (nog niet geïmplementeerd)')}>
                   Bekijk alle zorgcategorieën
                   <ChevronDownIcon />
                 </button>
