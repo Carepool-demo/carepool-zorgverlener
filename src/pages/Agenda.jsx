@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { PAGES, SUB_PAGES } from '../constants/routes'
-import { SmallCareIcon, CalendarSmallIcon } from '@shared/components/Icons'
+import { SmallCareIcon, CareIcon, CalendarSmallIcon, ClockIcon, LocationOutlineIcon } from '@shared/components/Icons'
 import { agendaWeeks as WEEKS, agendaVerzoeken, alleVerzoeken } from '../data/dummyData'
 import AlleVerzoeken from './AlleVerzoeken'
 import './Agenda.css'
@@ -55,6 +55,45 @@ function ArchiveSmallIcon() {
       <path d="M9.5 13H14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
   )
+}
+
+function TimerIcon({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8.66406 0.833285C8.89067 0.837423 9.14688 0.889579 9.38477 0.937777C9.39775 0.940409 9.41096 0.942988 9.42383 0.94559C12.7006 1.60778 15.1668 4.5077 15.167 7.98465C15.167 11.9494 11.9594 15.1663 8 15.1663C4.04058 15.1663 0.833008 11.9494 0.833008 7.98465C0.833141 5.97656 1.65663 4.15935 2.98242 2.85672C3.23909 2.60457 3.65212 2.60886 3.9043 2.86551C4.15616 3.12208 4.15275 3.53427 3.89648 3.78641C2.81011 4.85381 2.13685 6.33981 2.13672 7.98465C2.13672 11.2326 4.76299 13.8636 8 13.8636C11.237 13.8636 13.8633 11.2326 13.8633 7.98465C13.8631 5.1381 11.8447 2.76442 9.16602 2.22293C9.02673 2.19479 8.91944 2.17283 8.82715 2.1575C8.75776 2.14598 8.70796 2.1405 8.67188 2.13797C8.65386 2.25614 8.65137 2.43053 8.65137 2.76102V3.41434C8.65131 3.77411 8.35979 4.06571 8 4.06571C7.64022 4.0657 7.34869 3.77411 7.34863 3.41434V2.72098C7.34855 2.43957 7.34819 2.15533 7.38672 1.91922C7.43259 1.63829 7.5445 1.34206 7.8252 1.11161C8.08988 0.894472 8.37999 0.828111 8.66406 0.833285ZM5.01758 4.2786C5.19925 4.13072 5.45971 4.12854 5.64355 4.27371L9.25586 7.12723C10.0219 7.7321 10.0265 8.88723 9.26465 9.49735C8.50715 10.1038 7.37601 9.86125 6.94043 8.99149L4.88672 4.8909C4.78181 4.68143 4.8359 4.42652 5.01758 4.2786Z" fill="currentColor"/>
+    </svg>
+  )
+}
+
+function NoteSolidIcon({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.333 0.75C11.7012 0.75 12 1.0488 12 1.41699V1.67188C12.5684 1.75662 13.0495 1.93038 13.4346 2.31543C13.8358 2.71671 14.0082 3.22219 14.0889 3.82227C14.1666 4.40023 14.167 5.13519 14.167 6.04688V10.7861C14.167 11.6976 14.1665 12.4328 14.0889 13.0107C14.0082 13.6107 13.8357 14.1163 13.4346 14.5176C13.0333 14.9189 12.5278 15.0912 11.9277 15.1719C11.3498 15.2496 10.6148 15.25 9.70313 15.25H8.01172L6.78027 12.9326L6.75195 12.8867C6.42514 12.3663 6.15159 11.9322 5.88965 11.6201C5.61365 11.2913 5.29704 11.0326 4.8623 10.9541C4.24628 10.8429 3.55575 11.0975 3.01074 11.376C2.6074 11.582 2.22421 11.8336 1.91309 12.0645C1.89052 11.9662 1.87205 11.8663 1.86133 11.7627C1.83376 11.4961 1.833 11.1729 1.83301 10.793V6.04688C1.83299 5.1352 1.83344 4.40023 1.91113 3.82227C1.99181 3.22219 2.16415 2.71671 2.56543 2.31543C2.95048 1.93038 3.43155 1.75662 4 1.67188V1.41699C4 1.0488 4.2988 0.75 4.66699 0.75C5.03503 0.750176 5.33301 1.04891 5.33301 1.41699V1.58789C5.6295 1.58355 5.95043 1.583 6.29688 1.58301H7.33301V1.41699C7.33301 1.0488 7.63181 0.75 8 0.75C8.36819 0.75 8.66699 1.0488 8.66699 1.41699V1.58301H9.70313C10.0496 1.583 10.3705 1.58355 10.667 1.58789V1.41699C10.667 1.04891 10.965 0.750176 11.333 0.75ZM4.68457 11.9375C4.79386 11.9572 4.92093 12.0208 5.12402 12.2627C5.33431 12.5132 5.56825 12.884 5.91406 13.4346L6.84473 15.1865C6.65462 15.1345 6.47342 15.0464 6.25 14.9346L6.21289 14.916L3.56152 13.5898C3.22177 13.42 2.93311 13.2757 2.70703 13.1318C2.60792 13.0688 2.51676 12.9997 2.43066 12.9258C2.71503 12.7087 3.08367 12.4618 3.46582 12.2666C3.98217 12.0028 4.4147 11.8888 4.68457 11.9375ZM5.33301 8.91699C5.05702 8.91717 4.83301 9.14096 4.83301 9.41699C4.83318 9.69288 5.05712 9.91682 5.33301 9.91699H10.667C10.9429 9.91682 11.1668 9.69288 11.167 9.41699C11.167 9.14096 10.943 8.91717 10.667 8.91699H5.33301ZM5.33301 5.58301C5.05712 5.58318 4.83318 5.80712 4.83301 6.08301C4.83301 6.35904 5.05702 6.58283 5.33301 6.58301H8C8.27614 6.58301 8.5 6.35915 8.5 6.08301C8.49982 5.80702 8.27603 5.58301 8 5.58301H5.33301Z" fill="currentColor"/>
+    </svg>
+  )
+}
+
+function DeleteIcon({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fillRule="evenodd" clipRule="evenodd" d="M10.1023 1.04266C10.4873 1.04308 10.834 1.04346 11.1223 1.0693C11.5932 1.11142 12.0365 1.25513 12.4165 1.53858C12.6973 1.74823 12.8923 2.00484 13.059 2.28277C13.214 2.54031 13.3698 2.86141 13.5465 3.22566L13.9015 3.95866L17.4998 3.95924C17.9598 3.95924 18.3332 4.33234 18.3332 4.79258C18.3332 5.25282 17.9598 5.62591 17.4998 5.62591H16.7732L16.3182 13.0473C16.2548 14.0917 16.204 14.9204 16.0998 15.5823C15.9932 16.2612 15.8223 16.8266 15.4815 17.3211C15.169 17.7735 14.7665 18.1553 14.3007 18.4422C13.7907 18.7559 13.2215 18.8931 12.544 18.9587H7.43901C6.76151 18.8928 6.1915 18.7554 5.6815 18.4412C5.21483 18.1537 4.81233 17.7712 4.49983 17.3181C4.159 16.8227 3.98901 16.2566 3.88317 15.5767C3.77984 14.9138 3.72984 14.0839 3.66734 13.0381L3.22483 5.62591H2.49984C2.03984 5.62591 1.6665 5.25282 1.6665 4.79258C1.6665 4.33234 2.03984 3.95924 2.49984 3.95924L6.17484 3.95866L6.47151 3.30879C6.64318 2.93113 6.79484 2.59851 6.94734 2.33161C7.11151 2.04372 7.30567 1.7773 7.59066 1.55904C7.97483 1.26388 8.42651 1.11423 8.90817 1.0704C9.23567 1.04054 9.5665 1.04142 9.89567 1.04228L10.1023 1.04266ZM7.9165 8.71774C7.5715 8.71774 7.2915 8.99758 7.2915 9.34274V14.3427C7.2915 14.688 7.5715 14.9677 7.9165 14.9677C8.2615 14.9677 8.5415 14.688 8.5415 14.3427V9.34274C8.5415 8.99758 8.2615 8.71774 7.9165 8.71774ZM12.0832 8.71774C11.7382 8.71774 11.4582 8.99758 11.4582 9.34274V14.3427C11.4582 14.688 11.7382 14.9677 12.0832 14.9677C12.4282 14.9677 12.7082 14.688 12.7082 14.3427V9.34274C12.7082 8.99758 12.4282 8.71774 12.0832 8.71774ZM10.1892 2.70931L10.029 2.70924C9.56984 2.70924 9.28067 2.71004 9.05901 2.7302C8.74734 2.75858 8.55317 2.88006 8.39484 3.15754C8.29067 3.33929 8.17817 3.58255 8.00651 3.95866H12.049C11.8607 3.5695 11.7398 3.32279 11.6307 3.14049C11.4698 2.87355 11.2782 2.75653 10.974 2.72934C10.7852 2.71243 10.5459 2.70973 10.1892 2.70931Z" fill="currentColor"/>
+    </svg>
+  )
+}
+
+function ChevronDownSmall() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+  )
+}
+
+/* ---- Template defaults ---- */
+const TEMPLATE_DEFAULTS = {
+  'Ochtendhulp': { time: '08:00 - 09:00', icon: 'morning', durations: [{ name: 'Persoonlijke verzorging', duration: '45 min' }, { name: 'Huishoudelijke hulp', duration: '15 min' }] },
+  'Avondhulp': { time: '21:30 - 23:00', icon: 'evening', durations: [{ name: 'Persoonlijke verzorging', duration: '1 uur' }, { name: 'Huishoudelijke hulp', duration: '30 min' }] },
+  'Toilet': { time: '10:00 - 10:30', icon: 'toilet', durations: [{ name: 'Persoonlijke verzorging', duration: '30 min' }] },
+  'Huishoudelijke hulp': { time: '12:00 - 13:00', icon: 'household', durations: [{ name: 'Huishoudelijke hulp', duration: '1 uur' }] },
+  'Persoonlijke verzorging': { time: '10:00 - 12:00', icon: 'morning', durations: [{ name: 'Persoonlijke verzorging', duration: '2 uur' }] },
 }
 
 /* ---- Status badge component ---- */
@@ -125,8 +164,13 @@ function Agenda({ initialSubPage = null, onNavigate }) {
   const [weekIndex, setWeekIndex] = useState(1)
   const [selectedDay, setSelectedDay] = useState(0)
   const [hiddenCards, setHiddenCards] = useState({})
+  const [selectedAppointment, setSelectedAppointment] = useState(null)
   const dayRefs = useRef([])
   const dateInputRef = useRef(null)
+
+  const openAppointmentSheet = (apt, day) => {
+    setSelectedAppointment({ ...apt, isoDate: day.isoDate, dayLabel: day.label })
+  }
 
   const week = WEEKS[weekIndex]
   const dateInputValue = week.days[selectedDay]?.isoDate || week.days[0].isoDate
@@ -282,7 +326,7 @@ function Agenda({ initialSubPage = null, onNavigate }) {
                     const isRequest = apt.status === 'verzoek'
                     return (
                       <div key={apt.id} className={`agenda__card-wrapper ${isRequest ? 'agenda__card-wrapper--request' : ''}`}>
-                        <div className={`agenda__card ${isRequest ? 'agenda__card--request' : ''}`}>
+                        <div className={`agenda__card ${isRequest ? 'agenda__card--request' : ''}`} onClick={() => openAppointmentSheet(apt, day)} role="button" tabIndex={0} aria-label={`${apt.type} openen`} style={{ cursor: 'pointer' }}>
                           <div className="agenda__card-top">
                             <span className="agenda__card-time">{apt.time}</span>
                             <StatusBadge status={apt.status} />
@@ -315,6 +359,121 @@ function Agenda({ initialSubPage = null, onNavigate }) {
           )
         })}
       </div>
+
+      {/* Appointment bottom sheet */}
+      {selectedAppointment && (() => {
+        const defaults = TEMPLATE_DEFAULTS[selectedAppointment.type] || { durations: [] }
+        const [startTime, endTime] = selectedAppointment.time.split(' - ')
+        const clientName = selectedAppointment.client
+        const clientInitials = clientName.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
+
+        // Calculate total duration from start/end
+        const [sh, sm] = startTime.split(':').map(Number)
+        const [eh, em] = endTime.split(':').map(Number)
+        const totalMin = (eh * 60 + em) - (sh * 60 + sm)
+        const durationStr = totalMin >= 60
+          ? `${Math.floor(totalMin / 60)}u${totalMin % 60 > 0 ? ` ${totalMin % 60} min` : ''}`
+          : `${totalMin} min`
+
+        const isVerzoek = selectedAppointment.status === 'verzoek'
+
+        return (
+          <div className="agenda__bs-overlay" onClick={() => setSelectedAppointment(null)}>
+            <div className="agenda__bs" onClick={e => e.stopPropagation()}>
+              {/* Header */}
+              <div className="agenda__bs-header">
+                <button className="agenda__bs-close" onClick={() => setSelectedAppointment(null)} aria-label="Sluiten">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                </button>
+                <div className="agenda__bs-header-right">
+                  <span className="agenda__bs-verzoek-badge">
+                    <MailOpenIcon size={16} /> Verzoek
+                  </span>
+                </div>
+              </div>
+
+              {/* Title */}
+              <div className="agenda__bs-title">
+                <span className="agenda__bs-icon-circle">
+                  <CareIcon type={selectedAppointment.icon} />
+                </span>
+                <h2 className="agenda__bs-title-text">{selectedAppointment.type}</h2>
+              </div>
+
+              {/* Date row */}
+              <div className="agenda__bs-row">
+                <span className="agenda__bs-icon-sm">
+                  <CalendarSmallIcon />
+                </span>
+                <span className="agenda__bs-row-text">{selectedAppointment.dayLabel}</span>
+              </div>
+
+              {/* Time row */}
+              <div className="agenda__bs-row">
+                <span className="agenda__bs-icon-sm">
+                  <ClockIcon size={20} />
+                </span>
+                <span className="agenda__bs-row-text">{selectedAppointment.time}</span>
+                <span className="agenda__bs-row-meta">({durationStr})</span>
+              </div>
+
+              {/* Location row */}
+              <div className="agenda__bs-row agenda__bs-row--bottom-border">
+                <span className="agenda__bs-icon-sm">
+                  <LocationOutlineIcon size={20} />
+                </span>
+                <span className="agenda__bs-row-text">Dorpsstraat 30</span>
+              </div>
+
+              {/* Note */}
+              <div className="agenda__bs-note">
+                <div className="agenda__bs-note-header">
+                  <NoteSolidIcon size={16} /> <span>Notitie</span>
+                </div>
+                <p className="agenda__bs-note-body">To do vandaag: bed verschonen, planten water geven, vuilnis buiten zetten</p>
+              </div>
+
+              {/* Duration breakdown */}
+              <div className="agenda__bs-durations">
+                <div className="agenda__bs-row agenda__bs-row--top">
+                  <span className="agenda__bs-icon-sm">
+                    <TimerIcon size={16} />
+                  </span>
+                  <div className="agenda__bs-duration-list">
+                    {(defaults.durations || []).map((d, i) => (
+                      <div key={i} className="agenda__bs-duration-row">
+                        <span>{d.name}</span>
+                        <span className="agenda__bs-duration-value">{d.duration}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Client */}
+              <div className="agenda__bs-caregiver">
+                <span className="agenda__bs-initials">{clientInitials}</span>
+                <span className="agenda__bs-caregiver-name">{clientName}</span>
+                <button className="agenda__bs-tarieven" onClick={() => alert('Tarieven (nog niet geïmplementeerd)')}>
+                  Tarieven <ChevronDownSmall />
+                </button>
+              </div>
+
+              {/* Historie */}
+              <button className="agenda__bs-historie" onClick={() => alert('Historie (nog niet geïmplementeerd)')}>
+                Historie <ChevronDownSmall />
+              </button>
+
+              {/* Actions — no Dupliceer, only Annuleren */}
+              <div className="agenda__bs-actions">
+                <button className="agenda__bs-delete" onClick={() => alert('Afspraak annuleren (nog niet geïmplementeerd)')}>
+                  <DeleteIcon size={20} /> Afspraak annuleren
+                </button>
+              </div>
+            </div>
+          </div>
+        )
+      })()}
     </div>
   )
 }

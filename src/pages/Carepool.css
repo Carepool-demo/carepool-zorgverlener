@@ -61,24 +61,25 @@
   flex-shrink: 0;
 }
 
-/* ---- Quick access cards ---- */
+/* ---- Quick access cards (2×2 grid) ---- */
 .carepool__cards {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
   gap: var(--space-3);
   padding: var(--space-4) var(--space-5) var(--space-8);
 }
 
 .carepool__card {
-  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-3);
-  padding: var(--space-4);
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   transition: background-color 0.15s;
-  min-height: 100px;
 }
 
 .carepool__card:hover {
@@ -94,16 +95,21 @@
   color: var(--color-text-secondary);
 }
 
+.carepool__card--reacties {
+  position: relative;
+}
+
 .carepool__card-badge {
   position: absolute;
-  top: -6px;
-  right: -10px;
+  top: var(--space-3);
+  right: var(--space-4);
   min-width: 20px;
   height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 5px;
+  gap: 2px;
+  padding: 0 6px;
   background: var(--color-notification);
   color: var(--color-text-light);
   font-size: var(--font-size-xs);
@@ -112,14 +118,43 @@
 }
 
 .carepool__card-label {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
+  line-height: 1.3;
+  text-align: left;
 }
 
-/* ---- Profile card with vindbaar toggle ---- */
+/* ---- Profile card with vindbaar label ---- */
 .carepool__card--profiel {
-  cursor: pointer;
+  position: relative;
+}
+
+.carepool__card-vindbaar-label {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+}
+
+.carepool__card-vindbaar-label--active {
+  color: var(--color-cta);
+}
+
+.carepool__card-vindbaar-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-text-tertiary);
+}
+
+.carepool__card-vindbaar-label--active .carepool__card-vindbaar-dot {
+  background: var(--color-cta);
 }
 
 .carepool__card-vindbaar {
@@ -140,7 +175,7 @@
 }
 
 .carepool__card-status--active {
-  color: var(--color-notification);
+  color: var(--color-text-primary);
 }
 
 .carepool__card-status-dot {
@@ -151,7 +186,7 @@
 }
 
 .carepool__card-status--active .carepool__card-status-dot {
-  background: var(--color-notification);
+  background: var(--color-cta);
 }
 
 /* Compact toggle for Carepool card */
@@ -162,11 +197,12 @@
   background: var(--color-border);
   position: relative;
   flex-shrink: 0;
+  margin-left: auto;
   transition: background-color 0.2s;
 }
 
 .carepool__toggle--on {
-  background: var(--color-notification);
+  background: var(--color-cta);
 }
 
 .carepool__toggle-thumb {
@@ -187,8 +223,7 @@
 
 /* ---- Chatverzoeken banner ---- */
 .carepool__verzoeken {
-  padding: 0 var(--space-5) var(--space-8);
-  margin-top: calc(-1 * var(--space-4));
+  padding: var(--space-3) var(--space-5) 0;
 }
 
 .carepool__verzoeken-card {
@@ -226,6 +261,7 @@
   align-items: center;
   justify-content: center;
   padding: 0 6px;
+  gap: 2px;
   background: var(--color-notification);
   color: var(--color-white);
   font-size: var(--font-size-xs);
@@ -243,6 +279,14 @@
   margin-top: 2px;
 }
 
+.carepool__verzoeken-preview--clamp {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  min-height: calc(2 * 1.4em);
+}
+
 .carepool__verzoeken-card > svg:last-child {
   flex-shrink: 0;
   width: 16px;
@@ -253,7 +297,6 @@
 /* ---- Page-level overrides for TopBar & BottomNav ---- */
 .carepool .top-bar {
   background: var(--color-surface-secondary);
-  border-bottom: none;
 }
 
 .app-shell--carepool .bottom-nav {

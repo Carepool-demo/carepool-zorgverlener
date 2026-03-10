@@ -58,8 +58,10 @@ function EuroIcon() {
 
 function GlobeIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16.498 10.25C19.944 10.25 22.7479 12.9459 22.748 16.2598C22.748 17.8088 22.1401 19.2785 21.0371 20.3975L21.0283 20.4062C20.9807 20.4529 20.9593 20.4993 20.9551 20.5176C21.0231 20.8706 21.1725 21.1908 21.3975 21.4668C21.5644 21.6718 21.6105 21.9503 21.5205 22.1982C21.4295 22.4462 21.215 22.6277 20.9551 22.6768C20.6941 22.7258 20.43 22.75 20.166 22.75C19.4644 22.7498 18.7663 22.578 18.1416 22.2432L18.0654 22.2031C18.0125 22.1751 17.9541 22.145 17.9102 22.123C17.8842 22.127 17.8541 22.1317 17.8281 22.1357C17.7882 22.1427 17.7432 22.1502 17.6943 22.1582C17.3183 22.2322 16.916 22.2705 16.498 22.2705C13.052 22.2705 10.248 19.5738 10.248 16.2598C10.2482 12.9459 13.0521 10.25 16.498 10.25ZM11.0791 1.25C15.7971 1.25004 19.8583 4.44852 20.7363 8.85449C20.817 9.26019 20.5531 9.6552 20.1475 9.73633C19.7406 9.81531 19.3458 9.55329 19.2646 9.14746C18.5257 5.44148 15.0841 2.751 11.0801 2.75098C6.48708 2.75098 2.75098 6.27733 2.75098 10.6113C2.75105 12.6152 3.55002 14.5225 5.00195 15.9824C5.55877 16.5453 5.80462 17.2538 5.67773 17.9287C5.58973 18.3867 5.44598 18.8282 5.25098 19.2422C6.01198 19.2082 6.7625 19.0074 7.4375 18.6484L7.44824 18.6416L7.55176 18.5889C7.96276 18.3789 8.16939 18.2746 8.40039 18.2266C8.4263 18.2216 8.45359 18.2169 8.47949 18.2139C8.66227 18.196 8.85915 18.2108 9.1377 18.2627C9.54455 18.3397 9.81304 18.7318 9.7373 19.1387C9.66033 19.5456 9.26921 19.8141 8.86133 19.7383C8.76733 19.7203 8.7069 19.713 8.6709 19.709C8.57993 19.748 8.4042 19.8379 8.2334 19.9248L8.13379 19.9766C7.17489 20.4854 6.09845 20.7471 5.0166 20.7471L5.01562 20.7461C4.61485 20.7461 4.21416 20.7097 3.81738 20.6367C3.55544 20.5887 3.33808 20.4062 3.24805 20.1562C3.15705 19.9062 3.205 19.6259 3.375 19.4209C3.7899 18.92 4.0761 18.3073 4.20312 17.6484C4.25113 17.3904 4.03157 17.1351 3.93457 17.0371C2.20375 15.2962 1.25008 13.0122 1.25 10.6104C1.25 5.44935 5.6591 1.25 11.0791 1.25Z" fill="currentColor" />
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
     </svg>
   )
 }
@@ -251,27 +253,31 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
           <BackArrowIcon />
         </button>
         <h1 className="zvp__title">{voornaam}&apos;s profiel</h1>
-        <div className="zvp__header-right">
-          <span className="zvp__header-logo"><BookmarkIcon /></span>
-          <button className="zvp__header-more" onClick={() => showToast('Menu (nog niet geïmplementeerd)')} aria-label="Meer opties">
-            <MoreDotsIcon />
-          </button>
-        </div>
       </header>
 
       <div className="zvp__body">
         {/* Hero */}
         <section className="zvp__hero">
           <div className="zvp__avatar">{zorgverlener.initials}</div>
-          <h2 className="zvp__name">{zorgverlener.name}</h2>
+          <div className="zvp__name-row">
+            <h2 className="zvp__name">{zorgverlener.name}</h2>
+            <button className="zvp__bookmark" onClick={() => showToast('Bewaard als favoriet')} aria-label="Bewaar als favoriet">
+              <BookmarkIcon />
+            </button>
+          </div>
           <p className="zvp__subtitle">{profiel.geslacht}, {zorgverlener.age}, {profiel.locatie.split(',')[0]}</p>
         </section>
 
-        {/* CTA */}
-        <button className="zvp__cta" onClick={() => showToast('Bericht sturen (nog niet geïmplementeerd)')}>
-          <MessageIcon />
-          Bericht sturen
-        </button>
+        {/* CTA row */}
+        <div className="zvp__cta-row">
+          <button className="zvp__cta" onClick={() => showToast('Bericht sturen (nog niet geïmplementeerd)')}>
+            <MessageIcon />
+            Bericht sturen
+          </button>
+          <button className="zvp__more-btn" onClick={() => showToast('Menu (nog niet geïmplementeerd)')}>
+            Meer
+          </button>
+        </div>
 
         {/* About card */}
         <div className={`zvp__about-card${profiel.audioIntro ? ' zvp__about-card--has-audio' : ''}`}>

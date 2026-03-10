@@ -441,6 +441,7 @@ export const berichtenChats = [
     name: 'Julie de Lange',
     initials: 'JL',
     type: 'individual',
+    isConnectie: true,
     timestamp: 'Gisteren',
     preview: 'Kun je toevallig morgen een kwartiertje later? Zou goed uitkom...',
     unread: 0,
@@ -450,6 +451,7 @@ export const berichtenChats = [
     name: 'Ochtendploeg',
     initials: '',
     type: 'group',
+    isConnectie: true,
     timestamp: 'Gisteren',
     preview: 'Tess de Vries: Ok is goed. Dan kijken we dat de volgende keer...',
     unread: 1,
@@ -459,6 +461,7 @@ export const berichtenChats = [
     name: 'Tess de Vries',
     initials: 'TV',
     type: 'individual',
+    isConnectie: false,
     timestamp: 'maandag',
     preview: 'Haha, ja vind ik ook',
     unread: 0,
@@ -468,6 +471,7 @@ export const berichtenChats = [
     name: 'Heike van Carepool',
     initials: 'HF',
     type: 'carepool',
+    isConnectie: false,
     timestamp: '',
     preview: 'Hey! We zijn benieuwd wat je van Carepool vindt. Mis je iets in de ap...',
     unread: 0,
@@ -604,6 +608,7 @@ export const nieuwBerichtConnecties = [
 
 /* ---- Profiel page ---- */
 export const profielData = {
+  id: 'nisha',
   name: 'Nisha Wijngaarde',
   firstName: 'Nisha',
   initials: 'NW',
@@ -1100,6 +1105,45 @@ const defaultProfiel = {
 }
 
 export const zorgverlenerProfielen = {
+  nisha: {
+    geslacht: 'Vrouw',
+    locatie: 'Amsterdam',
+    bio: 'Ik ben Nisha, 35 jaar, een betrokken en betrouwbare zorgverleenster met ruime levenservaring. Ik bied persoonlijke verzorging en ondersteuning met aandacht, respect en rust. Het welzijn, de veiligheid en het vertrouwen van de cliënt staan bij mij altijd centraal.',
+    zorgvragers: 5,
+    lidSinds: '1-3-2025',
+    audioIntro: false,
+    zorgTypes: ['Persoonlijke verzorging', 'Begeleiding individueel', 'Huishoudelijke hulp'],
+    zorgTypesExtra: 0,
+    beschikbaarheid: [
+      { dag: 'Maandag', tijd: '08:00 - 16:00' },
+      { dag: 'Dinsdag', tijd: '08:00 - 16:00' },
+      { dag: 'Donderdag', tijd: '08:00 - 16:00' },
+      { dag: 'Vrijdag', tijd: '08:00 - 16:00' },
+    ],
+    tarief: '€35 per uur (formeel)',
+    tariefBespreekbaar: true,
+    talen: ['Nederlands', 'Engels'],
+    praktischeInfo: ['Heeft een rijbewijs', 'Rookt niet'],
+    praktischeInfoExtra: 0,
+    reviews: ['Betrokken en warm', 'Rustig en geduldig', 'Betrouwbaar'],
+    reviewsExtra: 0,
+    cv: {
+      opleidingen: [
+        { titel: 'Helpende Zorg en Welzijn', periode: '2018 - 2020', instituut: 'ROC van Amsterdam' },
+        { titel: 'Verzorgende IG', periode: '2020 - 2022', instituut: 'ROC van Amsterdam' },
+      ],
+      werkervaring: [
+        { titel: 'Persoonlijk begeleider', periode: 'Huidig', bedrijf: 'Zelfstandig' },
+        { titel: 'Verzorgende', periode: '2022 - 2024', bedrijf: 'Amsterdam Thuiszorg' },
+      ],
+      certificaten: [
+        { titel: 'EHBO', periode: '2023 - 2026', instituut: 'Het Oranje Kruis' },
+        { titel: 'BHV', periode: '2022 - 2025', instituut: 'ROC van Amsterdam' },
+      ],
+      ervaringMet: ['Dementie', 'Parkinson', 'Mobiliteitsproblemen', 'Diabetes'],
+      leerbereidheid: 'Ik sta open om op eigen kosten trainingen te volgen die nodig zijn voor jouw zorg. Denk aan bijv. tilcursus of medicatiebeheer.',
+    },
+  },
   4: {
     geslacht: 'Vrouw',
     locatie: 'Amsterdam, Utrecht',

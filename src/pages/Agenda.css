@@ -551,3 +551,282 @@
   color: var(--color-white);
   background: var(--color-cta);
 }
+
+/* ================================================
+   Appointment bottom sheet
+   ================================================ */
+
+.agenda__bs-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.5);
+  z-index: 300;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: agenda-bs-fade-in 0.2s ease-out;
+}
+
+@keyframes agenda-bs-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.agenda__bs {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  width: 100%;
+  max-width: 393px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--space-5);
+  padding-bottom: var(--space-8);
+  animation: agenda-bs-slide-up 0.25s ease-out;
+}
+
+@keyframes agenda-bs-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Header */
+.agenda__bs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-5);
+}
+
+.agenda__bs-close {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.agenda__bs-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.agenda__bs-verzoek-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: var(--color-focus);
+  height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+/* Title */
+.agenda__bs-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.agenda__bs-icon-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+.agenda__bs-icon-circle svg {
+  width: 24px;
+  height: 24px;
+}
+
+.agenda__bs-title-text {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Info rows */
+.agenda__bs-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  margin: 0 calc(-1 * var(--space-5));
+  border-top: 1px solid var(--color-border);
+}
+
+.agenda__bs-row--top {
+  border-top: 1px solid var(--color-border);
+  padding-bottom: var(--space-2);
+  align-items: flex-start;
+  padding-top: var(--space-4);
+}
+
+.agenda__bs-duration-list {
+  flex: 1;
+}
+
+.agenda__bs-row--bottom-border {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.agenda__bs-icon-sm {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+.agenda__bs-row-text {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.agenda__bs-row-meta {
+  margin-left: auto;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+}
+
+/* Note card */
+.agenda__bs-note {
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin: var(--space-4) 0;
+}
+
+.agenda__bs-note-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.agenda__bs-note-body {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Duration breakdown */
+.agenda__bs-durations {
+  margin-bottom: var(--space-2);
+}
+
+.agenda__bs-duration-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) 0;
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+}
+
+.agenda__bs-duration-value {
+  color: var(--color-text-primary);
+  font-weight: 400;
+}
+
+/* Client / Caregiver */
+.agenda__bs-caregiver {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  margin: 0 calc(-1 * var(--space-5));
+  border-top: 1px solid var(--color-border);
+}
+
+.agenda__bs-initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-focus);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.agenda__bs-caregiver-name {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.agenda__bs-tarieven {
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Historie */
+.agenda__bs-historie {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+}
+
+/* Actions */
+.agenda__bs-actions {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.agenda__bs-delete {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-cta);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}

@@ -14,10 +14,11 @@ import Sjablonen from '@shared/pages/Sjablonen'
 import Notificaties from '@shared/pages/Notificaties'
 import NotificatieInstellingen from '@shared/pages/NotificatieInstellingen'
 import Beschikbaarheid from './pages/Beschikbaarheid'
+import ZorgverlenerProfiel from '@shared/pages/ZorgverlenerProfiel'
 import BottomNav from '@shared/components/BottomNav'
 import PasswordGate from '@shared/components/PasswordGate'
 import Toast from '@shared/components/Toast'
-import { zorgCategorieenInstellingen as defaultCategories, notificatiesData, berichtenChats } from './data/dummyData'
+import { zorgCategorieenInstellingen as defaultCategories, notificatiesData, berichtenChats, profielData } from './data/dummyData'
 
 function App() {
   const [activePage, setActivePage] = useState(PAGES.HOME)
@@ -30,6 +31,7 @@ function App() {
   const [homeSubPage, setHomeSubPage] = useState(null)
   const [adminSubPage, setAdminSubPage] = useState(null)
   const [berichtenSubPage, setBerichtenSubPage] = useState(null)
+  const [berichtenInitialSubPage, setBerichtenInitialSubPage] = useState(null)
   const [zorgCategorieen, setZorgCategorieen] = useState(defaultCategories)
   const [isVindbaar, setIsVindbaar] = useState(true)
   const contentRef = useRef(null)
@@ -41,6 +43,7 @@ function App() {
   const handleTabChange = (page) => {
     setCarepoolInitialSubPage(null)
     setAgendaInitialSubPage(null)
+    setBerichtenInitialSubPage(null)
     setAdminInitialTab(null)
     setAdminInitialMonth(null)
     setActivePage(page)
@@ -49,6 +52,7 @@ function App() {
   const handleNavigate = (page, subPage, extra) => {
     if (page === PAGES.CAREPOOL && subPage) setCarepoolInitialSubPage(subPage)
     if (page === PAGES.AGENDA && subPage) setAgendaInitialSubPage(subPage)
+    if (page === PAGES.BERICHTEN && subPage) setBerichtenInitialSubPage(subPage)
     if (page === PAGES.ADMIN && subPage) {
       setAdminInitialTab(subPage)
       if (extra) setAdminInitialMonth(extra)
@@ -75,7 +79,7 @@ function App() {
           {activePage === PAGES.HOME && <Home onNavigate={handleNavigate} onSubPageChange={setHomeSubPage} notificationCount={notificationCount} />}
           {activePage === PAGES.CAREPOOL && <Carepool initialSubPage={carepoolInitialSubPage} onNavigate={handleNavigate} onSubPageChange={setCarepoolSubPage} notificationCount={notificationCount} isVindbaar={isVindbaar} onToggleVindbaar={() => setIsVindbaar(v => !v)} />}
           {activePage === PAGES.AGENDA && <Agenda initialSubPage={agendaInitialSubPage} onNavigate={handleNavigate} />}
-          {activePage === PAGES.BERICHTEN && <Berichten onNavigate={handleNavigate} onSubPageChange={setBerichtenSubPage} notificationCount={notificationCount} />}
+          {activePage === PAGES.BERICHTEN && <Berichten initialSubPage={berichtenInitialSubPage} onNavigate={handleNavigate} onSubPageChange={setBerichtenSubPage} notificationCount={notificationCount} />}
           {activePage === PAGES.ADMIN && <Admin onNavigate={handleNavigate} initialTab={adminInitialTab} initialMonth={adminInitialMonth} onSubPageChange={setAdminSubPage} notificationCount={notificationCount} />}
           {activePage === PAGES.PROFIEL_INSTELLINGEN && <ProfielInstellingen onBack={() => setActivePage(previousPage)} onNavigate={handleNavigate} />}
           {activePage === PAGES.PROFIEL && <Profiel onBack={() => setActivePage(previousPage)} onNavigate={handleNavigate} isVindbaar={isVindbaar} onToggleVindbaar={() => setIsVindbaar(v => !v)} />}
@@ -85,6 +89,7 @@ function App() {
           {activePage === PAGES.NOTIFICATIES && <Notificaties onBack={() => setActivePage(previousPage)} />}
           {activePage === PAGES.NOTIFICATIE_INSTELLINGEN && <NotificatieInstellingen onBack={() => setActivePage(previousPage)} />}
           {activePage === PAGES.BESCHIKBAARHEID && <Beschikbaarheid onBack={() => setActivePage(previousPage)} />}
+          {activePage === PAGES.PROFIEL_PREVIEW && <ZorgverlenerProfiel zorgverlener={profielData} onBack={() => setActivePage(previousPage)} />}
         </div>
         {showBottomNav && <BottomNav activeTab={activePage} onTabChange={handleTabChange} berichtenBadge={berichtenBadge} />}
         <Toast />

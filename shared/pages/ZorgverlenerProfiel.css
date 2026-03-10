@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--color-focus);
+  background: var(--color-focus-medium);
 }
 
 /* ---- Header ---- */
@@ -49,39 +49,6 @@
   text-overflow: ellipsis;
 }
 
-.zvp__header-right {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  height: 40px;
-}
-
-.zvp__header-logo {
-  width: 28px;
-  height: 28px;
-  background: var(--color-cta);
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-white);
-}
-
-.zvp__header-more {
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-primary);
-  border-radius: var(--radius-full);
-}
-.zvp__header-more:hover {
-  background: var(--color-surface-secondary);
-}
 
 /* ---- Scrollable Body ---- */
 .zvp__body {
@@ -90,7 +57,7 @@
   padding: var(--space-5);
   background: linear-gradient(
     to bottom,
-    var(--color-focus) 0px,
+    var(--color-focus-medium) 0px,
     var(--color-surface-secondary) 400px
   );
 }
@@ -118,6 +85,12 @@
   margin-bottom: var(--space-3);
 }
 
+.zvp__name-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
 .zvp__name {
   font-size: var(--font-size-xl);
   font-weight: 700;
@@ -125,14 +98,39 @@
   margin-bottom: var(--space-1);
 }
 
+.zvp__bookmark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--color-cta);
+  color: var(--color-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: var(--space-1);
+  transition: opacity 0.2s;
+}
+.zvp__bookmark:hover {
+  opacity: 0.85;
+}
+
 .zvp__subtitle {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
 }
 
-/* ---- CTA Button ---- */
+/* ---- CTA Row ---- */
+.zvp__cta-row {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
 .zvp__cta {
-  width: 100%;
+  flex: 1;
   height: 40px;
   border-radius: var(--radius-full);
   background: var(--color-cta);
@@ -146,11 +144,31 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  margin-bottom: var(--space-5);
   transition: background-color 0.2s;
 }
 .zvp__cta:hover {
   background: var(--color-hover);
+}
+
+.zvp__more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  font-family: inherit;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+.zvp__more-btn:hover {
+  background: var(--color-surface-secondary);
 }
 
 /* ---- About Card ---- */
@@ -418,7 +436,7 @@
   color: var(--color-text-primary);
 }
 
-.zvp__link-row svg:last-child {
+.zvp__link-row > svg:last-child {
   flex-shrink: 0;
   color: var(--color-text-tertiary);
 }

@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: var(--color-surface-secondary);
 }
 
 /* ---- Header ---- */
@@ -38,6 +39,7 @@
 .chat-gesprek__header--verzoek {
   border-bottom: 1px solid var(--color-border);
   gap: var(--space-3);
+  background-color: var(--color-surface-secondary);
 }
 
 .chat-gesprek__contact-avatar--small {
@@ -149,6 +151,7 @@
   padding: var(--space-4) 0;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-surface-secondary);
 }
 
 .chat-gesprek__bubble-wrap {
@@ -199,7 +202,7 @@
 }
 
 .chat-gesprek__bubble--other {
-  background-color: var(--color-focus);
+  background-color: var(--color-white);
   border-radius: 16px 16px 16px 0;
 }
 
@@ -234,11 +237,11 @@
   background-color: var(--color-focus);
   border-radius: 8px;
   padding: 8px;
-  margin-bottom: 4px;
+  margin: 0 -8px 4px;
 }
 
 .chat-gesprek__bubble--other .chat-gesprek__oproep-card {
-  background-color: var(--color-white);
+  background-color: var(--color-focus);
 }
 
 .chat-gesprek__oproep-label {
@@ -259,6 +262,69 @@
   overflow: hidden;
 }
 
+/* ---- Connection banner (after accepting verzoek) ---- */
+
+.chat-gesprek__connection-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-2) var(--space-5);
+  padding: var(--space-2);
+  background-color: var(--color-cta);
+  border-radius: 8px;
+  color: var(--color-white);
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.chat-gesprek__connection-banner-text {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.chat-gesprek__connection-banner-link {
+  margin-left: auto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--color-white);
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+/* ---- Connectieverzoek verstuurd card ---- */
+
+.chat-gesprek__verzoek-verstuurd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin: 24px var(--space-5) 0;
+  padding: var(--space-4);
+  background-color: var(--color-focus);
+  border-radius: 16px;
+  text-align: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.chat-gesprek__verzoek-verstuurd-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+}
+
+.chat-gesprek__verzoek-verstuurd-desc {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+}
+
 /* ---- Request acceptance card ---- */
 
 .chat-gesprek__request-card {
@@ -266,11 +332,12 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-4);
-  margin: var(--space-8) var(--space-5) 0;
+  margin: 24px var(--space-5) 0;
   padding: var(--space-4);
   background-color: var(--color-focus);
   border-radius: 16px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .chat-gesprek__request-icon {
@@ -387,4 +454,129 @@
   background-color: transparent;
   border: 1px solid var(--color-border);
   color: var(--color-disabled-text);
+}
+
+/* ---- Connectieverzoek popup overlay ---- */
+
+.chat-gesprek__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  padding: 80px var(--space-5);
+  z-index: 10;
+}
+
+.chat-gesprek__popup {
+  background-color: var(--color-surface-secondary);
+  border-radius: 16px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.chat-gesprek__popup-close {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--space-4) var(--space-5);
+}
+
+.chat-gesprek__popup-close button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary);
+}
+
+.chat-gesprek__popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: 0 var(--space-5);
+}
+
+.chat-gesprek__popup-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-gesprek__popup-icon > svg {
+  width: 40px;
+  height: 40px;
+  padding: 20px;
+  box-sizing: content-box;
+  background-color: var(--color-focus);
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+}
+
+.chat-gesprek__popup-title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: -0.5px;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.chat-gesprek__popup-intro {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+  color: var(--color-text-primary);
+}
+
+.chat-gesprek__popup-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.chat-gesprek__popup-item {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+}
+
+.chat-gesprek__popup-number {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-focus);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.chat-gesprek__popup-item p {
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+  color: var(--color-text-primary);
+}
+
+.chat-gesprek__popup-footer {
+  padding: var(--space-8) var(--space-5);
+}
+
+.chat-gesprek__popup-btn {
+  width: 100%;
+  height: 40px;
+  border-radius: 50px;
+  background-color: var(--color-cta);
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

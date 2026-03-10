@@ -1,5 +1,5 @@
 import { showToast } from '../components/Toast'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { PAGES } from '../constants/routes'
 import TopBar from '../components/TopBar'
 import { ChevronRightIcon, PlusIcon } from '../components/Icons'
@@ -28,16 +28,16 @@ function CarepoolIcon() {
   )
 }
 
-function Berichten({ onNavigate, onSubPageChange, notificationCount }) {
-  const [subPage, setSubPage] = useState(null)
+function Berichten({ initialSubPage = null, onNavigate, onSubPageChange, notificationCount }) {
+  const [subPage, setSubPage] = useState(initialSubPage)
   const [activeChat, setActiveChat] = useState(null)
-
   useEffect(() => {
     if (onSubPageChange) onSubPageChange(subPage)
   }, [subPage, onSubPageChange])
 
-  const verzoekenCount = berichtenVerzoeken.length
-  const verzoekenPreview = berichtenVerzoeken.map(v => v.name).join(', ')
+  const overigeChats = berichtenChats.filter(c => !c.isConnectie)
+  const overigeCount = berichtenVerzoeken.length + overigeChats.length
+  const overigeNames = [...berichtenVerzoeken, ...overigeChats].map(v => v.name).join(', ')
 
   const renderAvatar = (chat) => {
     if (chat.type === 'group') {
@@ -84,45 +84,92 @@ function Berichten({ onNavigate, onSubPageChange, notificationCount }) {
               <path d="M15 19L8 12L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          <h1 className="berichten__sub-title">Chatverzoeken</h1>
+          <h1 className="berichten__sub-title">Reacties op jouw profiel</h1>
         </header>
-        <ul className="berichten__list">
-          {berichtenVerzoeken.map((chat) => (
-            <li key={chat.id}>
-              <div className="berichten__verzoek-item">
-                <button
-                  className="berichten__item"
-                  onClick={() => openChat(chat)}
-                  aria-label={`Verzoek van ${chat.name}`}
-                >
-                  <div className="berichten__avatar">
-                    <span className="berichten__initials">{chat.initials}</span>
-                  </div>
-                  <div className="berichten__content">
-                    <div className="berichten__header">
-                      <span className="berichten__name">{chat.name}</span>
-                      {chat.timestamp && (
-                        <span className="berichten__time">{chat.timestamp}</span>
-                      )}
+
+        {/* Chatverzoeken section */}
+        {berichtenVerzoeken.length > 0 && (
+          <>
+            <div className="berichten__section-row">
+              <h2 className="berichten__section-header">Chatverzoeken</h2>
+            </div>
+            <ul className="berichten__list">
+              {berichtenVerzoeken.map((chat) => (
+                <li key={chat.id}>
+                  <div className="berichten__verzoek-item">
+                    <button
+                      className="berichten__item"
+                      onClick={() => openChat(chat)}
+                      aria-label={`Verzoek van ${chat.name}`}
+                    >
+                      <div className="berichten__avatar">
+                        <span className="berichten__initials">{chat.initials}</span>
+                      </div>
+                      <div className="berichten__content">
+                        <div className="berichten__header">
+                          <span className="berichten__name">{chat.name}</span>
+                          {chat.timestamp && (
+                            <span className="berichten__time">{chat.timestamp}</span>
+                          )}
+                        </div>
+                        <p className="berichten__preview berichten__preview--multiline">{chat.preview}</p>
+                      </div>
+                    </button>
+                    <div className="berichten__verzoek-actions">
+                      <button className="berichten__verzoek-btn berichten__verzoek-btn--decline" onClick={() => showToast('Afwijzen (nog niet geimplementeerd)')}>
+                        Afwijzen
+                      </button>
+                      <button className="berichten__verzoek-btn berichten__verzoek-btn--accept" onClick={() => showToast('Accepteren (nog niet geimplementeerd)')}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        Accepteren
+                      </button>
                     </div>
-                    <p className="berichten__preview berichten__preview--multiline">{chat.preview}</p>
                   </div>
-                </button>
-                <div className="berichten__verzoek-actions">
-                  <button className="berichten__verzoek-btn berichten__verzoek-btn--decline" onClick={() => showToast('Afwijzen (nog niet geimplementeerd)')}>
-                    Afwijzen
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        {/* Non-connection chats section */}
+        {overigeChats.length > 0 && (
+          <>
+            <div className="berichten__section-row">
+              <h2 className="berichten__section-header">Chats</h2>
+            </div>
+            <ul className="berichten__list">
+              {overigeChats.map((chat) => (
+                <li key={chat.id}>
+                  <button
+                    className="berichten__item"
+                    onClick={() => openChat(chat)}
+                    aria-label={`Chat met ${chat.name}`}
+                  >
+                    {renderAvatar(chat)}
+                    <div className="berichten__content">
+                      <div className="berichten__header">
+                        <span className="berichten__name">{chat.name}</span>
+                        {chat.timestamp && (
+                          <span className={`berichten__time ${chat.unread > 0 ? 'berichten__time--unread' : ''}`}>
+                            {chat.timestamp}
+                          </span>
+                        )}
+                      </div>
+                      <div className="berichten__preview-row">
+                        <p className="berichten__preview">{chat.preview}</p>
+                        {chat.unread > 0 && (
+                          <span className="berichten__unread-badge">{chat.unread}</span>
+                        )}
+                      </div>
+                    </div>
                   </button>
-                  <button className="berichten__verzoek-btn berichten__verzoek-btn--accept" onClick={() => showToast('Accepteren (nog niet geimplementeerd)')}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    Accepteren
-                  </button>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     )
   }
@@ -132,23 +179,26 @@ function Berichten({ onNavigate, onSubPageChange, notificationCount }) {
     <div className="berichten">
       <TopBar title="Berichten" onAvatarClick={() => onNavigate(PAGES.PROFIEL_INSTELLINGEN)} onNotificatieClick={() => onNavigate(PAGES.NOTIFICATIES)} notificationCount={notificationCount} />
 
-      {/* Verzoeken card */}
-      {verzoekenCount > 0 && (
+      {/* Overige berichten card */}
+      {overigeCount > 0 && (
         <button className="berichten__verzoeken-card" onClick={() => setSubPage('verzoeken')}>
           <div className="berichten__verzoeken-left">
             <div className="berichten__verzoeken-top">
-              <span className="berichten__verzoeken-title">Chatverzoeken</span>
-              <span className="berichten__verzoeken-badge">{verzoekenCount}</span>
+              <span className="berichten__verzoeken-title">Reacties op jouw profiel</span>
+              <span className="berichten__verzoeken-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M9.77965 1.82273C11.2369 1.72586 12.7601 1.72566 14.2204 1.82273C18.787 2.12629 22.4103 5.81258 22.7082 10.4224C22.7639 11.2848 22.7639 12.1768 22.7082 13.0392C22.4103 17.649 18.787 21.3353 14.2204 21.6389C12.7601 21.7359 11.2369 21.7357 9.77965 21.6389C9.21472 21.6013 8.59978 21.4677 8.05839 21.2448C7.8203 21.1467 7.65868 21.0804 7.54041 21.037C7.45909 21.0929 7.35108 21.1723 7.1938 21.2883C6.40136 21.8726 5.40092 22.2825 3.98117 22.248L3.93544 22.2469C3.66155 22.2403 3.36961 22.2334 3.13152 22.1873C2.84475 22.1318 2.48996 21.9931 2.26791 21.6145C2.02623 21.2025 2.12313 20.7858 2.21688 20.5234C2.30536 20.2757 2.45874 19.9852 2.61542 19.6885L2.6369 19.6478C3.10323 18.7641 3.23314 18.0419 2.98381 17.5604C2.15148 16.304 1.40272 14.7556 1.2918 13.0392C1.23607 12.1768 1.23607 11.2848 1.2918 10.4224C1.58972 5.81258 5.213 2.12629 9.77965 1.82273ZM7.75 9.5C7.75 9.91421 8.08579 10.25 8.5 10.25H12C12.4142 10.25 12.75 9.91421 12.75 9.5C12.75 9.08579 12.4142 8.75 12 8.75H8.5C8.08579 8.75 7.75 9.08579 7.75 9.5ZM7.75 14.5C7.75 14.9142 8.08579 15.25 8.5 15.25H15.5C15.9142 15.25 16.25 14.9142 16.25 14.5C16.25 14.0858 15.9142 13.75 15.5 13.75H8.5C8.08579 13.75 7.75 14.0858 7.75 14.5Z" fill="currentColor"/></svg>
+                {overigeCount}
+              </span>
             </div>
             <p className="berichten__verzoeken-preview">
-              {verzoekenPreview}
+              {overigeNames}
             </p>
           </div>
           <ChevronRightIcon />
         </button>
       )}
 
-      {/* Chats section */}
+      {/* Chats section (connections only) */}
       <div className="berichten__section-row">
         <h2 className="berichten__section-header">Chats</h2>
         <button className="berichten__new-btn" onClick={() => setSubPage('nieuwBericht')}>
@@ -158,7 +208,7 @@ function Berichten({ onNavigate, onSubPageChange, notificationCount }) {
       </div>
 
       <ul className="berichten__list">
-        {berichtenChats.map((chat) => (
+        {berichtenChats.filter(c => c.isConnectie).map((chat) => (
           <li key={chat.id}>
             <button
               className="berichten__item"

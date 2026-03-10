@@ -146,7 +146,7 @@ function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar }) {
               <span className="profiel__toggle-thumb" />
             </button>
           </div>
-          <button className="profiel__preview-link" onClick={() => showToast('Profielpreview (binnenkort beschikbaar)')}>
+          <button className="profiel__preview-link" onClick={() => onNavigate?.(PAGES.PROFIEL_PREVIEW)}>
             <EyeIcon />
             <span>Bekijk hoe budgethouders jou zien</span>
             <ChevronRightIcon />

@@ -17,6 +17,7 @@ export const PAGES = {
   NOTIFICATIES: 'notificaties',
   NOTIFICATIE_INSTELLINGEN: 'notificatieInstellingen',
   BESCHIKBAARHEID: 'beschikbaarheid',
+  PROFIEL_PREVIEW: 'profielPreview',
 }
 
 export const SUB_PAGES = {
@@ -51,4 +52,5 @@ export const OVERLAY_PAGES = [
   PAGES.NOTIFICATIES,
   PAGES.NOTIFICATIE_INSTELLINGEN,
   PAGES.BESCHIKBAARHEID,
+  PAGES.PROFIEL_PREVIEW,
 ]

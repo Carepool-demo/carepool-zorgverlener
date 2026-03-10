@@ -1,6 +1,6 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { showToast } from '../components/Toast'
-import { BackArrowIcon, PhoneIcon, SendIcon, SmileIcon, PersonIcon, MoreVerticalIcon, ClockIcon } from '../components/Icons'
+import { BackArrowIcon, PhoneIcon, SendIcon, SmileIcon, PersonIcon, MoreVerticalIcon, ClockIcon, AgreementIcon, CloseIcon } from '../components/Icons'
 import { chatGesprekken } from '@app/data/dummyData'
 import './ChatGesprek.css'
 
@@ -18,6 +18,10 @@ function ChatGesprek({ chat, onBack }) {
   const messagesEndRef = useRef(null)
   const isGroup = chat.type === 'group'
   const isVerzoek = gesprek?.isVerzoek
+  const [status, setStatus] = useState(gesprek?.status || null)
+  const [showConnectiePopup, setShowConnectiePopup] = useState(false)
+  const isAccepted = isVerzoek && status === 'accepted'
+  const isVerzoekVerstuurd = isVerzoek && status === 'verzoek-verstuurd'
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -38,9 +42,6 @@ function ChatGesprek({ chat, onBack }) {
           </div>
           <span className="chat-gesprek__header-title">{chat.name}</span>
           <div className="chat-gesprek__header-spacer" />
-          <button className="chat-gesprek__more-btn" onClick={() => showToast('Menu (nog niet geimplementeerd)')} aria-label="Meer opties">
-            <MoreVerticalIcon />
-          </button>
         </header>
       ) : (
         <>
@@ -88,6 +89,17 @@ function ChatGesprek({ chat, onBack }) {
 
       {/* Messages */}
       <div className="chat-gesprek__messages">
+        {/* Connection banner (after accepting verzoek) */}
+        {isAccepted && (
+          <div className="chat-gesprek__connection-banner">
+            <AgreementIcon size={16} />
+            <span className="chat-gesprek__connection-banner-text">Jullie zijn geen connectie</span>
+            <button className="chat-gesprek__connection-banner-link" onClick={() => setShowConnectiePopup(true)}>
+              Connectieverzoek
+            </button>
+          </div>
+        )}
+
         {gesprek?.messages.map((msg) => (
           <div
             key={msg.id}
@@ -114,27 +126,40 @@ function ChatGesprek({ chat, onBack }) {
           </div>
         ))}
 
-        {/* Request acceptance card */}
-        {isVerzoek && gesprek?.status === 'pending' && (
-          <div className="chat-gesprek__request-card">
-            <div className="chat-gesprek__request-icon">
-              <ClockIcon size={40} />
-            </div>
-            <p className="chat-gesprek__request-title">Berichtverzoek van {chat.name.split(' ')[0]} accepteren?</p>
-            <p className="chat-gesprek__request-desc">Je kan berichten sturen wanneer je het berichtverzoek geaccepteerd hebt.</p>
-            <div className="chat-gesprek__request-actions">
-              <button className="chat-gesprek__request-btn chat-gesprek__request-btn--outline" onClick={() => showToast('Afwijzen (nog niet geimplementeerd)')}>
-                Afwijzen
-              </button>
-              <button className="chat-gesprek__request-btn chat-gesprek__request-btn--primary" onClick={() => showToast('Accepteren (nog niet geimplementeerd)')}>
-                Accepteren
-              </button>
-            </div>
-          </div>
-        )}
-
         <div ref={messagesEndRef} />
       </div>
+
+      {/* Request acceptance card */}
+      {isVerzoek && status === 'pending' && (
+        <div className="chat-gesprek__request-card">
+          <div className="chat-gesprek__request-icon">
+            <ClockIcon size={40} />
+          </div>
+          <p className="chat-gesprek__request-title">Berichtverzoek van {chat.name.split(' ')[0]} accepteren?</p>
+          <p className="chat-gesprek__request-desc">Je kan berichten sturen wanneer je het berichtverzoek geaccepteerd hebt.</p>
+          <div className="chat-gesprek__request-actions">
+            <button className="chat-gesprek__request-btn chat-gesprek__request-btn--outline" onClick={() => showToast('Afwijzen (nog niet geimplementeerd)')}>
+              Afwijzen
+            </button>
+            <button className="chat-gesprek__request-btn chat-gesprek__request-btn--primary" onClick={() => setStatus('accepted')}>
+              Accepteren
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Connectieverzoek verstuurd card */}
+      {isVerzoekVerstuurd && (
+        <div className="chat-gesprek__verzoek-verstuurd">
+          <AgreementIcon size={40} />
+          <p className="chat-gesprek__verzoek-verstuurd-title">
+            Je hebt {chat.name.split(' ')[0]} een connectieverzoek gestuurd.
+          </p>
+          <p className="chat-gesprek__verzoek-verstuurd-desc">
+            Wacht tot {chat.name.split(' ')[0]} je verzoek heeft geaccepteerd.
+          </p>
+        </div>
+      )}
 
       {/* Footer */}
       {isVerzoek ? (
@@ -147,7 +172,7 @@ function ChatGesprek({ chat, onBack }) {
               readOnly
               onClick={() => showToast('Berichten versturen (nog niet geimplementeerd)')}
             />
-            <button className="chat-gesprek__send-btn chat-gesprek__send-btn--outline" aria-label="Verstuur">
+            <button className={`chat-gesprek__send-btn ${isAccepted || isVerzoekVerstuurd ? '' : 'chat-gesprek__send-btn--outline'}`} aria-label="Verstuur">
               <SendIcon />
             </button>
           </div>
@@ -169,6 +194,45 @@ function ChatGesprek({ chat, onBack }) {
           <button className="chat-gesprek__send-btn" aria-label="Verstuur">
             <SendIcon />
           </button>
+        </div>
+      )}
+
+      {/* Connectieverzoek popup */}
+      {showConnectiePopup && (
+        <div className="chat-gesprek__overlay" onClick={() => setShowConnectiePopup(false)}>
+          <div className="chat-gesprek__popup" onClick={(e) => e.stopPropagation()}>
+            <div className="chat-gesprek__popup-close">
+              <button onClick={() => setShowConnectiePopup(false)} aria-label="Sluiten">
+                <CloseIcon size={20} />
+              </button>
+            </div>
+            <div className="chat-gesprek__popup-content">
+              <div className="chat-gesprek__popup-icon">
+                <AgreementIcon size={40} />
+              </div>
+              <h2 className="chat-gesprek__popup-title">Connectieverzoek</h2>
+              <p className="chat-gesprek__popup-intro">Als je een connectie wordt, betekent dit:</p>
+              <div className="chat-gesprek__popup-items">
+                <div className="chat-gesprek__popup-item">
+                  <span className="chat-gesprek__popup-number">1</span>
+                  <p>{chat.name.split(' ')[0]} kan afspraken bij jou inplannen en jij bij {chat.name.split(' ')[0]}.</p>
+                </div>
+                <div className="chat-gesprek__popup-item">
+                  <span className="chat-gesprek__popup-number">2</span>
+                  <p>Jullie kunnen elkaars profiel en contactgegevens bekijken.</p>
+                </div>
+                <div className="chat-gesprek__popup-item">
+                  <span className="chat-gesprek__popup-number">3</span>
+                  <p>Je kunt de connectie op elk moment weer verwijderen.</p>
+                </div>
+              </div>
+            </div>
+            <div className="chat-gesprek__popup-footer">
+              <button className="chat-gesprek__popup-btn" onClick={() => { setShowConnectiePopup(false); setStatus('verzoek-verstuurd') }}>
+                Verzoek versturen
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
