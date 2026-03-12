@@ -8,16 +8,16 @@ Carepool Zorgverlener is the **caregiver (zorgverlener) version** of the Carepoo
 
 This project was initially created as a copy of `carepool-app` and then adapted for the caregiver perspective. Mobile-first web application (393x852 viewport, 393px max-width shell).
 
-Git remote: `Carepool-demo/carepool-zorgverlener` on GitHub. Netlify auto-deploy via `netlify.toml` (build command: `npm run build`, publish: `dist`).
+Git remote: `Carepool-demo/carepool-zorgverlener` on GitHub. Deployed on Vercel (`carepool-demos-projects/carepool-zorgverlener`). Production URL: `zorgverlener.vercel.app`. Pushes to `main` trigger auto-deploy.
 
-### Shared Code & Netlify Builds
+### Shared Code & Vercel Builds
 
-Both React apps share code from `../shared/` via the `@shared` Vite alias. For Netlify builds (where the workspace root isn't available), a local copy exists at `./shared/`. The `vite.config.js` detects which path exists:
+Both React apps share code from `../shared/` via the `@shared` Vite alias. For Vercel builds (where the workspace root isn't available), a local copy exists at `./shared/`. The `vite.config.js` detects which path exists:
 
 ```js
 const sharedPath = fs.existsSync(path.resolve(__dirname, '../shared'))
   ? path.resolve(__dirname, '../shared')   // local dev
-  : path.resolve(__dirname, './shared')    // Netlify build
+  : path.resolve(__dirname, './shared')    // Vercel build
 ```
 
 **After editing files in workspace `shared/`**, sync the local copy before pushing:
@@ -92,6 +92,8 @@ App.jsx (wrapped in PasswordGate)
 ├── CvBewerken.jsx          -> overlay, CV/experience editor
 ├── RegistratiesBewerken.jsx -> overlay, professional registrations editor
 ├── MijnLocaties.jsx        -> overlay, service area/location settings
+├── MijnTarieven.jsx        -> overlay, single tariff + bespreekbaar toggle with voorwaarden
+├── Zoekprofiel.jsx         -> overlay, search profile (hulp type, beschikbaarheid, uren)
 └── Tour.jsx                -> onboarding walkthrough (standalone)
 ```
 
@@ -118,7 +120,7 @@ Admin.jsx uses `openSubPage`/`closeSubPage` helpers for its three sub-pages (Dow
 | DownloadZorglogs page | Not present | Sub-page of Admin (accessible from ZorglogsTab and OverzichtenTab) |
 | AlleVerzoeken page | Not present | Sub-page of Home (all care requests) |
 | Home sub-pages | NodigUit | NodigUit, AlleVerzoeken |
-| Unique routes | — | `PAGES.BESCHIKBAARHEID`, `PROFIEL_PREVIEW`, `MIJN_TALEN`, `GOED_OM_TE_WETEN`, `CV_BEWERKEN`, `REGISTRATIES_BEWERKEN`, `MIJN_LOCATIES` (overlays); `SUB_PAGES.ALLE_VERZOEKEN`, `OPENSTAANDE_VERZOEKEN` |
+| Unique routes | — | `PAGES.BESCHIKBAARHEID`, `PROFIEL_PREVIEW`, `MIJN_TALEN`, `GOED_OM_TE_WETEN`, `CV_BEWERKEN`, `REGISTRATIES_BEWERKEN`, `MIJN_LOCATIES`, `MIJN_TARIEVEN`, `ZOEKPROFIEL` (overlays); `SUB_PAGES.ALLE_VERZOEKEN`, `OPENSTAANDE_VERZOEKEN` |
 | Git remote | `Carepool-demo/carepool-app` | `Carepool-demo/carepool-zorgverlener` |
 
 ## Where Code Lives
@@ -134,7 +136,7 @@ Key app-specific files in `src/`:
 - `data/dummyData.js` — All centralized dummy data (app-specific version with `openstaandeVerzoeken`, `alleVerzoeken`, etc.)
 - `pages/` — App-specific pages (Home, Carepool, Agenda, Profiel, Beschikbaarheid, AlleVerzoeken, DownloadZorglogs, Tour, etc.)
 
-Unique to this app (not in carepool-app): `AlleVerzoeken`, `DownloadZorglogs`, `VasteBeschikbaarheid`, `Uitzonderingen`, `Beschikbaarheid`, `MijnTalen`, `GoedOmTeWeten`, `CvBewerken`, `RegistratiesBewerken`, `MijnLocaties`, `Profiel` (app-specific version with vindbaar toggle).
+Unique to this app (not in carepool-app): `AlleVerzoeken`, `DownloadZorglogs`, `VasteBeschikbaarheid`, `Uitzonderingen`, `Beschikbaarheid`, `MijnTalen`, `GoedOmTeWeten`, `CvBewerken`, `RegistratiesBewerken`, `MijnLocaties`, `MijnTarieven`, `Zoekprofiel`, `Profiel` (app-specific version with vindbaar toggle).
 
 Run `ls src/pages/` and `ls ../shared/pages/` to see the full current list.
 
@@ -146,6 +148,7 @@ Run `ls src/pages/` and `ls ../shared/pages/` to see the full current list.
 - **CSS naming** — BEM: `.block__element--modifier`. Short prefixes for long page names (e.g. `.pi__` for ProfielInstellingen, `.zorgcat__` for Zorgcategorieen, `.zvp__` for ZorgverlenerProfiel).
 - **Tab components** — Admin tabs are separate files that rely on Admin.css being loaded by Admin.jsx.
 - **Sub-page header pattern** — Flexbox with `align-items: flex-end`, `gap: var(--space-3)`, height 80px, `padding: 0 var(--space-5) var(--space-4)`, `background: var(--color-surface-secondary)`, `border-bottom: 1px solid var(--color-border)`, sticky top. Back button: 24x24px, `margin-bottom: 2px`, no background/border. Title: `font-size: var(--font-size-lg)` (18px), `font-weight: 700`. Reference: ProfielInstellingen.css.
+- **Card styling** — Settings pages (Zoekprofiel, MijnTarieven) use `background: var(--color-surface-secondary)` for the page and white cards with `border: 1px solid var(--color-border)`. Dividers inside cards use negative margin to span full width: `margin: var(--space-2) calc(-1 * var(--space-4))`.
 - **Aria** — Interactive elements have `aria-label` attributes in Dutch.
 - **Unimplemented features** — Use `onClick={() => alert('Feature name (nog niet geimplementeerd)')}` as placeholder.
 - **PasswordGate** — Demo password gate wraps the app (sessionStorage-based, password: `demo2026`).
