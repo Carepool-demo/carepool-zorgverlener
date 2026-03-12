@@ -18,7 +18,7 @@ function ChatGesprek({ chat, onBack }) {
   const messagesEndRef = useRef(null)
   const isGroup = chat.type === 'group'
   const isVerzoek = gesprek?.isVerzoek
-  const [status, setStatus] = useState(gesprek?.status || null)
+  const [status, setStatus] = useState(chat.accepted ? 'accepted' : (gesprek?.status || null))
   const [showConnectiePopup, setShowConnectiePopup] = useState(false)
   const isAccepted = isVerzoek && status === 'accepted'
   const isVerzoekVerstuurd = isVerzoek && status === 'verzoek-verstuurd'
@@ -125,6 +125,13 @@ function ChatGesprek({ chat, onBack }) {
             </div>
           </div>
         ))}
+
+        {/* System message after accepting verzoek */}
+        {chat.accepted && (
+          <div className="chat-gesprek__system-message">
+            <span className="chat-gesprek__system-message-text">Je hebt het gespreksverzoek geaccepteerd</span>
+          </div>
+        )}
 
         <div ref={messagesEndRef} />
       </div>

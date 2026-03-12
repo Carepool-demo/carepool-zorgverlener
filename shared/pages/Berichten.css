@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  margin: var(--space-4) var(--space-5) var(--space-2);
+  margin: var(--space-4) var(--space-5);
   padding: var(--space-4);
   background-color: var(--color-surface-secondary);
   border-radius: var(--radius-lg);
@@ -79,6 +79,37 @@
   font-size: 16px;
   font-weight: 700;
   color: var(--color-text-primary);
+}
+
+.berichten__section-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.berichten__section-subtitle {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin-top: -1px;
+}
+
+/* ---- Status text in summary card ---- */
+
+.berichten__verzoeken-status {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: 2px;
+}
+
+/* ---- Source label on verzoek items ---- */
+
+.berichten__verzoek-source {
+  font-size: 12px;
+  color: var(--color-cta);
+  font-weight: 600;
+  margin-bottom: 2px;
+  display: block;
 }
 
 /* ---- Chat list ---- */
@@ -201,6 +232,7 @@
   min-width: 20px;
   height: 20px;
   padding: 0 6px;
+  gap: 2px;
   border-radius: var(--radius-full);
   background-color: var(--color-notification);
   color: var(--color-white);
@@ -241,6 +273,12 @@
 
 .berichten__verzoek-item {
   border-bottom: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-cta);
+  transition: background-color 0.15s;
+}
+
+.berichten__verzoek-item:hover {
+  background-color: var(--color-focus-light);
 }
 
 .berichten__verzoek-item:first-child .berichten__item {
@@ -253,11 +291,15 @@
   padding: var(--space-4) var(--space-5) 0;
 }
 
+.berichten__verzoek-item .berichten__item:hover {
+  background-color: transparent;
+}
+
 .berichten__verzoek-actions {
   display: flex;
   justify-content: space-between;
   gap: var(--space-3);
-  padding: var(--space-3) var(--space-5) var(--space-4);
+  padding: var(--space-2) var(--space-5) var(--space-4);
   padding-left: calc(var(--space-5) + 48px + var(--space-4));
 }
 
@@ -287,18 +329,24 @@
 
 .berichten__sub-header {
   display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-5);
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
   border-bottom: 1px solid var(--color-border);
+  background: var(--color-white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .berichten__back {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
   color: var(--color-text-primary);
 }
 
@@ -307,4 +355,88 @@
   font-weight: 700;
   color: var(--color-text-primary);
   letter-spacing: -0.3px;
+}
+
+/* ---- Decline confirmation popup ---- */
+
+.berichten__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding: var(--space-8) var(--space-5);
+  z-index: 10;
+}
+
+.berichten__popup {
+  background-color: var(--color-white);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.berichten__popup-close {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--space-3) var(--space-4) 0;
+}
+
+.berichten__popup-close button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--color-text-primary);
+}
+
+.berichten__popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  text-align: left;
+}
+
+.berichten__popup-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.1px;
+}
+
+.berichten__popup-desc {
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+.berichten__popup-actions {
+  display: flex;
+  gap: var(--space-3);
+  padding: 0 var(--space-5) var(--space-5);
+}
+
+.berichten__popup-btn {
+  flex: 1;
+  height: 40px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.berichten__popup-btn--secondary {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-cta);
+}
+
+.berichten__popup-btn--danger {
+  background-color: var(--color-cta);
+  color: var(--color-white);
 }

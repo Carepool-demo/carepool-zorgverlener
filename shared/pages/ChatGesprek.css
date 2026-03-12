@@ -13,17 +13,21 @@
 
 .chat-gesprek__header {
   display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-5);
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-white);
 }
 
 .chat-gesprek__back {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
   color: var(--color-text-primary);
 }
 
@@ -260,6 +264,23 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* ---- System message (accepted verzoek) ---- */
+
+.chat-gesprek__system-message {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4) var(--space-5);
+}
+
+.chat-gesprek__system-message-text {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  background-color: var(--color-focus);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  text-align: center;
 }
 
 /* ---- Connection banner (after accepting verzoek) ---- */

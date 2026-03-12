@@ -18,6 +18,13 @@ export const PAGES = {
   NOTIFICATIE_INSTELLINGEN: 'notificatieInstellingen',
   BESCHIKBAARHEID: 'beschikbaarheid',
   PROFIEL_PREVIEW: 'profielPreview',
+  MIJN_TALEN: 'mijnTalen',
+  GOED_OM_TE_WETEN: 'goedOmTeWeten',
+  CV_BEWERKEN: 'cvBewerken',
+  REGISTRATIES_BEWERKEN: 'registratiesBewerken',
+  MIJN_LOCATIES: 'mijnLocaties',
+  ZOEKPROFIEL: 'zoekprofiel',
+  MIJN_TARIEVEN: 'mijnTarieven',
 }
 
 export const SUB_PAGES = {
@@ -53,4 +60,11 @@ export const OVERLAY_PAGES = [
   PAGES.NOTIFICATIE_INSTELLINGEN,
   PAGES.BESCHIKBAARHEID,
   PAGES.PROFIEL_PREVIEW,
+  PAGES.MIJN_TALEN,
+  PAGES.GOED_OM_TE_WETEN,
+  PAGES.CV_BEWERKEN,
+  PAGES.REGISTRATIES_BEWERKEN,
+  PAGES.MIJN_LOCATIES,
+  PAGES.ZOEKPROFIEL,
+  PAGES.MIJN_TARIEVEN,
 ]

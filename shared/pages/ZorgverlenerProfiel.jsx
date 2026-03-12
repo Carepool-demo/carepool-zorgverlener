@@ -139,11 +139,21 @@ function ExperienceIcon() {
   )
 }
 
+function EyePreviewIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fillRule="evenodd" clipRule="evenodd" d="M12 4.25C7.45422 4.25 3.57608 7.28938 2.10876 11.5953C2.01671 11.8567 2.01671 12.1433 2.10876 12.4047C3.57608 16.7106 7.45422 19.75 12 19.75C16.5458 19.75 20.4239 16.7106 21.8912 12.4047C21.9833 12.1433 21.9833 11.8567 21.8912 11.5953C20.4239 7.28938 16.5458 4.25 12 4.25ZM12 16.25C9.65279 16.25 7.75 14.3472 7.75 12C7.75 9.65279 9.65279 7.75 12 7.75C14.3472 7.75 16.25 9.65279 16.25 12C16.25 14.3472 14.3472 16.25 12 16.25ZM12 14.75C13.5188 14.75 14.75 13.5188 14.75 12C14.75 10.4812 13.5188 9.25 12 9.25C10.4812 9.25 9.25 10.4812 9.25 12C9.25 13.5188 10.4812 14.75 12 14.75Z" fill="currentColor"/>
+    </svg>
+  )
+}
+
 /* ---- Main Component ---- */
 
-function ZorgverlenerProfiel({ onBack, zorgverlener }) {
+function ZorgverlenerProfiel({ onBack, zorgverlener, isPreview, isVindbaar }) {
   const [showCV, setShowCV] = useState(false)
+  const [showRegistraties, setShowRegistraties] = useState(false)
   const [showFullBio, setShowFullBio] = useState(false)
+  const [showTariefPopup, setShowTariefPopup] = useState(false)
   const profiel = getZorgverlenerProfiel(zorgverlener.id)
   const voornaam = zorgverlener.name.split(' ')[0]
 
@@ -245,6 +255,113 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
     )
   }
 
+  /* ---- Registraties View ---- */
+  if (showRegistraties) {
+    const reg = profiel.registraties || {}
+    return (
+      <div className="zvp zvp--registraties">
+        <header className="zvp__header">
+          <button className="zvp__back-btn" onClick={() => setShowRegistraties(false)} aria-label="Terug">
+            <BackArrowIcon />
+          </button>
+          <h1 className="zvp__title">{voornaam}&apos;s registraties</h1>
+        </header>
+
+        <div className="zvp__body">
+          {/* Professionele gegevens */}
+          {reg.professioneel && reg.professioneel.length > 0 && (
+            <>
+              <h3 className="zvp__section-label">Professionele gegevens</h3>
+              <div className="zvp__reg-card">
+                {reg.professioneel.map((item, idx) => (
+                  <div key={idx} className={`zvp__reg-row${!item.waarde ? ' zvp__reg-row--empty' : ''}`}>
+                    <span className="zvp__reg-label">{item.label}</span>
+                    <div className="zvp__reg-right">
+                      <span className="zvp__reg-value">{item.waarde || 'Niet ingevuld'}</span>
+                      {item.link && item.waarde && (
+                        <span className="zvp__reg-link-icon" aria-label="Externe link">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.39844 1.33301C7.76642 1.33259 8.06477 1.63099 8.06543 1.99902C8.06597 2.36711 7.7685 2.66632 7.40039 2.66699C6.17283 2.6692 5.30044 2.68667 4.6377 2.79395C3.99484 2.89803 3.62342 3.07595 3.34961 3.34961C3.05477 3.64445 2.86943 4.05384 2.76953 4.79688C2.66707 5.55908 2.66602 6.56698 2.66602 8C2.66602 9.43301 2.66706 10.4409 2.76953 11.2031C2.86944 11.946 3.0548 12.3546 3.34961 12.6494C3.64442 12.9442 4.05299 13.1296 4.7959 13.2295C5.55808 13.332 6.56601 13.333 7.99902 13.333C9.43204 13.333 10.4399 13.332 11.2021 13.2295C11.9452 13.1296 12.3546 12.9443 12.6494 12.6494C12.9231 12.3756 13.101 12.0042 13.2051 11.3613C13.3124 10.6986 13.3298 9.8262 13.332 8.59863C13.3327 8.23052 13.6319 7.93305 14 7.93359C14.368 7.93426 14.6664 8.23261 14.666 8.60059C14.6638 9.80613 14.6487 10.7881 14.5215 11.5742C14.3911 12.3798 14.1321 13.0524 13.5918 13.5928C13.008 14.1765 12.2707 14.431 11.3799 14.5508C10.5185 14.6666 9.42102 14.667 8.04883 14.667H7.9502C6.57786 14.667 5.47957 14.6666 4.61816 14.5508C3.72741 14.431 2.99005 14.1766 2.40625 13.5928C1.82245 13.009 1.56804 12.2716 1.44824 11.3809C1.33243 10.5195 1.33201 9.42116 1.33203 8.04883V7.9502C1.33201 6.57801 1.33244 5.48049 1.44824 4.61914C1.56801 3.72834 1.82251 2.99106 2.40625 2.40723C2.9466 1.86688 3.61921 1.60795 4.4248 1.47754C5.21095 1.35029 6.19289 1.33518 7.39844 1.33301ZM11.084 1.37305C11.6696 1.33868 12.8367 1.28859 13.5342 1.41211C13.8206 1.4629 14.0706 1.60041 14.2568 1.79883L14.2627 1.80566C14.4276 1.98382 14.5417 2.21041 14.5869 2.46582C14.7102 3.16317 14.6603 4.32951 14.626 4.91504C14.5805 5.68794 13.6545 6.00413 13.1309 5.48047L12.3105 4.66016L10.4873 6.46973C10.4741 6.4828 10.4602 6.49604 10.4463 6.50781L7.80273 9.13867C7.54183 9.39842 7.12013 9.39758 6.86035 9.13672C6.60058 8.87579 6.60138 8.45411 6.8623 8.19434L9.43164 5.63574C9.45936 5.59051 9.49292 5.54784 9.53223 5.50879L11.3525 3.70215L10.5186 2.86816C9.99491 2.34453 10.3111 1.41858 11.084 1.37305Z" fill="currentColor"/>
+                          </svg>
+                        </span>
+                      )}
+                      {item.tooltip && !item.waarde && (
+                        <span className="zvp__reg-info" title={item.tooltip}>
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 0C12.4183 0 16 3.58172 16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0ZM9.11621 6.30957C8.50045 6.30957 7.06539 6.93036 5.81836 7.99023L6.07422 8.41699C6.4684 8.1479 7.13439 7.875 7.28809 7.875C7.40702 7.87527 7.3903 8.03439 7.28809 8.42871L6.69922 10.8975C6.34053 12.2898 6.71655 12.6055 7.22949 12.6055C7.74177 12.6052 9.06651 12.1301 10.2793 10.8955L9.98828 10.501C9.4928 10.8961 8.9887 11.0859 8.83496 11.0859C8.7152 11.0859 8.66393 10.9279 8.7832 10.4697L9.45801 7.875C9.71394 6.92629 9.6286 6.30963 9.11621 6.30957ZM9.22852 2.90918C8.37446 2.90918 7.94654 3.60469 7.94629 4.11035C7.92932 4.71142 8.28833 5.07502 8.90332 5.0752C9.63787 5.0752 10.2031 4.49015 10.2031 3.85742C10.203 3.35097 9.87784 2.90935 9.22852 2.90918Z" fill="currentColor"/>
+                          </svg>
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Beschikt over */}
+          {reg.beschiktOver && reg.beschiktOver.length > 0 && (
+            <>
+              <h3 className="zvp__section-label">Beschikt over</h3>
+              <div className="zvp__reg-card">
+                {reg.beschiktOver.map((item, idx) => (
+                  <div key={idx} className="zvp__reg-row">
+                    <span className="zvp__reg-check">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M19.5179 5.95748C19.8175 6.24349 19.8285 6.71823 19.5425 7.01786L9.04252 18.0179C8.90308 18.1639 8.71064 18.2476 8.50872 18.25C8.3068 18.2523 8.11246 18.1731 7.96967 18.0303L4.46967 14.5303C4.17678 14.2374 4.17678 13.7626 4.46967 13.4697C4.76256 13.1768 5.23744 13.1768 5.53033 13.4697L8.48752 16.4269L18.4575 5.98214C18.7435 5.68252 19.2182 5.67148 19.5179 5.95748Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    <span className="zvp__reg-label">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Aangesloten bij */}
+          {reg.aangeslotenBij && reg.aangeslotenBij.length > 0 && (
+            <>
+              <h3 className="zvp__section-label">Aangesloten bij</h3>
+              <div className="zvp__reg-card">
+                {reg.aangeslotenBij.map((item, idx) => (
+                  <div key={idx} className="zvp__reg-row">
+                    <span className="zvp__reg-label">{item}</span>
+                    <span className="zvp__reg-link-icon" aria-label="Externe link">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.39844 1.33301C7.76642 1.33259 8.06477 1.63099 8.06543 1.99902C8.06597 2.36711 7.7685 2.66632 7.40039 2.66699C6.17283 2.6692 5.30044 2.68667 4.6377 2.79395C3.99484 2.89803 3.62342 3.07595 3.34961 3.34961C3.05477 3.64445 2.86943 4.05384 2.76953 4.79688C2.66707 5.55908 2.66602 6.56698 2.66602 8C2.66602 9.43301 2.66706 10.4409 2.76953 11.2031C2.86944 11.946 3.0548 12.3546 3.34961 12.6494C3.64442 12.9442 4.05299 13.1296 4.7959 13.2295C5.55808 13.332 6.56601 13.333 7.99902 13.333C9.43204 13.333 10.4399 13.332 11.2021 13.2295C11.9452 13.1296 12.3546 12.9443 12.6494 12.6494C12.9231 12.3756 13.101 12.0042 13.2051 11.3613C13.3124 10.6986 13.3298 9.8262 13.332 8.59863C13.3327 8.23052 13.6319 7.93305 14 7.93359C14.368 7.93426 14.6664 8.23261 14.666 8.60059C14.6638 9.80613 14.6487 10.7881 14.5215 11.5742C14.3911 12.3798 14.1321 13.0524 13.5918 13.5928C13.008 14.1765 12.2707 14.431 11.3799 14.5508C10.5185 14.6666 9.42102 14.667 8.04883 14.667H7.9502C6.57786 14.667 5.47957 14.6666 4.61816 14.5508C3.72741 14.431 2.99005 14.1766 2.40625 13.5928C1.82245 13.009 1.56804 12.2716 1.44824 11.3809C1.33243 10.5195 1.33201 9.42116 1.33203 8.04883V7.9502C1.33201 6.57801 1.33244 5.48049 1.44824 4.61914C1.56801 3.72834 1.82251 2.99106 2.40625 2.40723C2.9466 1.86688 3.61921 1.60795 4.4248 1.47754C5.21095 1.35029 6.19289 1.33518 7.39844 1.33301ZM11.084 1.37305C11.6696 1.33868 12.8367 1.28859 13.5342 1.41211C13.8206 1.4629 14.0706 1.60041 14.2568 1.79883L14.2627 1.80566C14.4276 1.98382 14.5417 2.21041 14.5869 2.46582C14.7102 3.16317 14.6603 4.32951 14.626 4.91504C14.5805 5.68794 13.6545 6.00413 13.1309 5.48047L12.3105 4.66016L10.4873 6.46973C10.4741 6.4828 10.4602 6.49604 10.4463 6.50781L7.80273 9.13867C7.54183 9.39842 7.12013 9.39758 6.86035 9.13672C6.60058 8.87579 6.60138 8.45411 6.8623 8.19434L9.43164 5.63574C9.45936 5.59051 9.49292 5.54784 9.53223 5.50879L11.3525 3.70215L10.5186 2.86816C9.99491 2.34453 10.3111 1.41858 11.084 1.37305Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Verzekeringen */}
+          {reg.verzekeringen && reg.verzekeringen.length > 0 && (
+            <>
+              <h3 className="zvp__section-label">Verzekeringen</h3>
+              <div className="zvp__reg-card">
+                {reg.verzekeringen.map((item, idx) => (
+                  <div key={idx} className="zvp__reg-row">
+                    <span className="zvp__reg-check">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M19.5179 5.95748C19.8175 6.24349 19.8285 6.71823 19.5425 7.01786L9.04252 18.0179C8.90308 18.1639 8.71064 18.2476 8.50872 18.25C8.3068 18.2523 8.11246 18.1731 7.96967 18.0303L4.46967 14.5303C4.17678 14.2374 4.17678 13.7626 4.46967 13.4697C4.76256 13.1768 5.23744 13.1768 5.53033 13.4697L8.48752 16.4269L18.4575 5.98214C18.7435 5.68252 19.2182 5.67148 19.5179 5.95748Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    <span className="zvp__reg-label">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          <div className="zvp__spacer" />
+        </div>
+      </div>
+    )
+  }
+
   /* ---- Profile View ---- */
   return (
     <div className="zvp">
@@ -254,6 +371,19 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
         </button>
         <h1 className="zvp__title">{voornaam}&apos;s profiel</h1>
       </header>
+      {isPreview && (
+        <div className="zvp__preview-banner">
+          <div className="zvp__preview-banner-main">
+            <EyePreviewIcon />
+            <span>Zo zien anderen jouw profiel</span>
+          </div>
+          <p className="zvp__preview-banner-sub">
+            {isVindbaar
+              ? 'Je bent vindbaar via Zoeken voor nieuwe connecties.'
+              : 'Je bent nu niet vindbaar via Zoeken voor nieuwe connecties.'}
+          </p>
+        </div>
+      )}
 
       <div className="zvp__body">
         {/* Hero */}
@@ -265,7 +395,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
               <BookmarkIcon />
             </button>
           </div>
-          <p className="zvp__subtitle">{profiel.geslacht}, {zorgverlener.age}, {profiel.locatie.split(',')[0]}</p>
+          <p className="zvp__subtitle">{[profiel.geslacht, profiel.leeftijd || zorgverlener.age, profiel.locatie?.split(',')[0]].filter(Boolean).join(', ')}</p>
         </section>
 
         {/* CTA row */}
@@ -274,8 +404,8 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
             <MessageIcon />
             Bericht sturen
           </button>
-          <button className="zvp__more-btn" onClick={() => showToast('Menu (nog niet geïmplementeerd)')}>
-            Meer
+          <button className="zvp__more-btn" onClick={() => showToast('Menu (nog niet geïmplementeerd)')} aria-label="Meer opties">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="4" r="1.5" fill="currentColor"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/><circle cx="10" cy="16" r="1.5" fill="currentColor"/></svg>
           </button>
         </div>
 
@@ -362,7 +492,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
               {profiel.tariefBespreekbaar && (
                 <>
                   <span className="zvp__info-sub">Mijn tarief is bespreekbaar</span>
-                  <button className="zvp__info-link" onClick={() => showToast('Lees meer (nog niet geïmplementeerd)')}>Lees meer</button>
+                  <button className="zvp__info-link" onClick={() => setShowTariefPopup(true)}>Lees meer</button>
                 </>
               )}
             </div>
@@ -426,7 +556,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
 
           <div className="zvp__info-divider" />
 
-          <button className="zvp__link-row" onClick={() => showToast('Registraties (nog niet geïmplementeerd)')}>
+          <button className="zvp__link-row" onClick={() => setShowRegistraties(true)}>
             <div className="zvp__link-row-icon"><CertificateIcon /></div>
             <span className="zvp__link-row-label">Registraties</span>
             <ChevronRightIcon />
@@ -447,6 +577,29 @@ function ZorgverlenerProfiel({ onBack, zorgverlener }) {
 
         <div className="zvp__spacer" />
       </div>
+
+      {/* Tarief voorwaarden popup */}
+      {showTariefPopup && profiel.tariefVoorwaarden && (
+        <div className="zvp__popup-overlay" onClick={() => setShowTariefPopup(false)}>
+          <div className="zvp__popup" onClick={(e) => e.stopPropagation()}>
+            <div className="zvp__popup-header">
+              <h3 className="zvp__popup-title">Voorwaarden tarief</h3>
+              <button className="zvp__popup-close" onClick={() => setShowTariefPopup(false)} aria-label="Sluiten">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+              </button>
+            </div>
+            <p className="zvp__popup-text">
+              {voornaam} heeft aangegeven onder deze voorwaarden haar tarief te willen bespreken:
+            </p>
+            <ul className="zvp__popup-list">
+              {profiel.tariefVoorwaarden.map((v, i) => (
+                <li key={i}>{v}</li>
+              ))}
+            </ul>
+            <button className="zvp__popup-btn" onClick={() => setShowTariefPopup(false)}>Oké</button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

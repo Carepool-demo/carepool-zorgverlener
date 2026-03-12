@@ -1,0 +1,360 @@
+/* ---- Registraties Bewerken page ---- */
+.reg-edit {
+  background: var(--color-surface-secondary);
+  min-height: 100%;
+}
+
+/* ---- Header ---- */
+.reg-edit__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.reg-edit__back {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.reg-edit__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ---- Body ---- */
+.reg-edit__body {
+  padding: var(--space-5);
+  padding-bottom: var(--space-10);
+}
+
+.reg-edit__intro {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0 0 var(--space-5);
+}
+
+/* ---- Section label ---- */
+.reg-edit__section-label {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-3);
+}
+
+.reg-edit__section-label + .reg-edit__section-label,
+.reg-edit__card + .reg-edit__section-label {
+  margin-top: var(--space-8);
+}
+
+/* ---- Card ---- */
+.reg-edit__card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-1);
+}
+
+/* ---- Row (professioneel) ---- */
+.reg-edit__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.reg-edit__row:last-child {
+  border-bottom: none;
+}
+
+.reg-edit__row:active {
+  background: var(--color-surface-secondary);
+}
+
+.reg-edit__row-label {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+.reg-edit__row-value {
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.reg-edit__row-placeholder {
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--color-text-tertiary);
+}
+
+.reg-edit__row-chevron {
+  color: var(--color-text-tertiary);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.reg-edit__row-chevron svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---- Toggle row (beschikt over / verzekeringen) ---- */
+.reg-edit__toggle-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background-color 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.reg-edit__toggle-row:last-child {
+  border-bottom: none;
+}
+
+.reg-edit__toggle-row:active {
+  background: var(--color-surface-secondary);
+}
+
+/* ---- Switch ---- */
+.reg-edit__switch {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  background: var(--color-border);
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+
+.reg-edit__switch--active {
+  background: var(--color-cta);
+}
+
+.reg-edit__switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.reg-edit__switch--active .reg-edit__switch-thumb {
+  transform: translateX(20px);
+}
+
+.reg-edit__toggle-label {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+/* ---- List row (aangesloten bij) ---- */
+.reg-edit__list-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.reg-edit__list-row:last-child {
+  border-bottom: none;
+}
+
+.reg-edit__list-label {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+.reg-edit__list-delete {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+  padding: 0;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.reg-edit__list-delete:hover {
+  color: var(--color-notification);
+  background: var(--color-surface-secondary);
+}
+
+/* ---- Add button ---- */
+.reg-edit__add-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-cta);
+  font-family: inherit;
+  width: 100%;
+}
+
+.reg-edit__add-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ============================================
+   MODAL POPUP
+   ============================================ */
+.reg-edit__modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--space-5);
+}
+
+.reg-edit__modal {
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: var(--space-6);
+  width: 100%;
+  max-width: 353px;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: reg-edit__modal-slide-up 0.25s ease-out;
+}
+
+@keyframes reg-edit__modal-slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.reg-edit__modal-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.reg-edit__modal-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+/* ---- Form input ---- */
+.reg-edit__form-input {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.reg-edit__form-input:focus {
+  border-color: var(--color-cta);
+}
+
+.reg-edit__form-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.reg-edit__form-label {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-1);
+}
+
+/* ---- Buttons ---- */
+.reg-edit__btn {
+  height: 40px;
+  padding: 0 var(--space-5);
+  border-radius: 50px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.15s;
+  flex: 1;
+}
+
+.reg-edit__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.reg-edit__btn--primary {
+  background: var(--color-cta);
+  color: var(--color-white);
+}
+
+.reg-edit__btn--secondary {
+  background: var(--color-white);
+  color: var(--color-cta);
+  border: 1px solid var(--color-border);
+}

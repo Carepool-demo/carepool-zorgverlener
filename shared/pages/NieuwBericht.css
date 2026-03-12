@@ -4,18 +4,24 @@
 
 .nieuw-bericht__header {
   display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-5);
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
   border-bottom: 1px solid var(--color-border);
+  background: var(--color-white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .nieuw-bericht__back {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
   color: var(--color-text-primary);
 }
 

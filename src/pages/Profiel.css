@@ -11,9 +11,9 @@
 .profiel__header {
   display: flex;
   align-items: flex-end;
-  gap: var(--space-2);
-  height: 104px;
-  padding: var(--space-4) var(--space-5);
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
   background: var(--color-focus-medium);
   position: sticky;
   top: 0;
@@ -23,6 +23,7 @@
 .profiel__back-btn {
   width: 24px;
   height: 24px;
+  margin-bottom: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,11 +33,9 @@
 
 .profiel__title {
   flex: 1;
-  font-size: 18px;
+  font-size: var(--font-size-lg);
   font-weight: 700;
   color: var(--color-text-primary);
-  line-height: 22px;
-  letter-spacing: -0.31px;
 }
 
 .profiel__header-actions {
@@ -72,7 +71,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-4);
-  padding: var(--space-8) var(--space-5);
+  padding: var(--space-8) var(--space-5) var(--space-5);
   background: var(--color-focus-medium);
 }
 
@@ -149,6 +148,27 @@
   text-overflow: ellipsis;
 }
 
+.profiel__edit-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--color-cta);
+  cursor: pointer;
+}
+
+.profiel__edit-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
 /* ---- Vindbaar in hero ---- */
 .profiel__vindbaar-hero {
   width: 100%;
@@ -162,10 +182,12 @@
 .profiel__vindbaar-hero .profiel__vindbaar-row {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
   background: rgba(255, 255, 255, 0.6);
   border-radius: var(--radius-full);
-  padding: 6px 6px 6px 16px;
+  padding: 0 10px 0 14px;
+  height: 40px;
+  box-sizing: border-box;
 }
 
 .profiel__vindbaar-status {
@@ -179,7 +201,7 @@
 }
 
 .profiel__vindbaar-status--active {
-  color: var(--color-notification);
+  color: var(--color-cta);
 }
 
 .profiel__vindbaar-dot {
@@ -190,14 +212,14 @@
 }
 
 .profiel__vindbaar-status--active .profiel__vindbaar-dot {
-  background: var(--color-notification);
+  background: var(--color-cta);
 }
 
 /* Toggle switch */
 .profiel__toggle {
-  width: 52px;
-  height: 32px;
-  border-radius: var(--radius-full);
+  width: 40px;
+  height: 24px;
+  border-radius: 12px;
   background: var(--color-border);
   position: relative;
   flex-shrink: 0;
@@ -205,15 +227,15 @@
 }
 
 .profiel__toggle--on {
-  background: var(--color-notification);
+  background: var(--color-cta);
 }
 
 .profiel__toggle-thumb {
   position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 26px;
-  height: 26px;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
   border-radius: var(--radius-full);
   background: var(--color-white);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
@@ -221,24 +243,65 @@
 }
 
 .profiel__toggle--on .profiel__toggle-thumb {
-  transform: translateX(20px);
+  transform: translateX(16px);
 }
 
-/* Preview link in hero */
-.profiel__preview-link {
+/* Variant B: two pills side by side */
+.profiel__vindbaar-hero--split {
+  flex-direction: row;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: var(--space-2) var(--space-5) 0;
+}
+
+.profiel__preview-pill {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
-  color: var(--color-cta);
-  font-size: 14px;
+  gap: var(--space-1);
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-full);
+  padding: 0 14px;
+  height: 40px;
+  box-sizing: border-box;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
   font-weight: 600;
+  white-space: nowrap;
+}
+
+.profiel__preview-pill svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ---- Vindbaar info link (below pills) ---- */
+.profiel__vindbaar-info-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: calc(-1 * var(--space-2));
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+
+.profiel__vindbaar-info-link svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 .profiel__preview-link svg:first-child {
   flex-shrink: 0;
   width: 18px;
   height: 18px;
-  color: var(--color-cta);
+  color: var(--color-text-secondary);
 }
 
 .profiel__preview-link span {
@@ -347,4 +410,93 @@
   width: 24px;
   height: 24px;
   color: var(--color-text-secondary);
+}
+
+/* ---- Vindbaar info button ---- */
+.profiel__vindbaar-info-btn {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  flex-shrink: 0;
+}
+
+/* ---- Vindbaar info popup ---- */
+.profiel__info-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: var(--space-5);
+}
+
+.profiel__info-popup {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-5);
+  width: 100%;
+  max-width: 353px;
+  animation: profiel-popup-in 0.2s ease;
+}
+
+@keyframes profiel-popup-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.profiel__info-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.profiel__info-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin-bottom: var(--space-3);
+}
+
+.profiel__info-text:last-of-type {
+  margin-bottom: var(--space-5);
+}
+
+.profiel__info-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.profiel__info-btn {
+  flex: 1;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--color-cta);
+  color: var(--color-white);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.profiel__info-btn--secondary {
+  flex: 1;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  color: var(--color-cta);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  cursor: pointer;
 }

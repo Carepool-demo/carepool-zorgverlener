@@ -1,0 +1,244 @@
+/* ==========================================
+   Mijn Tarieven Page (mt__ prefix)
+   ========================================== */
+
+.mt {
+  min-height: 100vh;
+  background: var(--color-surface-secondary);
+}
+
+/* ---- Header ---- */
+.mt__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.mt__back {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.mt__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ---- Intro ---- */
+.mt__intro {
+  padding: var(--space-4) var(--space-5) 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* ---- Body ---- */
+.mt__body {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ---- Card ---- */
+.mt__card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ---- Section label ---- */
+.mt__section-label {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+/* ---- Single tarief input ---- */
+.mt__tarief-single {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.mt__tarief-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 40px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  transition: border-color 0.15s;
+}
+
+.mt__tarief-input-wrap--large {
+  height: 48px;
+  padding: 0 var(--space-4);
+}
+
+.mt__tarief-input-wrap:focus-within {
+  border-color: var(--color-cta);
+}
+
+.mt__tarief-euro {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-cta);
+  flex-shrink: 0;
+}
+
+.mt__tarief-input {
+  width: 56px;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--color-cta);
+  text-align: center;
+  background: transparent;
+  -moz-appearance: textfield;
+}
+
+.mt__tarief-input::-webkit-inner-spin-button,
+.mt__tarief-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.mt__tarief-unit {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+/* ---- Toggle row ---- */
+.mt__toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.mt__toggle-label {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.mt__toggle {
+  width: 40px;
+  height: 24px;
+  border-radius: 12px;
+  background: var(--color-border);
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.mt__toggle--on {
+  background: var(--color-cta);
+}
+
+.mt__toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.mt__toggle--on .mt__toggle-thumb {
+  transform: translateX(16px);
+}
+
+/* ---- Voorwaarden ---- */
+.mt__voorwaarden {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.mt__voorwaarden-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.mt__checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.mt__checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+.mt__checkbox {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-border);
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-top: 1px;
+}
+
+.mt__checkbox--checked {
+  background: var(--color-cta);
+  border-color: var(--color-cta);
+  color: var(--color-white);
+}
+
+.mt__checkbox-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+/* ---- Hint text ---- */
+.mt__hint {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}

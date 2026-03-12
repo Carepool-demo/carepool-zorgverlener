@@ -155,7 +155,7 @@ function Carepool({ initialSubPage = null, onNavigate, onSubPageChange, notifica
           <div className="carepool__card-icon">
             <ChattingIcon />
           </div>
-          <span className="carepool__card-label">Reacties op jouw profiel</span>
+          <span className="carepool__card-label">Verkennende gesprekken</span>
         </button>
       </section>
 

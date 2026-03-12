@@ -98,11 +98,11 @@ function Home({ onNavigate, onSubPageChange, notificationCount }) {
         </div>
       </section>
 
-      {/* Mijn beschikbaarheid CTA */}
+      {/* Beschikbaarheid CTA */}
       <section className="home__cta-section">
         <button className="home__beschikbaarheid-btn" onClick={() => onNavigate(PAGES.BESCHIKBAARHEID)}>
           <TimeHalfPassIcon />
-          Mijn beschikbaarheid
+          Beschikbaarheid
         </button>
       </section>
 

@@ -1,0 +1,325 @@
+/* ==========================================
+   Zoekprofiel Page (zp__ prefix)
+   ========================================== */
+
+.zp {
+  min-height: 100vh;
+  background: var(--color-surface-secondary);
+}
+
+/* ---- Header ---- */
+.zp__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.zp__back {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.zp__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ---- Intro ---- */
+.zp__intro {
+  padding: var(--space-4) var(--space-5) 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* ---- Body ---- */
+.zp__body {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* ---- Cards (sections) ---- */
+.zp__card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.zp__card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.zp__card-header .zp__tooltip-btn {
+  margin-left: auto;
+}
+
+.zp__card-title {
+  flex: 1;
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+/* ---- Rows (toggle rows) ---- */
+.zp__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.zp__row-label {
+  flex: 1;
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+.zp__row-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Toggle switch ---- */
+.zp__toggle {
+  position: relative;
+  width: 40px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background: var(--color-disabled-light);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0;
+  border: none;
+}
+
+.zp__toggle--on {
+  background: var(--color-cta);
+}
+
+.zp__toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-white);
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.zp__toggle--on .zp__toggle-thumb {
+  transform: translateX(16px);
+}
+
+/* ---- Tooltip ---- */
+.zp__tooltip-btn {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.zp__popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: var(--space-5);
+}
+
+.zp__popup {
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: var(--space-5);
+  max-width: 320px;
+  width: 100%;
+}
+
+.zp__popup-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.zp__popup-text {
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin-bottom: var(--space-4);
+}
+
+.zp__popup-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  background: var(--color-cta);
+  color: var(--color-white);
+  border: none;
+  border-radius: 50px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ---- Beschikbaarheid button ---- */
+.zp__beschikbaarheid-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  height: 40px;
+  padding: 0 var(--space-5);
+  background: var(--color-white);
+  color: var(--color-cta);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  font-family: var(--font-family);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+}
+
+.zp__beschikbaarheid-btn svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.zp__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--space-2) calc(-1 * var(--space-4));
+}
+
+/* ---- Hulp options (with descriptions) ---- */
+.zp__hulp-option {
+  display: flex;
+  flex-direction: column;
+}
+
+.zp__hulp-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.36;
+  padding-left: 24px; /* align with text after icon */
+}
+
+.zp__hulp-desc--card {
+  padding-left: 0;
+}
+
+/* ---- Range slider ---- */
+/* ---- Uren inputs ---- */
+.zp__uren-inputs {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.zp__uren-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.zp__uren-field-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.zp__uren-input {
+  width: 64px;
+  height: 40px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--color-cta);
+  text-align: center;
+  background: var(--color-white);
+  outline: none;
+  transition: border-color 0.15s;
+  -moz-appearance: textfield;
+}
+
+.zp__uren-input::-webkit-inner-spin-button,
+.zp__uren-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.zp__uren-input:focus {
+  border-color: var(--color-cta);
+}
+
+.zp__uren-dash {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+/* ---- Section label (inline sub-heading) ---- */
+.zp__section-label {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+/* ---- Uren summary ---- */
+.zp__uren-summary {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}

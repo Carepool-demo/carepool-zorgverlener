@@ -1,0 +1,473 @@
+/* ---- CV Bewerken page ---- */
+.cv-edit {
+  background: var(--color-surface-secondary);
+  min-height: 100%;
+}
+
+/* ---- Header ---- */
+.cv-edit__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.cv-edit__back {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.cv-edit__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ---- Body ---- */
+.cv-edit__body {
+  padding: var(--space-5);
+  padding-bottom: var(--space-10);
+}
+
+.cv-edit__intro {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0 0 var(--space-5);
+}
+
+/* ---- Card ---- */
+.cv-edit__card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: 0 var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+/* ---- Section ---- */
+.cv-edit__section {
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cv-edit__section:last-child,
+.cv-edit__section--last {
+  border-bottom: none;
+}
+
+.cv-edit__section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.cv-edit__section-icon {
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.cv-edit__section-title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  flex: 1;
+}
+
+/* ---- Entry (existing item) ---- */
+.cv-edit__entry {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s;
+}
+
+.cv-edit__entry:hover {
+  background: var(--color-surface-secondary);
+}
+
+.cv-edit__entry-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.cv-edit__entry-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+.cv-edit__entry-meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  line-height: 1.4;
+}
+
+.cv-edit__entry-delete {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+  padding: 0;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.cv-edit__entry-delete:hover {
+  color: var(--color-notification);
+  background: var(--color-surface-secondary);
+}
+
+/* ---- Add button ---- */
+.cv-edit__add-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-cta);
+  font-family: inherit;
+}
+
+.cv-edit__add-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---- Navigate button (Ervaring met) ---- */
+.cv-edit__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-2) 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-cta);
+  font-family: inherit;
+}
+
+.cv-edit__nav-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---- Edit button (Leerbereidheid) ---- */
+.cv-edit__edit-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  padding: 0;
+  margin-left: auto;
+  align-self: flex-start;
+  transition: background-color 0.15s;
+}
+
+.cv-edit__edit-btn:hover {
+  background: var(--color-surface-secondary);
+}
+
+/* ---- Leerbereidheid read-only text ---- */
+.cv-edit__leerbereidheid-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.cv-edit__placeholder {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+/* ---- Tags (read-only on main page) ---- */
+.cv-edit__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.cv-edit__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* ============================================
+   MODAL POPUP
+   ============================================ */
+.cv-edit__modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--space-5);
+}
+
+.cv-edit__modal {
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: var(--space-6);
+  width: 100%;
+  max-width: 353px;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: cv-edit__modal-slide-up 0.25s ease-out;
+}
+
+@keyframes cv-edit__modal-slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.cv-edit__modal-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.cv-edit__modal-desc {
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin: 0 0 var(--space-4);
+}
+
+.cv-edit__modal-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.cv-edit__modal-actions .cv-edit__btn {
+  flex: 1;
+}
+
+/* ---- Form fields (shared between modal & page) ---- */
+.cv-edit__form-field {
+  margin-bottom: var(--space-3);
+}
+
+.cv-edit__form-label {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-1);
+}
+
+.cv-edit__form-input {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.cv-edit__form-input:focus {
+  border-color: var(--color-cta);
+}
+
+.cv-edit__form-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* ---- Buttons ---- */
+.cv-edit__btn {
+  height: 40px;
+  padding: 0 var(--space-5);
+  border-radius: 50px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.15s;
+}
+
+.cv-edit__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cv-edit__btn--primary {
+  background: var(--color-cta);
+  color: var(--color-white);
+}
+
+.cv-edit__btn--secondary {
+  background: var(--color-white);
+  color: var(--color-cta);
+  border: 1px solid var(--color-border);
+}
+
+.cv-edit__btn--small {
+  height: 32px;
+  padding: 0 var(--space-3);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   ERVARING MET PAGE
+   ============================================ */
+.cv-edit--ervaring .cv-edit__body {
+  padding-bottom: var(--space-20);
+}
+
+.cv-edit__ervaring-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.cv-edit__ervaring-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.15s;
+  line-height: 1.3;
+}
+
+.cv-edit__ervaring-pill:hover {
+  border-color: var(--color-cta);
+}
+
+.cv-edit__ervaring-pill--active {
+  background: var(--color-surface-secondary);
+  border-color: var(--color-cta);
+  color: var(--color-cta);
+  font-weight: 600;
+}
+
+.cv-edit__ervaring-pill--active svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.cv-edit__ervaring-custom {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.cv-edit__ervaring-custom .cv-edit__form-input {
+  flex: 1;
+}
+
+/* ---- Textarea (Leerbereidheid popup) ---- */
+.cv-edit__textarea {
+  width: 100%;
+  padding: var(--space-3);
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  outline: none;
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.cv-edit__textarea:focus {
+  border-color: var(--color-cta);
+}
+
+.cv-edit__textarea::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* ---- Divider ---- */
+.cv-edit__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--space-2) 0;
+}

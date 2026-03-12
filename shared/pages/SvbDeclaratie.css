@@ -24,8 +24,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
   border-radius: var(--radius-full);
   color: var(--color-text-primary);
   flex-shrink: 0;
@@ -39,7 +40,6 @@
   font-size: var(--font-size-lg);
   font-weight: 700;
   color: var(--color-text-primary);
-  line-height: 40px;
 }
 
 /* ---- Info banner ---- */

@@ -1,0 +1,188 @@
+/* ==========================================
+   Mijn Locaties page
+   ========================================== */
+
+.mloc {
+  min-height: 100vh;
+  background: var(--color-surface-secondary);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Header ---- */
+.mloc__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.mloc__back-btn {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.mloc__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ---- Body ---- */
+.mloc__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-5) var(--space-16);
+}
+
+/* ---- Intro ---- */
+.mloc__intro {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.35;
+  margin-bottom: var(--space-6);
+}
+
+/* ---- Location card ---- */
+.mloc__card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--color-border);
+}
+
+.mloc__card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.mloc__card-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.mloc__remove-btn {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-notification);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1) var(--space-2);
+}
+
+/* ---- Postcode input ---- */
+.mloc__postcode-label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-5);
+}
+
+.mloc__postcode-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  color: var(--color-text-primary);
+  background: var(--color-white);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.mloc__postcode-input:focus {
+  border-color: var(--color-cta);
+}
+
+.mloc__postcode-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* ---- Straal section ---- */
+.mloc__straal-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.mloc__straal-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+/* ---- Pill grid ---- */
+.mloc__pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* ---- Pill button ---- */
+.mloc__pill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.mloc__pill--active {
+  border-color: var(--color-cta);
+  color: var(--color-cta);
+  background: var(--color-white);
+  font-weight: 600;
+}
+
+/* ---- Add button ---- */
+.mloc__add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  color: var(--color-cta);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.mloc__add-btn:hover {
+  background: var(--color-surface-secondary);
+}
+

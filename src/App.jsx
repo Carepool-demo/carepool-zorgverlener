@@ -14,15 +14,22 @@ import Sjablonen from '@shared/pages/Sjablonen'
 import Notificaties from '@shared/pages/Notificaties'
 import NotificatieInstellingen from '@shared/pages/NotificatieInstellingen'
 import Beschikbaarheid from './pages/Beschikbaarheid'
+import MijnTalen from './pages/MijnTalen'
+import GoedOmTeWeten from './pages/GoedOmTeWeten'
+import CvBewerken from './pages/CvBewerken'
+import RegistratiesBewerken from './pages/RegistratiesBewerken'
+import MijnLocaties from './pages/MijnLocaties'
+import Zoekprofiel from './pages/Zoekprofiel'
+import MijnTarieven from './pages/MijnTarieven'
 import ZorgverlenerProfiel from '@shared/pages/ZorgverlenerProfiel'
 import BottomNav from '@shared/components/BottomNav'
 import PasswordGate from '@shared/components/PasswordGate'
 import Toast from '@shared/components/Toast'
-import { zorgCategorieenInstellingen as defaultCategories, notificatiesData, berichtenChats, profielData } from './data/dummyData'
+import { zorgCategorieenInstellingen as defaultCategories, talenInstellingen as defaultTalen, goedOmTeWetenInstellingen as defaultGoedOmTeWeten, locatiesInstellingen as defaultLocaties, tariefVoorwaardenInstellingen as defaultVoorwaarden, notificatiesData, berichtenChats, profielData } from './data/dummyData'
 
 function App() {
   const [activePage, setActivePage] = useState(PAGES.HOME)
-  const [previousPage, setPreviousPage] = useState(PAGES.HOME)
+  const pageStack = useRef([PAGES.HOME])
   const [carepoolInitialSubPage, setCarepoolInitialSubPage] = useState(null)
   const [agendaInitialSubPage, setAgendaInitialSubPage] = useState(null)
   const [adminInitialTab, setAdminInitialTab] = useState(null)
@@ -33,7 +40,14 @@ function App() {
   const [berichtenSubPage, setBerichtenSubPage] = useState(null)
   const [berichtenInitialSubPage, setBerichtenInitialSubPage] = useState(null)
   const [zorgCategorieen, setZorgCategorieen] = useState(defaultCategories)
+  const [talen, setTalen] = useState(defaultTalen)
+  const [goedOmTeWeten, setGoedOmTeWeten] = useState(defaultGoedOmTeWeten)
   const [isVindbaar, setIsVindbaar] = useState(true)
+  const [cvData, setCvData] = useState(profielData.cv)
+  const [registratiesData, setRegistratiesData] = useState(profielData.registraties)
+  const [locatiesData, setLocatiesData] = useState(defaultLocaties)
+  const [isTariefBespreekbaar, setIsTariefBespreekbaar] = useState(true)
+  const [tariefVoorwaarden, setTariefVoorwaarden] = useState(defaultVoorwaarden)
   const contentRef = useRef(null)
 
   useEffect(() => {
@@ -46,6 +60,7 @@ function App() {
     setBerichtenInitialSubPage(null)
     setAdminInitialTab(null)
     setAdminInitialMonth(null)
+    pageStack.current = [page]
     setActivePage(page)
   }
 
@@ -58,9 +73,14 @@ function App() {
       if (extra) setAdminInitialMonth(extra)
     }
     if (OVERLAY_PAGES.includes(page)) {
-      setPreviousPage(activePage)
+      pageStack.current.push(activePage)
     }
     setActivePage(page)
+  }
+
+  const handleBack = () => {
+    const prev = pageStack.current.pop() || PAGES.HOME
+    setActivePage(prev)
   }
 
   const notificationCount = notificatiesData.meldingen.reduce((sum, group) => sum + group.items.filter(i => i.unread).length, 0)
@@ -81,15 +101,22 @@ function App() {
           {activePage === PAGES.AGENDA && <Agenda initialSubPage={agendaInitialSubPage} onNavigate={handleNavigate} />}
           {activePage === PAGES.BERICHTEN && <Berichten initialSubPage={berichtenInitialSubPage} onNavigate={handleNavigate} onSubPageChange={setBerichtenSubPage} notificationCount={notificationCount} />}
           {activePage === PAGES.ADMIN && <Admin onNavigate={handleNavigate} initialTab={adminInitialTab} initialMonth={adminInitialMonth} onSubPageChange={setAdminSubPage} notificationCount={notificationCount} />}
-          {activePage === PAGES.PROFIEL_INSTELLINGEN && <ProfielInstellingen onBack={() => setActivePage(previousPage)} onNavigate={handleNavigate} />}
-          {activePage === PAGES.PROFIEL && <Profiel onBack={() => setActivePage(previousPage)} onNavigate={handleNavigate} isVindbaar={isVindbaar} onToggleVindbaar={() => setIsVindbaar(v => !v)} />}
-          {activePage === PAGES.ZORGCATEGORIEEN && <Zorgcategorieen onBack={() => setActivePage(previousPage)} categories={zorgCategorieen} onCategoriesChange={setZorgCategorieen} />}
-          {activePage === PAGES.HELP_INFO && <HelpInfo onBack={() => setActivePage(previousPage)} />}
-          {activePage === PAGES.SJABLONEN && <Sjablonen onBack={() => setActivePage(previousPage)} />}
-          {activePage === PAGES.NOTIFICATIES && <Notificaties onBack={() => setActivePage(previousPage)} />}
-          {activePage === PAGES.NOTIFICATIE_INSTELLINGEN && <NotificatieInstellingen onBack={() => setActivePage(previousPage)} />}
-          {activePage === PAGES.BESCHIKBAARHEID && <Beschikbaarheid onBack={() => setActivePage(previousPage)} />}
-          {activePage === PAGES.PROFIEL_PREVIEW && <ZorgverlenerProfiel zorgverlener={profielData} onBack={() => setActivePage(previousPage)} />}
+          {activePage === PAGES.PROFIEL_INSTELLINGEN && <ProfielInstellingen onBack={handleBack} onNavigate={handleNavigate} />}
+          {activePage === PAGES.PROFIEL && <Profiel onBack={handleBack} onNavigate={handleNavigate} isVindbaar={isVindbaar} onToggleVindbaar={() => setIsVindbaar(v => !v)} talenCount={talen.filter(t => t.enabled).length} />}
+          {activePage === PAGES.ZORGCATEGORIEEN && <Zorgcategorieen onBack={handleBack} categories={zorgCategorieen} onCategoriesChange={setZorgCategorieen} />}
+          {activePage === PAGES.HELP_INFO && <HelpInfo onBack={handleBack} />}
+          {activePage === PAGES.SJABLONEN && <Sjablonen onBack={handleBack} />}
+          {activePage === PAGES.NOTIFICATIES && <Notificaties onBack={handleBack} />}
+          {activePage === PAGES.NOTIFICATIE_INSTELLINGEN && <NotificatieInstellingen onBack={handleBack} />}
+          {activePage === PAGES.MIJN_TALEN && <MijnTalen onBack={handleBack} talen={talen} onTalenChange={setTalen} />}
+          {activePage === PAGES.GOED_OM_TE_WETEN && <GoedOmTeWeten onBack={handleBack} items={goedOmTeWeten} onItemsChange={setGoedOmTeWeten} />}
+          {activePage === PAGES.BESCHIKBAARHEID && <Beschikbaarheid onBack={handleBack} />}
+          {activePage === PAGES.CV_BEWERKEN && <CvBewerken onBack={handleBack} cv={cvData} onCvChange={setCvData} />}
+          {activePage === PAGES.REGISTRATIES_BEWERKEN && <RegistratiesBewerken onBack={handleBack} registraties={registratiesData} onRegistratiesChange={setRegistratiesData} />}
+          {activePage === PAGES.MIJN_LOCATIES && <MijnLocaties onBack={handleBack} locaties={locatiesData} onLocatiesChange={setLocatiesData} />}
+          {activePage === PAGES.ZOEKPROFIEL && <Zoekprofiel onBack={handleBack} onNavigate={handleNavigate} />}
+          {activePage === PAGES.MIJN_TARIEVEN && <MijnTarieven onBack={handleBack} isBespreekbaar={isTariefBespreekbaar} onBespreekbaarChange={setIsTariefBespreekbaar} voorwaarden={tariefVoorwaarden} onVoorwaardenChange={setTariefVoorwaarden} />}
+          {activePage === PAGES.PROFIEL_PREVIEW && <ZorgverlenerProfiel zorgverlener={profielData} onBack={handleBack} isPreview isVindbaar={isVindbaar} />}
         </div>
         {showBottomNav && <BottomNav activeTab={activePage} onTabChange={handleTabChange} berichtenBadge={berichtenBadge} />}
         <Toast />

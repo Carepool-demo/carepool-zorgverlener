@@ -9,21 +9,56 @@
   background: var(--color-focus-medium);
 }
 
+/* ---- Preview banner ---- */
+.zvp__preview-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-surface-secondary);
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.zvp__preview-banner-main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.zvp__preview-banner-main svg {
+  flex-shrink: 0;
+}
+
+.zvp__preview-banner-sub {
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  text-align: center;
+  line-height: 1.3;
+}
+
 /* ---- Header ---- */
 .zvp__header {
   display: flex;
   align-items: flex-end;
   gap: var(--space-3);
   height: 80px;
-  padding: 0 var(--space-5);
+  padding: 0 var(--space-5) var(--space-4);
   box-sizing: border-box;
   flex-shrink: 0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .zvp__back-btn {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
   border-radius: var(--radius-full);
   border: none;
   background: transparent;
@@ -40,7 +75,6 @@
 
 .zvp__title {
   flex: 1;
-  line-height: 40px;
   font-size: var(--font-size-lg);
   font-weight: 700;
   color: var(--color-text-primary);
@@ -154,18 +188,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 40px;
   height: 40px;
-  padding: 0 var(--space-5);
-  border-radius: var(--radius-full);
+  border-radius: 50%;
   border: 1.5px solid var(--color-border);
   background: var(--color-white);
   color: var(--color-text-secondary);
   cursor: pointer;
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  font-family: inherit;
   transition: background-color 0.2s;
-  white-space: nowrap;
+  flex-shrink: 0;
 }
 .zvp__more-btn:hover {
   background: var(--color-surface-secondary);
@@ -524,6 +555,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: var(--space-3);
+  padding-left: 32px;
 }
 
 .zvp__cv-entry:last-child {
@@ -547,6 +579,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  padding-left: 32px;
 }
 
 .zvp__cv-list-item {
@@ -557,15 +590,16 @@
 
 /* ---- Quote Bubble (Leerbereidheid) ---- */
 .zvp__quote-bubble {
-  background: var(--color-surface-secondary);
+  background: var(--color-focus-medium);
   border-radius: var(--radius-lg);
+  border-bottom-left-radius: var(--space-1);
   padding: var(--space-4);
   margin-bottom: var(--space-3);
 }
 
 .zvp__quote-text {
   font-size: var(--font-size-sm);
-  color: var(--color-cta);
+  color: var(--color-text-primary);
   line-height: 1.5;
 }
 
@@ -595,4 +629,195 @@
 /* ---- Spacer ---- */
 .zvp__spacer {
   height: var(--space-10);
+}
+
+/* ======================================
+   Registraties sub-view — .zvp--registraties
+   ====================================== */
+
+.zvp--registraties {
+  background: var(--color-surface-secondary);
+}
+
+.zvp--registraties .zvp__body {
+  background: var(--color-surface-secondary);
+}
+
+.zvp--registraties .zvp__section-label {
+  margin-top: var(--space-8);
+}
+
+.zvp--registraties .zvp__section-label:first-child {
+  margin-top: 0;
+}
+
+/* ---- Registration card ---- */
+.zvp__reg-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-1);
+}
+
+/* ---- Registration row ---- */
+.zvp__reg-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.zvp__reg-row:last-child {
+  border-bottom: none;
+}
+
+.zvp__reg-row--empty .zvp__reg-label,
+.zvp__reg-row--empty .zvp__reg-value {
+  color: var(--color-text-tertiary);
+  font-weight: 400;
+}
+
+.zvp__reg-label {
+  flex: 1;
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+}
+
+.zvp__reg-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+.zvp__reg-value {
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.zvp__reg-link-icon {
+  display: flex;
+  align-items: center;
+  color: var(--color-cta);
+  flex-shrink: 0;
+}
+
+.zvp__reg-check {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.zvp__reg-info {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  cursor: help;
+}
+
+/* ---- Tarief voorwaarden popup ---- */
+.zvp__popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+  animation: zvp-overlay-in 0.15s ease;
+}
+
+@keyframes zvp-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.zvp__popup {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  max-width: 353px;
+  width: 100%;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  animation: zvp-popup-in 0.2s ease;
+}
+
+@keyframes zvp-popup-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.zvp__popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.zvp__popup-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.zvp__popup-close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.zvp__popup-text {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.zvp__popup-list {
+  padding-left: var(--space-5);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: disc;
+}
+
+.zvp__popup-list li {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.zvp__popup-btn {
+  width: 100%;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--color-cta);
+  color: var(--color-white);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  margin-top: var(--space-2);
 }

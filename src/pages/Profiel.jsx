@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { showToast } from '@shared/components/Toast'
 import { BackArrowIcon, ChevronRightIcon } from '@shared/components/Icons'
 import { profielData } from '../data/dummyData'
@@ -5,6 +6,14 @@ import { PAGES } from '../constants/routes'
 import './Profiel.css'
 
 /* ---- Page-specific icons ---- */
+
+function EditPencilIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.0148 8.20598L8.52849 14.6923C7.7215 15.4995 7.22751 15.9936 6.62029 16.3329C6.28159 16.5221 5.76784 16.6867 5.24236 16.8329C4.97199 16.9082 4.68133 16.983 4.38396 17.0566L3.48552 17.2734L3.47771 17.2753C3.26681 17.3254 3.04514 17.2625 2.89177 17.1093C2.7383 16.9558 2.67548 16.7335 2.72576 16.5224L2.72673 16.5155C2.86816 15.9215 3.01666 15.2986 3.16716 14.7577C3.31343 14.2321 3.47891 13.7184 3.66814 13.3798C4.00744 12.7727 4.50071 12.2795 5.30779 11.4726L11.7951 4.98528L15.0148 8.20598ZM14.1662 15.6259C14.6264 15.6259 15.0002 15.9987 15.0002 16.4589C15.0002 16.9191 14.6264 17.2919 14.1662 17.2919H9.16618C8.70617 17.2917 8.33319 16.919 8.33318 16.4589C8.33318 15.9988 8.70617 15.6262 9.16618 15.6259H14.1662ZM13.4045 3.3759C14.2937 2.48668 15.7359 2.48668 16.6252 3.3759C17.514 4.26502 17.5139 5.70646 16.6252 6.59563L15.8986 7.32219L12.6789 4.10149L13.4045 3.3759Z" fill="currentColor" />
+    </svg>
+  )
+}
 
 function BookmarkIcon() {
   return (
@@ -36,6 +45,14 @@ function LocationIcon() {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fillRule="evenodd" clipRule="evenodd" d="M12.0015 1.25C15.8275 1.25016 19.4775 3.51344 21.0054 7.08496C22.4255 10.4047 21.6589 13.2365 20.0581 15.6611C18.7303 17.6723 16.7865 19.4628 15.0386 21.0732C14.7282 21.3592 14.4239 21.6392 14.1304 21.9141C13.5555 22.4523 12.7917 22.7499 12.0015 22.75C11.2111 22.75 10.4466 22.4524 9.87159 21.9141L9.87062 21.9131C9.56001 21.6205 9.23647 21.3215 8.90675 21.0166C7.17773 19.4177 5.2608 17.645 3.94679 15.6592C2.34428 13.2371 1.57488 10.4086 2.99659 7.08496C4.52451 3.51331 8.17532 1.25 12.0015 1.25ZM12.0015 2.75C8.74209 2.75 5.65432 4.68544 4.3755 7.6748C3.20209 10.418 3.79545 12.7127 5.19777 14.832C6.40235 16.6525 8.1583 18.278 9.88917 19.8809C10.2277 20.1944 10.5656 20.5072 10.898 20.8203C11.1902 21.0935 11.5858 21.25 12.0015 21.25C12.4175 21.2499 12.8127 21.093 13.105 20.8193C13.4171 20.527 13.7336 20.2345 14.0513 19.9414C15.8045 18.3238 17.5886 16.6781 18.8062 14.834C20.207 12.7121 20.7983 10.4143 19.6265 7.6748C18.3477 4.68557 15.2607 2.75016 12.0015 2.75ZM12.0005 6.75C14.3475 6.75026 16.2505 8.65295 16.2505 11C16.2505 13.347 14.3475 15.2497 12.0005 15.25C9.65329 15.25 7.7505 13.3472 7.7505 11C7.7505 8.65279 9.65329 6.75 12.0005 6.75ZM12.0005 8.25C10.4817 8.25 9.2505 9.48122 9.2505 11C9.2505 12.5188 10.4817 13.75 12.0005 13.75C13.5191 13.7497 14.7505 12.5186 14.7505 11C14.7505 9.48138 13.5191 8.25026 12.0005 8.25Z" fill="currentColor"/>
+    </svg>
+  )
+}
+
+function EuroIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.4619 2.25C16.1155 2.25014 18.4082 3.78614 19.6553 6.02832C19.8564 6.39026 19.7262 6.84656 19.3643 7.04785C19.0023 7.24901 18.546 7.11875 18.3447 6.75684C17.3306 4.93359 15.5089 3.75014 13.4619 3.75C10.5875 3.75 8.13288 6.10789 7.79199 9.25H13C13.4142 9.25 13.75 9.58579 13.75 10C13.75 10.4142 13.4142 10.75 13 10.75H7.75V13.25H13C13.4142 13.25 13.75 13.5858 13.75 14C13.75 14.4142 13.4142 14.75 13 14.75H7.79199C8.13288 17.8921 10.5875 20.25 13.4619 20.25C15.5089 20.2499 17.3306 19.0664 18.3447 17.2432C18.546 16.8813 19.0023 16.751 19.3643 16.9521C19.7262 17.1534 19.8564 17.6097 19.6553 17.9717C18.4082 20.2139 16.1155 21.7499 13.4619 21.75C9.6654 21.75 6.63452 18.632 6.28516 14.75H5C4.58579 14.75 4.25 14.4142 4.25 14C4.25 13.5858 4.58579 13.25 5 13.25H6.25V10.75H5C4.58579 10.75 4.25 10.4142 4.25 10C4.25 9.58579 4.58579 9.25 5 9.25H6.28516C6.63452 5.36796 9.6654 2.25 13.4619 2.25Z" fill="currentColor"/>
     </svg>
   )
 }
@@ -108,8 +125,19 @@ function EyeIcon() {
   )
 }
 
-function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar }) {
+function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar, talenCount }) {
   const profile = profielData
+  const [showVindbaarInfo, setShowVindbaarInfo] = useState(false)
+  const [showVindbaarToggle, setShowVindbaarToggle] = useState(false)
+
+  const handleToggleVindbaar = () => {
+    setShowVindbaarToggle(true)
+  }
+
+  const confirmToggle = () => {
+    onToggleVindbaar()
+    setShowVindbaarToggle(false)
+  }
 
   return (
     <div className="profiel">
@@ -129,8 +157,8 @@ function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar }) {
         <h2 className="profiel__name">{profile.name}</h2>
         <p className="profiel__subtitle">{profile.subtitle}</p>
 
-        {/* Vindbaar toggle */}
-        <div className="profiel__vindbaar-hero">
+        {/* Vindbaar toggle + preview — two pills side by side */}
+        <div className="profiel__vindbaar-hero profiel__vindbaar-hero--split">
           <div className="profiel__vindbaar-row">
             <span className={`profiel__vindbaar-status ${isVindbaar ? 'profiel__vindbaar-status--active' : ''}`}>
               <span className="profiel__vindbaar-dot" />
@@ -138,7 +166,7 @@ function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar }) {
             </span>
             <button
               className={`profiel__toggle ${isVindbaar ? 'profiel__toggle--on' : ''}`}
-              onClick={onToggleVindbaar}
+              onClick={handleToggleVindbaar}
               role="switch"
               aria-checked={isVindbaar}
               aria-label="Vindbaar voor budgethouders"
@@ -146,10 +174,9 @@ function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar }) {
               <span className="profiel__toggle-thumb" />
             </button>
           </div>
-          <button className="profiel__preview-link" onClick={() => onNavigate?.(PAGES.PROFIEL_PREVIEW)}>
+          <button className="profiel__preview-pill" onClick={() => onNavigate?.(PAGES.PROFIEL_PREVIEW)}>
             <EyeIcon />
-            <span>Bekijk hoe budgethouders jou zien</span>
-            <ChevronRightIcon />
+            <span>Bekijk profiel</span>
           </button>
         </div>
       </section>
@@ -159,6 +186,13 @@ function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar }) {
         <div className="profiel__bio-card">
           <h3 className="profiel__bio-title">Over mij</h3>
           <p className="profiel__bio-text">{profile.bio}</p>
+          <button
+            className="profiel__edit-btn"
+            onClick={() => alert('Bewerk over mij (nog niet geimplementeerd)')}
+            aria-label="Bewerk over mij"
+          >
+            <EditPencilIcon /> Bewerk over mij
+          </button>
         </div>
       </div>
 
@@ -178,12 +212,17 @@ function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar }) {
               icon={LocationIcon}
               label="Mijn locaties"
               badge={profile.locaties}
-              onClick={() => showToast('Mijn locaties (nog niet geïmplementeerd)')}
+              onClick={() => onNavigate?.(PAGES.MIJN_LOCATIES)}
             />
             <ProfielListItem
               icon={TimeHalfPassIcon}
-              label="Mijn beschikbaarheid"
-              onClick={() => onNavigate?.(PAGES.BESCHIKBAARHEID)}
+              label="Mijn zoekprofiel"
+              onClick={() => onNavigate?.(PAGES.ZOEKPROFIEL)}
+            />
+            <ProfielListItem
+              icon={EuroIcon}
+              label="Mijn tarieven"
+              onClick={() => onNavigate?.(PAGES.MIJN_TARIEVEN)}
             />
           </div>
         </section>
@@ -195,14 +234,14 @@ function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar }) {
             <ProfielListItem
               icon={ChattingIcon}
               label="Mijn talen"
-              badge={profile.talen}
-              onClick={() => showToast('Mijn talen (nog niet geïmplementeerd)')}
+              badge={talenCount ?? profile.talen}
+              onClick={() => onNavigate?.(PAGES.MIJN_TALEN)}
             />
             <ProfielListItem
               icon={TickIcon}
               label="Goed om te weten"
               badge={profile.goedOmTeWeten}
-              onClick={() => showToast('Goed om te weten (nog niet geïmplementeerd)')}
+              onClick={() => onNavigate?.(PAGES.GOED_OM_TE_WETEN)}
             />
           </div>
         </section>
@@ -214,16 +253,58 @@ function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar }) {
             <ProfielListItem
               icon={BriefcaseIcon}
               label="Vul je CV aan"
-              onClick={() => showToast('CV (nog niet geïmplementeerd)')}
+              onClick={() => onNavigate(PAGES.CV_BEWERKEN)}
             />
             <ProfielListItem
               icon={CheckmarkBadgeIcon}
               label="Vul je registraties aan"
-              onClick={() => showToast('Registraties (nog niet geïmplementeerd)')}
+              onClick={() => onNavigate(PAGES.REGISTRATIES_BEWERKEN)}
             />
           </div>
         </section>
       </div>
+
+      {/* Vindbaar toggle confirmation popup */}
+      {showVindbaarToggle && (
+        <div className="profiel__info-overlay" onClick={() => setShowVindbaarToggle(false)}>
+          <div className="profiel__info-popup" onClick={(e) => e.stopPropagation()}>
+            <h3 className="profiel__info-title">
+              {isVindbaar ? 'Niet meer vindbaar?' : 'Vindbaar worden?'}
+            </h3>
+            <p className="profiel__info-text">
+              {isVindbaar
+                ? 'Als je niet vindbaar bent, kunnen nieuwe zorgvragers je niet meer vinden via Zoeken. Je bestaande connecties kunnen je profiel nog steeds zien.'
+                : 'Als je vindbaar bent, kunnen nieuwe zorgvragers je vinden via Zoeken. Ze kunnen je profiel bekijken en contact met je opnemen.'}
+            </p>
+            <div className="profiel__info-actions">
+              <button className="profiel__info-btn--secondary" onClick={() => setShowVindbaarToggle(false)}>
+                Annuleren
+              </button>
+              <button className="profiel__info-btn" onClick={confirmToggle}>
+                {isVindbaar ? 'Uitzetten' : 'Aanzetten'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Vindbaar info popup */}
+      {showVindbaarInfo && (
+        <div className="profiel__info-overlay" onClick={() => setShowVindbaarInfo(false)}>
+          <div className="profiel__info-popup" onClick={(e) => e.stopPropagation()}>
+            <h3 className="profiel__info-title">Wat betekent vindbaar?</h3>
+            <p className="profiel__info-text">
+              Als je vindbaar bent, kunnen nieuwe zorgvragers je vinden via Zoeken. Ze kunnen je profiel bekijken en contact met je opnemen.
+            </p>
+            <p className="profiel__info-text">
+              Als je niet vindbaar bent, ben je verborgen voor nieuwe zorgvragers. Je huidige connecties kunnen je profiel nog steeds zien.
+            </p>
+            <button className="profiel__info-btn" onClick={() => setShowVindbaarInfo(false)}>
+              Begrepen
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

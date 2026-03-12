@@ -1,0 +1,260 @@
+/* ==========================================
+   Mijn Talen page
+   ========================================== */
+
+.mjt {
+  min-height: 100vh;
+  background: var(--color-surface-secondary);
+}
+
+/* ---- Header ---- */
+.mjt__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-surface-secondary);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.mjt__back-btn {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.mjt__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ---- Intro ---- */
+.mjt__intro {
+  padding: var(--space-5) var(--space-5) 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.35;
+}
+
+/* ---- Card title (inside card) ---- */
+.mjt__card-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding-bottom: var(--space-2);
+}
+
+.mjt__chips-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding-bottom: var(--space-2);
+}
+
+/* ---- Chips area ---- */
+.mjt__chips-area {
+  padding: var(--space-5) var(--space-5) 0;
+}
+
+.mjt__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.mjt__chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  height: 32px;
+  background: var(--color-cta);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.mjt__chip:hover {
+  opacity: 0.85;
+}
+
+/* ---- Card ---- */
+.mjt__card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-secondary);
+}
+
+/* ---- Toggle row ---- */
+.mjt__toggle-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+}
+
+/* ---- Toggle switch ---- */
+.mjt__toggle {
+  width: 40px;
+  height: 24px;
+  border-radius: 12px;
+  background: var(--color-border);
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  margin: var(--space-2);
+}
+
+.mjt__toggle--on {
+  background: var(--color-cta);
+}
+
+.mjt__toggle-knob {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+
+.mjt__toggle--on .mjt__toggle-knob {
+  transform: translateX(16px);
+}
+
+/* ---- Toggle label ---- */
+.mjt__toggle-label {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.mjt__toggle-label--on {
+  font-weight: 500;
+}
+
+/* ---- Level picker (under toggle row) ---- */
+.mjt__level-picker {
+  display: flex;
+  gap: var(--space-2);
+  padding: 0 0 var(--space-2) 48px;
+}
+
+.mjt__level-btn {
+  height: 28px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.mjt__level-btn--active {
+  background: var(--color-cta);
+  border-color: var(--color-cta);
+  color: var(--color-white);
+}
+
+/* ---- Add button ---- */
+.mjt__add-area {
+  padding: var(--space-6) var(--space-5) var(--space-16);
+}
+
+.mjt__add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  color: var(--color-cta);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.mjt__add-btn:hover {
+  background: var(--color-surface-secondary);
+}
+
+/* ---- Search bar ---- */
+.mjt__search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-5) var(--space-5) 0;
+  padding: 0 var(--space-3);
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  color: var(--color-text-secondary);
+}
+
+.mjt__search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  color: var(--color-text-primary);
+  background: transparent;
+}
+
+.mjt__search-input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.6;
+}
+
+/* ---- Search list ---- */
+.mjt__search-list {
+  padding: var(--space-5) var(--space-5) var(--space-16);
+}
+
+.mjt__card--other {
+  margin-top: var(--space-5);
+}
+
+.mjt__search-list .mjt__toggle-row {
+  padding: var(--space-1) 0;
+}
+
+.mjt__empty {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding: var(--space-8) 0;
+}

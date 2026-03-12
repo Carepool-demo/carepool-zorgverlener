@@ -462,8 +462,42 @@ export const berichtenChats = [
     initials: 'TV',
     type: 'individual',
     isConnectie: false,
+    source: 'inkomend',
     timestamp: 'maandag',
     preview: 'Haha, ja vind ik ook',
+    unread: 0,
+  },
+  {
+    id: 5,
+    name: 'Thomas Jansen',
+    initials: 'TJ',
+    type: 'individual',
+    isConnectie: false,
+    source: 'inkomend',
+    timestamp: 'vorige week',
+    preview: 'Ik heb je profiel gezien en zou graag willen praten over begeleiding voor mijn moeder.',
+    unread: 0,
+  },
+  {
+    id: 6,
+    name: 'Fatima El Amrani',
+    initials: 'FA',
+    type: 'individual',
+    isConnectie: false,
+    source: 'uitgaand',
+    timestamp: 'vorige week',
+    preview: 'Goedemiddag, ik ben op zoek naar iemand die mijn vader kan helpen met dagelijkse verzorging.',
+    unread: 0,
+  },
+  {
+    id: 7,
+    name: 'Pieter de Groot',
+    initials: 'PG',
+    type: 'individual',
+    isConnectie: false,
+    source: 'uitgaand',
+    timestamp: '2 weken',
+    preview: 'Hallo, we zoeken een zorgverlener voor onze buurvrouw. Kun je eens langskomen?',
     unread: 0,
   },
   {
@@ -471,7 +505,7 @@ export const berichtenChats = [
     name: 'Heike van Carepool',
     initials: 'HF',
     type: 'carepool',
-    isConnectie: false,
+    isConnectie: true,
     timestamp: '',
     preview: 'Hey! We zijn benieuwd wat je van Carepool vindt. Mis je iets in de ap...',
     unread: 0,
@@ -484,6 +518,7 @@ export const berichtenVerzoeken = [
     name: 'Sophie Bakker',
     initials: 'SB',
     type: 'request',
+    source: 'inkomend',
     timestamp: 'Gisteren',
     preview: 'Wil je mij toevoegen als zorgverlener?',
     unread: 1,
@@ -493,35 +528,9 @@ export const berichtenVerzoeken = [
     name: 'Maria de Boer',
     initials: 'MB',
     type: 'request',
+    source: 'inkomend',
     timestamp: 'maandag',
     preview: 'Hoi! Ik zoek iemand voor huishoudelijke hulp op dinsdag en donderdag. Heb je daar tijd voor?',
-    unread: 0,
-  },
-  {
-    id: 'verzoek-3',
-    name: 'Thomas Jansen',
-    initials: 'TJ',
-    type: 'request',
-    timestamp: 'vorige week',
-    preview: 'Ik heb je profiel gezien en zou graag willen praten over begeleiding voor mijn moeder.',
-    unread: 0,
-  },
-  {
-    id: 'verzoek-4',
-    name: 'Fatima El Amrani',
-    initials: 'FA',
-    type: 'request',
-    timestamp: 'vorige week',
-    preview: 'Goedemiddag, ik ben op zoek naar iemand die mijn vader kan helpen met dagelijkse verzorging.',
-    unread: 0,
-  },
-  {
-    id: 'verzoek-5',
-    name: 'Pieter de Groot',
-    initials: 'PG',
-    type: 'request',
-    timestamp: '2 weken',
-    preview: 'Hallo, we zoeken een zorgverlener voor onze buurvrouw. Kun je eens langskomen?',
     unread: 0,
   },
 ]
@@ -591,6 +600,88 @@ export const chatGesprekken = {
       },
     ],
   },
+  'verzoek-2': {
+    // Maria de Boer – berichtverzoek
+    isVerzoek: true,
+    status: 'pending',
+    subtitle: null,
+    members: null,
+    messages: [
+      {
+        id: 1,
+        sender: 'other',
+        name: 'Maria de Boer',
+        initials: 'MB',
+        text: 'Hoi! Ik zoek iemand voor huishoudelijke hulp op dinsdag en donderdag. Heb je daar tijd voor?',
+        time: '10:24',
+      },
+    ],
+  },
+  5: {
+    // Thomas Jansen – verkennend gesprek
+    subtitle: null,
+    members: null,
+    messages: [
+      {
+        id: 1,
+        sender: 'other',
+        name: 'Thomas Jansen',
+        initials: 'TJ',
+        text: 'Ik heb je profiel gezien en zou graag willen praten over begeleiding voor mijn moeder.',
+        time: '14:05',
+      },
+      {
+        id: 2,
+        sender: 'self',
+        text: 'Hoi Thomas, wat fijn dat je contact opneemt. Vertel eens, wat voor begeleiding zoek je precies?',
+        time: '14:20',
+      },
+      {
+        id: 3,
+        sender: 'other',
+        name: 'Thomas Jansen',
+        initials: 'TJ',
+        text: 'Mijn moeder heeft hulp nodig bij dagelijkse activiteiten. Ze is 82 en woont nog zelfstandig.',
+        time: '14:25',
+      },
+    ],
+  },
+  6: {
+    // Fatima El Amrani – verkennend gesprek
+    subtitle: null,
+    members: null,
+    messages: [
+      {
+        id: 1,
+        sender: 'other',
+        name: 'Fatima El Amrani',
+        initials: 'FA',
+        text: 'Goedemiddag, ik ben op zoek naar iemand die mijn vader kan helpen met dagelijkse verzorging.',
+        time: '15:32',
+      },
+      {
+        id: 2,
+        sender: 'self',
+        text: 'Goedemiddag Fatima! Ik help graag. Kun je wat meer vertellen over de situatie van je vader?',
+        time: '16:00',
+      },
+    ],
+  },
+  7: {
+    // Pieter de Groot – verkennend gesprek
+    subtitle: null,
+    members: null,
+    messages: [
+      {
+        id: 1,
+        sender: 'other',
+        name: 'Pieter de Groot',
+        initials: 'PG',
+        text: 'Hallo, we zoeken een zorgverlener voor onze buurvrouw. Kun je eens langskomen?',
+        time: '11:17',
+      },
+    ],
+  },
 }
 
 /* ---- Nieuw bericht page ---- */
@@ -625,6 +716,20 @@ export const profielData = {
   locaties: 1,
   talen: 1,
   goedOmTeWeten: 1,
+  cv: {
+    opleidingen: [
+      { titel: 'Helpende Zorg en Welzijn', periode: '2020 - 2023', instituut: 'ROC Amsterdam' },
+    ],
+    werkervaring: [
+      { titel: 'Zorghulp', periode: 'Huidig', bedrijf: 'Zelfstandig' },
+    ],
+    certificaten: [
+      { titel: 'EHBO', periode: '2022 - 2025', instituut: 'Het Oranje Kruis' },
+      { titel: 'BHV', periode: '2023 - 2026', instituut: 'ROC Amsterdam' },
+    ],
+    ervaringMet: ['Dementie', 'Diabetes', 'Mobiliteitsproblemen'],
+    leerbereidheid: 'Ik sta open om op eigen kosten trainingen te volgen die nodig zijn voor jouw zorg. Denk aan bijv. tilcursus of medicatiebeheer.',
+  },
 }
 
 /* ---- Zorgaanbod (zorgverlener's care offering categories) ---- */
@@ -1083,6 +1188,7 @@ const defaultProfiel = {
   ],
   tarief: '€25 per uur (formeel)',
   tariefBespreekbaar: false,
+  tariefVoorwaarden: [],
   talen: ['Nederlands'],
   praktischeInfo: ['Heeft een rijbewijs'],
   praktischeInfoExtra: 0,
@@ -1102,11 +1208,23 @@ const defaultProfiel = {
     ervaringMet: ['Dementie', 'Diabetes', 'Mobiliteitsproblemen'],
     leerbereidheid: 'Ik sta open om op eigen kosten trainingen te volgen die nodig zijn voor jouw zorg. Denk aan bijv. tilcursus of medicatiebeheer.',
   },
+  registraties: {
+    professioneel: [
+      { label: 'AGB', waarde: '12345678', link: true },
+      { label: 'KvK', waarde: '87654321', link: true },
+      { label: 'VOG', waarde: 'VOG NP', link: true },
+      { label: 'BIG', waarde: null, tooltip: 'BIG-registratie is verplicht voor bepaalde beroepen in de zorg.' },
+    ],
+    beschiktOver: ['Privacybeleid (conform AVG)', 'Veiligheidsprotocol'],
+    aangeslotenBij: ['Klachtenregeling'],
+    verzekeringen: ['Beroepsaansprakelijkheid'],
+  },
 }
 
 export const zorgverlenerProfielen = {
   nisha: {
     geslacht: 'Vrouw',
+    leeftijd: 35,
     locatie: 'Amsterdam',
     bio: 'Ik ben Nisha, 35 jaar, een betrokken en betrouwbare zorgverleenster met ruime levenservaring. Ik bied persoonlijke verzorging en ondersteuning met aandacht, respect en rust. Het welzijn, de veiligheid en het vertrouwen van de cliënt staan bij mij altijd centraal.',
     zorgvragers: 5,
@@ -1122,6 +1240,7 @@ export const zorgverlenerProfielen = {
     ],
     tarief: '€35 per uur (formeel)',
     tariefBespreekbaar: true,
+    tariefVoorwaarden: ["Pgb's met lagere maximale tarieven", 'Zorgtrajecten van minimaal 3 maanden'],
     talen: ['Nederlands', 'Engels'],
     praktischeInfo: ['Heeft een rijbewijs', 'Rookt niet'],
     praktischeInfoExtra: 0,
@@ -1143,6 +1262,18 @@ export const zorgverlenerProfielen = {
       ervaringMet: ['Dementie', 'Parkinson', 'Mobiliteitsproblemen', 'Diabetes'],
       leerbereidheid: 'Ik sta open om op eigen kosten trainingen te volgen die nodig zijn voor jouw zorg. Denk aan bijv. tilcursus of medicatiebeheer.',
     },
+    registraties: {
+      professioneel: [
+        { label: 'AGB', waarde: '34237362', link: true },
+        { label: 'KvK', waarde: '34237362', link: true },
+        { label: 'VOG', waarde: 'VOG NP', link: true },
+        { label: 'SKJ', waarde: '34237362', link: true },
+        { label: 'BIG', waarde: null, tooltip: 'BIG-registratie is verplicht voor bepaalde beroepen in de zorg.' },
+      ],
+      beschiktOver: ['Privacybeleid (conform AVG)', 'Veiligheidsprotocol', 'Calamiteitenprotocol'],
+      aangeslotenBij: ['Klachtenregeling', 'V&VN', 'ZZP\'er in de Zorg'],
+      verzekeringen: ['Beroepsaansprakelijkheid'],
+    },
   },
   4: {
     geslacht: 'Vrouw',
@@ -1162,6 +1293,7 @@ export const zorgverlenerProfielen = {
     ],
     tarief: '€40 per uur (formeel)',
     tariefBespreekbaar: true,
+    tariefVoorwaarden: ["Pgb's met lagere maximale tarieven", 'Meerdere uren per week (10+ uur)', 'Lichte ondersteuning (geen zware fysieke zorg)'],
     talen: ['Nederlands', 'Engels (basis)', 'Arabisch'],
     praktischeInfo: ['Heeft een rijbewijs', 'Kan met huisdieren', 'Rookt niet'],
     praktischeInfoExtra: 10,
@@ -1186,6 +1318,18 @@ export const zorgverlenerProfielen = {
       ervaringMet: ['Epilepsie', 'Autisme', 'Gedragsstoornis', 'Beademing'],
       leerbereidheid: 'Ik sta open om op eigen kosten trainingen te volgen die nodig zijn voor jouw zorg. Zoals bijv. tracheacanulezorg.',
     },
+    registraties: {
+      professioneel: [
+        { label: 'AGB', waarde: '34237362', link: true },
+        { label: 'KvK', waarde: '34237362', link: true },
+        { label: 'VOG', waarde: 'VOG NP', link: true },
+        { label: 'SKJ', waarde: '34237362', link: true },
+        { label: 'BIG', waarde: null, tooltip: 'BIG-registratie is verplicht voor bepaalde beroepen in de zorg.' },
+      ],
+      beschiktOver: ['Privacybeleid (conform AVG)', 'Veiligheidsprotocol', 'Calamiteitenprotocol'],
+      aangeslotenBij: ['Klachtenregeling', 'V&VN', 'ZZP\'er in de Zorg'],
+      verzekeringen: ['Beroepsaansprakelijkheid'],
+    },
   },
 }
 
@@ -1193,3 +1337,90 @@ export const zorgverlenerProfielen = {
 export function getZorgverlenerProfiel(id) {
   return zorgverlenerProfielen[id] || defaultProfiel
 }
+
+/* ---- Talen instellingen ---- */
+export const talenInstellingen = [
+  // Populaire talen (tonen op hoofdscherm)
+  { id: 'nl', label: 'Nederlands', enabled: true, popular: true, level: 'vloeiend' },
+  { id: 'en', label: 'Engels', enabled: false, popular: true, level: null },
+  { id: 'de', label: 'Duits', enabled: false, popular: true, level: null },
+  { id: 'fr', label: 'Frans', enabled: false, popular: true, level: null },
+  { id: 'ar', label: 'Arabisch', enabled: false, popular: true, level: null },
+  { id: 'tr', label: 'Turks', enabled: false, popular: true, level: null },
+  { id: 'es', label: 'Spaans', enabled: false, popular: true, level: null },
+  { id: 'pap', label: 'Papiaments', enabled: false, popular: true, level: null },
+  { id: 'fy', label: 'Fries', enabled: false, popular: true, level: null },
+  { id: 'pl', label: 'Pools', enabled: false, popular: true, level: null },
+  // Overige talen (alleen via zoekscherm)
+  { id: 'ber', label: 'Berbers', enabled: false, popular: false, level: null },
+  { id: 'bg', label: 'Bulgaars', enabled: false, popular: false, level: null },
+  { id: 'zh', label: 'Chinees (Mandarijn)', enabled: false, popular: false, level: null },
+  { id: 'da', label: 'Deens', enabled: false, popular: false, level: null },
+  { id: 'fi', label: 'Fins', enabled: false, popular: false, level: null },
+  { id: 'el', label: 'Grieks', enabled: false, popular: false, level: null },
+  { id: 'he', label: 'Hebreeuws', enabled: false, popular: false, level: null },
+  { id: 'hi', label: 'Hindi', enabled: false, popular: false, level: null },
+  { id: 'hu', label: 'Hongaars', enabled: false, popular: false, level: null },
+  { id: 'id', label: 'Indonesisch', enabled: false, popular: false, level: null },
+  { id: 'it', label: 'Italiaans', enabled: false, popular: false, level: null },
+  { id: 'ja', label: 'Japans', enabled: false, popular: false, level: null },
+  { id: 'ko', label: 'Koreaans', enabled: false, popular: false, level: null },
+  { id: 'ku', label: 'Koerdisch', enabled: false, popular: false, level: null },
+  { id: 'no', label: 'Noors', enabled: false, popular: false, level: null },
+  { id: 'uk', label: 'Oekraïens', enabled: false, popular: false, level: null },
+  { id: 'fa', label: 'Perzisch (Farsi)', enabled: false, popular: false, level: null },
+  { id: 'pt', label: 'Portugees', enabled: false, popular: false, level: null },
+  { id: 'ro', label: 'Roemeens', enabled: false, popular: false, level: null },
+  { id: 'ru', label: 'Russisch', enabled: false, popular: false, level: null },
+  { id: 'sr', label: 'Servisch', enabled: false, popular: false, level: null },
+  { id: 'so', label: 'Somalisch', enabled: false, popular: false, level: null },
+  { id: 'tl', label: 'Tagalog', enabled: false, popular: false, level: null },
+  { id: 'ta', label: 'Tamil', enabled: false, popular: false, level: null },
+  { id: 'th', label: 'Thai', enabled: false, popular: false, level: null },
+  { id: 'ti', label: 'Tigrinya', enabled: false, popular: false, level: null },
+  { id: 'ur', label: 'Urdu', enabled: false, popular: false, level: null },
+  { id: 'vi', label: 'Vietnamees', enabled: false, popular: false, level: null },
+  { id: 'sv', label: 'Zweeds', enabled: false, popular: false, level: null },
+]
+
+/* ---- Goed om te weten (Profiel) ---- */
+export const goedOmTeWetenInstellingen = [
+  {
+    id: 'praktisch',
+    title: 'Praktisch',
+    items: [
+      { id: 'pr-1', label: 'Rijbewijs', enabled: true },
+      { id: 'pr-2', label: 'Auto beschikbaar', enabled: false },
+      { id: 'pr-3', label: 'BHV/EHBO-diploma', enabled: true },
+      { id: 'pr-4', label: 'Kan tillen', enabled: false },
+    ],
+  },
+  {
+    id: 'persoonlijk',
+    title: 'Persoonlijk',
+    items: [
+      { id: 'pe-1', label: 'Rookt niet', enabled: true },
+      { id: 'pe-2', label: 'Huisdieren thuis', enabled: false },
+      { id: 'pe-3', label: 'Vegetarisch/veganistisch koken', enabled: false },
+    ],
+  },
+  {
+    id: 'overig',
+    title: 'Overig',
+    items: [
+      { id: 'ov-1', label: 'Flexibel inzetbaar', enabled: false },
+      { id: 'ov-2', label: 'Overnachting mogelijk', enabled: false },
+    ],
+  },
+]
+
+export const locatiesInstellingen = [
+  { id: 1, postcode: '1015 BA', straal: 15 },
+]
+
+export const tariefVoorwaardenInstellingen = [
+  { id: 'tv-1', label: "Pgb's met lagere maximale tarieven", enabled: true },
+  { id: 'tv-2', label: 'Zorgtrajecten van minimaal 3 maanden', enabled: true },
+  { id: 'tv-3', label: 'Meerdere uren per week (10+ uur)', enabled: false },
+  { id: 'tv-4', label: 'Lichte ondersteuning (geen zware fysieke zorg)', enabled: false },
+]

@@ -79,12 +79,19 @@ App.jsx (wrapped in PasswordGate)
 │   └── BudgetOverzicht.jsx -> separate CSS, onBack callback
 │       └── BudgetDetail.jsx -> separate CSS, onBack callback
 ├── ProfielInstellingen.jsx -> overlay, settings hub (avatar click)
-├── Profiel.jsx             -> overlay, "Over mij" personal info
+├── Profiel.jsx             -> overlay, "Over mij" personal info + vindbaar toggle
+├── ZorgverlenerProfiel.jsx -> overlay (PROFIEL_PREVIEW), preview of own profile as others see it
 ├── Zorgcategorieen.jsx     -> overlay, toggle-based care category selection
 ├── HelpInfo.jsx            -> overlay, help & info page
 ├── Sjablonen.jsx           -> overlay, care templates management
 ├── Notificaties.jsx        -> overlay, notifications & to-do items
 ├── NotificatieInstellingen.jsx -> overlay, notification settings
+├── Beschikbaarheid.jsx     -> overlay, availability settings (VasteBeschikbaarheid + Uitzonderingen)
+├── MijnTalen.jsx           -> overlay, language selection
+├── GoedOmTeWeten.jsx       -> overlay, "good to know" profile section editor
+├── CvBewerken.jsx          -> overlay, CV/experience editor
+├── RegistratiesBewerken.jsx -> overlay, professional registrations editor
+├── MijnLocaties.jsx        -> overlay, service area/location settings
 └── Tour.jsx                -> onboarding walkthrough (standalone)
 ```
 
@@ -111,7 +118,7 @@ Admin.jsx uses `openSubPage`/`closeSubPage` helpers for its three sub-pages (Dow
 | DownloadZorglogs page | Not present | Sub-page of Admin (accessible from ZorglogsTab and OverzichtenTab) |
 | AlleVerzoeken page | Not present | Sub-page of Home (all care requests) |
 | Home sub-pages | NodigUit | NodigUit, AlleVerzoeken |
-| Unique routes | — | `PAGES.BESCHIKBAARHEID` (overlay), `SUB_PAGES.ALLE_VERZOEKEN`, `SUB_PAGES.OPENSTAANDE_VERZOEKEN` |
+| Unique routes | — | `PAGES.BESCHIKBAARHEID`, `PROFIEL_PREVIEW`, `MIJN_TALEN`, `GOED_OM_TE_WETEN`, `CV_BEWERKEN`, `REGISTRATIES_BEWERKEN`, `MIJN_LOCATIES` (overlays); `SUB_PAGES.ALLE_VERZOEKEN`, `OPENSTAANDE_VERZOEKEN` |
 | Git remote | `Carepool-demo/carepool-app` | `Carepool-demo/carepool-zorgverlener` |
 
 ## Where Code Lives
@@ -127,7 +134,7 @@ Key app-specific files in `src/`:
 - `data/dummyData.js` — All centralized dummy data (app-specific version with `openstaandeVerzoeken`, `alleVerzoeken`, etc.)
 - `pages/` — App-specific pages (Home, Carepool, Agenda, Profiel, Beschikbaarheid, AlleVerzoeken, DownloadZorglogs, Tour, etc.)
 
-Unique to this app (not in carepool-app): `AlleVerzoeken`, `DownloadZorglogs`, `VasteBeschikbaarheid`, `Uitzonderingen`.
+Unique to this app (not in carepool-app): `AlleVerzoeken`, `DownloadZorglogs`, `VasteBeschikbaarheid`, `Uitzonderingen`, `Beschikbaarheid`, `MijnTalen`, `GoedOmTeWeten`, `CvBewerken`, `RegistratiesBewerken`, `MijnLocaties`, `Profiel` (app-specific version with vindbaar toggle).
 
 Run `ls src/pages/` and `ls ../shared/pages/` to see the full current list.
 
@@ -138,7 +145,7 @@ Run `ls src/pages/` and `ls ../shared/pages/` to see the full current list.
 - **Route constants** — All page and sub-page identifiers are in `constants/routes.js`. Use `PAGES.HOME` instead of `'home'`, `SUB_PAGES.ZOEKEN` instead of `'zoeken'`, etc.
 - **CSS naming** — BEM: `.block__element--modifier`. Short prefixes for long page names (e.g. `.pi__` for ProfielInstellingen, `.zorgcat__` for Zorgcategorieen, `.zvp__` for ZorgverlenerProfiel).
 - **Tab components** — Admin tabs are separate files that rely on Admin.css being loaded by Admin.jsx.
-- **Sub-page header pattern** — Flexbox with `align-items: flex-end`, `gap: var(--space-3)`, height 80px. 40px circular back button. Title with `line-height: 40px`.
+- **Sub-page header pattern** — Flexbox with `align-items: flex-end`, `gap: var(--space-3)`, height 80px, `padding: 0 var(--space-5) var(--space-4)`, `background: var(--color-surface-secondary)`, `border-bottom: 1px solid var(--color-border)`, sticky top. Back button: 24x24px, `margin-bottom: 2px`, no background/border. Title: `font-size: var(--font-size-lg)` (18px), `font-weight: 700`. Reference: ProfielInstellingen.css.
 - **Aria** — Interactive elements have `aria-label` attributes in Dutch.
 - **Unimplemented features** — Use `onClick={() => alert('Feature name (nog niet geimplementeerd)')}` as placeholder.
 - **PasswordGate** — Demo password gate wraps the app (sessionStorage-based, password: `demo2026`).
