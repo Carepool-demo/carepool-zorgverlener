@@ -59,11 +59,170 @@
   font-weight: 400;
   color: var(--color-text-secondary);
   margin: 0 0 var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 .reg-edit__section-label + .reg-edit__section-label,
 .reg-edit__card + .reg-edit__section-label {
   margin-top: var(--space-8);
+}
+
+/* ---- Type zorgverlener ---- */
+.reg-edit__type-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.reg-edit__type-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-white);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: border-color 0.2s, background-color 0.2s;
+  width: 100%;
+}
+
+.reg-edit__type-card--active {
+  border-color: var(--color-cta);
+  background: #F8F5FF;
+}
+
+.reg-edit__type-checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: border-color 0.2s, background-color 0.2s;
+  color: var(--color-white);
+}
+
+.reg-edit__type-checkbox--active {
+  border-color: var(--color-cta);
+  background: var(--color-cta);
+}
+
+.reg-edit__type-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.reg-edit__type-label {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.reg-edit__type-desc {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* ---- Info card ---- */
+.reg-edit__type-info {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: #F0EBFF;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-8);
+  align-items: flex-start;
+}
+
+.reg-edit__type-info > svg {
+  flex-shrink: 0;
+  color: var(--color-cta);
+  margin-top: 2px;
+}
+
+.reg-edit__type-info-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.reg-edit__type-info-text p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.reg-edit__type-info-text strong {
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.reg-edit__type-info-disclaimer {
+  font-size: var(--font-size-xs);
+  font-style: italic;
+  color: var(--color-text-tertiary);
+  margin-top: var(--space-1);
+}
+
+/* ---- Optional badge ---- */
+.reg-edit__optional-badge {
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 2px var(--space-2);
+  white-space: nowrap;
+}
+
+/* ---- Show optional button ---- */
+.reg-edit__show-optional {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-4);
+  margin-top: var(--space-6);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  background: none;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-cta);
+  font-family: inherit;
+  transition: background-color 0.15s;
+}
+
+.reg-edit__show-optional:active {
+  background: var(--color-white);
+}
+
+.reg-edit__show-optional svg {
+  color: var(--color-cta);
+}
+
+/* ---- Optional section ---- */
+.reg-edit__optional-section {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px dashed var(--color-border);
 }
 
 /* ---- Card ---- */

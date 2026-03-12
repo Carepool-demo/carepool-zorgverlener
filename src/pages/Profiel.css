@@ -141,11 +141,28 @@
   color: var(--color-text-primary);
   line-height: 1.4;
   letter-spacing: -0.1px;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+.profiel__bio-more {
+  display: inline;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.profiel__bio-more svg {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  transition: transform 0.2s;
+}
+
+.profiel__bio-more--expanded svg {
+  transform: rotate(180deg);
 }
 
 .profiel__edit-btn {

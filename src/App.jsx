@@ -22,6 +22,7 @@ import MijnLocaties from './pages/MijnLocaties'
 import Zoekprofiel from './pages/Zoekprofiel'
 import MijnTarieven from './pages/MijnTarieven'
 import ZorgverlenerProfiel from '@shared/pages/ZorgverlenerProfiel'
+import MeldingMaken from '@shared/pages/MeldingMaken'
 import BottomNav from '@shared/components/BottomNav'
 import PasswordGate from '@shared/components/PasswordGate'
 import Toast from '@shared/components/Toast'
@@ -116,7 +117,8 @@ function App() {
           {activePage === PAGES.MIJN_LOCATIES && <MijnLocaties onBack={handleBack} locaties={locatiesData} onLocatiesChange={setLocatiesData} />}
           {activePage === PAGES.ZOEKPROFIEL && <Zoekprofiel onBack={handleBack} onNavigate={handleNavigate} />}
           {activePage === PAGES.MIJN_TARIEVEN && <MijnTarieven onBack={handleBack} isBespreekbaar={isTariefBespreekbaar} onBespreekbaarChange={setIsTariefBespreekbaar} voorwaarden={tariefVoorwaarden} onVoorwaardenChange={setTariefVoorwaarden} />}
-          {activePage === PAGES.PROFIEL_PREVIEW && <ZorgverlenerProfiel zorgverlener={profielData} onBack={handleBack} isPreview isVindbaar={isVindbaar} />}
+          {activePage === PAGES.PROFIEL_PREVIEW && <ZorgverlenerProfiel zorgverlener={profielData} onBack={handleBack} onNavigate={handleNavigate} isPreview isVindbaar={isVindbaar} />}
+          {activePage === PAGES.MELDING_MAKEN && <MeldingMaken onBack={handleBack} />}
         </div>
         {showBottomNav && <BottomNav activeTab={activePage} onTabChange={handleTabChange} berichtenBadge={berichtenBadge} />}
         <Toast />

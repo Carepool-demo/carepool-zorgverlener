@@ -25,6 +25,7 @@ export const PAGES = {
   MIJN_LOCATIES: 'mijnLocaties',
   ZOEKPROFIEL: 'zoekprofiel',
   MIJN_TARIEVEN: 'mijnTarieven',
+  MELDING_MAKEN: 'meldingMaken',
 }
 
 export const SUB_PAGES = {
@@ -67,4 +68,5 @@ export const OVERLAY_PAGES = [
   PAGES.MIJN_LOCATIES,
   PAGES.ZOEKPROFIEL,
   PAGES.MIJN_TARIEVEN,
+  PAGES.MELDING_MAKEN,
 ]

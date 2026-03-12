@@ -156,6 +156,25 @@
   color: var(--color-text-secondary);
 }
 
+.zvp__hero-tags {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.zvp__hero-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
 /* ---- CTA Row ---- */
 .zvp__cta-row {
   display: flex;
@@ -227,43 +246,33 @@
   color: var(--color-text-primary);
   line-height: 1.5;
   margin-bottom: var(--space-3);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
-.zvp__about-text--expanded {
-  -webkit-line-clamp: unset;
-  display: block;
+.zvp__about-more {
+  display: inline;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.zvp__about-more svg {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  transition: transform 0.2s;
+}
+
+.zvp__about-more--expanded svg {
+  transform: rotate(180deg);
 }
 
 .zvp__about-meta {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
-}
-
-.zvp__about-toggle {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-}
-
-.zvp__about-toggle svg {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.2s;
-}
-
-.zvp__about-toggle--expanded svg {
-  transform: rotate(180deg);
 }
 
 /* ---- Audio Card ---- */
@@ -820,4 +829,61 @@
   border: none;
   cursor: pointer;
   margin-top: var(--space-2);
+}
+
+/* ---- Meer opties bottom sheet ---- */
+.zvp__meer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: zvp-overlay-in 0.15s ease;
+}
+
+.zvp__meer-menu {
+  background: var(--color-white);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  width: 100%;
+  max-width: 393px;
+  padding: var(--space-2) 0 var(--space-6);
+  animation: zvp-meer-slide-up 0.25s ease;
+}
+
+@keyframes zvp-meer-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.zvp__meer-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  text-align: left;
+  transition: background-color 0.15s;
+}
+
+.zvp__meer-item:hover {
+  background: var(--color-surface-secondary);
+}
+
+.zvp__meer-item svg {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+.zvp__meer-divider {
+  height: 1px;
+  background: var(--color-border);
 }

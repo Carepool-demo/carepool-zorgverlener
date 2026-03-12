@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { showToast } from '@shared/components/Toast'
-import { BackArrowIcon, ChevronRightIcon } from '@shared/components/Icons'
+import { BackArrowIcon, ChevronRightIcon, ChevronDownIcon } from '@shared/components/Icons'
 import { profielData } from '../data/dummyData'
 import { PAGES } from '../constants/routes'
 import './Profiel.css'
@@ -127,6 +127,7 @@ function EyeIcon() {
 
 function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar, talenCount }) {
   const profile = profielData
+  const [showFullBio, setShowFullBio] = useState(false)
   const [showVindbaarInfo, setShowVindbaarInfo] = useState(false)
   const [showVindbaarToggle, setShowVindbaarToggle] = useState(false)
 
@@ -185,7 +186,12 @@ function Profiel({ onBack, onNavigate, isVindbaar, onToggleVindbaar, talenCount 
       <div className="profiel__bio-area">
         <div className="profiel__bio-card">
           <h3 className="profiel__bio-title">Over mij</h3>
-          <p className="profiel__bio-text">{profile.bio}</p>
+          <p className="profiel__bio-text">
+            {showFullBio ? profile.bio : profile.bio.length > 108 ? profile.bio.slice(0, 108).trimEnd() + '…' : profile.bio}
+            {profile.bio.length > 108 && (
+              <button className={`profiel__bio-more${showFullBio ? ' profiel__bio-more--expanded' : ''}`} onClick={() => setShowFullBio(!showFullBio)}>{showFullBio ? '\u00A0Minder' : '\u00A0Meer'} <ChevronDownIcon /></button>
+            )}
+          </p>
           <button
             className="profiel__edit-btn"
             onClick={() => alert('Bewerk over mij (nog niet geimplementeerd)')}

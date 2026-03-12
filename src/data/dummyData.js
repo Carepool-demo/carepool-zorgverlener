@@ -1175,6 +1175,7 @@ export const zoekenResultaten = [
 const defaultProfiel = {
   geslacht: 'Vrouw',
   locatie: 'Amsterdam',
+  types: ['Formeel'],
   bio: 'Ik ben een toegewijde zorgverlener met passie voor het helpen van anderen.',
   zorgvragers: 3,
   lidSinds: '1-6-2025',
@@ -1209,6 +1210,7 @@ const defaultProfiel = {
     leerbereidheid: 'Ik sta open om op eigen kosten trainingen te volgen die nodig zijn voor jouw zorg. Denk aan bijv. tilcursus of medicatiebeheer.',
   },
   registraties: {
+    typeZorgverlener: ['formeel'],
     professioneel: [
       { label: 'AGB', waarde: '12345678', link: true },
       { label: 'KvK', waarde: '87654321', link: true },
@@ -1226,6 +1228,7 @@ export const zorgverlenerProfielen = {
     geslacht: 'Vrouw',
     leeftijd: 35,
     locatie: 'Amsterdam',
+    types: ['Formeel', 'Informeel'],
     bio: 'Ik ben Nisha, 35 jaar, een betrokken en betrouwbare zorgverleenster met ruime levenservaring. Ik bied persoonlijke verzorging en ondersteuning met aandacht, respect en rust. Het welzijn, de veiligheid en het vertrouwen van de cliënt staan bij mij altijd centraal.',
     zorgvragers: 5,
     lidSinds: '1-3-2025',

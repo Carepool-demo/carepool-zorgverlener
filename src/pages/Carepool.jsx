@@ -67,6 +67,7 @@ function Carepool({ initialSubPage = null, onNavigate, onSubPageChange, notifica
     return (
       <ZorgverlenerProfiel
         onBack={() => setSubPage(SUB_PAGES.ZOEKEN)}
+        onNavigate={onNavigate}
         zorgverlener={selectedZorgverlener}
       />
     )

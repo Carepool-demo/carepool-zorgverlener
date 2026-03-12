@@ -1,6 +1,6 @@
 import { showToast } from '../components/Toast';
 import { useState } from 'react'
-import { BackArrowIcon, ChevronRightIcon, ChevronDownIcon, LocationOutlineIcon, CertificateIcon } from '../components/Icons'
+import { BackArrowIcon, ChevronRightIcon, ChevronDownIcon, LocationOutlineIcon, CertificateIcon, AlertTriangleIcon, InformationCircleIcon } from '../components/Icons'
 import { getZorgverlenerProfiel } from '@app/data/dummyData'
 import './ZorgverlenerProfiel.css'
 
@@ -149,11 +149,12 @@ function EyePreviewIcon() {
 
 /* ---- Main Component ---- */
 
-function ZorgverlenerProfiel({ onBack, zorgverlener, isPreview, isVindbaar }) {
+function ZorgverlenerProfiel({ onBack, onNavigate, zorgverlener, isPreview, isVindbaar }) {
   const [showCV, setShowCV] = useState(false)
   const [showRegistraties, setShowRegistraties] = useState(false)
   const [showFullBio, setShowFullBio] = useState(false)
   const [showTariefPopup, setShowTariefPopup] = useState(false)
+  const [showMeerMenu, setShowMeerMenu] = useState(false)
   const profiel = getZorgverlenerProfiel(zorgverlener.id)
   const voornaam = zorgverlener.name.split(' ')[0]
 
@@ -396,6 +397,13 @@ function ZorgverlenerProfiel({ onBack, zorgverlener, isPreview, isVindbaar }) {
             </button>
           </div>
           <p className="zvp__subtitle">{[profiel.geslacht, profiel.leeftijd || zorgverlener.age, profiel.locatie?.split(',')[0]].filter(Boolean).join(', ')}</p>
+          {profiel.types?.length > 0 && (
+            <div className="zvp__hero-tags">
+              {profiel.types.map(type => (
+                <span key={type} className="zvp__hero-tag">{type}</span>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* CTA row */}
@@ -404,7 +412,7 @@ function ZorgverlenerProfiel({ onBack, zorgverlener, isPreview, isVindbaar }) {
             <MessageIcon />
             Bericht sturen
           </button>
-          <button className="zvp__more-btn" onClick={() => showToast('Menu (nog niet geïmplementeerd)')} aria-label="Meer opties">
+          <button className="zvp__more-btn" onClick={() => setShowMeerMenu(true)} aria-label="Meer opties">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="4" r="1.5" fill="currentColor"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/><circle cx="10" cy="16" r="1.5" fill="currentColor"/></svg>
           </button>
         </div>
@@ -412,11 +420,13 @@ function ZorgverlenerProfiel({ onBack, zorgverlener, isPreview, isVindbaar }) {
         {/* About card */}
         <div className={`zvp__about-card${profiel.audioIntro ? ' zvp__about-card--has-audio' : ''}`}>
           <h3 className="zvp__about-title">Over {voornaam}</h3>
-          <p className={`zvp__about-text${showFullBio ? ' zvp__about-text--expanded' : ''}`}>{profiel.bio}</p>
-          <button className={`zvp__about-toggle${showFullBio ? ' zvp__about-toggle--expanded' : ''}`} onClick={() => setShowFullBio(!showFullBio)}>
-            <span>{profiel.zorgvragers} Zorgvragers &bull; Lid sinds {profiel.lidSinds}</span>
-            <ChevronDownIcon />
-          </button>
+          <p className="zvp__about-text">
+            {showFullBio ? profiel.bio : profiel.bio.length > 108 ? profiel.bio.slice(0, 108).trimEnd() + '…' : profiel.bio}
+            {profiel.bio.length > 108 && (
+              <button className={`zvp__about-more${showFullBio ? ' zvp__about-more--expanded' : ''}`} onClick={() => setShowFullBio(!showFullBio)}>{showFullBio ? '\u00A0Minder' : '\u00A0Meer'} <ChevronDownIcon /></button>
+            )}
+          </p>
+          <p className="zvp__about-meta">{profiel.zorgvragers} Zorgvragers &bull; Lid sinds {profiel.lidSinds}</p>
         </div>
 
         {/* Audio player */}
@@ -597,6 +607,23 @@ function ZorgverlenerProfiel({ onBack, zorgverlener, isPreview, isVindbaar }) {
               ))}
             </ul>
             <button className="zvp__popup-btn" onClick={() => setShowTariefPopup(false)}>Oké</button>
+          </div>
+        </div>
+      )}
+
+      {/* Meer opties bottom sheet */}
+      {showMeerMenu && (
+        <div className="zvp__meer-overlay" onClick={() => setShowMeerMenu(false)}>
+          <div className="zvp__meer-menu" onClick={(e) => e.stopPropagation()}>
+            <button className="zvp__meer-item" onClick={() => { setShowMeerMenu(false); onNavigate?.('meldingMaken') }}>
+              <AlertTriangleIcon size={24} />
+              <span>Melding maken</span>
+            </button>
+            <div className="zvp__meer-divider" />
+            <button className="zvp__meer-item" onClick={() => { setShowMeerMenu(false); onNavigate?.('helpInfo') }}>
+              <InformationCircleIcon size={24} />
+              <span>Help & info</span>
+            </button>
           </div>
         </div>
       )}
