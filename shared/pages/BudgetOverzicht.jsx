@@ -40,11 +40,11 @@ function BudgetOverzicht({ onBack }) {
 
   return (
     <div className="bo">
-      <header className="bo__header">
-        <button className="bo__back-btn" onClick={onBack} aria-label="Terug naar administratie">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug naar administratie">
           <BackArrowIcon />
         </button>
-        <h1 className="bo__title">Budgetoverzicht</h1>
+        <h1 className="sub-header__title">Budgetoverzicht</h1>
       </header>
 
       <div className="bo__toolbar">

@@ -7,11 +7,11 @@ function AlleVerzoeken({ onBack }) {
   return (
     <div className="alle-verzoeken">
       {/* Header */}
-      <header className="alle-verzoeken__header">
-        <button className="alle-verzoeken__back" onClick={onBack} aria-label="Terug">
+      <header className="sub-header alle-verzoeken__header">
+        <button className="sub-header__back-btn alle-verzoeken__back" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="alle-verzoeken__title">Openstaande verzoeken</h1>
+        <h1 className="sub-header__title alle-verzoeken__title">Openstaande verzoeken</h1>
         <div className="alle-verzoeken__badge">{alleVerzoeken.length}</div>
       </header>
 

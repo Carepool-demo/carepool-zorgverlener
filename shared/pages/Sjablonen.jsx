@@ -135,11 +135,11 @@ function SjabloonAanpassen({ onBack }) {
 
   return (
     <div className="sja">
-      <header className="sja__header">
-        <button className="sja__back-btn" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="sja__title">Sjabloon aanpassen</h1>
+        <h1 className="sub-header__title">Sjabloon aanpassen</h1>
       </header>
 
       <div className="sja__content">
@@ -280,11 +280,11 @@ function Sjablonen({ onBack }) {
   return (
     <div className="sjab">
       {/* Header */}
-      <header className="sjab__header">
-        <button className="sjab__back-btn" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="sjab__title">Sjablonen</h1>
+        <h1 className="sub-header__title">Sjablonen</h1>
         <button className="sjab__add-btn" aria-label="Sjabloon toevoegen" onClick={() => showToast('Nieuw sjabloon (nog niet geïmplementeerd)')}>
           <PlusIcon />
         </button>

@@ -2,34 +2,9 @@
    Nieuw Bericht (New Message) Page
    ============================================ */
 
-.nieuw-bericht__header {
-  display: flex;
-  align-items: flex-end;
-  gap: var(--space-3);
-  height: 80px;
-  padding: 0 var(--space-5) var(--space-4);
-  border-bottom: 1px solid var(--color-border);
+/* ---- Header override ---- */
+.nieuw-bericht .sub-header {
   background: var(--color-white);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.nieuw-bericht__back {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  margin-bottom: 2px;
-  color: var(--color-text-primary);
-}
-
-.nieuw-bericht__title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--color-text-primary);
-  letter-spacing: -0.3px;
 }
 
 /* ---- Search ---- */

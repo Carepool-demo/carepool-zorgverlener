@@ -7,37 +7,9 @@
   min-height: 100%;
 }
 
-/* ---- Header ---- */
-.bd__header {
-  display: flex;
-  align-items: flex-end;
-  gap: var(--space-3);
-  height: 80px;
-  padding: 0 var(--space-5);
-  padding-bottom: var(--space-4);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.bd__back-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  margin-bottom: 2px;
-  border-radius: var(--radius-full);
-  color: var(--color-text-primary);
-  transition: background-color 0.15s;
-}
-
-.bd__back-btn:hover {
-  background-color: var(--color-focus-light);
-}
-
-.bd__title {
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  color: var(--color-text-primary);
+/* ---- Header override ---- */
+.bd .sub-header {
+  background: var(--color-white);
 }
 
 /* ---- Budget info hero ---- */

@@ -1,41 +1,6 @@
 import { useState } from 'react'
-import { BackArrowIcon, PlusIcon, ChevronRightIcon } from '@shared/components/Icons'
+import { BackArrowIcon, PlusIcon, ChevronRightIcon, CloseSmallIcon, CheckIcon, InfoIcon, ChevronDownIcon } from '@shared/components/Icons'
 import './RegistratiesBewerken.css'
-
-/* ---- Small icons ---- */
-function CloseSmallIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  )
-}
-
-function CheckIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fillRule="evenodd" clipRule="evenodd" d="M19.5179 5.95748C19.8175 6.24349 19.8285 6.71823 19.5425 7.01786L9.04252 18.0179C8.90308 18.1639 8.71064 18.2476 8.50872 18.25C8.3068 18.2523 8.11246 18.1731 7.96967 18.0303L4.46967 14.5303C4.17678 14.2374 4.17678 13.7626 4.46967 13.4697C4.76256 13.1768 5.23744 13.1768 5.53033 13.4697L8.48752 16.4269L18.4575 5.98214C18.7435 5.68252 19.2182 5.67148 19.5179 5.95748Z" fill="currentColor"/>
-    </svg>
-  )
-}
-
-function InfoIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M12 16V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <circle cx="12" cy="8" r="1" fill="currentColor"/>
-    </svg>
-  )
-}
-
-function ChevronDownIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  )
-}
 
 /* ---- Type zorgverlener config ---- */
 const TYPE_ZORGVERLENER = [
@@ -169,16 +134,6 @@ export default function RegistratiesBewerken({ onBack, registraties, onRegistrat
   const selectedTypes = reg.typeZorgverlener || []
   const relevance = getSectionRelevance(selectedTypes)
 
-  // Toggle type selection
-  const toggleType = (typeKey) => {
-    const newTypes = selectedTypes.includes(typeKey)
-      ? selectedTypes.filter(t => t !== typeKey)
-      : [...selectedTypes, typeKey]
-    onRegistratiesChange({ ...reg, typeZorgverlener: newTypes })
-    // Reset optional sections visibility when changing types
-    setShowOptionalSections(false)
-  }
-
   // Get the info texts for selected types
   const selectedTypeInfos = TYPE_ZORGVERLENER.filter(t => selectedTypes.includes(t.key))
 
@@ -251,40 +206,17 @@ export default function RegistratiesBewerken({ onBack, registraties, onRegistrat
 
   return (
     <div className="reg-edit">
-      <header className="reg-edit__header">
-        <button className="reg-edit__back" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="reg-edit__title">Registraties</h1>
+        <h1 className="sub-header__title">Registraties</h1>
       </header>
 
       <div className="reg-edit__body">
         <p className="reg-edit__intro">
-          Geef aan welk type zorgverlener je bent. Op basis daarvan laten we zien welke registraties voor jou relevant zijn.
+          Op basis van je type zorgverlener (in te stellen bij Tarieven) laten we zien welke registraties voor jou relevant zijn.
         </p>
-
-        {/* Type zorgverlener keuze */}
-        <h3 className="reg-edit__section-label">Type zorgverlener</h3>
-        <div className="reg-edit__type-list">
-          {TYPE_ZORGVERLENER.map(type => {
-            const active = selectedTypes.includes(type.key)
-            return (
-              <button
-                key={type.key}
-                className={`reg-edit__type-card${active ? ' reg-edit__type-card--active' : ''}`}
-                onClick={() => toggleType(type.key)}
-              >
-                <span className={`reg-edit__type-checkbox${active ? ' reg-edit__type-checkbox--active' : ''}`}>
-                  {active && <CheckIcon />}
-                </span>
-                <span className="reg-edit__type-content">
-                  <span className="reg-edit__type-label">{type.label}</span>
-                  <span className="reg-edit__type-desc">{type.description}</span>
-                </span>
-              </button>
-            )
-          })}
-        </div>
 
         {/* Info card per geselecteerd type */}
         {selectedTypeInfos.length > 0 && (
@@ -294,7 +226,6 @@ export default function RegistratiesBewerken({ onBack, registraties, onRegistrat
               {selectedTypeInfos.map(t => (
                 <p key={t.key}><strong>{t.label}:</strong> {t.info}</p>
               ))}
-              <p className="reg-edit__type-info-disclaimer">Let op: exacte eisen kunnen verschillen per gemeente en zorgverzekeraar. Controleer altijd de voorwaarden die voor jouw situatie gelden.</p>
             </div>
           </div>
         )}

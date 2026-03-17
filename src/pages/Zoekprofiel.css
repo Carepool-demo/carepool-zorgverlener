@@ -7,38 +7,6 @@
   background: var(--color-surface-secondary);
 }
 
-/* ---- Header ---- */
-.zp__header {
-  display: flex;
-  align-items: flex-end;
-  gap: var(--space-3);
-  height: 80px;
-  padding: 0 var(--space-5) var(--space-4);
-  background: var(--color-surface-secondary);
-  border-bottom: 1px solid var(--color-border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.zp__back {
-  width: 24px;
-  height: 24px;
-  margin-bottom: 2px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-secondary);
-  flex-shrink: 0;
-}
-
-.zp__title {
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  color: var(--color-text-primary);
-}
-
 /* ---- Intro ---- */
 .zp__intro {
   padding: var(--space-4) var(--space-5) 0;
@@ -207,29 +175,58 @@
   cursor: pointer;
 }
 
-/* ---- Beschikbaarheid button ---- */
-.zp__beschikbaarheid-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ---- Week availability grid ---- */
+.zp__week-grid {
+  display: grid;
+  grid-template-columns: 32px repeat(4, 1fr);
   gap: var(--space-2);
-  width: 100%;
-  height: 40px;
-  padding: 0 var(--space-5);
-  background: var(--color-white);
-  color: var(--color-cta);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  font-family: var(--font-family);
-  border: 1px solid var(--color-border);
-  cursor: pointer;
+  align-items: center;
 }
 
-.zp__beschikbaarheid-btn svg {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+.zp__week-corner {
+  /* empty top-left cell */
+}
+
+.zp__week-col-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  text-align: center;
+}
+
+.zp__week-col-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.zp__week-col-time {
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  line-height: 1.1;
+}
+
+.zp__week-day {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.zp__week-cell {
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  padding: 0;
+}
+
+.zp__week-cell--on {
+  background: var(--color-cta);
+  border-color: var(--color-cta);
 }
 
 .zp__divider {

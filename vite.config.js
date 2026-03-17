@@ -13,7 +13,7 @@ export default defineConfig({
   plugins: [react()],
   base: './',
   server: {
-    host: '127.0.0.1',
+    host: 'localhost',
     port: 5174,
     fs: {
       allow: ['..'],

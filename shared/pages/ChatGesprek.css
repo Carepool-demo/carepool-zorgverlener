@@ -9,41 +9,14 @@
   background-color: var(--color-surface-secondary);
 }
 
-/* ---- Header ---- */
-
-.chat-gesprek__header {
-  display: flex;
-  align-items: flex-end;
-  gap: var(--space-3);
-  height: 80px;
-  padding: 0 var(--space-5) var(--space-4);
-  border-bottom: 1px solid var(--color-border);
+/* ---- Header override ---- */
+.chat-gesprek .sub-header {
   background: var(--color-white);
 }
 
-.chat-gesprek__back {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  margin-bottom: 2px;
-  color: var(--color-text-primary);
-}
-
-.chat-gesprek__header-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--color-text-primary);
-  letter-spacing: -0.3px;
-}
-
-/* ---- Verzoek header (back + avatar + name + menu) ---- */
-
+/* ---- Verzoek header variant ---- */
 .chat-gesprek__header--verzoek {
-  border-bottom: 1px solid var(--color-border);
-  gap: var(--space-3);
-  background-color: var(--color-surface-secondary);
+  background: var(--color-surface-secondary);
 }
 
 .chat-gesprek__contact-avatar--small {

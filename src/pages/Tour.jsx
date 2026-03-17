@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { RocketIcon, PlayCircleIcon } from '@shared/components/Icons'
 import './Tour.css'
 
 /* ---- Tour step data ---- */
@@ -71,32 +72,6 @@ const STEPS = [
 ]
 
 const TOTAL_DOTS = 5 // Steps 1-5 have dots (step 0 has none)
-
-/* ---- Rocket icon for welcome screen (from Illustrations/Raket.svg) ---- */
-function RocketIcon() {
-  return (
-    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M24.3691 18.9617C26.6972 10.0896 34.1026 2.74543 42.9839 0.5C43.2657 10.7506 38.2779 21.2769 28.4615 25.3293" stroke="#6100FF" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M27.7274 11.0396C22.325 8.03015 17.2643 12.717 15.3242 17.6795C17.6954 14.5605 22.8756 13.7201 24.6266 17.8523" stroke="#6100FF" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M37.1541 20.0811C37.8571 24.6417 36.5041 29.4813 33.5426 33.0155C34.8393 29.9164 34.1296 25.2894 32.7168 23.5023" stroke="#6100FF" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M32.0565 14.577C33.572 15.6831 40.7287 7.3591 38.6726 6.23971C36.6165 5.12031 30.5409 13.4709 32.0565 14.577Z" stroke="#6100FF" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M23.8091 19.3042C16.0164 19.834 18.5676 25.0256 15.0059 28.334C15.9577 28.1712 18.6617 28.8123 19.5007 28.334C19.5671 30.6492 16.863 32.1143 15.0059 33.4961C22.0007 33.4961 26.5007 29.998 28.0872 25.5124" stroke="#6100FF" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M24.2422 19.334C26.6598 20.1677 28.2251 22.9546 27.6779 25.4558C28.0162 25.3661 28.3545 25.2797 28.6927 25.19" stroke="#6100FF" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M4.5 32.998C7.5 32.998 10.146 32.1753 12.5 29.498" stroke="#6100FF" strokeLinecap="round"/>
-      <path d="M0.5 41.498C8 38.998 13 34.498 13 34.498" stroke="#6100FF" strokeLinecap="round"/>
-    </svg>
-  )
-}
-
-/* ---- Video play button ---- */
-function PlayCircleIcon() {
-  return (
-    <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="48" cy="48" r="48" fill="white" fillOpacity="0.85"/>
-      <path d="M40 33L64 48L40 63V33Z" fill="#6100FF"/>
-    </svg>
-  )
-}
 
 const YOUTUBE_ID = 'iqHhl7Q_Ql8'
 

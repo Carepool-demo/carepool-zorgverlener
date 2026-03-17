@@ -111,11 +111,11 @@ function SvbDeclaratie({ onBack }) {
   return (
     <div className="svb">
       {/* Custom TopBar with back arrow */}
-      <header className="svb__top-bar">
-        <button className="svb__back-btn" onClick={onBack} aria-label="Terug naar administratie">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug naar administratie">
           <BackArrowIcon />
         </button>
-        <h1 className="svb__top-bar-title">SVB-declaratieoverzicht</h1>
+        <h1 className="sub-header__title">SVB-declaratieoverzicht</h1>
       </header>
 
       {/* Info banner */}

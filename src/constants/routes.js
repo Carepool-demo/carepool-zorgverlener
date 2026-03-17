@@ -35,6 +35,8 @@ export const SUB_PAGES = {
   ZOEKEN: 'zoeken',
   ZORGVERLENER_PROFIEL: 'zorgverlenerProfiel',
   NODIG_UIT: 'nodigUit',
+  OPGESLAGEN: 'opgeslagen',
+  VIND_ZORGVRAGERS: 'vindZorgvragers',
 
   // Home sub-pages
   ALLE_VERZOEKEN: 'alleVerzoeken',

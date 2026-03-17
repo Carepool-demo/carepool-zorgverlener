@@ -209,11 +209,11 @@ function NieuweAfspraak({ onBack, zorgCategorieen = [] }) {
     const enabledCats = getEnabledCategories()
     return (
       <div className="nieuwe-afspraak">
-        <header className="nieuwe-afspraak__header">
-          <button className="nieuwe-afspraak__back" onClick={handleBack} aria-label="Terug">
+        <header className="sub-header">
+          <button className="sub-header__back-btn" onClick={handleBack} aria-label="Terug">
             <BackArrowIcon />
           </button>
-          <h1 className="nieuwe-afspraak__title">Zorgcategorie kiezen</h1>
+          <h1 className="sub-header__title">Zorgcategorie kiezen</h1>
         </header>
 
         <div className="nieuwe-afspraak__body">
@@ -251,11 +251,11 @@ function NieuweAfspraak({ onBack, zorgCategorieen = [] }) {
     const diff = timeRangeTotal - editTotal
     return (
       <div className="nieuwe-afspraak">
-        <header className="nieuwe-afspraak__header">
-          <button className="nieuwe-afspraak__back" onClick={handleBack} aria-label="Terug">
+        <header className="sub-header">
+          <button className="sub-header__back-btn" onClick={handleBack} aria-label="Terug">
             <BackArrowIcon />
           </button>
-          <h1 className="nieuwe-afspraak__title">Tijdsduur aanpassen</h1>
+          <h1 className="sub-header__title">Tijdsduur aanpassen</h1>
         </header>
 
         <div className="nieuwe-afspraak__body">
@@ -301,11 +301,11 @@ function NieuweAfspraak({ onBack, zorgCategorieen = [] }) {
   if (step === 'select') {
     return (
       <div className="nieuwe-afspraak">
-        <header className="nieuwe-afspraak__header">
-          <button className="nieuwe-afspraak__back" onClick={handleBack} aria-label="Terug">
+        <header className="sub-header">
+          <button className="sub-header__back-btn" onClick={handleBack} aria-label="Terug">
             <BackArrowIcon />
           </button>
-          <h1 className="nieuwe-afspraak__title">Nieuwe afspraak</h1>
+          <h1 className="sub-header__title">Nieuwe afspraak</h1>
         </header>
 
         <div className="nieuwe-afspraak__body">
@@ -351,11 +351,11 @@ function NieuweAfspraak({ onBack, zorgCategorieen = [] }) {
   /* ---- Form step ---- */
   return (
     <div className="nieuwe-afspraak">
-      <header className="nieuwe-afspraak__header">
-        <button className="nieuwe-afspraak__back" onClick={handleBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={handleBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="nieuwe-afspraak__title">Nieuwe afspraak</h1>
+        <h1 className="sub-header__title">Nieuwe afspraak</h1>
       </header>
 
       <div className="nieuwe-afspraak__body nieuwe-afspraak__body--form">

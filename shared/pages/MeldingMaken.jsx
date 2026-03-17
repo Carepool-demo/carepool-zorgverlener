@@ -4,11 +4,11 @@ import './MeldingMaken.css'
 function MeldingMaken({ onBack }) {
   return (
     <div className="melding">
-      <header className="melding__header">
-        <button className="melding__back-btn" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="melding__title">Melding maken</h1>
+        <h1 className="sub-header__title">Melding maken</h1>
       </header>
 
       <div className="melding__body">

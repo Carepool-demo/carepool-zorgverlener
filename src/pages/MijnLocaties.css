@@ -9,38 +9,6 @@
   flex-direction: column;
 }
 
-/* ---- Header ---- */
-.mloc__header {
-  display: flex;
-  align-items: flex-end;
-  gap: var(--space-3);
-  height: 80px;
-  padding: 0 var(--space-5) var(--space-4);
-  background: var(--color-surface-secondary);
-  border-bottom: 1px solid var(--color-border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.mloc__back-btn {
-  width: 24px;
-  height: 24px;
-  margin-bottom: 2px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-secondary);
-  flex-shrink: 0;
-}
-
-.mloc__title {
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  color: var(--color-text-primary);
-}
-
 /* ---- Body ---- */
 .mloc__body {
   flex: 1;
@@ -58,6 +26,7 @@
 
 /* ---- Location card ---- */
 .mloc__card {
+  position: relative;
   background: var(--color-white);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
@@ -65,34 +34,33 @@
   border: 1px solid var(--color-border);
 }
 
-.mloc__card-top {
+.mloc__remove-btn {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--space-4);
-}
-
-.mloc__card-label {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
+  justify-content: center;
   color: var(--color-text-secondary);
-}
-
-.mloc__remove-btn {
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  color: var(--color-notification);
   background: none;
   border: none;
   cursor: pointer;
-  padding: var(--space-1) var(--space-2);
+  padding: 0;
+  border-radius: var(--radius-full);
+  transition: background-color 0.15s;
+}
+
+.mloc__remove-btn:hover {
+  background: var(--color-surface-secondary);
 }
 
 /* ---- Postcode input ---- */
 .mloc__postcode-label {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-4);
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-text-secondary);

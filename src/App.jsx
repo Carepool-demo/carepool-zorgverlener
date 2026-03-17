@@ -116,7 +116,7 @@ function App() {
           {activePage === PAGES.REGISTRATIES_BEWERKEN && <RegistratiesBewerken onBack={handleBack} registraties={registratiesData} onRegistratiesChange={setRegistratiesData} />}
           {activePage === PAGES.MIJN_LOCATIES && <MijnLocaties onBack={handleBack} locaties={locatiesData} onLocatiesChange={setLocatiesData} />}
           {activePage === PAGES.ZOEKPROFIEL && <Zoekprofiel onBack={handleBack} onNavigate={handleNavigate} />}
-          {activePage === PAGES.MIJN_TARIEVEN && <MijnTarieven onBack={handleBack} isBespreekbaar={isTariefBespreekbaar} onBespreekbaarChange={setIsTariefBespreekbaar} voorwaarden={tariefVoorwaarden} onVoorwaardenChange={setTariefVoorwaarden} />}
+          {activePage === PAGES.MIJN_TARIEVEN && <MijnTarieven onBack={handleBack} isBespreekbaar={isTariefBespreekbaar} onBespreekbaarChange={setIsTariefBespreekbaar} voorwaarden={tariefVoorwaarden} onVoorwaardenChange={setTariefVoorwaarden} registraties={registratiesData} onRegistratiesChange={setRegistratiesData} />}
           {activePage === PAGES.PROFIEL_PREVIEW && <ZorgverlenerProfiel zorgverlener={profielData} onBack={handleBack} onNavigate={handleNavigate} isPreview isVindbaar={isVindbaar} />}
           {activePage === PAGES.MELDING_MAKEN && <MeldingMaken onBack={handleBack} />}
         </div>

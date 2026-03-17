@@ -30,11 +30,11 @@ function ProfielInstellingen({ onBack, onNavigate }) {
   return (
     <div className="pi">
       {/* Header */}
-      <header className="pi__header">
-        <button className="pi__back-btn" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="pi__title">Profiel en instellingen</h1>
+        <h1 className="sub-header__title">Profiel en instellingen</h1>
       </header>
 
       {/* Profiel en voorkeuren */}

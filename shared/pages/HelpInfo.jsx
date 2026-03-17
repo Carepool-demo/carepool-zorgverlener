@@ -100,11 +100,11 @@ function HelpInfo({ onBack }) {
   return (
     <div className="hi">
       {/* Header */}
-      <header className="hi__header">
-        <button className="hi__back-btn" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="hi__title">Help & info</h1>
+        <h1 className="sub-header__title">Help & info</h1>
       </header>
 
       <div className="hi__content">

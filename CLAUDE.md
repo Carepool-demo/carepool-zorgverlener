@@ -94,6 +94,7 @@ App.jsx (wrapped in PasswordGate)
 ├── MijnLocaties.jsx        -> overlay, service area/location settings
 ├── MijnTarieven.jsx        -> overlay, single tariff + bespreekbaar toggle with voorwaarden
 ├── Zoekprofiel.jsx         -> overlay, search profile (hulp type, beschikbaarheid, uren)
+├── MeldingMaken.jsx        -> overlay, report/flag a care seeker
 └── Tour.jsx                -> onboarding walkthrough (standalone)
 ```
 
@@ -127,7 +128,7 @@ Admin.jsx uses `openSubPage`/`closeSubPage` helpers for its three sub-pages (Dow
 
 Code is split between two locations:
 - **`src/`** — App-specific pages, components, data, and routes. Entry point: `src/main.jsx` → `src/App.jsx`.
-- **`@shared` (`../shared/`)** — Shared components (BottomNav, TopBar, Icons, etc.), shared pages (~15), shared CSS tokens, and shared route constants. Imported via `@shared/...` alias.
+- **`@shared` (`../shared/`)** — Shared components (BottomNav, TopBar, Icons, etc.), shared pages (~17), shared CSS tokens, and shared route constants. Imported via `@shared/...` alias.
 
 Key app-specific files in `src/`:
 - `App.jsx` / `App.css` — Shell (393px max-width), page routing, bottom nav visibility logic

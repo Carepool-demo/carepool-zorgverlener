@@ -1,15 +1,54 @@
 import { useState } from 'react'
-import { BackArrowIcon } from '@shared/components/Icons'
+import { BackArrowIcon, CheckIcon, InfoIcon } from '@shared/components/Icons'
 import './MijnTarieven.css'
 
-/* ---- MijnTarieven page ---- */
-function MijnTarieven({ onBack, tarief: initialTarief = 35, onTariefChange, isBespreekbaar, onBespreekbaarChange, voorwaarden, onVoorwaardenChange }) {
-  const [tarief, setTarief] = useState(initialTarief)
+/* ---- Type zorgverlener config ---- */
+const TYPE_ZORGVERLENER = [
+  {
+    key: 'formeel',
+    label: 'Formele zorgverlener',
+    description: 'Je biedt beroepsmatig zorg, als zzp\'er of in dienst van een zorgorganisatie.',
+    info: 'AGB-code, KvK-inschrijving en een VOG zijn meestal vereist. BIG- of SKJ-registratie hangt af van je beroep.',
+  },
+  {
+    key: 'informeel',
+    label: 'Informele zorgverlener',
+    description: 'Je biedt zorg aan een naaste, bijvoorbeeld als mantelzorger of familielid.',
+    info: 'Registraties zijn niet verplicht. Een VOG kan het vertrouwen van zorgvragers vergroten.',
+  },
+  {
+    key: 'vrijwilliger',
+    label: 'Vrijwilliger',
+    description: 'Je biedt onbetaald zorg als vrijwilliger.',
+    info: 'Geen registraties vereist. Je kunt ze optioneel invullen.',
+  },
+]
 
-  const handleTariefChange = (val) => {
+/* ---- MijnTarieven page ---- */
+function MijnTarieven({ onBack, isBespreekbaar, onBespreekbaarChange, voorwaarden, onVoorwaardenChange, registraties, onRegistratiesChange }) {
+  const [tariefMin, setTariefMin] = useState(30)
+  const [tariefMax, setTariefMax] = useState(40)
+
+  const reg = registraties || {}
+  const selectedTypes = reg.typeZorgverlener || []
+
+  const toggleType = (typeKey) => {
+    const newTypes = selectedTypes.includes(typeKey)
+      ? selectedTypes.filter(t => t !== typeKey)
+      : [...selectedTypes, typeKey]
+    onRegistratiesChange?.({ ...reg, typeZorgverlener: newTypes })
+  }
+
+  const selectedTypeInfos = TYPE_ZORGVERLENER.filter(t => selectedTypes.includes(t.key))
+
+  const handleMinChange = (val) => {
     const clamped = Math.max(0, Math.min(999, val))
-    setTarief(clamped)
-    onTariefChange?.(clamped)
+    setTariefMin(clamped)
+  }
+
+  const handleMaxChange = (val) => {
+    const clamped = Math.max(0, Math.min(999, val))
+    setTariefMax(clamped)
   }
 
   const handleToggleVoorwaarde = (id) => {
@@ -21,23 +60,44 @@ function MijnTarieven({ onBack, tarief: initialTarief = 35, onTariefChange, isBe
   return (
     <div className="mt">
       {/* Header */}
-      <header className="mt__header">
-        <button className="mt__back" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="mt__title">Mijn tarieven</h1>
+        <h1 className="sub-header__title">Mijn tarieven</h1>
       </header>
 
-      <p className="mt__intro">
-        Geef aan voor welk uurtarief je beschikbaar bent. Zorgvragers zien dit op je profiel.
-      </p>
-
       <div className="mt__body">
-        {/* Tarief input card */}
-        <section className="mt__card">
-          <h3 className="mt__section-label">Uurtarief (incl. BTW)</h3>
+        {/* Type zorgverlener */}
+        <h3 className="mt__section-label">Type zorgverlener</h3>
+        <div className="mt__type-list">
+          {TYPE_ZORGVERLENER.map(type => {
+            const active = selectedTypes.includes(type.key)
+            return (
+              <button
+                key={type.key}
+                className={`mt__type-card${active ? ' mt__type-card--active' : ''}`}
+                onClick={() => toggleType(type.key)}
+              >
+                <span className={`mt__type-checkbox${active ? ' mt__type-checkbox--active' : ''}`}>
+                  {active && <CheckIcon />}
+                </span>
+                <span className="mt__type-content">
+                  <span className="mt__type-label">{type.label}</span>
+                  <span className="mt__type-desc">{type.description}</span>
+                </span>
+              </button>
+            )
+          })}
+        </div>
 
-          <div className="mt__tarief-single">
+        {/* Tarief input card */}
+        <h3 className="mt__section-label">Uurtarief</h3>
+        <p className="mt__hint" style={{ marginTop: 0, marginBottom: 'var(--space-3)' }}>
+          Geef aan voor welk uurtarief je beschikbaar bent. Zorgvragers zien dit op je profiel.
+        </p>
+        <section className="mt__card">
+          <div className="mt__tarief-range">
             <div className="mt__tarief-input-wrap mt__tarief-input-wrap--large">
               <span className="mt__tarief-euro">€</span>
               <input
@@ -45,9 +105,22 @@ function MijnTarieven({ onBack, tarief: initialTarief = 35, onTariefChange, isBe
                 type="number"
                 min={0}
                 max={999}
-                value={tarief}
-                onChange={(e) => handleTariefChange(Number(e.target.value))}
-                aria-label="Uurtarief"
+                value={tariefMin}
+                onChange={(e) => handleMinChange(Number(e.target.value))}
+                aria-label="Minimum uurtarief"
+              />
+            </div>
+            <span className="mt__tarief-dash">–</span>
+            <div className="mt__tarief-input-wrap mt__tarief-input-wrap--large">
+              <span className="mt__tarief-euro">€</span>
+              <input
+                className="mt__tarief-input"
+                type="number"
+                min={0}
+                max={999}
+                value={tariefMax}
+                onChange={(e) => handleMaxChange(Number(e.target.value))}
+                aria-label="Maximum uurtarief"
               />
             </div>
             <span className="mt__tarief-unit">per uur</span>

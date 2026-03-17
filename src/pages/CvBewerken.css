@@ -4,42 +4,6 @@
   min-height: 100%;
 }
 
-/* ---- Header ---- */
-.cv-edit__header {
-  display: flex;
-  align-items: flex-end;
-  gap: var(--space-3);
-  height: 80px;
-  padding: 0 var(--space-5) var(--space-4);
-  background: var(--color-surface-secondary);
-  border-bottom: 1px solid var(--color-border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.cv-edit__back {
-  width: 24px;
-  height: 24px;
-  margin-bottom: 2px;
-  border-radius: var(--radius-full);
-  border: none;
-  background: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--color-text-secondary);
-  flex-shrink: 0;
-  padding: 0;
-}
-
-.cv-edit__title {
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  color: var(--color-text-primary);
-}
-
 /* ---- Body ---- */
 .cv-edit__body {
   padding: var(--space-5);
@@ -64,7 +28,7 @@
 
 /* ---- Section ---- */
 .cv-edit__section {
-  padding: var(--space-5) 0;
+  padding: var(--space-5) 0 var(--space-3) 0;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -85,6 +49,11 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+}
+
+.cv-edit__section-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 .cv-edit__section-title {
@@ -319,16 +288,17 @@
 
 .cv-edit__form-label {
   display: block;
-  font-size: var(--font-size-xs);
-  font-weight: 600;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-1);
+  margin-bottom: var(--space-3);
 }
 
 .cv-edit__form-input {
   width: 100%;
+  height: 54px;
   padding: var(--space-2) var(--space-3);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   font-family: inherit;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
@@ -347,13 +317,99 @@
   color: var(--color-text-tertiary);
 }
 
+/* ---- Period row (Van / Tot) ---- */
+.cv-edit__period-row {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.cv-edit__period-row > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.cv-edit__period-field {
+  flex: 1;
+}
+
+.cv-edit__period-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  margin-top: calc(-1 * var(--space-2));
+  margin-bottom: var(--space-3);
+}
+
+/* ---- Select (month dropdown) ---- */
+.cv-edit__form-select {
+  flex: 1;
+  height: 54px;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%233F2561' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: var(--space-6);
+}
+
+.cv-edit__form-select:focus {
+  border-color: var(--color-cta);
+}
+
+/* ---- Huidig checkbox row ---- */
+.cv-edit__huidig-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  cursor: pointer;
+}
+
+.cv-edit__huidig-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: all 0.15s;
+  color: var(--color-white);
+}
+
+.cv-edit__huidig-check--active {
+  background: var(--color-cta);
+  border-color: var(--color-cta);
+}
+
+.cv-edit__huidig-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
 /* ---- Buttons ---- */
 .cv-edit__btn {
   height: 40px;
   padding: 0 var(--space-5);
   border-radius: 50px;
-  font-size: var(--font-size-sm);
-  font-weight: 600;
+  font-size: var(--font-size-base);
+  font-weight: 700;
   font-family: inherit;
   cursor: pointer;
   border: none;

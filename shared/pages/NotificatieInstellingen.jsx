@@ -19,11 +19,11 @@ function NotificatieInstellingen({ onBack }) {
   return (
     <div className="ni">
       {/* Header */}
-      <header className="ni__header">
-        <button className="ni__back-btn" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="ni__title">Notificaties</h1>
+        <h1 className="sub-header__title">Notificaties</h1>
       </header>
 
       {/* Content */}

@@ -33,23 +33,23 @@ function ChatGesprek({ chat, onBack }) {
     <div className="chat-gesprek">
       {/* Header */}
       {isVerzoek ? (
-        <header className="chat-gesprek__header chat-gesprek__header--verzoek">
-          <button className="chat-gesprek__back" onClick={onBack} aria-label="Terug">
+        <header className="sub-header chat-gesprek__header--verzoek">
+          <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
             <BackArrowIcon />
           </button>
           <div className="chat-gesprek__contact-avatar chat-gesprek__contact-avatar--small">
             <span className="chat-gesprek__contact-initials">{chat.initials}</span>
           </div>
-          <span className="chat-gesprek__header-title">{chat.name}</span>
+          <span className="sub-header__title">{chat.name}</span>
           <div className="chat-gesprek__header-spacer" />
         </header>
       ) : (
         <>
-          <header className="chat-gesprek__header">
-            <button className="chat-gesprek__back" onClick={onBack} aria-label="Terug">
+          <header className="sub-header">
+            <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
               <BackArrowIcon />
             </button>
-            <span className="chat-gesprek__header-title">Berichten</span>
+            <span className="sub-header__title">Berichten</span>
           </header>
 
           {/* Contact bar */}

@@ -132,11 +132,11 @@ function BudgetcheckCard({ budget }) {
 function BudgetDetail({ budget, onBack }) {
   return (
     <div className="bd">
-      <header className="bd__header">
-        <button className="bd__back-btn" onClick={onBack} aria-label="Terug naar budgetoverzicht">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug naar budgetoverzicht">
           <BackArrowIcon />
         </button>
-        <h1 className="bd__title">Budget {budget.year}</h1>
+        <h1 className="sub-header__title">Budget {budget.year}</h1>
       </header>
 
       {/* Budget info */}

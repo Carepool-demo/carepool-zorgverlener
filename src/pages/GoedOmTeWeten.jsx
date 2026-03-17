@@ -16,11 +16,11 @@ function GoedOmTeWeten({ onBack, items, onItemsChange }) {
 
   return (
     <div className="gotw">
-      <header className="gotw__header">
-        <button className="gotw__back-btn" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="gotw__title">Goed om te weten</h1>
+        <h1 className="sub-header__title">Goed om te weten</h1>
       </header>
 
       <div className="gotw__body">

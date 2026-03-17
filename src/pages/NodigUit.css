@@ -7,39 +7,17 @@
   min-height: 100%;
 }
 
-/* ---- Header (sub-page pattern) ---- */
+/* ---- Header override ---- */
 .nodig-uit__header {
-  display: flex;
-  align-items: flex-end;
-  gap: var(--space-3);
-  height: 80px;
-  padding: 0 var(--space-5) var(--space-4);
-  background: var(--color-surface-secondary);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  border-bottom: none;
 }
 
 .nodig-uit__back {
-  width: 24px;
-  height: 24px;
-  margin-bottom: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-full);
   color: var(--color-text-primary);
-  flex-shrink: 0;
 }
 
 .nodig-uit__back:hover {
   background-color: var(--color-focus-light);
-}
-
-.nodig-uit__title {
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  color: var(--color-text-primary);
 }
 
 /* ---- Body ---- */

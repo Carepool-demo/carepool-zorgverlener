@@ -29,11 +29,11 @@ function NieuwBericht({ onBack }) {
 
   return (
     <div className="nieuw-bericht">
-      <header className="nieuw-bericht__header">
-        <button className="nieuw-bericht__back" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="nieuw-bericht__title">Nieuw bericht</h1>
+        <h1 className="sub-header__title">Nieuw bericht</h1>
       </header>
 
       <div className="nieuw-bericht__content">

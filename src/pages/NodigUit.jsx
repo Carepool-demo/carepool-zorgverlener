@@ -27,11 +27,11 @@ function NodigUit({ onBack }) {
   return (
     <div className="nodig-uit">
       {/* Header */}
-      <header className="nodig-uit__header">
-        <button className="nodig-uit__back" onClick={onBack} aria-label="Terug">
+      <header className="sub-header nodig-uit__header">
+        <button className="sub-header__back-btn nodig-uit__back" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="nodig-uit__title">Nodig iemand uit</h1>
+        <h1 className="sub-header__title">Nodig iemand uit</h1>
       </header>
 
       <div className="nodig-uit__body">

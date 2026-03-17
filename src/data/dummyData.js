@@ -718,14 +718,14 @@ export const profielData = {
   goedOmTeWeten: 1,
   cv: {
     opleidingen: [
-      { titel: 'Helpende Zorg en Welzijn', periode: '2020 - 2023', instituut: 'ROC Amsterdam' },
+      { titel: 'Helpende Zorg en Welzijn', periode: 'sep 2020 - jun 2023', instituut: 'ROC Amsterdam' },
     ],
     werkervaring: [
-      { titel: 'Zorghulp', periode: 'Huidig', bedrijf: 'Zelfstandig' },
+      { titel: 'Zorghulp', periode: 'aug 2023 - Huidig', bedrijf: 'Zelfstandig' },
     ],
     certificaten: [
-      { titel: 'EHBO', periode: '2022 - 2025', instituut: 'Het Oranje Kruis' },
-      { titel: 'BHV', periode: '2023 - 2026', instituut: 'ROC Amsterdam' },
+      { titel: 'EHBO', periode: 'mrt 2022 - mrt 2025', instituut: 'Het Oranje Kruis' },
+      { titel: 'BHV', periode: 'jan 2023 - jan 2026', instituut: 'ROC Amsterdam' },
     ],
     ervaringMet: ['Dementie', 'Diabetes', 'Mobiliteitsproblemen'],
     leerbereidheid: 'Ik sta open om op eigen kosten trainingen te volgen die nodig zijn voor jouw zorg. Denk aan bijv. tilcursus of medicatiebeheer.',
@@ -734,46 +734,29 @@ export const profielData = {
 
 /* ---- Zorgaanbod (zorgverlener's care offering categories) ---- */
 export const zorgCategorieenInstellingen = [
-  {
-    id: 'verzorging',
-    title: 'Verzorging / verpleging',
-    items: [
-      { id: 'vz-1', label: 'Persoonlijke verzorging', enabled: true },
-      { id: 'vz-2', label: 'Verpleging', enabled: true },
-      { id: 'vz-3', label: 'Huishoudelijke hulp', enabled: true },
-      { id: 'vz-4', label: 'Nachtzorg', enabled: false },
-    ],
-  },
-  {
-    id: 'begeleiding',
-    title: 'Begeleiding',
-    items: [
-      { id: 'bg-1', label: 'Begeleiding individueel', enabled: true },
-      { id: 'bg-2', label: 'Begeleiding groep', enabled: false },
-      { id: 'bg-3', label: 'Dagbesteding', enabled: false },
-      { id: 'bg-4', label: 'Beschermd wonen', enabled: false },
-      { id: 'bg-5', label: 'Logeeropvang', enabled: false },
-    ],
-  },
-  {
-    id: 'opvang',
-    title: 'Opvang en dagbesteding',
-    items: [
-      { id: 'op-1', label: 'Dagopvang', enabled: false },
-      { id: 'op-2', label: 'Nachtopvang', enabled: false },
-      { id: 'op-3', label: 'Logeeropvang', enabled: false },
-      { id: 'op-4', label: 'Dagbesteding', enabled: false },
-      { id: 'op-5', label: 'Activiteitenbegeleiding', enabled: false },
-    ],
-  },
-  {
-    id: 'vervoer',
-    title: 'Vervoer',
-    items: [
-      { id: 'vv-1', label: 'Vervoerdiensten', enabled: false },
-      { id: 'vv-2', label: 'Vervoer van en naar dagbesteding', enabled: false },
-    ],
-  },
+  { id: 'zc-1', label: '24-uurs zorg', enabled: false },
+  { id: 'zc-2', label: 'Begeleiding groep', enabled: false },
+  { id: 'zc-3', label: 'Begeleiding individueel', enabled: false },
+  { id: 'zc-4', label: 'Beschermd wonen', enabled: false },
+  { id: 'zc-5', label: 'Dagbehandeling', enabled: false },
+  { id: 'zc-6', label: 'Dagbesteding', enabled: false },
+  { id: 'zc-7', label: 'Generalistische basis-ggz', enabled: false },
+  { id: 'zc-8', label: 'Huishoudelijke hulp', enabled: true },
+  { id: 'zc-9', label: 'Jeugd-ggz', enabled: false },
+  { id: 'zc-10', label: 'Jeugdhulp ambulant', enabled: false },
+  { id: 'zc-11', label: 'Jeugdhulp verblijf (excl. behandeling)', enabled: false },
+  { id: 'zc-12', label: 'Jeugdhulp verblijf (incl. behandeling)', enabled: false },
+  { id: 'zc-13', label: 'Kortdurend verblijf', enabled: false },
+  { id: 'zc-14', label: 'Logeeropvang', enabled: false },
+  { id: 'zc-15', label: 'Maatwerkarrangementen jeugd', enabled: false },
+  { id: 'zc-16', label: 'Overig', enabled: false },
+  { id: 'zc-17', label: 'Overige maatwerkarrangementen', enabled: false },
+  { id: 'zc-18', label: 'Persoonlijke verzorging', enabled: true },
+  { id: 'zc-19', label: 'Specialistische ggz', enabled: false },
+  { id: 'zc-20', label: 'UWV Intermediair', enabled: false },
+  { id: 'zc-21', label: 'Verpleging', enabled: true },
+  { id: 'zc-22', label: 'Vervoer van en naar dagbesteding', enabled: false },
+  { id: 'zc-23', label: 'Vervoerdiensten', enabled: false },
 ]
 
 /* ---- Budget (Admin) ---- */
@@ -1104,6 +1087,14 @@ export const agendaVerzoeken = [
 ]
 
 /* ---- Zoeken (search results) ---- */
+export const zoekenConfig = {
+  initialShowTopSheet: false,
+  filterKey: 'typeZorgvrager',
+  filterLabel: 'Type zorgvrager',
+  filterOptions: ['Pgb-houder', 'Wlz', 'Wmo'],
+  resultCountLabel: (n) => `${n} zorgvragers in jouw buurt`,
+}
+
 export const zoekenResultaten = [
   {
     id: 1,
@@ -1197,14 +1188,14 @@ const defaultProfiel = {
   reviewsExtra: 0,
   cv: {
     opleidingen: [
-      { titel: 'Helpende Zorg en Welzijn', periode: '2020 - 2023', instituut: 'ROC Amsterdam' },
+      { titel: 'Helpende Zorg en Welzijn', periode: 'sep 2020 - jun 2023', instituut: 'ROC Amsterdam' },
     ],
     werkervaring: [
-      { titel: 'Zorghulp', periode: 'Huidig', bedrijf: 'Zelfstandig' },
+      { titel: 'Zorghulp', periode: 'aug 2023 - Huidig', bedrijf: 'Zelfstandig' },
     ],
     certificaten: [
-      { titel: 'EHBO', periode: '2022 - 2025', instituut: 'Het Oranje Kruis' },
-      { titel: 'BHV', periode: '2023 - 2026', instituut: 'ROC Amsterdam' },
+      { titel: 'EHBO', periode: 'mrt 2022 - mrt 2025', instituut: 'Het Oranje Kruis' },
+      { titel: 'BHV', periode: 'jan 2023 - jan 2026', instituut: 'ROC Amsterdam' },
     ],
     ervaringMet: ['Dementie', 'Diabetes', 'Mobiliteitsproblemen'],
     leerbereidheid: 'Ik sta open om op eigen kosten trainingen te volgen die nodig zijn voor jouw zorg. Denk aan bijv. tilcursus of medicatiebeheer.',
@@ -1251,16 +1242,16 @@ export const zorgverlenerProfielen = {
     reviewsExtra: 0,
     cv: {
       opleidingen: [
-        { titel: 'Helpende Zorg en Welzijn', periode: '2018 - 2020', instituut: 'ROC van Amsterdam' },
-        { titel: 'Verzorgende IG', periode: '2020 - 2022', instituut: 'ROC van Amsterdam' },
+        { titel: 'Helpende Zorg en Welzijn', periode: 'sep 2018 - jun 2020', instituut: 'ROC van Amsterdam' },
+        { titel: 'Verzorgende IG', periode: 'sep 2020 - jun 2022', instituut: 'ROC van Amsterdam' },
       ],
       werkervaring: [
-        { titel: 'Persoonlijk begeleider', periode: 'Huidig', bedrijf: 'Zelfstandig' },
-        { titel: 'Verzorgende', periode: '2022 - 2024', bedrijf: 'Amsterdam Thuiszorg' },
+        { titel: 'Persoonlijk begeleider', periode: 'jan 2024 - Huidig', bedrijf: 'Zelfstandig' },
+        { titel: 'Verzorgende', periode: 'jul 2022 - dec 2024', bedrijf: 'Amsterdam Thuiszorg' },
       ],
       certificaten: [
-        { titel: 'EHBO', periode: '2023 - 2026', instituut: 'Het Oranje Kruis' },
-        { titel: 'BHV', periode: '2022 - 2025', instituut: 'ROC van Amsterdam' },
+        { titel: 'EHBO', periode: 'mrt 2023 - mrt 2026', instituut: 'Het Oranje Kruis' },
+        { titel: 'BHV', periode: 'nov 2022 - nov 2025', instituut: 'ROC van Amsterdam' },
       ],
       ervaringMet: ['Dementie', 'Parkinson', 'Mobiliteitsproblemen', 'Diabetes'],
       leerbereidheid: 'Ik sta open om op eigen kosten trainingen te volgen die nodig zijn voor jouw zorg. Denk aan bijv. tilcursus of medicatiebeheer.',
@@ -1304,19 +1295,19 @@ export const zorgverlenerProfielen = {
     reviewsExtra: 2,
     cv: {
       opleidingen: [
-        { titel: 'Persoonlijke verzorging', periode: '2020 - 2023', instituut: 'ROC van Amsterdam' },
-        { titel: 'Helpende Plus Zorg en Welzijn', periode: '2020 - 2023', instituut: 'ROC van Amsterdam' },
+        { titel: 'Persoonlijke verzorging', periode: 'sep 2020 - jun 2023', instituut: 'ROC van Amsterdam' },
+        { titel: 'Helpende Plus Zorg en Welzijn', periode: 'sep 2020 - jun 2023', instituut: 'ROC van Amsterdam' },
       ],
       werkervaring: [
-        { titel: 'Begeleider', periode: 'Huidig', bedrijf: 'Cordaan' },
-        { titel: 'Ondersteunend begeleider', periode: '2020 - 2023', bedrijf: 'Cordaan' },
-        { titel: 'Helpende', periode: '2020 - 2023', bedrijf: 'Cordaan' },
+        { titel: 'Begeleider', periode: 'feb 2024 - Huidig', bedrijf: 'Cordaan' },
+        { titel: 'Ondersteunend begeleider', periode: 'apr 2020 - jan 2023', bedrijf: 'Cordaan' },
+        { titel: 'Helpende', periode: 'mei 2018 - mrt 2020', bedrijf: 'Cordaan' },
       ],
       certificaten: [
-        { titel: 'Gebarentaal', periode: '2020 - 2023', instituut: 'ROC van Amsterdam' },
-        { titel: 'BHV', periode: '2020 - 2023', instituut: 'ROC van Amsterdam' },
-        { titel: 'Sondevoeding', periode: '2020 - 2023', instituut: 'ROC van Amsterdam' },
-        { titel: 'Beademing', periode: '2020 - 2023', instituut: 'ROC van Amsterdam' },
+        { titel: 'Gebarentaal', periode: 'jun 2021 - jun 2024', instituut: 'ROC van Amsterdam' },
+        { titel: 'BHV', periode: 'okt 2020 - okt 2023', instituut: 'ROC van Amsterdam' },
+        { titel: 'Sondevoeding', periode: 'jan 2022 - jan 2025', instituut: 'ROC van Amsterdam' },
+        { titel: 'Beademing', periode: 'mrt 2022 - mrt 2025', instituut: 'ROC van Amsterdam' },
       ],
       ervaringMet: ['Epilepsie', 'Autisme', 'Gedragsstoornis', 'Beademing'],
       leerbereidheid: 'Ik sta open om op eigen kosten trainingen te volgen die nodig zijn voor jouw zorg. Zoals bijv. tracheacanulezorg.',

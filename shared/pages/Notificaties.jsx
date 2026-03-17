@@ -40,11 +40,11 @@ function Notificaties({ onBack }) {
   return (
     <div className="notif">
       {/* Header */}
-      <header className="notif__header">
-        <button className="notif__back-btn" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="notif__title">Notificaties</h1>
+        <h1 className="sub-header__title">Notificaties</h1>
       </header>
 
       <div className="notif__content">

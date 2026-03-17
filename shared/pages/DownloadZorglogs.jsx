@@ -44,11 +44,11 @@ function DownloadZorglogs({ onBack }) {
   return (
     <div className="dlz">
       {/* Header */}
-      <header className="dlz__top-bar">
-        <button className="dlz__back-btn" onClick={onBack} aria-label="Terug naar administratie">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug naar administratie">
           <BackArrowIcon />
         </button>
-        <h1 className="dlz__top-bar-title">Download zorglogs</h1>
+        <h1 className="sub-header__title">Download zorglogs</h1>
       </header>
 
       <div className="dlz__content">

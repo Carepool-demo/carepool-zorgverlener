@@ -1,7 +1,7 @@
-import { BackArrowIcon } from '@shared/components/Icons'
+import { BackArrowIcon, PlusIcon, CheckIcon, DeleteIcon } from '@shared/components/Icons'
 import './MijnLocaties.css'
 
-const STRAAL_OPTIES = [5, 10, 15, 20, 25, 30]
+const STRAAL_OPTIES = [5, 10, 15, 25, 40, 60]
 
 function MijnLocaties({ onBack, locaties, onLocatiesChange }) {
   const updateLocatie = (index, field, value) => {
@@ -12,7 +12,7 @@ function MijnLocaties({ onBack, locaties, onLocatiesChange }) {
   }
 
   const addLocatie = () => {
-    if (locaties.length >= 2) return
+    if (locaties.length >= 5) return
     onLocatiesChange([
       ...locaties,
       { id: Date.now(), postcode: '', straal: 10 },
@@ -25,11 +25,11 @@ function MijnLocaties({ onBack, locaties, onLocatiesChange }) {
 
   return (
     <div className="mloc">
-      <header className="mloc__header">
-        <button className="mloc__back-btn" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="mloc__title">Mijn locaties</h1>
+        <h1 className="sub-header__title">Mijn locaties</h1>
       </header>
 
       <div className="mloc__body">
@@ -40,15 +40,13 @@ function MijnLocaties({ onBack, locaties, onLocatiesChange }) {
         {locaties.map((loc, index) => (
           <div key={loc.id} className="mloc__card">
             {locaties.length > 1 && (
-              <div className="mloc__card-top">
-                <button
-                  className="mloc__remove-btn"
-                  onClick={() => removeLocatie(index)}
-                  aria-label="Locatie verwijderen"
-                >
-                  Verwijderen
-                </button>
-              </div>
+              <button
+                className="mloc__remove-btn"
+                onClick={() => removeLocatie(index)}
+                aria-label="Locatie verwijderen"
+              >
+                <DeleteIcon size={20} />
+              </button>
             )}
 
             <label className="mloc__postcode-label">
@@ -66,7 +64,7 @@ function MijnLocaties({ onBack, locaties, onLocatiesChange }) {
             </label>
 
             <div className="mloc__straal-section">
-              <span className="mloc__straal-label">Reisafstand</span>
+              <span className="mloc__straal-label">Straal</span>
               <div className="mloc__pill-grid">
                 {STRAAL_OPTIES.map((km) => (
                   <button
@@ -76,11 +74,9 @@ function MijnLocaties({ onBack, locaties, onLocatiesChange }) {
                     aria-pressed={loc.straal === km}
                   >
                     {loc.straal === km && (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
+                      <CheckIcon />
                     )}
-                    {km} km
+                    {km === 60 ? '60+ km' : `${km} km`}
                   </button>
                 ))}
               </div>
@@ -88,7 +84,7 @@ function MijnLocaties({ onBack, locaties, onLocatiesChange }) {
           </div>
         ))}
 
-        {locaties.length < 2 && (
+        {locaties.length < 5 && (
           <button className="mloc__add-btn" onClick={addLocatie}>
             <PlusIcon />
             Locatie toevoegen
@@ -96,15 +92,6 @@ function MijnLocaties({ onBack, locaties, onLocatiesChange }) {
         )}
       </div>
     </div>
-  )
-}
-
-/* ---- Local icons ---- */
-function PlusIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 4C12.4142 4 12.75 4.33579 12.75 4.75V11.25H19.25C19.6642 11.25 20 11.5858 20 12C20 12.4142 19.6642 12.75 19.25 12.75H12.75V19.25C12.75 19.6642 12.4142 20 12 20C11.5858 20 11.25 19.6642 11.25 19.25V12.75H4.75C4.33579 12.75 4 12.4142 4 12C4 11.5858 4.33579 11.25 4.75 11.25H11.25V4.75C11.25 4.33579 11.5858 4 12 4Z" fill="currentColor" />
-    </svg>
   )
 }
 

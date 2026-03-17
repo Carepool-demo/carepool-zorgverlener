@@ -162,11 +162,11 @@ function ZorgverlenerProfiel({ onBack, onNavigate, zorgverlener, isPreview, isVi
   if (showCV) {
     return (
       <div className="zvp zvp--cv">
-        <header className="zvp__header">
-          <button className="zvp__back-btn" onClick={() => setShowCV(false)} aria-label="Terug">
+        <header className="sub-header">
+          <button className="sub-header__back-btn" onClick={() => setShowCV(false)} aria-label="Terug">
             <BackArrowIcon />
           </button>
-          <h1 className="zvp__title">{voornaam}&apos;s CV</h1>
+          <h1 className="sub-header__title">{voornaam}&apos;s CV</h1>
         </header>
 
         <div className="zvp__body">
@@ -261,11 +261,11 @@ function ZorgverlenerProfiel({ onBack, onNavigate, zorgverlener, isPreview, isVi
     const reg = profiel.registraties || {}
     return (
       <div className="zvp zvp--registraties">
-        <header className="zvp__header">
-          <button className="zvp__back-btn" onClick={() => setShowRegistraties(false)} aria-label="Terug">
+        <header className="sub-header">
+          <button className="sub-header__back-btn" onClick={() => setShowRegistraties(false)} aria-label="Terug">
             <BackArrowIcon />
           </button>
-          <h1 className="zvp__title">{voornaam}&apos;s registraties</h1>
+          <h1 className="sub-header__title">{voornaam}&apos;s registraties</h1>
         </header>
 
         <div className="zvp__body">
@@ -366,11 +366,11 @@ function ZorgverlenerProfiel({ onBack, onNavigate, zorgverlener, isPreview, isVi
   /* ---- Profile View ---- */
   return (
     <div className="zvp">
-      <header className="zvp__header">
-        <button className="zvp__back-btn" onClick={onBack} aria-label="Terug">
+      <header className="sub-header">
+        <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="zvp__title">{voornaam}&apos;s profiel</h1>
+        <h1 className="sub-header__title">{voornaam}&apos;s profiel</h1>
       </header>
       {isPreview && (
         <div className="zvp__preview-banner">
