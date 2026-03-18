@@ -222,7 +222,10 @@
 .mt__type-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 .mt__type-card {
@@ -230,18 +233,21 @@
   align-items: flex-start;
   gap: var(--space-3);
   padding: var(--space-4);
-  background: var(--color-white);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
   cursor: pointer;
   font-family: inherit;
   text-align: left;
-  transition: border-color 0.2s, background-color 0.2s;
+  transition: background-color 0.2s;
   width: 100%;
 }
 
+.mt__type-card:last-child {
+  border-bottom: none;
+}
+
 .mt__type-card--active {
-  border-color: var(--color-cta);
   background: #F8F5FF;
 }
 
@@ -315,4 +321,78 @@
 .mt__type-info-text strong {
   font-weight: 700;
   color: var(--color-text-primary);
+}
+
+/* ---- Meer info link ---- */
+.mt__meer-info-link {
+  background: none;
+  border: none;
+  color: var(--color-cta);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  margin-top: var(--space-1);
+}
+
+/* ---- Visuele tariefbalk ---- */
+.mt__tarief-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.mt__tarief-bar {
+  position: relative;
+  display: flex;
+  height: 8px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.mt__tarief-bar-segment {
+  height: 100%;
+}
+
+.mt__tarief-bar-segment--green {
+  background: #34C759;
+}
+
+.mt__tarief-bar-segment--orange {
+  background: #FF9500;
+}
+
+.mt__tarief-bar-segment--red {
+  background: #FF3B30;
+}
+
+.mt__tarief-bar-indicator {
+  position: absolute;
+  top: -4px;
+  width: 3px;
+  height: 16px;
+  background: var(--color-text-primary);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: left 0.2s ease;
+}
+
+.mt__tarief-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+/* ---- Tarief waarschuwing ---- */
+.mt__tarief-warning {
+  background: #fef9e7;
+  color: #8B6914;
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
 }

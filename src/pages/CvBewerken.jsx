@@ -1,19 +1,34 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BackArrowIcon, PlusIcon, ChevronRightIcon, GraduationIcon, BriefcaseIcon, AwardIcon, ExperienceIcon, CloseSmallIcon, EditPencilIcon, LeerIcon, CheckIcon } from '@shared/components/Icons'
 import './CvBewerken.css'
 
 /* ---- Suggested experience tags ---- */
 const SUGGESTED_ERVARING = [
-  'ADHD', 'Angststoornissen', 'Autisme',
-  'Begeleiding', 'COPD',
+  'ADHD', 'Angststoornissen', 'Astma', 'Autisme',
+  'Begeleiding', 'Beroerte', 'Blindheid / slechtziendheid',
+  'Chronische ziekte', 'COPD',
   'Dagbesteding', 'Dementie', 'Depressie', 'Diabetes',
-  'GGZ', 'Hartfalen', 'Huishoudelijke hulp',
-  'Jeugdzorg', 'Lichamelijke beperking',
-  'Medicatiebeheer', 'Mobiliteitsproblemen',
-  'NAH (niet-aangeboren hersenletsel)', 'Ouderenzorg',
-  'Palliatieve zorg', 'Parkinson', 'Persoonlijke verzorging',
-  'Revalidatie', 'Schizofrenie', 'Stomazorg',
-  'Verstandelijke beperking', 'Wondzorg',
+  'Doofheid / slechthorendheid', 'Down-syndroom',
+  'Drugs-, alcohol-, middelenafhankelijkheid', 'Dwarslaesie', 'Dyslexie',
+  'Epilepsie',
+  'Fibromyalgie',
+  'Gedragsproblemen', 'GGZ', 'Gewrichtsklachten',
+  'Hartaandoeningen', 'Hartfalen', 'Huidaandoeningen', 'Huishoudelijke hulp',
+  'Jeugdzorg',
+  'Kanker',
+  'Leerproblemen', 'Lichamelijke beperking', 'Longaandoeningen', 'Longemfyseem/COPD',
+  'Maag-darmaandoeningen', 'Medicatiebeheer', 'Mobiliteitsproblemen', 'MS (Multiple Sclerose)',
+  'NAH (niet-aangeboren hersenletsel)', 'Nek- en rugklachten',
+  'Ontwikkelingsachterstand', 'Ouderenzorg', 'Overspanning/burn-out',
+  'Palliatieve zorg', 'Parkinson', 'Persoonlijke verzorging', 'Persoonlijkheidsstoornissen',
+  'Psychotische stoornissen',
+  'Revalidatie',
+  'Schizofrenie', 'Sociaal-emotionele problemen', 'Spierziekte',
+  'Spraak-taal problemen', 'Stemmingsstoornissen', 'Stofwisselingsziekte', 'Stomazorg',
+  'Taaislijmziekte', 'Terminale ziekte',
+  'Verstandelijke beperking',
+  'Wondzorg',
+  'Ziekte van Parkinson',
 ]
 
 /* ---- Dutch month options ---- */
@@ -85,6 +100,8 @@ function EntryModal({ entry, fields, onSave, onCancel, title }) {
         result[f.key + 'TotJaar'] = parsed.totJaar
         // Default to huidig=true for new entries when defaultHuidig is set
         result[f.key + 'Huidig'] = entry ? parsed.huidig : (f.defaultHuidig ?? false)
+      } else if (f.type === 'checkbox') {
+        result[f.key] = entry ? (base[f.key] ?? false) : (f.defaultValue ?? false)
       } else {
         result[f.key] = base[f.key] || ''
       }
@@ -96,7 +113,9 @@ function EntryModal({ entry, fields, onSave, onCancel, title }) {
   const handleSave = () => {
     const output = {}
     fields.forEach(f => {
-      if (f.type === 'period') {
+      if (f.type === 'checkbox') {
+        output[f.key] = form[f.key] ?? false
+      } else if (f.type === 'period') {
         const vanM = form[f.key + 'VanMaand'] || ''
         const vanJ = form[f.key + 'VanJaar']?.trim() || ''
         const van = vanM && vanJ ? `${vanM} ${vanJ}` : vanJ
@@ -118,6 +137,7 @@ function EntryModal({ entry, fields, onSave, onCancel, title }) {
   }
 
   const hasContent = fields.some(f => {
+    if (f.type === 'checkbox') return false
     if (f.type === 'period') return (form[f.key + 'VanJaar'] || '').trim()
     return (form[f.key] || '').trim()
   })
@@ -196,6 +216,27 @@ function EntryModal({ entry, fields, onSave, onCancel, title }) {
               </div>
             )
           }
+          if (f.type === 'checkbox') {
+            const isChecked = form[f.key]
+            return (
+              <label key={f.key} className="cv-edit__huidig-row">
+                <button
+                  type="button"
+                  className={`cv-edit__huidig-check${isChecked ? ' cv-edit__huidig-check--active' : ''}`}
+                  onClick={() => setForm({ ...form, [f.key]: !isChecked })}
+                  role="checkbox"
+                  aria-checked={isChecked}
+                >
+                  {isChecked && (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </button>
+                <span className="cv-edit__huidig-label">{f.label}</span>
+              </label>
+            )
+          }
           return (
             <div key={f.key} className="cv-edit__form-field">
               <label className="cv-edit__form-label">{f.label}</label>
@@ -224,19 +265,43 @@ function EntryModal({ entry, fields, onSave, onCancel, title }) {
   )
 }
 
+/* ---- Rotating placeholder examples for leerbereidheid ---- */
+const LEERBEREIDHEID_VOORBEELDEN = [
+  'Bijv. Ik sta open om op eigen kosten trainingen te volgen die nodig zijn voor jouw zorg. Denk aan bijv. tilcursus of medicatiebeheer.',
+  'Bijv. Ik wil graag bijleren over jouw specifieke zorgvraag, bijvoorbeeld via online cursussen of workshops.',
+  'Bijv. Ik volg regelmatig bijscholingen en sta open voor nieuwe trainingen die aansluiten bij jouw situatie.',
+  'Bijv. Ik ben bereid om me te verdiepen in specialistische zorg, zoals wondverzorging of palliatieve begeleiding.',
+  'Bijv. Ik leer graag bij en ben altijd op zoek naar manieren om betere zorg te bieden.',
+]
+
 /* ---- Leerbereidheid edit popup ---- */
 function LeerPopup({ value, onSave, onCancel }) {
   const [text, setText] = useState(value || '')
+  const [placeholderIdx, setPlaceholderIdx] = useState(0)
+  const [fading, setFading] = useState(false)
+
+  // Rotate placeholder with fade: fade out → change text → fade in
+  useEffect(() => {
+    if (text) return
+    const interval = setInterval(() => {
+      setFading(true)
+      setTimeout(() => {
+        setPlaceholderIdx(i => (i + 1) % LEERBEREIDHEID_VOORBEELDEN.length)
+        setFading(false)
+      }, 300)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [text])
 
   return (
     <div className="cv-edit__modal-overlay" onClick={onCancel}>
       <div className="cv-edit__modal" onClick={e => e.stopPropagation()}>
         <h2 className="cv-edit__modal-title">Leerbereidheid bewerken</h2>
         <textarea
-          className="cv-edit__textarea"
+          className={`cv-edit__textarea${fading ? ' cv-edit__textarea--fading' : ''}`}
           value={text}
           onChange={e => setText(e.target.value)}
-          placeholder="Beschrijf je bereidheid om bij te leren, bijv. trainingen die je wilt volgen..."
+          placeholder={LEERBEREIDHEID_VOORBEELDEN[placeholderIdx]}
           rows={4}
           autoFocus
         />
@@ -283,7 +348,10 @@ function ListSection({ icon, title, items, fields, metaKey, onUpdate, addLabel, 
         <div key={idx} className="cv-edit__entry" onClick={() => setModal({ idx, entry: item })}>
           <div className="cv-edit__entry-content">
             <span className="cv-edit__entry-title">{item.titel}</span>
-            <span className="cv-edit__entry-meta">{item.periode} &middot; {item[metaKey]}</span>
+            <span className="cv-edit__entry-meta">
+              {item.periode} &middot; {item[metaKey]}
+              {item.diplomaBehaald !== undefined && ` · Diploma: ${item.diplomaBehaald ? 'ja' : 'nee'}`}
+            </span>
           </div>
           <button
             className="cv-edit__entry-delete"
@@ -426,6 +494,7 @@ export default function CvBewerken({ onBack, cv, onCvChange }) {
               { key: 'titel', label: 'Opleiding', placeholder: 'Bijv. Helpende Zorg en Welzijn' },
               { key: 'periode', label: 'Van', type: 'period', defaultHuidig: true },
               { key: 'instituut', label: 'Instituut', placeholder: 'Bijv. ROC Amsterdam' },
+              { key: 'diplomaBehaald', label: 'Diploma behaald', type: 'checkbox', defaultValue: false },
             ]}
             metaKey="instituut"
             addLabel="Voeg opleiding toe"
@@ -474,7 +543,7 @@ export default function CvBewerken({ onBack, cv, onCvChange }) {
             </div>
 
             <div className="cv-edit__tags">
-              {cv.ervaringMet.map((tag, idx) => (
+              {[...cv.ervaringMet].sort((a, b) => a.localeCompare(b, 'nl')).map((tag, idx) => (
                 <span key={idx} className="cv-edit__tag">{tag}</span>
               ))}
             </div>
@@ -493,11 +562,11 @@ export default function CvBewerken({ onBack, cv, onCvChange }) {
               <span className="cv-edit__section-title">Leerbereidheid</span>
             </div>
             <p className="cv-edit__leerbereidheid-text">
-              {cv.leerbereidheid || <span className="cv-edit__placeholder">Nog niet ingevuld — beschrijf je leerbereidheid.</span>}
+              {cv.leerbereidheid || <span className="cv-edit__placeholder">Nog niet ingevuld</span>}
             </p>
             <div className="cv-edit__divider" />
             <button className="cv-edit__add-btn" onClick={() => setShowLeerPopup(true)}>
-              <EditPencilIcon /> Bewerk leerbereidheid
+              {cv.leerbereidheid ? <><EditPencilIcon /> Bewerk leerbereidheid</> : <><PlusIcon /> Voeg leerbereidheid toe</>}
             </button>
           </div>
         </div>

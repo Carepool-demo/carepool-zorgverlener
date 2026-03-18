@@ -149,13 +149,18 @@ function EyePreviewIcon() {
 
 /* ---- Main Component ---- */
 
-function ZorgverlenerProfiel({ onBack, onNavigate, zorgverlener, isPreview, isVindbaar }) {
+function ZorgverlenerProfiel({ onBack, onNavigate, zorgverlener, isPreview, isVindbaar, goedOmTeWeten, tariefOverrides }) {
   const [showCV, setShowCV] = useState(false)
   const [showRegistraties, setShowRegistraties] = useState(false)
   const [showFullBio, setShowFullBio] = useState(false)
   const [showTariefPopup, setShowTariefPopup] = useState(false)
   const [showMeerMenu, setShowMeerMenu] = useState(false)
-  const profiel = getZorgverlenerProfiel(zorgverlener.id)
+  const [showAllPraktisch, setShowAllPraktisch] = useState(false)
+  const rawProfiel = getZorgverlenerProfiel(zorgverlener.id)
+  // For preview: override praktischeInfo with actual goedOmTeWeten settings
+  const profiel = (isPreview && goedOmTeWeten)
+    ? { ...rawProfiel, praktischeInfo: goedOmTeWeten.flatMap(cat => cat.items.filter(i => i.enabled).map(i => i.label)), ...(tariefOverrides || {}) }
+    : rawProfiel
   const voornaam = zorgverlener.name.split(' ')[0]
 
   /* ---- CV View ---- */
@@ -468,7 +473,11 @@ function ZorgverlenerProfiel({ onBack, onNavigate, zorgverlener, isPreview, isVi
           <div className="zvp__info-row">
             <div className="zvp__info-icon"><LocationOutlineIcon /></div>
             <div className="zvp__info-content">
-              <span className="zvp__info-value">{profiel.locatie}</span>
+              {profiel.locatieDetails ? profiel.locatieDetails.map((loc, i) => (
+                <span key={i} className="zvp__info-value">{loc.naam} +{loc.straal} km</span>
+              )) : (
+                <span className="zvp__info-value">{profiel.locatie}</span>
+              )}
             </div>
           </div>
 
@@ -514,24 +523,30 @@ function ZorgverlenerProfiel({ onBack, onNavigate, zorgverlener, isPreview, isVi
           <div className="zvp__info-row">
             <div className="zvp__info-icon"><GlobeIcon /></div>
             <div className="zvp__info-content">
-              {profiel.talen.map((taal) => (
-                <span key={taal} className="zvp__info-value">{taal}</span>
-              ))}
+              {profiel.talen.map((taal) => {
+                const naam = typeof taal === 'object' ? taal.naam : taal
+                const level = typeof taal === 'object' ? taal.level : null
+                return (
+                  <span key={naam} className="zvp__info-value">{naam}{level && level !== 'basis' ? ` (${level})` : ''}</span>
+                )
+              })}
             </div>
           </div>
 
           <div className="zvp__info-divider" />
 
-          {/* Praktische info */}
+          {/* Goed om te weten */}
           <div className="zvp__info-row">
             <div className="zvp__info-icon"><CheckCircleIcon /></div>
             <div className="zvp__info-content">
-              <span className="zvp__info-heading">Praktische info</span>
-              {profiel.praktischeInfo.map((item) => (
+              <span className="zvp__info-heading">Goed om te weten</span>
+              {(showAllPraktisch ? profiel.praktischeInfo : profiel.praktischeInfo.slice(0, 4)).map((item) => (
                 <span key={item} className="zvp__info-value">{item}</span>
               ))}
-              {profiel.praktischeInfoExtra > 0 && (
-                <button className="zvp__info-more" onClick={() => showToast('Meer praktische info (nog niet geïmplementeerd)')}>+{profiel.praktischeInfoExtra}</button>
+              {profiel.praktischeInfo.length > 4 && (
+                <button className="zvp__info-link" onClick={() => setShowAllPraktisch(!showAllPraktisch)}>
+                  {showAllPraktisch ? 'Minder' : `+${profiel.praktischeInfo.length - 4} meer`}
+                </button>
               )}
             </div>
           </div>

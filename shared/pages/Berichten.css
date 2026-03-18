@@ -130,8 +130,8 @@
   transition: background-color 0.15s;
 }
 
-.berichten__list li:first-child .berichten__item {
-  border-top: 1px solid var(--color-border);
+.berichten__list--verkennend li:first-child .berichten__item {
+  border-top: none;
 }
 
 .berichten__item:hover {
@@ -253,6 +253,7 @@
   justify-content: space-between;
   height: 64px;
   padding: 0 var(--space-5);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .berichten__new-btn {

@@ -49,13 +49,13 @@
   position: absolute;
   top: 4px;
   right: 2px;
-  min-width: 16px;
+  width: 16px;
   height: 16px;
-  padding: 0 4px;
+  padding: 0;
   border-radius: var(--radius-full);
   background-color: var(--color-notification);
   color: var(--color-white);
-  font-size: var(--font-size-xs);
+  font-size: 12px;
   font-weight: 700;
   display: flex;
   align-items: center;

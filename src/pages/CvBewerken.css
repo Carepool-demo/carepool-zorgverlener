@@ -506,8 +506,8 @@
   background: var(--color-white);
   color: var(--color-text-primary);
   outline: none;
-  resize: vertical;
-  min-height: 80px;
+  resize: none;
+  height: 120px;
   line-height: 1.5;
   transition: border-color 0.15s;
   box-sizing: border-box;
@@ -519,6 +519,11 @@
 
 .cv-edit__textarea::placeholder {
   color: var(--color-text-tertiary);
+  transition: opacity 0.3s ease;
+}
+
+.cv-edit__textarea--fading::placeholder {
+  opacity: 0;
 }
 
 /* ---- Divider ---- */

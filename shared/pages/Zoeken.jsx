@@ -1,7 +1,7 @@
 import { showToast } from '@shared/components/Toast'
 import { useState } from 'react'
 import { BackArrowIcon, ChevronDownIcon, LocationOutlineIcon, CertificateIcon, InfoIcon, CalendarSmallIcon, CareHandIcon, FilterIcon, IndividualCareIcon, LocationFilledIcon, RepeatIcon, GroupCareIcon, CancelIcon, EuroIcon, UserIcon, MortarboardIcon, ThumbsUpIcon, AddIcon } from '@shared/components/Icons'
-import { zoekenResultaten, zoekenConfig } from '@app/data/dummyData'
+import { zoekenResultaten, zoekenBuitenZoekopdracht, zoekenConfig } from '@app/data/dummyData'
 import './Zoeken.css'
 
 /* Zorg category labels */
@@ -302,6 +302,52 @@ function Zoeken({ onBack, onSelectResult }) {
           </button>
         ))}
       </div>
+
+      {/* Near-miss results */}
+      {zoekenBuitenZoekopdracht && zoekenBuitenZoekopdracht.length > 0 && (
+        <>
+          <p className="zoeken__results-count zoeken__results-count--secondary">
+            {zoekenBuitenZoekopdracht.length} zorgverleners net buiten je zoekopdracht
+          </p>
+          <div className="zoeken__list zoeken__list--secondary">
+            {zoekenBuitenZoekopdracht.map((result) => (
+              <button
+                key={result.id}
+                className="zoeken__card zoeken__card--secondary"
+                onClick={() => onSelectResult ? onSelectResult(result) : showToast(`${result.name} (nog niet geïmplementeerd)`)}
+                aria-label={`Bekijk profiel van ${result.name}`}
+              >
+                <div className="zoeken__card-avatar">
+                  {result.initials}
+                </div>
+                <div className="zoeken__card-content">
+                  <div className="zoeken__card-top">
+                    <span className="zoeken__card-name">{result.name}</span>
+                    <span className="zoeken__card-age">{result.age} jr</span>
+                    {result.careTypes.length > 0 && (
+                      <span className="zoeken__card-icons">
+                        {result.careTypes.map((type) => (
+                          <span key={type} className="zoeken__card-care-icon">
+                            {type === 'individual' ? <IndividualCareIcon /> : <GroupCareIcon />}
+                          </span>
+                        ))}
+                      </span>
+                    )}
+                    <span className="zoeken__card-distance">
+                      <LocationOutlineIcon size={12} />
+                      {result.distance}
+                    </span>
+                  </div>
+                  {result.reden && (
+                    <p className="zoeken__card-reden">{result.reden}</p>
+                  )}
+                  <p className="zoeken__card-bio">{result.bio}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </>
+      )}
 
       {/* Filter overlay */}
       {showFilter && (

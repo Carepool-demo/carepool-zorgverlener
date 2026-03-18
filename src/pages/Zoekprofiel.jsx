@@ -135,7 +135,7 @@ function Zoekprofiel({ onBack, onNavigate }) {
         <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>
-        <h1 className="sub-header__title">Mijn zoekprofiel</h1>
+        <h1 className="sub-header__title">Mijn beschikbaarheid</h1>
       </header>
 
       <p className="zp__intro">Geef aan wanneer je beschikbaar bent en voor hoeveel uur.</p>
@@ -147,11 +147,9 @@ function Zoekprofiel({ onBack, onNavigate }) {
           <div className="zp__week-grid">
             {/* Column headers: day parts */}
             <div className="zp__week-corner" />
-            {DAY_PARTS.map(({ label, timeStart, timeEnd }) => (
+            {DAY_PARTS.map(({ label }) => (
               <div key={label} className="zp__week-col-header">
                 <span className="zp__week-col-label">{label}</span>
-                <span className="zp__week-col-time">{timeStart}–</span>
-                <span className="zp__week-col-time">{timeEnd}</span>
               </div>
             ))}
             {/* Rows: one per day */}
@@ -165,7 +163,9 @@ function Zoekprofiel({ onBack, onNavigate }) {
                     onClick={() => toggleSlot(day, label)}
                     aria-label={`${day} ${label.toLowerCase()} ${availability[day][label] ? 'beschikbaar' : 'niet beschikbaar'}`}
                     aria-pressed={availability[day][label]}
-                  />
+                  >
+                    {availability[day][label] && <TickSmallIcon />}
+                  </button>
                 ))}
               </React.Fragment>
             ))}

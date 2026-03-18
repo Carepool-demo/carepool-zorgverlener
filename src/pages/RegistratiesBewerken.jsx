@@ -92,32 +92,40 @@ function EditModal({ label, value, placeholder, onSave, onCancel }) {
   )
 }
 
+/* ---- Predefined organisations ---- */
+const ORGANISATIE_OPTIONS = [
+  'ActiZ', 'BOink', 'BPSW', 'BVKZ', 'BVOP',
+  'Federatie Landbouw en Zorg', 'LVT',
+  'NBEC', 'NBPO', 'Nevep', 'NFG', 'NVA',
+  'OSB', 'SoloPartners',
+  'V&VN', 'VGN', 'VGOB', 'VHG', 'VVvE',
+  'Zorgthuisnl',
+]
+
 /* ---- Add modal for aangesloten bij ---- */
-function AddModal({ onSave, onCancel }) {
-  const [text, setText] = useState('')
+function AddModal({ onSave, onCancel, alreadySelected }) {
+  const available = ORGANISATIE_OPTIONS.filter(o => !alreadySelected.includes(o))
 
   return (
     <div className="reg-edit__modal-overlay" onClick={onCancel}>
-      <div className="reg-edit__modal" onClick={e => e.stopPropagation()}>
+      <div className="reg-edit__modal reg-edit__modal--list" onClick={e => e.stopPropagation()}>
         <h2 className="reg-edit__modal-title">Organisatie toevoegen</h2>
-        <label className="reg-edit__form-label">Naam organisatie</label>
-        <input
-          className="reg-edit__form-input"
-          type="text"
-          value={text}
-          onChange={e => setText(e.target.value)}
-          placeholder="Bijv. V&VN, Klachtenregeling"
-          autoFocus
-        />
+        <div className="reg-edit__org-list-wrap">
+          <div className="reg-edit__org-list">
+            {available.map(org => (
+              <button
+                key={org}
+                className="reg-edit__org-item"
+                onClick={() => onSave(org)}
+              >
+                {org}
+              </button>
+            ))}
+          </div>
+          <div className="reg-edit__org-list-fade" />
+        </div>
         <div className="reg-edit__modal-actions">
           <button className="reg-edit__btn reg-edit__btn--secondary" onClick={onCancel}>Annuleren</button>
-          <button
-            className="reg-edit__btn reg-edit__btn--primary"
-            onClick={() => onSave(text.trim())}
-            disabled={!text.trim()}
-          >
-            Toevoegen
-          </button>
         </div>
       </div>
     </div>
@@ -316,26 +324,6 @@ export default function RegistratiesBewerken({ onBack, registraties, onRegistrat
           </>
         )}
 
-        {/* Aangesloten bij */}
-        <h3 className="reg-edit__section-label">Aangesloten bij</h3>
-        <div className="reg-edit__card">
-          {(reg.aangeslotenBij || []).map((item, idx) => (
-            <div key={idx} className="reg-edit__list-row">
-              <span className="reg-edit__list-label">{item}</span>
-              <button
-                className="reg-edit__list-delete"
-                onClick={() => removeAangeslotenBij(idx)}
-                aria-label={`Verwijder ${item}`}
-              >
-                <CloseSmallIcon />
-              </button>
-            </div>
-          ))}
-          <button className="reg-edit__add-btn" onClick={() => setShowAddModal(true)}>
-            <PlusIcon /> Voeg organisatie toe
-          </button>
-        </div>
-
         {/* Verzekeringen */}
         {relevance.verzekeringen && (
           <>
@@ -359,6 +347,26 @@ export default function RegistratiesBewerken({ onBack, registraties, onRegistrat
             </div>
           </>
         )}
+
+        {/* Aangesloten bij */}
+        <h3 className="reg-edit__section-label">Aangesloten bij</h3>
+        <div className="reg-edit__card">
+          {(reg.aangeslotenBij || []).map((item, idx) => (
+            <div key={idx} className="reg-edit__list-row">
+              <span className="reg-edit__list-label">{item}</span>
+              <button
+                className="reg-edit__list-delete"
+                onClick={() => removeAangeslotenBij(idx)}
+                aria-label={`Verwijder ${item}`}
+              >
+                <CloseSmallIcon />
+              </button>
+            </div>
+          ))}
+          <button className="reg-edit__add-btn" onClick={() => setShowAddModal(true)}>
+            <PlusIcon /> Voeg organisatie toe
+          </button>
+        </div>
 
         {/* Optionele secties (voor informeel/vrijwilliger) */}
         {hasOptionalSections && !showOptionalSections && (
@@ -466,6 +474,7 @@ export default function RegistratiesBewerken({ onBack, registraties, onRegistrat
         <AddModal
           onSave={addAangeslotenBij}
           onCancel={() => setShowAddModal(false)}
+          alreadySelected={reg.aangeslotenBij || []}
         />
       )}
     </div>

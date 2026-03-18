@@ -13,15 +13,41 @@ function GroupIcon() {
   )
 }
 
+const snelreacties = [
+  'Bedankt, maar ik heb momenteel geen ruimte',
+  'Ik ben niet beschikbaar op die dagen',
+  'Ik denk niet dat ik de juiste match ben',
+  'Leuk! Vertel me meer',
+  'Ik werk helaas niet in jouw regio',
+]
+
 function ChatGesprek({ chat, onBack }) {
   const gesprek = chatGesprekken[chat.id]
   const messagesEndRef = useRef(null)
   const isGroup = chat.type === 'group'
   const isVerzoek = gesprek?.isVerzoek
+  const isVerkennend = !chat.isConnectie
   const [status, setStatus] = useState(chat.accepted ? 'accepted' : (gesprek?.status || null))
   const [showConnectiePopup, setShowConnectiePopup] = useState(false)
+  const hasReplied = gesprek?.messages?.some(m => m.sender === 'self')
+  const [showSnelreacties, setShowSnelreacties] = useState(isVerkennend && !hasReplied)
+  const [sentMessages, setSentMessages] = useState([])
   const isAccepted = isVerzoek && status === 'accepted'
   const isVerzoekVerstuurd = isVerzoek && status === 'verzoek-verstuurd'
+
+  const handleSnelreactie = (text) => {
+    setSentMessages(prev => [...prev, {
+      id: `snelreactie-${Date.now()}`,
+      sender: 'self',
+      text,
+      time: new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' }),
+    }])
+    setShowSnelreacties(false)
+    showToast('Bericht verstuurd')
+    setTimeout(() => {
+      if (messagesEndRef.current) messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+    }, 50)
+  }
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -32,14 +58,11 @@ function ChatGesprek({ chat, onBack }) {
   return (
     <div className="chat-gesprek">
       {/* Header */}
-      {isVerzoek ? (
+      {(isVerzoek || isVerkennend) ? (
         <header className="sub-header chat-gesprek__header--verzoek">
           <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
             <BackArrowIcon />
           </button>
-          <div className="chat-gesprek__contact-avatar chat-gesprek__contact-avatar--small">
-            <span className="chat-gesprek__contact-initials">{chat.initials}</span>
-          </div>
           <span className="sub-header__title">{chat.name}</span>
           <div className="chat-gesprek__header-spacer" />
         </header>
@@ -89,8 +112,8 @@ function ChatGesprek({ chat, onBack }) {
 
       {/* Messages */}
       <div className="chat-gesprek__messages">
-        {/* Connection banner (after accepting verzoek) */}
-        {isAccepted && (
+        {/* Connection banner (verkennend with replies, or after accepting verzoek) */}
+        {(isAccepted || (isVerkennend && hasReplied)) && (
           <div className="chat-gesprek__connection-banner">
             <AgreementIcon size={16} />
             <span className="chat-gesprek__connection-banner-text">Jullie zijn geen connectie</span>
@@ -133,27 +156,46 @@ function ChatGesprek({ chat, onBack }) {
           </div>
         )}
 
+        {/* Dynamically sent messages (snelreacties) */}
+        {sentMessages.map((msg) => (
+          <div key={msg.id} className="chat-gesprek__bubble-wrap chat-gesprek__bubble-wrap--self">
+            <div className="chat-gesprek__bubble chat-gesprek__bubble--self">
+              <p className="chat-gesprek__bubble-text">{msg.text}</p>
+              <span className="chat-gesprek__bubble-time">{msg.time}</span>
+            </div>
+          </div>
+        ))}
+
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Request acceptance card */}
-      {isVerzoek && status === 'pending' && (
-        <div className="chat-gesprek__request-card">
-          <div className="chat-gesprek__request-icon">
-            <ClockIcon size={40} />
+      {/* Snelreacties chips */}
+      {isVerkennend && showSnelreacties && (
+        <div className="chat-gesprek__snelreacties">
+          <div className="chat-gesprek__snelreacties-header">
+            <span className="chat-gesprek__snelreacties-title">Snelle reacties</span>
           </div>
-          <p className="chat-gesprek__request-title">Berichtverzoek van {chat.name.split(' ')[0]} accepteren?</p>
-          <p className="chat-gesprek__request-desc">Je kan berichten sturen wanneer je het berichtverzoek geaccepteerd hebt.</p>
-          <div className="chat-gesprek__request-actions">
-            <button className="chat-gesprek__request-btn chat-gesprek__request-btn--outline" onClick={() => showToast('Afwijzen (nog niet geimplementeerd)')}>
-              Afwijzen
-            </button>
-            <button className="chat-gesprek__request-btn chat-gesprek__request-btn--primary" onClick={() => setStatus('accepted')}>
-              Accepteren
+          <div className="chat-gesprek__snelreacties-list">
+            {snelreacties.map((text) => (
+              <button
+                key={text}
+                className="chat-gesprek__snelreactie-chip"
+                onClick={() => handleSnelreactie(text)}
+              >
+                {text}
+              </button>
+            ))}
+            <button
+              className="chat-gesprek__snelreactie-chip chat-gesprek__snelreactie-chip--typen"
+              onClick={() => setShowSnelreacties(false)}
+            >
+              Zelf iets typen...
             </button>
           </div>
         </div>
       )}
+
+      {/* Request acceptance card (legacy — kept for non-verkennend verzoeken if any) */}
 
       {/* Connectieverzoek verstuurd card */}
       {isVerzoekVerstuurd && (
@@ -169,22 +211,7 @@ function ChatGesprek({ chat, onBack }) {
       )}
 
       {/* Footer */}
-      {isVerzoek ? (
-        <div className="chat-gesprek__footer">
-          <div className="chat-gesprek__input-wrap chat-gesprek__input-wrap--pill">
-            <input
-              type="text"
-              className="chat-gesprek__input"
-              placeholder="Start met typen..."
-              readOnly
-              onClick={() => showToast('Berichten versturen (nog niet geimplementeerd)')}
-            />
-            <button className={`chat-gesprek__send-btn ${isAccepted || isVerzoekVerstuurd ? '' : 'chat-gesprek__send-btn--outline'}`} aria-label="Verstuur">
-              <SendIcon />
-            </button>
-          </div>
-        </div>
-      ) : (
+      {!(isVerkennend && showSnelreacties) && (
         <div className="chat-gesprek__footer">
           <div className="chat-gesprek__input-wrap">
             <input
@@ -194,9 +221,11 @@ function ChatGesprek({ chat, onBack }) {
               readOnly
               onClick={() => showToast('Berichten versturen (nog niet geimplementeerd)')}
             />
-            <button className="chat-gesprek__emoji-btn" aria-label="Emoji">
-              <SmileIcon />
-            </button>
+            {!isVerkennend && (
+              <button className="chat-gesprek__emoji-btn" aria-label="Emoji">
+                <SmileIcon />
+              </button>
+            )}
           </div>
           <button className="chat-gesprek__send-btn" aria-label="Verstuur">
             <SendIcon />

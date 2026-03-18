@@ -466,6 +466,7 @@ export const berichtenChats = [
     timestamp: 'maandag',
     preview: 'Haha, ja vind ik ook',
     unread: 0,
+    sortOrder: 3,
   },
   {
     id: 5,
@@ -473,10 +474,11 @@ export const berichtenChats = [
     initials: 'TJ',
     type: 'individual',
     isConnectie: false,
-    source: 'inkomend',
+    source: 'uitgaand',
     timestamp: 'vorige week',
     preview: 'Ik heb je profiel gezien en zou graag willen praten over begeleiding voor mijn moeder.',
-    unread: 0,
+    unread: 1,
+    sortOrder: 5,
   },
   {
     id: 6,
@@ -488,6 +490,7 @@ export const berichtenChats = [
     timestamp: 'vorige week',
     preview: 'Goedemiddag, ik ben op zoek naar iemand die mijn vader kan helpen met dagelijkse verzorging.',
     unread: 0,
+    sortOrder: 6,
   },
   {
     id: 7,
@@ -499,6 +502,7 @@ export const berichtenChats = [
     timestamp: '2 weken',
     preview: 'Hallo, we zoeken een zorgverlener voor onze buurvrouw. Kun je eens langskomen?',
     unread: 0,
+    sortOrder: 7,
   },
   {
     id: 4,
@@ -522,6 +526,7 @@ export const berichtenVerzoeken = [
     timestamp: 'Gisteren',
     preview: 'Wil je mij toevoegen als zorgverlener?',
     unread: 1,
+    sortOrder: 1,
   },
   {
     id: 'verzoek-2',
@@ -529,9 +534,10 @@ export const berichtenVerzoeken = [
     initials: 'MB',
     type: 'request',
     source: 'inkomend',
-    timestamp: 'maandag',
+    timestamp: 'vorige week',
     preview: 'Hoi! Ik zoek iemand voor huishoudelijke hulp op dinsdag en donderdag. Heb je daar tijd voor?',
     unread: 0,
+    sortOrder: 5.5,
   },
 ]
 
@@ -718,7 +724,7 @@ export const profielData = {
   goedOmTeWeten: 1,
   cv: {
     opleidingen: [
-      { titel: 'Helpende Zorg en Welzijn', periode: 'sep 2020 - jun 2023', instituut: 'ROC Amsterdam' },
+      { titel: 'Helpende Zorg en Welzijn', periode: 'sep 2020 - jun 2023', instituut: 'ROC Amsterdam', diplomaBehaald: true },
     ],
     werkervaring: [
       { titel: 'Zorghulp', periode: 'aug 2023 - Huidig', bedrijf: 'Zelfstandig' },
@@ -728,7 +734,7 @@ export const profielData = {
       { titel: 'BHV', periode: 'jan 2023 - jan 2026', instituut: 'ROC Amsterdam' },
     ],
     ervaringMet: ['Dementie', 'Diabetes', 'Mobiliteitsproblemen'],
-    leerbereidheid: 'Ik sta open om op eigen kosten trainingen te volgen die nodig zijn voor jouw zorg. Denk aan bijv. tilcursus of medicatiebeheer.',
+    leerbereidheid: '',
   },
 }
 
@@ -868,7 +874,7 @@ export const notificatiesData = {
     {
       date: 'Vandaag',
       items: [
-        { id: 3, icon: 'users', iconColor: 'purple', title: 'Jeroen is nu een connectie', description: 'Jouw beurt: stel het tarief in.', actionLink: 'Tarief instellen' },
+        { id: 3, icon: 'users', iconColor: 'purple', title: 'Jeroen is nu een connectie', description: 'Jouw beurt: stel het tarief in.', actionLink: 'Tarief instellen', unread: true },
         { id: 4, icon: 'birthday', iconColor: 'purple', title: 'Nisha is morgen jarig!', description: 'Een berichtje of traktatie voor de jarige?', actionLink: 'Stuur Nisha een bericht' },
         { id: 5, icon: 'download', iconColor: 'purple', title: 'Zorguren augustus beschikbaar', description: 'Bekijk en download het zorguren-overzicht.', actionLink: 'Bekijk zorguren' },
       ]
@@ -878,30 +884,30 @@ export const notificatiesData = {
       items: [
         { id: 6, icon: 'users', iconColor: 'purple', title: 'Pieter is nu een connectie', description: 'Jouw beurt: stel het tarief in.', actionLink: 'Tarief instellen', unread: true },
         { id: 7, icon: 'alert', iconColor: 'pink', title: 'Geannuleerd: woe 10 dec', description: 'Noor heeft Ochtendhulp geannuleerd.', actionLink: 'Bekijk agenda', unread: true },
-        { id: 8, icon: 'calendar', iconColor: 'purple', title: 'Noor heeft geaccepteerd', description: 'Noor heeft de afspraak op woe 10 dec geaccepteerd.', actionLink: 'Bekijk agenda', unread: true },
-        { id: 9, icon: 'note-edit', iconColor: 'purple', title: 'Locatie gewijzigd', description: 'Noor heeft de locatie van de afspraak op woe 10 dec gewijzigd.', actionLink: 'Bekijk agenda', unread: true },
-        { id: 10, icon: 'note-edit', iconColor: 'purple', title: 'Notitie gewijzigd', description: 'Noor heeft de notitie van de afspraak op woe 10 dec gewijzigd.', actionLink: 'Bekijk agenda', unread: true },
-        { id: 11, icon: 'note-edit', iconColor: 'purple', title: 'Locatie en notitie gewijzigd', description: 'Noor heeft de locatie en notitie van de afspraak op woe 10 dec gewijzigd.', actionLink: 'Bekijk agenda', unread: true },
-        { id: 12, icon: 'user-group', iconColor: 'purple', title: 'Nieuw team', description: 'Tess heeft je toegevoegd aan Team Tess.', actionLink: 'Bekijk team', unread: true },
+        { id: 8, icon: 'calendar', iconColor: 'purple', title: 'Noor heeft geaccepteerd', description: 'Noor heeft de afspraak op woe 10 dec geaccepteerd.', actionLink: 'Bekijk agenda' },
+        { id: 9, icon: 'note-edit', iconColor: 'purple', title: 'Locatie gewijzigd', description: 'Noor heeft de locatie van de afspraak op woe 10 dec gewijzigd.', actionLink: 'Bekijk agenda' },
+        { id: 10, icon: 'note-edit', iconColor: 'purple', title: 'Notitie gewijzigd', description: 'Noor heeft de notitie van de afspraak op woe 10 dec gewijzigd.', actionLink: 'Bekijk agenda' },
+        { id: 11, icon: 'note-edit', iconColor: 'purple', title: 'Locatie en notitie gewijzigd', description: 'Noor heeft de locatie en notitie van de afspraak op woe 10 dec gewijzigd.', actionLink: 'Bekijk agenda' },
+        { id: 12, icon: 'user-group', iconColor: 'purple', title: 'Nieuw team', description: 'Tess heeft je toegevoegd aan Team Tess.', actionLink: 'Bekijk team' },
       ]
     },
     {
       date: '14 Mei',
       items: [
-        { id: 13, icon: 'user-remove', iconColor: 'pink', title: 'Teamwijziging', description: 'Tess heeft je verwijderd uit Team Tess.', actionLink: 'Bekijk je teams', unread: true },
+        { id: 13, icon: 'user-remove', iconColor: 'pink', title: 'Teamwijziging', description: 'Tess heeft je verwijderd uit Team Tess.', actionLink: 'Bekijk je teams' },
         { id: 14, icon: 'pencil', iconColor: 'purple', title: 'Teamwijziging', description: 'Tess heeft Team Tess hernoemd naar Ochtendploeg.', actionLink: 'Bekijk team' },
         { id: 15, icon: 'cancel', iconColor: 'pink', title: 'Team verwijderd', description: 'Tess heeft Ochtendploeg verwijderd.' },
         { id: 16, icon: 'euro', iconColor: 'purple', title: 'Tarief toegevoegd', description: 'Tess heeft een tarief toegevoegd.', actionLink: 'Bekijk tarieven' },
         { id: 17, icon: 'archive', iconColor: 'purple', title: 'Ochtendhulp gelogd', description: 'Je afspraak met Nisha (9:00-10:10) is automatisch gelogd.', actionLink: 'Bekijk zorglog' },
         { id: 18, icon: 'delete', iconColor: 'purple', title: 'Ochtendhulp verwijderd', description: 'Nisha heeft je uitnodiging (9:00-10:10) niet tijdig geaccepteerd. Is de zorg toch geleverd?', actionLink: 'Handmatig loggen' },
         { id: 19, icon: 'delete', iconColor: 'purple', title: 'Ochtendhulp verwijderd', description: 'Je conceptafspraak (9:00-10:10) was nog niet verzonden. Is de zorg toch geleverd?', actionLink: 'Handmatig loggen' },
-        { id: 20, icon: 'euro', iconColor: 'purple', title: 'Tarief aangepast', description: 'Tess heeft een tarief aangepast.', actionLink: 'Bekijk zorglogs', unread: true },
+        { id: 20, icon: 'euro', iconColor: 'purple', title: 'Tarief aangepast', description: 'Tess heeft een tarief aangepast.', actionLink: 'Bekijk zorglogs' },
       ]
     },
     {
       date: '13 Mei',
       items: [
-        { id: 21, icon: 'archive', iconColor: 'purple', title: 'Nieuw zorgmoment gelogd', description: 'Tess heeft een zorgmoment gelogd.', actionLink: 'Bekijk zorglog', unread: true },
+        { id: 21, icon: 'archive', iconColor: 'purple', title: 'Nieuw zorgmoment gelogd', description: 'Tess heeft een zorgmoment gelogd.', actionLink: 'Bekijk zorglog' },
         { id: 22, icon: 'note-remove', iconColor: 'pink', title: 'Zorglog verwijderd', description: 'Tess heeft een zorgmoment op woensdag 15 maart verwijderd.', actionLink: 'Bekijk zorglogs' },
         { id: 23, icon: 'message', iconColor: 'purple', title: 'Bericht van Nisha', description: 'Hoi Tess, ik ben misschien vandaag wat later omdat ik eerst mijn zoontje moet ophalen van...', actionLink: 'Lees meer' },
         { id: 24, icon: 'archive', iconColor: 'purple', title: 'Zorglog aangepast', description: 'Tess heeft een gelogd zorgmoment aangepast.', actionLink: 'Bekijk zorglog' },
@@ -1161,11 +1167,15 @@ export const zoekenResultaten = [
   },
 ]
 
+/* ---- Zoeken: net buiten zoekopdracht (not used in zorgverlener app) ---- */
+export const zoekenBuitenZoekopdracht = []
+
 /* ---- Zorgverlener profielen (detailed profile data) ---- */
 
 const defaultProfiel = {
   geslacht: 'Vrouw',
   locatie: 'Amsterdam',
+  locatieDetails: [{ naam: 'Amsterdam', straal: 15 }],
   types: ['Formeel'],
   bio: 'Ik ben een toegewijde zorgverlener met passie voor het helpen van anderen.',
   zorgvragers: 3,
@@ -1181,14 +1191,14 @@ const defaultProfiel = {
   tarief: '€25 per uur (formeel)',
   tariefBespreekbaar: false,
   tariefVoorwaarden: [],
-  talen: ['Nederlands'],
+  talen: [{ naam: 'Nederlands', level: 'vloeiend' }],
   praktischeInfo: ['Heeft een rijbewijs'],
   praktischeInfoExtra: 0,
   reviews: ['Vriendelijk', 'Betrouwbaar'],
   reviewsExtra: 0,
   cv: {
     opleidingen: [
-      { titel: 'Helpende Zorg en Welzijn', periode: 'sep 2020 - jun 2023', instituut: 'ROC Amsterdam' },
+      { titel: 'Helpende Zorg en Welzijn', periode: 'sep 2020 - jun 2023', instituut: 'ROC Amsterdam', diplomaBehaald: true },
     ],
     werkervaring: [
       { titel: 'Zorghulp', periode: 'aug 2023 - Huidig', bedrijf: 'Zelfstandig' },
@@ -1219,6 +1229,7 @@ export const zorgverlenerProfielen = {
     geslacht: 'Vrouw',
     leeftijd: 35,
     locatie: 'Amsterdam',
+    locatieDetails: [{ naam: 'Amsterdam', straal: 15 }],
     types: ['Formeel', 'Informeel'],
     bio: 'Ik ben Nisha, 35 jaar, een betrokken en betrouwbare zorgverleenster met ruime levenservaring. Ik bied persoonlijke verzorging en ondersteuning met aandacht, respect en rust. Het welzijn, de veiligheid en het vertrouwen van de cliënt staan bij mij altijd centraal.',
     zorgvragers: 5,
@@ -1235,15 +1246,15 @@ export const zorgverlenerProfielen = {
     tarief: '€35 per uur (formeel)',
     tariefBespreekbaar: true,
     tariefVoorwaarden: ["Pgb's met lagere maximale tarieven", 'Zorgtrajecten van minimaal 3 maanden'],
-    talen: ['Nederlands', 'Engels'],
-    praktischeInfo: ['Heeft een rijbewijs', 'Rookt niet'],
+    talen: [{ naam: 'Nederlands', level: 'vloeiend' }, { naam: 'Engels', level: 'basis' }],
+    praktischeInfo: ['Rijbewijs', 'BHV/EHBO-diploma', 'Rookt niet'],
     praktischeInfoExtra: 0,
     reviews: ['Betrokken en warm', 'Rustig en geduldig', 'Betrouwbaar'],
     reviewsExtra: 0,
     cv: {
       opleidingen: [
-        { titel: 'Helpende Zorg en Welzijn', periode: 'sep 2018 - jun 2020', instituut: 'ROC van Amsterdam' },
-        { titel: 'Verzorgende IG', periode: 'sep 2020 - jun 2022', instituut: 'ROC van Amsterdam' },
+        { titel: 'Helpende Zorg en Welzijn', periode: 'sep 2018 - jun 2020', instituut: 'ROC van Amsterdam', diplomaBehaald: true },
+        { titel: 'Verzorgende IG', periode: 'sep 2020 - jun 2022', instituut: 'ROC van Amsterdam', diplomaBehaald: true },
       ],
       werkervaring: [
         { titel: 'Persoonlijk begeleider', periode: 'jan 2024 - Huidig', bedrijf: 'Zelfstandig' },
@@ -1272,6 +1283,7 @@ export const zorgverlenerProfielen = {
   4: {
     geslacht: 'Vrouw',
     locatie: 'Amsterdam, Utrecht',
+    locatieDetails: [{ naam: 'Amsterdam', straal: 25 }, { naam: 'Utrecht', straal: 10 }],
     bio: 'Ik ben Monique, 58 jaar, een betrokken en betrouwbare zorgverleenster met ruime ervaring in de thuiszorg. Als moeder van drie kinderen weet ik wat zorg en aandacht betekent.',
     zorgvragers: 8,
     lidSinds: '4-2-2025',
@@ -1288,15 +1300,15 @@ export const zorgverlenerProfielen = {
     tarief: '€40 per uur (formeel)',
     tariefBespreekbaar: true,
     tariefVoorwaarden: ["Pgb's met lagere maximale tarieven", 'Meerdere uren per week (10+ uur)', 'Lichte ondersteuning (geen zware fysieke zorg)'],
-    talen: ['Nederlands', 'Engels (basis)', 'Arabisch'],
-    praktischeInfo: ['Heeft een rijbewijs', 'Kan met huisdieren', 'Rookt niet'],
-    praktischeInfoExtra: 10,
+    talen: [{ naam: 'Nederlands', level: 'vloeiend' }, { naam: 'Engels', level: 'basis' }, { naam: 'Arabisch', level: 'vloeiend' }],
+    praktischeInfo: ['Rijbewijs', 'Auto beschikbaar', 'BHV/EHBO-diploma', 'Kan tillen', 'Rookt niet', 'Kan met huisdieren', 'Flexibel inzetbaar'],
+    praktischeInfoExtra: 0,
     reviews: ['Betrouwbaar en punctueel', 'Rustig en geduldig', 'Voelt goed aan wat nodig is'],
     reviewsExtra: 2,
     cv: {
       opleidingen: [
-        { titel: 'Persoonlijke verzorging', periode: 'sep 2020 - jun 2023', instituut: 'ROC van Amsterdam' },
-        { titel: 'Helpende Plus Zorg en Welzijn', periode: 'sep 2020 - jun 2023', instituut: 'ROC van Amsterdam' },
+        { titel: 'Persoonlijke verzorging', periode: 'sep 2020 - jun 2023', instituut: 'ROC van Amsterdam', diplomaBehaald: true },
+        { titel: 'Helpende Plus Zorg en Welzijn', periode: 'sep 2020 - jun 2023', instituut: 'ROC van Amsterdam', diplomaBehaald: true },
       ],
       werkervaring: [
         { titel: 'Begeleider', periode: 'feb 2024 - Huidig', bedrijf: 'Cordaan' },
@@ -1384,9 +1396,9 @@ export const goedOmTeWetenInstellingen = [
     title: 'Praktisch',
     items: [
       { id: 'pr-1', label: 'Rijbewijs', enabled: true },
-      { id: 'pr-2', label: 'Auto beschikbaar', enabled: false },
+      { id: 'pr-2', label: 'Auto beschikbaar', enabled: true },
       { id: 'pr-3', label: 'BHV/EHBO-diploma', enabled: true },
-      { id: 'pr-4', label: 'Kan tillen', enabled: false },
+      { id: 'pr-4', label: 'Kan tillen', enabled: true },
     ],
   },
   {
@@ -1402,7 +1414,7 @@ export const goedOmTeWetenInstellingen = [
     id: 'overig',
     title: 'Overig',
     items: [
-      { id: 'ov-1', label: 'Flexibel inzetbaar', enabled: false },
+      { id: 'ov-1', label: 'Flexibel inzetbaar', enabled: true },
       { id: 'ov-2', label: 'Overnachting mogelijk', enabled: false },
     ],
   },

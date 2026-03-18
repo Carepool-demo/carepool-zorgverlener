@@ -179,6 +179,38 @@
   background: var(--color-focus-light);
 }
 
+/* ---- Secondary results (net buiten zoekopdracht) ---- */
+.zoeken__results-count--secondary {
+  margin-top: var(--space-10);
+  padding-top: 0;
+  color: var(--color-text-secondary);
+  font-weight: 700;
+}
+
+.zoeken__list:not(.zoeken__list--secondary) + .zoeken__results-count--secondary {
+  border-top: none;
+}
+
+/* Remove large bottom margin on last card when secondary list follows */
+.zoeken__list:has(+ .zoeken__results-count--secondary) .zoeken__card:last-child {
+  margin-bottom: 0;
+}
+
+.zoeken__list--secondary .zoeken__card:last-child {
+  margin-bottom: var(--space-20);
+}
+
+.zoeken__card--secondary .zoeken__card-avatar {
+  opacity: 0.6;
+}
+
+.zoeken__card-reden {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  margin: 0 0 2px;
+  font-style: italic;
+}
+
 /* ---- Avatar ---- */
 .zoeken__card-avatar {
   width: 48px;

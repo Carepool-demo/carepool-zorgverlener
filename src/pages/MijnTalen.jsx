@@ -127,7 +127,7 @@ function MijnTalen({ onBack, talen, onTalenChange }) {
   /* ---- Main view ---- */
   return (
     <div className="mjt">
-      <header className="mjt__header">
+      <header className="sub-header">
         <button className="sub-header__back-btn" onClick={onBack} aria-label="Terug">
           <BackArrowIcon />
         </button>

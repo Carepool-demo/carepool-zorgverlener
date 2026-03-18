@@ -43,13 +43,13 @@
   position: absolute;
   top: -4px;
   right: -8px;
-  min-width: 16px;
-  height: 16px;
+  min-width: 18px;
+  height: 18px;
   padding: 0 4px;
   border-radius: var(--radius-full);
   background-color: var(--color-notification);
   color: var(--color-white);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
   display: flex;
   align-items: center;

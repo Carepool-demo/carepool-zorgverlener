@@ -49,6 +49,8 @@ function App() {
   const [locatiesData, setLocatiesData] = useState(defaultLocaties)
   const [isTariefBespreekbaar, setIsTariefBespreekbaar] = useState(true)
   const [tariefVoorwaarden, setTariefVoorwaarden] = useState(defaultVoorwaarden)
+  const [tariefMin, setTariefMin] = useState(30)
+  const [tariefMax, setTariefMax] = useState(40)
   const contentRef = useRef(null)
 
   useEffect(() => {
@@ -116,8 +118,8 @@ function App() {
           {activePage === PAGES.REGISTRATIES_BEWERKEN && <RegistratiesBewerken onBack={handleBack} registraties={registratiesData} onRegistratiesChange={setRegistratiesData} />}
           {activePage === PAGES.MIJN_LOCATIES && <MijnLocaties onBack={handleBack} locaties={locatiesData} onLocatiesChange={setLocatiesData} />}
           {activePage === PAGES.ZOEKPROFIEL && <Zoekprofiel onBack={handleBack} onNavigate={handleNavigate} />}
-          {activePage === PAGES.MIJN_TARIEVEN && <MijnTarieven onBack={handleBack} isBespreekbaar={isTariefBespreekbaar} onBespreekbaarChange={setIsTariefBespreekbaar} voorwaarden={tariefVoorwaarden} onVoorwaardenChange={setTariefVoorwaarden} registraties={registratiesData} onRegistratiesChange={setRegistratiesData} />}
-          {activePage === PAGES.PROFIEL_PREVIEW && <ZorgverlenerProfiel zorgverlener={profielData} onBack={handleBack} onNavigate={handleNavigate} isPreview isVindbaar={isVindbaar} />}
+          {activePage === PAGES.MIJN_TARIEVEN && <MijnTarieven onBack={handleBack} isBespreekbaar={isTariefBespreekbaar} onBespreekbaarChange={setIsTariefBespreekbaar} voorwaarden={tariefVoorwaarden} onVoorwaardenChange={setTariefVoorwaarden} registraties={registratiesData} onRegistratiesChange={setRegistratiesData} tariefMin={tariefMin} tariefMax={tariefMax} onTariefMinChange={setTariefMin} onTariefMaxChange={setTariefMax} />}
+          {activePage === PAGES.PROFIEL_PREVIEW && <ZorgverlenerProfiel zorgverlener={profielData} onBack={handleBack} onNavigate={handleNavigate} isPreview isVindbaar={isVindbaar} goedOmTeWeten={goedOmTeWeten} tariefOverrides={{ tarief: tariefMin === tariefMax ? `€${tariefMin} per uur` : `€${tariefMin}\u2009–\u2009€${tariefMax} per uur`, tariefBespreekbaar: isTariefBespreekbaar }} />}
           {activePage === PAGES.MELDING_MAKEN && <MeldingMaken onBack={handleBack} />}
         </div>
         {showBottomNav && <BottomNav activeTab={activePage} onTabChange={handleTabChange} berichtenBadge={berichtenBadge} />}

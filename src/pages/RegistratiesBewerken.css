@@ -481,3 +481,43 @@
   color: var(--color-cta);
   border: 1px solid var(--color-border);
 }
+
+/* ---- Organisation list modal ---- */
+.reg-edit__modal--list {
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.reg-edit__org-list {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: var(--space-3);
+  max-height: 300px;
+}
+
+.reg-edit__org-item {
+  display: block;
+  width: 100%;
+  padding: var(--space-3) var(--space-3);
+  border: none;
+  background: none;
+  text-align: left;
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s;
+}
+
+.reg-edit__org-item:hover {
+  background: var(--color-surface-secondary);
+}
+
+.reg-edit__org-empty {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  text-align: center;
+  padding: var(--space-5) 0;
+}

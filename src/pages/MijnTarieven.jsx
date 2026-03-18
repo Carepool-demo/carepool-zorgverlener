@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BackArrowIcon, CheckIcon, InfoIcon } from '@shared/components/Icons'
 import './MijnTarieven.css'
 
@@ -7,27 +6,31 @@ const TYPE_ZORGVERLENER = [
   {
     key: 'formeel',
     label: 'Formele zorgverlener',
-    description: 'Je biedt beroepsmatig zorg, als zzp\'er of in dienst van een zorgorganisatie.',
+    description: 'Je werkt beroepsmatig in de pgb-zorg (bijv. ZZP\'er met BIG-registratie).',
     info: 'AGB-code, KvK-inschrijving en een VOG zijn meestal vereist. BIG- of SKJ-registratie hangt af van je beroep.',
+    tariefHint: 'Gebruikelijk tarief: €50\u2009–\u2009€80 per uur. Het maximale tarief verschilt per wet en per gemeente.',
+    tariefRange: { min: 0, gebruikelijkMin: 50, gebruikelijkMax: 80, warningMax: 100, scaleMax: 120 },
   },
   {
     key: 'informeel',
     label: 'Informele zorgverlener',
-    description: 'Je biedt zorg aan een naaste, bijvoorbeeld als mantelzorger of familielid.',
+    description: 'Je verleent betaalde zorg of ondersteuning zonder zorgdiploma, bijv. als mantelzorger, student of naast je werk.',
     info: 'Registraties zijn niet verplicht. Een VOG kan het vertrouwen van zorgvragers vergroten.',
+    tariefHint: 'Gebruikelijk tarief: €20\u2009–\u2009€26 per uur. Het maximale tarief verschilt per wet en per gemeente.',
+    tariefRange: { min: 0, gebruikelijkMin: 20, gebruikelijkMax: 26, warningMax: 35, scaleMax: 50 },
   },
   {
     key: 'vrijwilliger',
     label: 'Vrijwilliger',
-    description: 'Je biedt onbetaald zorg als vrijwilliger.',
+    description: 'Je biedt onbetaalde hulp.',
     info: 'Geen registraties vereist. Je kunt ze optioneel invullen.',
+    tariefHint: null,
+    tariefRange: null,
   },
 ]
 
 /* ---- MijnTarieven page ---- */
-function MijnTarieven({ onBack, isBespreekbaar, onBespreekbaarChange, voorwaarden, onVoorwaardenChange, registraties, onRegistratiesChange }) {
-  const [tariefMin, setTariefMin] = useState(30)
-  const [tariefMax, setTariefMax] = useState(40)
+function MijnTarieven({ onBack, isBespreekbaar, onBespreekbaarChange, voorwaarden, onVoorwaardenChange, registraties, onRegistratiesChange, tariefMin, tariefMax, onTariefMinChange, onTariefMaxChange }) {
 
   const reg = registraties || {}
   const selectedTypes = reg.typeZorgverlener || []
@@ -40,15 +43,25 @@ function MijnTarieven({ onBack, isBespreekbaar, onBespreekbaarChange, voorwaarde
   }
 
   const selectedTypeInfos = TYPE_ZORGVERLENER.filter(t => selectedTypes.includes(t.key))
+  const onlyVrijwilliger = selectedTypes.length === 1 && selectedTypes[0] === 'vrijwilliger'
+  const showTarief = selectedTypes.length > 0 && !onlyVrijwilliger
+
+  // Get the active tarief hint and range (use the first non-vrijwilliger type)
+  const activeType = selectedTypeInfos.find(t => t.tariefRange) || null
+  const activeTariefHint = activeType?.tariefHint || null
+  const activeTariefRange = activeType?.tariefRange || null
+
+  // Validation: check if tarief exceeds warning max
+  const showWarning = activeTariefRange && tariefMax > activeTariefRange.warningMax
 
   const handleMinChange = (val) => {
     const clamped = Math.max(0, Math.min(999, val))
-    setTariefMin(clamped)
+    onTariefMinChange(clamped)
   }
 
   const handleMaxChange = (val) => {
     const clamped = Math.max(0, Math.min(999, val))
-    setTariefMax(clamped)
+    onTariefMaxChange(clamped)
   }
 
   const handleToggleVoorwaarde = (id) => {
@@ -91,87 +104,117 @@ function MijnTarieven({ onBack, isBespreekbaar, onBespreekbaarChange, voorwaarde
           })}
         </div>
 
-        {/* Tarief input card */}
-        <h3 className="mt__section-label">Uurtarief</h3>
-        <p className="mt__hint" style={{ marginTop: 0, marginBottom: 'var(--space-3)' }}>
-          Geef aan voor welk uurtarief je beschikbaar bent. Zorgvragers zien dit op je profiel.
-        </p>
-        <section className="mt__card">
-          <div className="mt__tarief-range">
-            <div className="mt__tarief-input-wrap mt__tarief-input-wrap--large">
-              <span className="mt__tarief-euro">€</span>
-              <input
-                className="mt__tarief-input"
-                type="number"
-                min={0}
-                max={999}
-                value={tariefMin}
-                onChange={(e) => handleMinChange(Number(e.target.value))}
-                aria-label="Minimum uurtarief"
-              />
-            </div>
-            <span className="mt__tarief-dash">–</span>
-            <div className="mt__tarief-input-wrap mt__tarief-input-wrap--large">
-              <span className="mt__tarief-euro">€</span>
-              <input
-                className="mt__tarief-input"
-                type="number"
-                min={0}
-                max={999}
-                value={tariefMax}
-                onChange={(e) => handleMaxChange(Number(e.target.value))}
-                aria-label="Maximum uurtarief"
-              />
-            </div>
-            <span className="mt__tarief-unit">per uur</span>
-          </div>
-        </section>
-
-        {/* Bespreekbaar toggle + voorwaarden */}
-        <section className="mt__card">
-          <div className="mt__toggle-row">
-            <span className="mt__toggle-label">Mijn tarief is bespreekbaar</span>
-            <button
-              className={`mt__toggle ${isBespreekbaar ? 'mt__toggle--on' : ''}`}
-              onClick={() => onBespreekbaarChange?.(!isBespreekbaar)}
-              role="switch"
-              aria-checked={isBespreekbaar}
-              aria-label="Tarief bespreekbaar"
-            >
-              <span className="mt__toggle-thumb" />
-            </button>
-          </div>
-
-          {isBespreekbaar && voorwaarden && (
-            <div className="mt__voorwaarden">
-              <p className="mt__voorwaarden-label">Onder welke voorwaarden?</p>
-              <div className="mt__checkbox-list">
-                {voorwaarden.map((v) => (
-                  <label key={v.id} className="mt__checkbox-row">
-                    <button
-                      className={`mt__checkbox ${v.enabled ? 'mt__checkbox--checked' : ''}`}
-                      onClick={() => handleToggleVoorwaarde(v.id)}
-                      role="checkbox"
-                      aria-checked={v.enabled}
-                    >
-                      {v.enabled && (
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      )}
-                    </button>
-                    <span className="mt__checkbox-label">{v.label}</span>
-                  </label>
-                ))}
+        {/* Vrijwilliger-only message */}
+        {onlyVrijwilliger && (
+          <>
+            <h3 className="mt__section-label">Uurtarief</h3>
+            <div className="mt__type-info">
+              <InfoIcon />
+              <div className="mt__type-info-text">
+                <p>Als vrijwilliger zijn tarieven niet van toepassing.</p>
               </div>
             </div>
-          )}
-        </section>
+          </>
+        )}
+
+        {/* Tarief input card */}
+        {showTarief && (
+          <>
+            <h3 className="mt__section-label">Uurtarief</h3>
+            {/* Contextgevoelige tariefhint */}
+            {activeTariefHint && (
+              <div className="mt__type-info">
+                <InfoIcon />
+                <div className="mt__type-info-text">
+                  <p>{activeTariefHint}</p>
+                  <button
+                    className="mt__meer-info-link"
+                    onClick={() => alert('Meer info over maximale tarieven (nog niet geïmplementeerd)')}
+                  >
+                    Hoe wordt het maximale tarief bepaald?
+                  </button>
+                </div>
+              </div>
+            )}
+
+            <section className="mt__card">
+              <div className="mt__tarief-range">
+                <div className="mt__tarief-input-wrap mt__tarief-input-wrap--large">
+                  <span className="mt__tarief-euro">€</span>
+                  <input
+                    className="mt__tarief-input"
+                    type="number"
+                    min={0}
+                    max={999}
+                    value={tariefMin}
+                    onChange={(e) => handleMinChange(Number(e.target.value))}
+                    aria-label="Minimum uurtarief"
+                  />
+                </div>
+                <span className="mt__tarief-dash">–</span>
+                <div className="mt__tarief-input-wrap mt__tarief-input-wrap--large">
+                  <span className="mt__tarief-euro">€</span>
+                  <input
+                    className="mt__tarief-input"
+                    type="number"
+                    min={0}
+                    max={999}
+                    value={tariefMax}
+                    onChange={(e) => handleMaxChange(Number(e.target.value))}
+                    aria-label="Maximum uurtarief"
+                  />
+                </div>
+                <span className="mt__tarief-unit">per uur</span>
+              </div>
+
+              {/* Visuele tariefbalk */}
+              {activeTariefRange && (
+                <div className="mt__tarief-bar-wrap">
+                  <div className="mt__tarief-bar">
+                    <div
+                      className="mt__tarief-bar-segment mt__tarief-bar-segment--green"
+                      style={{ width: `${((activeTariefRange.gebruikelijkMax - activeTariefRange.min) / activeTariefRange.scaleMax) * 100}%` }}
+                    />
+                    <div
+                      className="mt__tarief-bar-segment mt__tarief-bar-segment--orange"
+                      style={{ width: `${((activeTariefRange.warningMax - activeTariefRange.gebruikelijkMax) / activeTariefRange.scaleMax) * 100}%` }}
+                    />
+                    <div
+                      className="mt__tarief-bar-segment mt__tarief-bar-segment--red"
+                      style={{ width: `${((activeTariefRange.scaleMax - activeTariefRange.warningMax) / activeTariefRange.scaleMax) * 100}%` }}
+                    />
+                    {/* Indicator for current max tarief */}
+                    <div
+                      className="mt__tarief-bar-indicator"
+                      style={{ left: `${Math.min(100, (tariefMax / activeTariefRange.scaleMax) * 100)}%` }}
+                    />
+                  </div>
+                  <div className="mt__tarief-bar-labels">
+                    <span>€0</span>
+                    <span>€{activeTariefRange.gebruikelijkMax}</span>
+                    <span>€{activeTariefRange.warningMax}</span>
+                    <span>€{activeTariefRange.scaleMax}+</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Waarschuwing bij hoog tarief */}
+              {showWarning && (
+                <div className="mt__tarief-warning">
+                  Let op: dit tarief ligt boven het gebruikelijke maximum voor {activeType.label.toLowerCase()}s. Controleer het maximale tarief bij je gemeente of zorgverzekeraar.
+                </div>
+              )}
+            </section>
+          </>
+        )}
+
 
         {/* Info text */}
-        <p className="mt__hint">
-          Dit tarief geldt als richtlijn voor alle zorgcategorieën. Specifieke tarieven per cliënt spreek je af met de zorgvrager nadat je een connectie bent.
-        </p>
+        {showTarief && (
+          <p className="mt__hint">
+            Dit tarief geldt als richtlijn voor alle zorgcategorieën. Specifieke tarieven per cliënt spreek je af met de zorgvrager nadat je een connectie bent.
+          </p>
+        )}
       </div>
     </div>
   )

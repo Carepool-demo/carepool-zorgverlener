@@ -1,9 +1,8 @@
-import { showToast } from '../components/Toast'
 import { useEffect, useState } from 'react'
 import { PAGES } from '../constants/routes'
 import TopBar from '../components/TopBar'
 import { ChevronRightIcon, PlusIcon, CloseIcon } from '../components/Icons'
-import { berichtenChats, berichtenVerzoeken } from '@app/data/dummyData'
+import { berichtenChats, berichtenVerzoeken, chatGesprekken } from '@app/data/dummyData'
 import NieuwBericht from './NieuwBericht'
 import ChatGesprek from './ChatGesprek'
 import './Berichten.css'
@@ -31,9 +30,6 @@ function CarepoolIcon() {
 function Berichten({ initialSubPage = null, onNavigate, onSubPageChange, notificationCount }) {
   const [subPage, setSubPage] = useState(initialSubPage)
   const [activeChat, setActiveChat] = useState(null)
-  const [acceptedIds, setAcceptedIds] = useState([])
-  const [declinedIds, setDeclinedIds] = useState([])
-  const [declineTarget, setDeclineTarget] = useState(null)
   // Track if we deep-linked into verzoeken sub-page (e.g. from Carepool card)
   const deepLinked = initialSubPage === 'verzoeken'
 
@@ -41,34 +37,22 @@ function Berichten({ initialSubPage = null, onNavigate, onSubPageChange, notific
     if (onSubPageChange) onSubPageChange(subPage)
   }, [subPage, onSubPageChange])
 
-  // Filter verzoeken based on accept/decline state
-  const activeVerzoeken = berichtenVerzoeken.filter(
-    v => !acceptedIds.includes(v.id) && !declinedIds.includes(v.id)
-  )
-  const acceptedChats = berichtenVerzoeken
-    .filter(v => acceptedIds.includes(v.id))
-    .map(v => ({ ...v, type: 'individual', isConnectie: false, accepted: true }))
+  // Verkennende gesprekken: all non-connection chats + verzoeken, sorted by sortOrder
+  const verkennendChats = berichtenChats.filter(c => !c.isConnectie)
+  const combinedVerkenning = [...berichtenVerzoeken, ...verkennendChats].sort((a, b) => (a.sortOrder || 99) - (b.sortOrder || 99))
+  const overigeCount = combinedVerkenning.length
+  const badgeCount = combinedVerkenning.filter(c => c.unread > 0).length
 
-  const baseOverigeChats = berichtenChats.filter(c => !c.isConnectie)
-  const overigeChats = [...acceptedChats, ...baseOverigeChats]
-  const overigeCount = activeVerzoeken.length + overigeChats.length
-  const nieuwCount = activeVerzoeken.filter(v => v.unread > 0).length
-  const unreadGesprekken = overigeChats.filter(c => c.unread > 0).length
-  const badgeCount = nieuwCount + unreadGesprekken
-
-  const handleAccept = (chat) => {
-    setAcceptedIds(prev => [...prev, chat.id])
-    showToast(`Gespreksverzoek van ${chat.name.split(' ')[0]} geaccepteerd`)
-  }
-
-  const handleDecline = (chat) => {
-    setDeclineTarget(chat)
-  }
-
-  const confirmDecline = () => {
-    setDeclinedIds(prev => [...prev, declineTarget.id])
-    showToast('Gespreksverzoek afgewezen')
-    setDeclineTarget(null)
+  const getPreview = (chat) => {
+    const gesprek = chatGesprekken[chat.id]
+    if (!gesprek?.messages?.length) return chat.preview
+    const lastMsg = gesprek.messages[gesprek.messages.length - 1]
+    const prefix = lastMsg.sender === 'self'
+      ? 'Jij: '
+      : chat.type === 'group' && lastMsg.name
+        ? lastMsg.name.split(' ')[0] + ': '
+        : ''
+    return prefix + lastMsg.text
   }
 
   const renderAvatar = (chat) => {
@@ -119,115 +103,41 @@ function Berichten({ initialSubPage = null, onNavigate, onSubPageChange, notific
           <h1 className="berichten__sub-title">Verkennende gesprekken</h1>
         </header>
 
-        {/* Gespreksverzoeken section */}
-        {activeVerzoeken.length > 0 && (
-          <>
-            <div className="berichten__section-row">
-              <h2 className="berichten__section-header">Gespreksverzoeken</h2>
-            </div>
-            <ul className="berichten__list">
-              {activeVerzoeken.map((chat) => (
-                <li key={chat.id}>
-                  <div className="berichten__verzoek-item">
-                    <button
-                      className="berichten__item"
-                      onClick={() => openChat(chat, 'verzoeken')}
-                      aria-label={`Verzoek van ${chat.name}`}
-                    >
-                      <div className="berichten__avatar">
-                        <span className="berichten__initials">{chat.initials}</span>
-                      </div>
-                      <div className="berichten__content">
-                        <div className="berichten__header">
-                          <span className="berichten__name">{chat.name}</span>
-                          {chat.timestamp && (
-                            <span className="berichten__time">{chat.timestamp}</span>
-                          )}
-                        </div>
-                        <span className="berichten__verzoek-source">{chat.source === 'uitgaand' ? 'Door jou benaderd' : 'Reageerde op jouw profiel'}</span>
-                        <p className="berichten__preview berichten__preview--multiline">{chat.preview}</p>
-                      </div>
-                    </button>
-                    <div className="berichten__verzoek-actions">
-                      <button className="berichten__verzoek-btn berichten__verzoek-btn--decline" onClick={() => handleDecline(chat)}>
-                        Afwijzen
-                      </button>
-                      <button className="berichten__verzoek-btn berichten__verzoek-btn--accept" onClick={() => handleAccept(chat)}>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                        Accepteren
-                      </button>
+        {/* All verkennende gesprekken sorted by recency */}
+        {combinedVerkenning.length > 0 && (
+          <ul className="berichten__list berichten__list--verkennend">
+            {combinedVerkenning.map((chat) => (
+              <li key={chat.id}>
+                <button
+                  className="berichten__item"
+                  onClick={() => openChat(chat, 'verzoeken')}
+                  aria-label={`Chat met ${chat.name}`}
+                >
+                  {renderAvatar(chat)}
+                  <div className="berichten__content">
+                    <div className="berichten__header">
+                      <span className="berichten__name">{chat.name}</span>
+                      {chat.timestamp && (
+                        <span className={`berichten__time ${chat.unread > 0 ? 'berichten__time--unread' : ''}`}>
+                          {chat.timestamp}
+                        </span>
+                      )}
+                    </div>
+                    {chat.source !== 'uitgaand' && <span className="berichten__verzoek-source">Reageerde op jouw profiel</span>}
+                    <div className="berichten__preview-row">
+                      <p className="berichten__preview">{getPreview(chat)}</p>
+                      {chat.unread > 0 && (
+                        <span className="berichten__unread-badge">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M9.77965 1.82273C11.2369 1.72586 12.7601 1.72566 14.2204 1.82273C18.787 2.12629 22.4103 5.81258 22.7082 10.4224C22.7639 11.2848 22.7639 12.1768 22.7082 13.0392C22.4103 17.649 18.787 21.3353 14.2204 21.6389C12.7601 21.7359 11.2369 21.7357 9.77965 21.6389C9.21472 21.6013 8.59978 21.4677 8.05839 21.2448C7.8203 21.1467 7.65868 21.0804 7.54041 21.037C7.45909 21.0929 7.35108 21.1723 7.1938 21.2883C6.40136 21.8726 5.40092 22.2825 3.98117 22.248L3.93544 22.2469C3.66155 22.2403 3.36961 22.2334 3.13152 22.1873C2.84475 22.1318 2.48996 21.9931 2.26791 21.6145C2.02623 21.2025 2.12313 20.7858 2.21688 20.5234C2.30536 20.2757 2.45874 19.9852 2.61542 19.6885L2.6369 19.6478C3.10323 18.7641 3.23314 18.0419 2.98381 17.5604C2.15148 16.304 1.40272 14.7556 1.2918 13.0392C1.23607 12.1768 1.23607 11.2848 1.2918 10.4224C1.58972 5.81258 5.213 2.12629 9.77965 1.82273ZM7.75 9.5C7.75 9.91421 8.08579 10.25 8.5 10.25H12C12.4142 10.25 12.75 9.91421 12.75 9.5C12.75 9.08579 12.4142 8.75 12 8.75H8.5C8.08579 8.75 7.75 9.08579 7.75 9.5ZM7.75 14.5C7.75 14.9142 8.08579 15.25 8.5 15.25H15.5C15.9142 15.25 16.25 14.9142 16.25 14.5C16.25 14.0858 15.9142 13.75 15.5 13.75H8.5C8.08579 13.75 7.75 14.0858 7.75 14.5Z" fill="currentColor"/></svg>
+                          {chat.unread}
+                        </span>
+                      )}
                     </div>
                   </div>
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-
-        {/* Verkennende gesprekken section */}
-        {overigeChats.length > 0 && (
-          <>
-            <div className="berichten__section-row">
-              <h2 className="berichten__section-header">Verkennende gesprekken</h2>
-            </div>
-            <ul className="berichten__list">
-              {overigeChats.map((chat) => (
-                <li key={chat.id}>
-                  <button
-                    className="berichten__item"
-                    onClick={() => openChat(chat, 'verzoeken')}
-                    aria-label={`Chat met ${chat.name}`}
-                  >
-                    {renderAvatar(chat)}
-                    <div className="berichten__content">
-                      <div className="berichten__header">
-                        <span className="berichten__name">{chat.name}</span>
-                        {chat.timestamp && (
-                          <span className={`berichten__time ${chat.unread > 0 ? 'berichten__time--unread' : ''}`}>
-                            {chat.timestamp}
-                          </span>
-                        )}
-                      </div>
-                      <span className="berichten__verzoek-source">{chat.source === 'uitgaand' ? 'Door jou benaderd' : 'Reageerde op jouw profiel'}</span>
-                      <div className="berichten__preview-row">
-                        <p className="berichten__preview">{chat.preview}</p>
-                        {chat.unread > 0 && (
-                          <span className="berichten__unread-badge">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M9.77965 1.82273C11.2369 1.72586 12.7601 1.72566 14.2204 1.82273C18.787 2.12629 22.4103 5.81258 22.7082 10.4224C22.7639 11.2848 22.7639 12.1768 22.7082 13.0392C22.4103 17.649 18.787 21.3353 14.2204 21.6389C12.7601 21.7359 11.2369 21.7357 9.77965 21.6389C9.21472 21.6013 8.59978 21.4677 8.05839 21.2448C7.8203 21.1467 7.65868 21.0804 7.54041 21.037C7.45909 21.0929 7.35108 21.1723 7.1938 21.2883C6.40136 21.8726 5.40092 22.2825 3.98117 22.248L3.93544 22.2469C3.66155 22.2403 3.36961 22.2334 3.13152 22.1873C2.84475 22.1318 2.48996 21.9931 2.26791 21.6145C2.02623 21.2025 2.12313 20.7858 2.21688 20.5234C2.30536 20.2757 2.45874 19.9852 2.61542 19.6885L2.6369 19.6478C3.10323 18.7641 3.23314 18.0419 2.98381 17.5604C2.15148 16.304 1.40272 14.7556 1.2918 13.0392C1.23607 12.1768 1.23607 11.2848 1.2918 10.4224C1.58972 5.81258 5.213 2.12629 9.77965 1.82273ZM7.75 9.5C7.75 9.91421 8.08579 10.25 8.5 10.25H12C12.4142 10.25 12.75 9.91421 12.75 9.5C12.75 9.08579 12.4142 8.75 12 8.75H8.5C8.08579 8.75 7.75 9.08579 7.75 9.5ZM7.75 14.5C7.75 14.9142 8.08579 15.25 8.5 15.25H15.5C15.9142 15.25 16.25 14.9142 16.25 14.5C16.25 14.0858 15.9142 13.75 15.5 13.75H8.5C8.08579 13.75 7.75 14.0858 7.75 14.5Z" fill="currentColor"/></svg>
-                            {chat.unread}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-
-        {/* Decline confirmation popup */}
-        {declineTarget && (
-          <div className="berichten__overlay" onClick={() => setDeclineTarget(null)}>
-            <div className="berichten__popup" onClick={(e) => e.stopPropagation()}>
-              <div className="berichten__popup-content">
-                <p className="berichten__popup-title">Gespreksverzoek afwijzen?</p>
-                <p className="berichten__popup-desc">
-                  Weet je zeker dat je het verzoek van {declineTarget.name.split(' ')[0]} wilt afwijzen? Dit kan niet ongedaan worden gemaakt.
-                </p>
-              </div>
-              <div className="berichten__popup-actions">
-                <button className="berichten__popup-btn berichten__popup-btn--secondary" onClick={() => setDeclineTarget(null)}>
-                  Annuleren
                 </button>
-                <button className="berichten__popup-btn berichten__popup-btn--danger" onClick={confirmDecline}>
-                  Afwijzen
-                </button>
-              </div>
-            </div>
-          </div>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     )
@@ -252,10 +162,9 @@ function Berichten({ initialSubPage = null, onNavigate, onSubPageChange, notific
               )}
             </div>
             <p className="berichten__verzoeken-status">
-              {[
-                nieuwCount > 0 ? `${nieuwCount} ${nieuwCount === 1 ? 'nieuw verzoek' : 'nieuwe verzoeken'}` : null,
-                unreadGesprekken > 0 ? `${unreadGesprekken} ${unreadGesprekken === 1 ? 'ongelezen bericht' : 'ongelezen berichten'}` : null,
-              ].filter(Boolean).join(' · ') || 'Geen nieuwe berichten'}
+              {badgeCount > 0
+                ? `${badgeCount} ${badgeCount === 1 ? 'ongelezen bericht' : 'ongelezen berichten'}`
+                : 'Geen nieuwe berichten'}
             </p>
           </div>
           <ChevronRightIcon />
@@ -293,7 +202,7 @@ function Berichten({ initialSubPage = null, onNavigate, onSubPageChange, notific
                   )}
                 </div>
                 <div className="berichten__preview-row">
-                  <p className="berichten__preview">{chat.preview}</p>
+                  <p className="berichten__preview">{getPreview(chat)}</p>
                   {chat.unread > 0 && (
                     <span className="berichten__unread-badge">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M9.77965 1.82273C11.2369 1.72586 12.7601 1.72566 14.2204 1.82273C18.787 2.12629 22.4103 5.81258 22.7082 10.4224C22.7639 11.2848 22.7639 12.1768 22.7082 13.0392C22.4103 17.649 18.787 21.3353 14.2204 21.6389C12.7601 21.7359 11.2369 21.7357 9.77965 21.6389C9.21472 21.6013 8.59978 21.4677 8.05839 21.2448C7.8203 21.1467 7.65868 21.0804 7.54041 21.037C7.45909 21.0929 7.35108 21.1723 7.1938 21.2883C6.40136 21.8726 5.40092 22.2825 3.98117 22.248L3.93544 22.2469C3.66155 22.2403 3.36961 22.2334 3.13152 22.1873C2.84475 22.1318 2.48996 21.9931 2.26791 21.6145C2.02623 21.2025 2.12313 20.7858 2.21688 20.5234C2.30536 20.2757 2.45874 19.9852 2.61542 19.6885L2.6369 19.6478C3.10323 18.7641 3.23314 18.0419 2.98381 17.5604C2.15148 16.304 1.40272 14.7556 1.2918 13.0392C1.23607 12.1768 1.23607 11.2848 1.2918 10.4224C1.58972 5.81258 5.213 2.12629 9.77965 1.82273ZM7.75 9.5C7.75 9.91421 8.08579 10.25 8.5 10.25H12C12.4142 10.25 12.75 9.91421 12.75 9.5C12.75 9.08579 12.4142 8.75 12 8.75H8.5C8.08579 8.75 7.75 9.08579 7.75 9.5ZM7.75 14.5C7.75 14.9142 8.08579 15.25 8.5 15.25H15.5C15.9142 15.25 16.25 14.9142 16.25 14.5C16.25 14.0858 15.9142 13.75 15.5 13.75H8.5C8.08579 13.75 7.75 14.0858 7.75 14.5Z" fill="currentColor"/></svg>
